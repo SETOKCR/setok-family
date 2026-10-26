@@ -7,7 +7,7 @@
 - **Story / Work Unit:** ST-POL-002
 - **Authorized Base:** `PENDING`
 - **Implementation Branch:** `PENDING`
-- **Execution state:** PRODUCT_INPUT_GATE
+- **Execution state:** PREFLIGHT_COMPLETE
 - **Implementation Authorization:** NO
 - **Persistence:** PERSISTED
 
@@ -35,22 +35,26 @@ No provider mutation is planned, but this unit freezes consumer-visible parental
 
 **PASS WITH CONDITIONS** — `docs/development/ST-POL-002_INDEPENDENT_CHECK.md`.
 
-All mandatory Independent Check conditions become part of this Work Order.
+All mandatory Independent Check conditions are part of this Work Order.
 
 ## Product Input Gate
 
-**OPEN.**
+**CLOSED — APPROVED.**
 
-PO approval is required for the exact semantics of:
+The Product Owner explicitly approved the exact first-family semantics documented in `docs/stories/ST-POL-002.md`:
 
-- `STANDARD`;
-- `RESTRICTED`;
-- `STUDY`;
-- `ALLOW_SOCIAL`;
-- `PAUSE_ENTERTAINMENT`;
-- `CLEAR_TEMPORARY`.
+- `STANDARD` = ST-POL-001 baseline with no additional leisure restriction by default;
+- `RESTRICTED` = baseline + social media BLOCK + gaming BLOCK + entertainment/streaming leisure BLOCK;
+- `STUDY` = bounded temporary block of social/gaming/entertainment-streaming, preserving Essential Services and baseline;
+- `ALLOW_SOCIAL` = bounded temporary allow of social media over `STUDY`/`RESTRICTED`, never weakening baseline/mandatory safety;
+- `PAUSE_ENTERTAINMENT` = bounded temporary block of social/gaming/entertainment-streaming, preserving Essential Services and baseline;
+- `CLEAR_TEMPORARY` = remove temporary overlays and return to persistent mode without altering baseline or recurring schedule definitions.
 
-Recommended semantics are documented in `docs/stories/ST-POL-002.md` and must be explicitly approved or amended before Authorized Base freeze.
+Approved normalized domain categories:
+
+- `social_media`;
+- `gaming`;
+- `entertainment_streaming`.
 
 ## Architecture invariants
 
@@ -80,7 +84,7 @@ Allowed terminal policy state:
 
 `DESIRED / COMPILED / APPLY_BLOCKED`
 
-## Expected implementation deliverables after gate closure
+## Expected implementation deliverables
 
 - provider-neutral mode/overlay schema;
 - approved tenant-scoped desired mode configuration;
@@ -115,9 +119,9 @@ Allowed terminal policy state:
 
 ## Stop conditions
 
-- Product Input Gate not closed;
 - repository scope mismatch;
 - Authorized Base/branch lineage mismatch;
+- Product Input semantics differ from approved Story;
 - mode/overlay weakens Security / Threat Baseline or Mandatory Safety Restrictions;
 - Essential Services bypasses threat baseline;
 - unbounded temporary overlay;
@@ -131,7 +135,7 @@ Allowed terminal policy state:
 - [x] Story defined.
 - [x] Risk classified YELLOW 6/10.
 - [x] Independent Check PASS WITH CONDITIONS.
-- [ ] Product Input Gate CLOSED.
+- [x] Product Input Gate CLOSED.
 - [ ] Authorized Base frozen.
 - [ ] Implementation Branch created from exact Authorized Base.
 - [ ] Branch lineage verified.
@@ -143,6 +147,6 @@ Allowed terminal policy state:
 
 - Preflight architecture review: PASS
 - Independent Check: PASS WITH CONDITIONS
-- Product Input Gate: OPEN
+- Product Input Gate: CLOSED — explicit PO approval
 - Authorized Base: PENDING
 - Implementation Authorization: NO
