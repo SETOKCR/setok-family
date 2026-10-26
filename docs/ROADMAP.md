@@ -8,18 +8,18 @@ This roadmap orders work; implementation authority is carried by the active Stor
 
 Current AIDE execution state:
 
-- active unit: `ST-ID-002 — Establish pilot human identities`
+- active unit: `ST-ID-002 — Establish first-family human identities`
 - Story: `docs/stories/ST-ID-002.md`
 - Work Order: `.ai/work-orders/ST-ID-002.md`
 - preflight: `PASS`
 - Independent Check: `PASS WITH CONDITIONS`
 - risk: `RED — Auto-RED(authentication), ordinary score 6/10`
-- Authorized Base: `1d46704d15ef2721bc1cd0ec67673b8de006eb31`
+- Authorized Base: `3494c39efd3bbdda3f52d79b2abe0bd2a6073cc9`
 - implementation branch: `feature/st-id-002`
-- branch lineage: `VERIFIED — branch created from exact Authorized Base; governance-only Work Order binding commit above base`
+- branch lineage: `VERIFIED — branch reset to refreshed Authorized Base; governance-only Work Order binding commit above base`
 - implementation authorized: `NO`
-- Product Input Gate: `OPEN — exact 1–3 human identities must be approved by PO before Apply`
-- open gates: Product Input Gate; explicit Technical Director implementation authorization
+- Product Input Gate: `CLOSED — exactly 2 adult human identities, interactive login YES, child login NO`
+- open gates: explicit Technical Director implementation authorization
 
 ## Phase 1 objective
 
@@ -31,7 +31,7 @@ The approved architecture defines the following implementation order:
 
 1. **Cloudflare foundation — COMPLETE: ST-CF-001 ACCEPT.**
 2. **Authentik foundation — COMPLETE: ST-ID-001 ACCEPT.**
-3. **Pilot-tenant identities — ACTIVE: ST-ID-002, READY, implementation not authorized.**
+3. **First-family human identities — ACTIVE: ST-ID-002, READY, implementation not authorized.**
 4. Initial provider-binding model.
 5. Baseline policies.
 6. Standard / Restricted / temporary overlays.
@@ -63,7 +63,7 @@ Known deferred constraint: the current mobile selector covers Android/iOS device
 
 ### ST-ID-001 — Authentik foundation
 
-Established the Authentik pilot Identity Plane on dedicated VM `220 setok-family-idp-01` on Proxmox `pve-02`:
+Established the Authentik Identity Plane on dedicated VM `220 setok-family-idp-01` on Proxmox `pve-02`:
 
 - Ubuntu 24.04 LTS;
 - 2 vCPU / 2 GiB RAM / 40 GiB disk;
@@ -83,18 +83,18 @@ Operational follow-up: the Product Owner will restart VM 210 under controlled ob
 
 ## Active unit boundary — ST-ID-002
 
-ST-ID-002 creates and validates only human authentication identities in Authentik.
+ST-ID-002 creates and validates only human authentication identities in Authentik for **Familia Ulate León**, the first productive family in SETOK Family.
 
-It does **not** model family authorization in the IdP. Specifically, this Story does not create or use Authentik constructs as `Owner`, `Parent`, `Viewer`, `Child`, `Guardian`, `Family` or Guardian↔Child permissions.
+`Familia Ulate León` is a tenant of the SETOK Family domain, not an Authentik tenant.
 
-A Child does not receive a login identity by default merely because a Child domain entity exists. Child login requires explicit PO selection.
+The Story does **not** model family authorization in the IdP. It does not create or use Authentik constructs as `Owner`, `Parent`, `Viewer`, `Child`, `Guardian`, `Family` or Guardian↔Child permissions.
 
-The exact human identity values are operational input and remain outside Git. Before Apply, PO approves an initial set of 1–3 human identities.
+Product Owner approved exactly two adult human identities with interactive login. Child login is deferred. Concrete names and email/login identifiers remain operational input outside Git and versioned evidence.
 
 Independent Check mandatory conditions include:
 
 - regular human users, not service accounts;
-- no superuser/admin grants to pilot humans;
+- no superuser/admin grants to human users;
 - temporary least-privilege provisioning credential, revoked after use;
 - credentials and full PII outside Git/evidence;
 - interactive login validation;
@@ -106,14 +106,7 @@ Because this Story creates real authentication identities and credential/recover
 
 ## Phase 1 exit condition
 
-Phase 1 is complete only when the platform functions correctly without SETOK Family App and the project has validated:
-
-- enforcement;
-- bypass resistance;
-- identities;
-- provider APIs;
-- states and overlays;
-- differences between Standard and Enhanced Protection.
+Phase 1 is complete only when the platform functions correctly without SETOK Family App and the project has validated enforcement, bypass resistance, identities, provider APIs, states/overlays and Standard vs Enhanced Protection.
 
 ## Phase 2
 
@@ -121,7 +114,7 @@ Phase 2 is the SETOK Family application / mini app and consumer experience. It r
 
 ## Next governance action
 
-Close the ST-ID-002 Product Input Gate by approving the exact pilot human identity set. After that, Technical Director may issue explicit implementation authorization. No Authentik mutation is currently authorized.
+Technical Director may issue explicit implementation authorization for ST-ID-002. No Authentik mutation is authorized until that explicit GO is recorded.
 
 ## Authority
 
