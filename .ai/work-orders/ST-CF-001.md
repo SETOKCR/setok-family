@@ -124,17 +124,66 @@ Establecer y verificar la foundation mínima de Cloudflare Zero Trust para el te
 
 ---
 
+## EXECUTION MODEL
+
+### Standard deployment mechanism
+
+SETOK Family utilizará, para configuraciones de proveedores que dispongan de API soportada, el siguiente patrón operativo:
+
+`Git desired state -> PowerShell -> Provider API -> observed-state verification -> evidence`
+
+PowerShell es el mecanismo estándar de ingeniería para bootstrap, despliegue, consulta, validación y rollback/remediation. Los scripts deben ser idempotentes o, cuando una operación del proveedor no pueda serlo, deben realizar comprobación previa suficiente para evitar duplicación accidental.
+
+### Development Agent as default operator
+
+La ejecución rutinaria será realizada por un Development Agent (por ejemplo Codex o Claude Code) con acceso local al repositorio y a PowerShell. El Product Owner no debe convertirse en operador manual habitual de scripts.
+
+El Product Owner interviene únicamente cuando sea necesario por:
+
+- autenticación interactiva, MFA o consentimiento humano;
+- creación/entrega inicial de credenciales o API tokens que no puedan provisionarse de forma segura por el agente;
+- aprobación explícita de una acción sensible o de alto impacto;
+- validación física/visual que requiera un dispositivo o portal no accesible al agente;
+- Stop Condition o decisión de producto que exceda la autoridad del Development Agent.
+
+### Local workspace bootstrap
+
+La primera tarea del Development Agent antes de implementar ST-CF-001 será preparar el workspace local en Windows:
+
+```text
+C:\Dev\SETOK\setok-family
+```
+
+El agente debe:
+
+1. verificar que `C:\Dev\SETOK` existe o crearlo si está autorizado;
+2. clonar `SETOKCR/setok-family` en `C:\Dev\SETOK\setok-family` si el repositorio todavía no está presente;
+3. si ya existe, verificar que el remote corresponde exactamente a `SETOKCR/setok-family` y no sobrescribir trabajo local no reconocido;
+4. obtener el `main` remoto y comprobar el Project Scope Handshake antes de cualquier mutación;
+5. trabajar desde una rama de implementación creada desde el Authorized Base que establezca el Technical Director;
+6. no almacenar tokens, secretos ni material de autenticación en archivos versionados, comandos persistidos, logs de Git o evidencia destinada al repositorio.
+
+La clonación y preparación del workspace son bootstrap operacional y no constituyen por sí mismas implementación funcional de Cloudflare.
+
+### Script evolution
+
+Para ST-CF-001 se permite crear scripts PowerShell específicos del scope cuando aporten reproducibilidad. No se debe anticipar todavía un framework general de automatización de Fase 1. Un script sólo se promueve a reusable estable cuando existe evidencia de repetición/valor suficiente; esa promoción pertenece a una unidad posterior del ROADMAP.
+
+---
+
 ## DELIVERABLE
 
 - Foundation Cloudflare Zero Trust del tenant piloto configurada y verificable dentro del scope de ST-CF-001.
 - Configuración/evidencia no secreta estrictamente necesaria para reproducibilidad y revisión.
 - Evidencia concisa de before/after, estado observado y rollback/remediation.
+- Workspace local del Development Agent correctamente vinculado a `SETOKCR/setok-family` antes de cualquier mutación funcional.
 
 ---
 
 ## STOP CONDITIONS
 
 - `PROJECT_SCOPE_MISMATCH` o `PROJECT_SCOPE_UNVERIFIED`.
+- El workspace local existente en `C:\Dev\SETOK\setok-family` contiene cambios no reconocidos o apunta a otro remote y no puede reconciliarse de forma segura.
 - La cuenta/organización Cloudflare objetivo no puede identificarse con certeza como autorizada para SETOK Family.
 - La ejecución requiere cambiar authentication/authorization, privilege boundaries o cualquier superficie Auto-RED no prevista.
 - Se requiere baseline policy, Access/Auth, Tunnel de app, enrolamiento, MDM o automatización reusable para completar esta unidad.
