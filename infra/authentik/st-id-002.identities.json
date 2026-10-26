@@ -1,0 +1,35 @@
+{
+  "story": "ST-ID-002",
+  "notes": "Non-secret desired SHAPE of the first-family human identities. Names, emails and passwords are operational input stored only in DPAPI files on valhalla, never in Git or evidence. Authentik authenticates; SETOK Family (not Authentik) will model family membership and roles.",
+  "operationalInput": "%LOCALAPPDATA%\\SETOK\\setok-family\\st-id-002-identities.xml (DPAPI CurrentUser)",
+  "initialCredentials": "%LOCALAPPDATA%\\SETOK\\setok-family\\st-id-002-credentials\\<alias>.xml (DPAPI CurrentUser), for handover to the PO's password manager",
+  "identities": [
+    { "alias": "adult-01", "kind": "adult", "interactiveLogin": true },
+    { "alias": "adult-02", "kind": "adult", "interactiveLogin": true }
+  ],
+  "userShape": {
+    "type": "internal",
+    "isActive": true,
+    "superuser": false,
+    "groups": [],
+    "roles": [],
+    "path": "users",
+    "usernameSource": "login email (operational input)",
+    "ownershipTag": "attributes.setok = { provisionedBy: 'ST-ID-002', alias: '<alias>' }"
+  },
+  "childLogin": false,
+  "temporaryProvisioner": {
+    "serviceAccount": "st-id-002-provisioner",
+    "role": "st-id-002-provisioner",
+    "permissions": [
+      "authentik_core.view_user",
+      "authentik_core.add_user",
+      "authentik_core.change_user",
+      "authentik_core.reset_user_password"
+    ],
+    "tokenIntent": "api",
+    "tokenLifetimeMinutes": 60,
+    "revokedAtEndOfEveryRun": true
+  },
+  "apiEndpoint": "https://192.168.89.22:9443 (LAN only, self-signed foundation certificate)"
+}
