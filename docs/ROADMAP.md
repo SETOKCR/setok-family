@@ -11,12 +11,13 @@ Current AIDE execution state:
 - active unit: `ST-ID-001 — Establish Authentik pilot identity foundation`
 - Story: `docs/stories/ST-ID-001.md`
 - Work Order: `.ai/work-orders/ST-ID-001.md`
-- preflight: `PASS WITH RED GATE`
+- preflight: `PASS`
+- Independent Check: `PASS WITH CONDITIONS`
 - risk: `RED — Auto-RED(authentication), ordinary score 5/10`
 - implementation authorized: `NO`
-- Authorized Base: `NONE`
+- Authorized Base: `PENDING FREEZE`
 - Active Execution Alignment: `NOT_APPLICABLE`
-- open gate: Independent Check before implementation authorization
+- open gate: freeze Authorized Base and implementation branch, then explicit implementation authorization
 
 ## Phase 1 objective
 
@@ -27,7 +28,7 @@ Deliver and validate a functioning parental-control platform without depending o
 The approved architecture defines the following implementation order:
 
 1. **Cloudflare foundation — COMPLETE: ST-CF-001 ACCEPT.**
-2. **Authentik foundation — ACTIVE: ST-ID-001, preflight passed, RED gate open, implementation not authorized.**
+2. **Authentik foundation — ACTIVE: ST-ID-001, preflight + Independent Check passed; implementation not yet authorized.**
 3. Pilot-tenant identities.
 4. Initial provider-binding model.
 5. Baseline policies.
@@ -58,9 +59,18 @@ Known deferred constraint: the current mobile selector covers Android/iOS device
 
 ## Active unit boundary
 
-`ST-ID-001` establishes only the Authentik self-hosted pilot foundation: deployment, persistence, secure bootstrap, backup/remediation and operational verification. It explicitly excludes real family users, domain roles, Guardian↔Child authorization, federation, OIDC for the app, Cloudflare Access integration and commercial HA.
+`ST-ID-001` establishes only the Authentik self-hosted pilot foundation: dedicated VM on `pve-02`, Linux + Docker Compose, persistence, secure bootstrap, backup/remediation and operational verification. It explicitly excludes real family users, domain roles, Guardian↔Child authorization, federation, OIDC for the app, Cloudflare Access integration, Outposts and commercial HA.
 
-Because this Story establishes the authoritative human authentication mechanism, it is `RED` by `Auto-RED(authentication)`. AIDE requires reinforced review; implementation remains blocked until the Independent Check passes and an Authorized Base is frozen.
+Product Owner deployment decision:
+
+- dedicated VM, not LXC/PCT;
+- existing VM `210 (setok-live-01)` remains untouched;
+- initial sizing 2 vCPU / 2 GiB RAM / 32–40 GiB disk;
+- no direct WAN exposure.
+
+Independent Check conditions are mandatory: remove the upstream Docker socket mount while Outposts remain out of scope, keep all secrets outside Git/evidence, generate a PostgreSQL logical backup stored outside the Authentik VM, capture initial utilization and document a non-secret local recovery/remediation path.
+
+Because this Story establishes the authoritative human authentication mechanism, it remains `RED` by `Auto-RED(authentication)` even though readiness passed.
 
 ## Phase 1 exit condition
 
@@ -79,7 +89,7 @@ Phase 2 is the SETOK Family application / mini app and consumer experience. It r
 
 ## Next governance action
 
-Perform an Independent Check of `ST-ID-001` architecture/security/readiness. Only after PASS may the Technical Director resolve an Authorized Base, create the implementation branch and consider implementation authorization.
+Freeze the current canonical `main` state as the Authorized Base, create the implementation branch for `ST-ID-001`, verify lineage and then issue explicit Technical Director implementation authorization before any infrastructure mutation.
 
 ## Authority
 
