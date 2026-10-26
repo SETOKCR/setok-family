@@ -1,5 +1,5 @@
 schema_version: 1
-written_at_utc: 2026-10-26T15:20:00Z
+written_at_utc: 2026-10-26T15:30:00Z
 
 framework:
   repository: SETOKCR/setok-aide
@@ -10,20 +10,19 @@ scope:
   kind: project
   repository: SETOKCR/setok-family
   default_branch: main
-  observed_head: df0a9dd9968c44428ab69e9e19c91fc2f164809e
+  observed_head: e585bb6018658da42602651236294b535f1b7b32
 
 activity:
   lifecycle: active
   active_unit: ST-POL-001
-  phase: readiness
+  phase: implementation
   risk: YELLOW-5
-  implementation_authorized: false
+  implementation_authorized: true
   authorized_base: df0a9dd9968c44428ab69e9e19c91fc2f164809e
   implementation_branch: feature/st-pol-001
   candidate_commit: null
 
-open_gates:
-  - explicit Technical Director implementation authorization
+open_gates: []
 
 canonical_refs:
   - .ai/AIDE_PROJECT.yaml
@@ -44,6 +43,6 @@ last_terminal:
   note: ST-PB-001 integrated to main and formally closed. Provider-neutral tenant-scoped binding registry established for Familia Ulate León with two opaque adult subject bindings to Authentik, shared Cloudflare integration/resource bindings, lifecycle/cardinality rules, zero device subjects/bindings, read-only provider reconciliation, unchanged provider fingerprints, and no PII/secrets in versioned state or evidence.
 
 next_action:
-  kind: implementation_authorization
+  kind: implementation
   unit: ST-POL-001
-  note: Preflight PASS; Independent Check PASS WITH CONDITIONS; Product Input Gate NOT REQUIRED. Authorized Base df0a9dd9968c44428ab69e9e19c91fc2f164809e. Branch feature/st-pol-001 has exactly one governance-only commit above base. Implementation is contract/compilation/read-only discovery only; no Cloudflare Gateway mutation is authorized and no rule may be claimed APPLIED.
+  note: Implementation explicitly authorized. Development Agent must reconstruct from Git, verify PROJECT_SCOPE_OK and exact lineage from Authorized Base df0a9dd9968c44428ab69e9e19c91fc2f164809e, then implement the provider-neutral baseline Policy Intent contract and deterministic Cloudflare DNS compilation/read-only discovery. No Cloudflare Gateway mutation is authorized; no rule may be described as APPLIED; no device subject or binding may be invented. Stop on any Work Order Stop Condition.
