@@ -1,0 +1,40 @@
+schema_version: 1
+written_at_utc: 2026-10-26T00:15:22Z
+
+framework:
+  repository: SETOKCR/setok-aide
+  version: 1.2.3
+  observed_head: 802e007796e2a5aeccc89da400480c254fa59290
+
+scope:
+  kind: project
+  repository: SETOKCR/setok-family
+  default_branch: main
+  observed_head: 64b70e6c0f65a8353610932338c8069e18bed209
+
+activity:
+  lifecycle: active
+  active_unit: null
+  phase: selection
+  risk: null
+  implementation_authorized: false
+  authorized_base: null
+  implementation_branch: null
+  candidate_commit: null
+
+open_gates: []
+
+canonical_refs:
+  - .ai/AIDE_PROJECT.yaml
+  - AGENTS.md
+  - docs/PRODUCT.md
+  - docs/ARCHITECTURE.md
+  - docs/ROADMAP.md
+  - docs/QUALITY.md
+
+last_terminal: null
+
+next_action:
+  kind: selection
+  unit: null
+  note: Await Product Owner direction before selecting the first Phase 1 Story; no implementation is authorized.
