@@ -8,18 +8,13 @@ This roadmap orders work; implementation authority is carried by the active Stor
 
 Current AIDE execution state:
 
-- active unit: `ST-ID-002 — Establish first-family human identities`
-- Story: `docs/stories/ST-ID-002.md`
-- Work Order: `.ai/work-orders/ST-ID-002.md`
-- preflight: `PASS`
-- Independent Check: `PASS WITH CONDITIONS`
-- risk: `RED — Auto-RED(authentication), ordinary score 6/10`
-- Authorized Base: `3494c39efd3bbdda3f52d79b2abe0bd2a6073cc9`
-- implementation branch: `feature/st-id-002`
-- branch lineage: `VERIFIED — branch reset to refreshed Authorized Base; governance-only Work Order binding commit above base`
+- active unit: `NONE`
 - implementation authorized: `NO`
-- Product Input Gate: `CLOSED — exactly 2 adult human identities, interactive login YES, child login NO`
-- open gates: explicit Technical Director implementation authorization
+- open gates: `NONE`
+- last completed unit: `ST-ID-002 — first-family human identities`
+- Technical Director decision: `ACCEPT`
+- accepted candidate: `9111781ac67a1db4194102368be311849d59d174`
+- integration commit: `c506ac29b1d1463c5003adc98a41eaf8b5c28d05`
 
 ## Phase 1 objective
 
@@ -27,12 +22,10 @@ Deliver and validate a functioning parental-control platform without depending o
 
 ## Ordered Phase 1 work
 
-The approved architecture defines the following implementation order:
-
 1. **Cloudflare foundation — COMPLETE: ST-CF-001 ACCEPT.**
 2. **Authentik foundation — COMPLETE: ST-ID-001 ACCEPT.**
-3. **First-family human identities — ACTIVE: ST-ID-002, READY, implementation not authorized.**
-4. Initial provider-binding model.
+3. **First-family human identities — COMPLETE: ST-ID-002 ACCEPT.**
+4. **Initial provider-binding model — NEXT.**
 5. Baseline policies.
 6. Standard / Restricted / temporary overlays.
 7. Android enrollment.
@@ -57,52 +50,40 @@ The approved architecture defines the following implementation order:
 
 ### ST-CF-001 — Cloudflare foundation
 
-Established an isolated custom Cloudflare device profile `SETOK-FAMILY-MANAGED` in the shared SETOK Zero Trust organization without modifying the Default profile or organization. Desired state and evidence are retained under `infra/cloudflare/`, `scripts/st-cf-001/` and `docs/evidence/ST-CF-001/`.
+Established an isolated custom Cloudflare device profile `SETOK-FAMILY-MANAGED` in the shared SETOK Zero Trust organization without modifying the Default profile or organization.
 
 Known deferred constraint: the current mobile selector covers Android/iOS devices in the shared Zero Trust org. Before another mobile population is introduced there, later provider-binding / identity work must narrow that selector appropriately.
 
 ### ST-ID-001 — Authentik foundation
 
-Established the Authentik Identity Plane on dedicated VM `220 setok-family-idp-01` on Proxmox `pve-02`:
-
-- Ubuntu 24.04 LTS;
-- 2 vCPU / 2 GiB RAM / 40 GiB disk;
-- Docker Engine + Docker Compose v2;
-- Authentik + PostgreSQL;
-- no direct WAN exposure;
-- no Docker socket mount in worker;
-- secrets outside Git;
-- PostgreSQL logical backup stored off-VM;
-- health/API/UI, scope, secret, idempotency and recovery evidence retained;
-- VM `210 setok-live-01` not modified by the Story.
+Established the Authentik Identity Plane on dedicated VM `220 setok-family-idp-01` on Proxmox `pve-02`, with Ubuntu 24.04 LTS, Docker Compose, Authentik + PostgreSQL, no direct WAN exposure, no Docker socket mount, secrets outside Git, off-VM PostgreSQL backup, health/API/UI validation and recovery evidence.
 
 Accepted candidate: `6bcd99024ef86f7819a957c2e17e2b9a442178f7`.
 Integration commit: `e6d1bffa65762b93069fdf480d5d67628e1fbdef`.
 
-Operational follow-up: the Product Owner will restart VM 210 under controlled observation to validate long-term memory coexistence. This is not an open implementation gate for ST-ID-001.
+Operational follow-up: Product Owner will restart VM 210 under controlled observation to validate long-term memory coexistence. This is not an implementation gate for ST-ID-001.
 
-## Active unit boundary — ST-ID-002
+### ST-ID-002 — First-family human identities
 
-ST-ID-002 creates and validates only human authentication identities in Authentik for **Familia Ulate León**, the first productive family in SETOK Family.
+Established the first two adult human authentication identities for **Familia Ulate León**, the first productive family in SETOK Family.
 
-`Familia Ulate León` is a tenant of the SETOK Family domain, not an Authentik tenant.
+Boundary preserved:
+- Familia Ulate León is a tenant of the SETOK Family domain, not an Authentik tenant;
+- no Owner/Parent/Viewer/Child/Guardian/Family authorization modeled in Authentik;
+- no child login;
+- no OIDC/federation/Cloudflare Access/device-binding expansion;
+- both adult identities are regular non-admin Authentik users;
+- interactive login and recovery verified;
+- temporary least-privilege provisioner revoked;
+- evidence contains aliases only and no real PII/secrets;
+- idempotent re-run verified;
+- ST-ID-001 foundation remained healthy.
 
-The Story does **not** model family authorization in the IdP. It does not create or use Authentik constructs as `Owner`, `Parent`, `Viewer`, `Child`, `Guardian`, `Family` or Guardian↔Child permissions.
+Accepted candidate: `9111781ac67a1db4194102368be311849d59d174`.
+Integration commit: `c506ac29b1d1463c5003adc98a41eaf8b5c28d05`.
+Evidence: `docs/evidence/ST-ID-002/`.
 
-Product Owner approved exactly two adult human identities with interactive login. Child login is deferred. Concrete names and email/login identifiers remain operational input outside Git and versioned evidence.
-
-Independent Check mandatory conditions include:
-
-- regular human users, not service accounts;
-- no superuser/admin grants to human users;
-- temporary least-privilege provisioning credential, revoked after use;
-- credentials and full PII outside Git/evidence;
-- interactive login validation;
-- recovery-path validation;
-- collision-safe/idempotent provisioning;
-- clean scope scan and ST-ID-001 health regression check.
-
-Because this Story creates real authentication identities and credential/recovery state, it remains `RED` by `Auto-RED(authentication)`.
+Operational custody follow-up: Product Owner confirmed both initial passwords are stored in Bitwarden. Temporary DPAPI credential copies can now be removed after final local confirmation.
 
 ## Phase 1 exit condition
 
@@ -114,7 +95,7 @@ Phase 2 is the SETOK Family application / mini app and consumer experience. It r
 
 ## Next governance action
 
-Technical Director may issue explicit implementation authorization for ST-ID-002. No Authentik mutation is authorized until that explicit GO is recorded.
+Select and preflight the **Initial provider-binding model**. No implementation is authorized until its Story/Work Order passes the normal AIDE gates.
 
 ## Authority
 
