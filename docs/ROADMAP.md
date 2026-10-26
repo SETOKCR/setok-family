@@ -8,17 +8,14 @@ This roadmap orders work; implementation authority is carried by the active Stor
 
 Current AIDE execution state:
 
-- active unit: `ST-ID-001 — Establish Authentik pilot identity foundation`
-- Story: `docs/stories/ST-ID-001.md`
-- Work Order: `.ai/work-orders/ST-ID-001.md`
-- preflight: `PASS`
-- Independent Check: `PASS WITH CONDITIONS`
+- active unit: `NONE`
+- last completed: `ST-ID-001 — Establish Authentik pilot identity foundation`
+- result: `ACCEPT`
 - risk: `RED — Auto-RED(authentication), ordinary score 5/10`
-- Authorized Base: `e10279d1c31e3f02e5b7b4d4185d74f662a93877`
-- implementation branch: `feature/st-id-001`
-- branch lineage: `VERIFIED` — one governance-only Work Order commit above Authorized Base
 - implementation authorized: `NO`
-- open gate: explicit Technical Director implementation authorization
+- Authorized Base: `NONE`
+- Active Execution Alignment: `NOT_APPLICABLE`
+- open gates: `NONE`
 
 ## Phase 1 objective
 
@@ -29,8 +26,8 @@ Deliver and validate a functioning parental-control platform without depending o
 The approved architecture defines the following implementation order:
 
 1. **Cloudflare foundation — COMPLETE: ST-CF-001 ACCEPT.**
-2. **Authentik foundation — ACTIVE: ST-ID-001, READY, implementation not yet authorized.**
-3. Pilot-tenant identities.
+2. **Authentik foundation — COMPLETE: ST-ID-001 ACCEPT.**
+3. **Pilot-tenant identities — NEXT PLANNED; not yet selected or authorized.**
 4. Initial provider-binding model.
 5. Baseline policies.
 6. Standard / Restricted / temporary overlays.
@@ -54,24 +51,31 @@ The approved architecture defines the following implementation order:
 
 ## Completed foundation evidence
 
-`ST-CF-001` established an isolated custom Cloudflare device profile `SETOK-FAMILY-MANAGED` in the shared SETOK Zero Trust organization without modifying the Default profile or organization. Desired state and evidence are retained under `infra/cloudflare/`, `scripts/st-cf-001/` and `docs/evidence/ST-CF-001/`.
+### ST-CF-001 — Cloudflare foundation
+
+Established an isolated custom Cloudflare device profile `SETOK-FAMILY-MANAGED` in the shared SETOK Zero Trust organization without modifying the Default profile or organization. Desired state and evidence are retained under `infra/cloudflare/`, `scripts/st-cf-001/` and `docs/evidence/ST-CF-001/`.
 
 Known deferred constraint: the current mobile selector covers Android/iOS devices in the shared Zero Trust org. Before another mobile population is introduced there, later provider-binding / identity work must narrow that selector appropriately.
 
-## Active unit boundary
+### ST-ID-001 — Authentik foundation
 
-`ST-ID-001` establishes only the Authentik self-hosted pilot foundation: dedicated VM on `pve-02`, Linux + Docker Compose, persistence, secure bootstrap, backup/remediation and operational verification. It explicitly excludes real family users, domain roles, Guardian↔Child authorization, federation, OIDC for the app, Cloudflare Access integration, Outposts and commercial HA.
+Established the Authentik pilot Identity Plane on dedicated VM `220 setok-family-idp-01` on Proxmox `pve-02`:
 
-Product Owner deployment decision:
+- Ubuntu 24.04 LTS;
+- 2 vCPU / 2 GiB RAM / 40 GiB disk;
+- Docker Engine + Docker Compose v2;
+- Authentik + PostgreSQL;
+- no direct WAN exposure;
+- no Docker socket mount in worker;
+- secrets outside Git;
+- PostgreSQL logical backup stored off-VM;
+- health/API/UI, scope, secret, idempotency and recovery evidence retained;
+- VM `210 setok-live-01` not modified by the Story.
 
-- dedicated VM, not LXC/PCT;
-- existing VM `210 (setok-live-01)` remains untouched;
-- initial sizing 2 vCPU / 2 GiB RAM / 32–40 GiB disk;
-- no direct WAN exposure.
+Accepted candidate: `6bcd99024ef86f7819a957c2e17e2b9a442178f7`.
+Integration commit: `e6d1bffa65762b93069fdf480d5d67628e1fbdef`.
 
-Independent Check conditions are mandatory: remove the upstream Docker socket mount while Outposts remain out of scope, keep all secrets outside Git/evidence, generate a PostgreSQL logical backup stored outside the Authentik VM, capture initial utilization and document a non-secret local recovery/remediation path.
-
-Because this Story establishes the authoritative human authentication mechanism, it remains `RED` by `Auto-RED(authentication)` even though readiness passed.
+Operational follow-up: the Product Owner will restart VM 210 under controlled observation to validate long-term memory coexistence. This is not an open implementation gate for ST-ID-001.
 
 ## Phase 1 exit condition
 
@@ -90,7 +94,7 @@ Phase 2 is the SETOK Family application / mini app and consumer experience. It r
 
 ## Next governance action
 
-Technical Director issues explicit implementation authorization for `ST-ID-001` before any Proxmox or Authentik mutation. Development Agent then reconstructs from Git, verifies `PROJECT_SCOPE_OK` and exact branch lineage, and executes only the authorized Work Order.
+Await Product Owner direction before selecting the next Story. Architecture order indicates **Pilot-tenant identities** next. Selection is not implementation authorization; the next unit must pass the normal AIDE preflight before execution.
 
 ## Authority
 
