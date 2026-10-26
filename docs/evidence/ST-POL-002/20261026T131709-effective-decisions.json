@@ -1,0 +1,1561 @@
+{
+  "S01 STANDARD": {
+    "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+    "evaluated_at": "2026-11-02T15:00:00Z",
+    "persistent_mode": "STANDARD",
+    "underlying_persistent_mode": "STANDARD",
+    "active_overlays": [],
+    "expired_overlays_ignored": [
+      null
+    ],
+    "decisions": [
+      {
+        "category": "content.adult",
+        "decision": "BLOCK",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "content.gambling",
+        "decision": "BLOCK",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "search.safe_search",
+        "decision": "FORCE",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.command_and_control",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.malware",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.phishing",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "video.youtube_restricted",
+        "decision": "FORCE",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "social_media",
+        "decision": "ALLOW",
+        "source": "default_family_policy",
+        "source_ref": "default",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": true,
+        "essential_services": "n/a"
+      },
+      {
+        "category": "gaming",
+        "decision": "ALLOW",
+        "source": "default_family_policy",
+        "source_ref": "default",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": true,
+        "essential_services": "n/a"
+      },
+      {
+        "category": "entertainment_streaming",
+        "decision": "ALLOW",
+        "source": "default_family_policy",
+        "source_ref": "default",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": true,
+        "essential_services": "n/a"
+      }
+    ],
+    "state": "DESIRED"
+  },
+  "S02 RESTRICTED": {
+    "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+    "evaluated_at": "2026-11-02T15:00:00Z",
+    "persistent_mode": "RESTRICTED",
+    "underlying_persistent_mode": "RESTRICTED",
+    "active_overlays": [],
+    "expired_overlays_ignored": [
+      null
+    ],
+    "decisions": [
+      {
+        "category": "content.adult",
+        "decision": "BLOCK",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "content.gambling",
+        "decision": "BLOCK",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "search.safe_search",
+        "decision": "FORCE",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.command_and_control",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.malware",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.phishing",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "video.youtube_restricted",
+        "decision": "FORCE",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "social_media",
+        "decision": "BLOCK",
+        "source": "active_mode",
+        "source_ref": "mode:RESTRICTED",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": true,
+        "essential_services": "declared_essential_services_allowed"
+      },
+      {
+        "category": "gaming",
+        "decision": "BLOCK",
+        "source": "active_mode",
+        "source_ref": "mode:RESTRICTED",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": true,
+        "essential_services": "declared_essential_services_allowed"
+      },
+      {
+        "category": "entertainment_streaming",
+        "decision": "BLOCK",
+        "source": "active_mode",
+        "source_ref": "mode:RESTRICTED",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": true,
+        "essential_services": "declared_essential_services_allowed"
+      }
+    ],
+    "state": "DESIRED"
+  },
+  "S03 RESTRICTED + ALLOW_SOCIAL (active)": {
+    "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+    "evaluated_at": "2026-11-02T15:10:00Z",
+    "persistent_mode": "RESTRICTED",
+    "underlying_persistent_mode": "RESTRICTED",
+    "active_overlays": [
+      {
+        "overlay_id": "ovl_01M60000000000000000000001",
+        "type": "ALLOW_SOCIAL",
+        "expires_at": "2026-11-02T15:30:00Z"
+      }
+    ],
+    "expired_overlays_ignored": [
+      null
+    ],
+    "decisions": [
+      {
+        "category": "content.adult",
+        "decision": "BLOCK",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "content.gambling",
+        "decision": "BLOCK",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "search.safe_search",
+        "decision": "FORCE",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.command_and_control",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.malware",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.phishing",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "video.youtube_restricted",
+        "decision": "FORCE",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "social_media",
+        "decision": "ALLOW",
+        "source": "temporary_override",
+        "source_ref": "overlay:ALLOW_SOCIAL",
+        "overridden": [
+          "mode:RESTRICTED"
+        ],
+        "expires_at": "2026-11-02T15:30:00Z",
+        "next_change_at": "2026-11-02T15:30:00Z",
+        "overridable": true,
+        "essential_services": "n/a"
+      },
+      {
+        "category": "gaming",
+        "decision": "BLOCK",
+        "source": "active_mode",
+        "source_ref": "mode:RESTRICTED",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": true,
+        "essential_services": "declared_essential_services_allowed"
+      },
+      {
+        "category": "entertainment_streaming",
+        "decision": "BLOCK",
+        "source": "active_mode",
+        "source_ref": "mode:RESTRICTED",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": true,
+        "essential_services": "declared_essential_services_allowed"
+      }
+    ],
+    "state": "DESIRED"
+  },
+  "S04 RESTRICTED + ALLOW_SOCIAL (at expiry)": {
+    "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+    "evaluated_at": "2026-11-02T15:30:00Z",
+    "persistent_mode": "RESTRICTED",
+    "underlying_persistent_mode": "RESTRICTED",
+    "active_overlays": [],
+    "expired_overlays_ignored": [
+      "ovl_01M60000000000000000000001"
+    ],
+    "decisions": [
+      {
+        "category": "content.adult",
+        "decision": "BLOCK",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "content.gambling",
+        "decision": "BLOCK",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "search.safe_search",
+        "decision": "FORCE",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.command_and_control",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.malware",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.phishing",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "video.youtube_restricted",
+        "decision": "FORCE",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "social_media",
+        "decision": "BLOCK",
+        "source": "active_mode",
+        "source_ref": "mode:RESTRICTED",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": true,
+        "essential_services": "declared_essential_services_allowed"
+      },
+      {
+        "category": "gaming",
+        "decision": "BLOCK",
+        "source": "active_mode",
+        "source_ref": "mode:RESTRICTED",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": true,
+        "essential_services": "declared_essential_services_allowed"
+      },
+      {
+        "category": "entertainment_streaming",
+        "decision": "BLOCK",
+        "source": "active_mode",
+        "source_ref": "mode:RESTRICTED",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": true,
+        "essential_services": "declared_essential_services_allowed"
+      }
+    ],
+    "state": "DESIRED"
+  },
+  "S05 STANDARD + STUDY (active)": {
+    "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+    "evaluated_at": "2026-11-02T15:05:00Z",
+    "persistent_mode": "STANDARD",
+    "underlying_persistent_mode": "STANDARD",
+    "active_overlays": [
+      {
+        "overlay_id": "ovl_01M60000000000000000000002",
+        "type": "STUDY",
+        "expires_at": "2026-11-02T16:00:00Z"
+      }
+    ],
+    "expired_overlays_ignored": [
+      null
+    ],
+    "decisions": [
+      {
+        "category": "content.adult",
+        "decision": "BLOCK",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "content.gambling",
+        "decision": "BLOCK",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "search.safe_search",
+        "decision": "FORCE",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.command_and_control",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.malware",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.phishing",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "video.youtube_restricted",
+        "decision": "FORCE",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "social_media",
+        "decision": "BLOCK",
+        "source": "temporary_override",
+        "source_ref": "overlay:STUDY",
+        "overridden": [],
+        "expires_at": "2026-11-02T16:00:00Z",
+        "next_change_at": "2026-11-02T16:00:00Z",
+        "overridable": true,
+        "essential_services": "declared_essential_services_allowed"
+      },
+      {
+        "category": "gaming",
+        "decision": "BLOCK",
+        "source": "temporary_override",
+        "source_ref": "overlay:STUDY",
+        "overridden": [],
+        "expires_at": "2026-11-02T16:00:00Z",
+        "next_change_at": "2026-11-02T16:00:00Z",
+        "overridable": true,
+        "essential_services": "declared_essential_services_allowed"
+      },
+      {
+        "category": "entertainment_streaming",
+        "decision": "BLOCK",
+        "source": "temporary_override",
+        "source_ref": "overlay:STUDY",
+        "overridden": [],
+        "expires_at": "2026-11-02T16:00:00Z",
+        "next_change_at": "2026-11-02T16:00:00Z",
+        "overridable": true,
+        "essential_services": "declared_essential_services_allowed"
+      }
+    ],
+    "state": "DESIRED"
+  },
+  "S06 STANDARD + STUDY (expired)": {
+    "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+    "evaluated_at": "2026-11-02T16:00:00Z",
+    "persistent_mode": "STANDARD",
+    "underlying_persistent_mode": "STANDARD",
+    "active_overlays": [],
+    "expired_overlays_ignored": [
+      "ovl_01M60000000000000000000002"
+    ],
+    "decisions": [
+      {
+        "category": "content.adult",
+        "decision": "BLOCK",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "content.gambling",
+        "decision": "BLOCK",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "search.safe_search",
+        "decision": "FORCE",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.command_and_control",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.malware",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.phishing",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "video.youtube_restricted",
+        "decision": "FORCE",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "social_media",
+        "decision": "ALLOW",
+        "source": "default_family_policy",
+        "source_ref": "default",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": true,
+        "essential_services": "n/a"
+      },
+      {
+        "category": "gaming",
+        "decision": "ALLOW",
+        "source": "default_family_policy",
+        "source_ref": "default",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": true,
+        "essential_services": "n/a"
+      },
+      {
+        "category": "entertainment_streaming",
+        "decision": "ALLOW",
+        "source": "default_family_policy",
+        "source_ref": "default",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": true,
+        "essential_services": "n/a"
+      }
+    ],
+    "state": "DESIRED"
+  },
+  "S07 STANDARD + STUDY + ALLOW_SOCIAL": {
+    "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+    "evaluated_at": "2026-11-02T15:15:00Z",
+    "persistent_mode": "STANDARD",
+    "underlying_persistent_mode": "STANDARD",
+    "active_overlays": [
+      {
+        "overlay_id": "ovl_01M60000000000000000000001",
+        "type": "ALLOW_SOCIAL",
+        "expires_at": "2026-11-02T15:30:00Z"
+      },
+      {
+        "overlay_id": "ovl_01M60000000000000000000002",
+        "type": "STUDY",
+        "expires_at": "2026-11-02T16:00:00Z"
+      }
+    ],
+    "expired_overlays_ignored": [
+      null
+    ],
+    "decisions": [
+      {
+        "category": "content.adult",
+        "decision": "BLOCK",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "content.gambling",
+        "decision": "BLOCK",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "search.safe_search",
+        "decision": "FORCE",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.command_and_control",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.malware",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.phishing",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "video.youtube_restricted",
+        "decision": "FORCE",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "social_media",
+        "decision": "ALLOW",
+        "source": "temporary_override",
+        "source_ref": "overlay:ALLOW_SOCIAL",
+        "overridden": [
+          "overlay:STUDY"
+        ],
+        "expires_at": "2026-11-02T15:30:00Z",
+        "next_change_at": "2026-11-02T15:30:00Z",
+        "overridable": true,
+        "essential_services": "n/a"
+      },
+      {
+        "category": "gaming",
+        "decision": "BLOCK",
+        "source": "temporary_override",
+        "source_ref": "overlay:STUDY",
+        "overridden": [],
+        "expires_at": "2026-11-02T16:00:00Z",
+        "next_change_at": "2026-11-02T16:00:00Z",
+        "overridable": true,
+        "essential_services": "declared_essential_services_allowed"
+      },
+      {
+        "category": "entertainment_streaming",
+        "decision": "BLOCK",
+        "source": "temporary_override",
+        "source_ref": "overlay:STUDY",
+        "overridden": [],
+        "expires_at": "2026-11-02T16:00:00Z",
+        "next_change_at": "2026-11-02T16:00:00Z",
+        "overridable": true,
+        "essential_services": "declared_essential_services_allowed"
+      }
+    ],
+    "state": "DESIRED"
+  },
+  "S08 STUDY + ALLOW_SOCIAL after social expiry": {
+    "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+    "evaluated_at": "2026-11-02T15:40:00Z",
+    "persistent_mode": "STANDARD",
+    "underlying_persistent_mode": "STANDARD",
+    "active_overlays": [
+      {
+        "overlay_id": "ovl_01M60000000000000000000002",
+        "type": "STUDY",
+        "expires_at": "2026-11-02T16:00:00Z"
+      }
+    ],
+    "expired_overlays_ignored": [
+      "ovl_01M60000000000000000000001"
+    ],
+    "decisions": [
+      {
+        "category": "content.adult",
+        "decision": "BLOCK",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "content.gambling",
+        "decision": "BLOCK",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "search.safe_search",
+        "decision": "FORCE",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.command_and_control",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.malware",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.phishing",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "video.youtube_restricted",
+        "decision": "FORCE",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "social_media",
+        "decision": "BLOCK",
+        "source": "temporary_override",
+        "source_ref": "overlay:STUDY",
+        "overridden": [],
+        "expires_at": "2026-11-02T16:00:00Z",
+        "next_change_at": "2026-11-02T16:00:00Z",
+        "overridable": true,
+        "essential_services": "declared_essential_services_allowed"
+      },
+      {
+        "category": "gaming",
+        "decision": "BLOCK",
+        "source": "temporary_override",
+        "source_ref": "overlay:STUDY",
+        "overridden": [],
+        "expires_at": "2026-11-02T16:00:00Z",
+        "next_change_at": "2026-11-02T16:00:00Z",
+        "overridable": true,
+        "essential_services": "declared_essential_services_allowed"
+      },
+      {
+        "category": "entertainment_streaming",
+        "decision": "BLOCK",
+        "source": "temporary_override",
+        "source_ref": "overlay:STUDY",
+        "overridden": [],
+        "expires_at": "2026-11-02T16:00:00Z",
+        "next_change_at": "2026-11-02T16:00:00Z",
+        "overridable": true,
+        "essential_services": "declared_essential_services_allowed"
+      }
+    ],
+    "state": "DESIRED"
+  },
+  "S09 RESTRICTED + PAUSE + ALLOW_SOCIAL": {
+    "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+    "evaluated_at": "2026-11-02T15:10:00Z",
+    "persistent_mode": "RESTRICTED",
+    "underlying_persistent_mode": "RESTRICTED",
+    "active_overlays": [
+      {
+        "overlay_id": "ovl_01M60000000000000000000001",
+        "type": "ALLOW_SOCIAL",
+        "expires_at": "2026-11-02T15:30:00Z"
+      },
+      {
+        "overlay_id": "ovl_01M60000000000000000000003",
+        "type": "PAUSE_ENTERTAINMENT",
+        "expires_at": "2026-11-02T15:45:00Z"
+      }
+    ],
+    "expired_overlays_ignored": [
+      null
+    ],
+    "decisions": [
+      {
+        "category": "content.adult",
+        "decision": "BLOCK",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "content.gambling",
+        "decision": "BLOCK",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "search.safe_search",
+        "decision": "FORCE",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.command_and_control",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.malware",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.phishing",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "video.youtube_restricted",
+        "decision": "FORCE",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "social_media",
+        "decision": "BLOCK",
+        "source": "temporary_override",
+        "source_ref": "overlay:PAUSE_ENTERTAINMENT",
+        "overridden": [
+          "overlay:ALLOW_SOCIAL",
+          "mode:RESTRICTED (superseded)"
+        ],
+        "expires_at": "2026-11-02T15:45:00Z",
+        "next_change_at": "2026-11-02T15:30:00Z",
+        "overridable": true,
+        "essential_services": "declared_essential_services_allowed"
+      },
+      {
+        "category": "gaming",
+        "decision": "BLOCK",
+        "source": "temporary_override",
+        "source_ref": "overlay:PAUSE_ENTERTAINMENT",
+        "overridden": [
+          "mode:RESTRICTED (superseded)"
+        ],
+        "expires_at": "2026-11-02T15:45:00Z",
+        "next_change_at": "2026-11-02T15:45:00Z",
+        "overridable": true,
+        "essential_services": "declared_essential_services_allowed"
+      },
+      {
+        "category": "entertainment_streaming",
+        "decision": "BLOCK",
+        "source": "temporary_override",
+        "source_ref": "overlay:PAUSE_ENTERTAINMENT",
+        "overridden": [
+          "mode:RESTRICTED (superseded)"
+        ],
+        "expires_at": "2026-11-02T15:45:00Z",
+        "next_change_at": "2026-11-02T15:45:00Z",
+        "overridable": true,
+        "essential_services": "declared_essential_services_allowed"
+      }
+    ],
+    "state": "DESIRED"
+  },
+  "S10 overlapping STUDY+STUDY+PAUSE, latest wins": {
+    "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+    "evaluated_at": "2026-11-02T15:30:00Z",
+    "persistent_mode": "STANDARD",
+    "underlying_persistent_mode": "STANDARD",
+    "active_overlays": [
+      {
+        "overlay_id": "ovl_01M60000000000000000000002",
+        "type": "STUDY",
+        "expires_at": "2026-11-02T16:00:00Z"
+      },
+      {
+        "overlay_id": "ovl_01M60000000000000000000003",
+        "type": "PAUSE_ENTERTAINMENT",
+        "expires_at": "2026-11-02T15:45:00Z"
+      },
+      {
+        "overlay_id": "ovl_01M60000000000000000000004",
+        "type": "STUDY",
+        "expires_at": "2026-11-02T17:00:00Z"
+      }
+    ],
+    "expired_overlays_ignored": [
+      null
+    ],
+    "decisions": [
+      {
+        "category": "content.adult",
+        "decision": "BLOCK",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "content.gambling",
+        "decision": "BLOCK",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "search.safe_search",
+        "decision": "FORCE",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.command_and_control",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.malware",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.phishing",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "video.youtube_restricted",
+        "decision": "FORCE",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "social_media",
+        "decision": "BLOCK",
+        "source": "temporary_override",
+        "source_ref": "overlay:STUDY",
+        "overridden": [
+          "overlay:STUDY (superseded, same action)",
+          "overlay:PAUSE_ENTERTAINMENT (superseded, same action)"
+        ],
+        "expires_at": "2026-11-02T17:00:00Z",
+        "next_change_at": "2026-11-02T15:45:00Z",
+        "overridable": true,
+        "essential_services": "declared_essential_services_allowed"
+      },
+      {
+        "category": "gaming",
+        "decision": "BLOCK",
+        "source": "temporary_override",
+        "source_ref": "overlay:STUDY",
+        "overridden": [
+          "overlay:STUDY (superseded, same action)",
+          "overlay:PAUSE_ENTERTAINMENT (superseded, same action)"
+        ],
+        "expires_at": "2026-11-02T17:00:00Z",
+        "next_change_at": "2026-11-02T15:45:00Z",
+        "overridable": true,
+        "essential_services": "declared_essential_services_allowed"
+      },
+      {
+        "category": "entertainment_streaming",
+        "decision": "BLOCK",
+        "source": "temporary_override",
+        "source_ref": "overlay:STUDY",
+        "overridden": [
+          "overlay:STUDY (superseded, same action)",
+          "overlay:PAUSE_ENTERTAINMENT (superseded, same action)"
+        ],
+        "expires_at": "2026-11-02T17:00:00Z",
+        "next_change_at": "2026-11-02T15:45:00Z",
+        "overridable": true,
+        "essential_services": "declared_essential_services_allowed"
+      }
+    ],
+    "state": "DESIRED"
+  },
+  "S11 overlapping, after first STUDY/PAUSE expiry": {
+    "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+    "evaluated_at": "2026-11-02T16:30:00Z",
+    "persistent_mode": "STANDARD",
+    "underlying_persistent_mode": "STANDARD",
+    "active_overlays": [
+      {
+        "overlay_id": "ovl_01M60000000000000000000004",
+        "type": "STUDY",
+        "expires_at": "2026-11-02T17:00:00Z"
+      }
+    ],
+    "expired_overlays_ignored": [
+      "ovl_01M60000000000000000000002",
+      "ovl_01M60000000000000000000003"
+    ],
+    "decisions": [
+      {
+        "category": "content.adult",
+        "decision": "BLOCK",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "content.gambling",
+        "decision": "BLOCK",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "search.safe_search",
+        "decision": "FORCE",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.command_and_control",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.malware",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.phishing",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "video.youtube_restricted",
+        "decision": "FORCE",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "social_media",
+        "decision": "BLOCK",
+        "source": "temporary_override",
+        "source_ref": "overlay:STUDY",
+        "overridden": [],
+        "expires_at": "2026-11-02T17:00:00Z",
+        "next_change_at": "2026-11-02T17:00:00Z",
+        "overridable": true,
+        "essential_services": "declared_essential_services_allowed"
+      },
+      {
+        "category": "gaming",
+        "decision": "BLOCK",
+        "source": "temporary_override",
+        "source_ref": "overlay:STUDY",
+        "overridden": [],
+        "expires_at": "2026-11-02T17:00:00Z",
+        "next_change_at": "2026-11-02T17:00:00Z",
+        "overridable": true,
+        "essential_services": "declared_essential_services_allowed"
+      },
+      {
+        "category": "entertainment_streaming",
+        "decision": "BLOCK",
+        "source": "temporary_override",
+        "source_ref": "overlay:STUDY",
+        "overridden": [],
+        "expires_at": "2026-11-02T17:00:00Z",
+        "next_change_at": "2026-11-02T17:00:00Z",
+        "overridable": true,
+        "essential_services": "declared_essential_services_allowed"
+      }
+    ],
+    "state": "DESIRED"
+  },
+  "S12 overlay not yet active": {
+    "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+    "evaluated_at": "2026-11-02T15:10:00Z",
+    "persistent_mode": "STANDARD",
+    "underlying_persistent_mode": "STANDARD",
+    "active_overlays": [],
+    "expired_overlays_ignored": [
+      null
+    ],
+    "decisions": [
+      {
+        "category": "content.adult",
+        "decision": "BLOCK",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "content.gambling",
+        "decision": "BLOCK",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "search.safe_search",
+        "decision": "FORCE",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.command_and_control",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.malware",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "threat.phishing",
+        "decision": "BLOCK",
+        "source": "security_threat_baseline",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "video.youtube_restricted",
+        "decision": "FORCE",
+        "source": "mandatory_safety_restriction",
+        "source_ref": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": false,
+        "essential_services": "cannot_bypass"
+      },
+      {
+        "category": "social_media",
+        "decision": "ALLOW",
+        "source": "default_family_policy",
+        "source_ref": "default",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": true,
+        "essential_services": "n/a"
+      },
+      {
+        "category": "gaming",
+        "decision": "ALLOW",
+        "source": "default_family_policy",
+        "source_ref": "default",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": true,
+        "essential_services": "n/a"
+      },
+      {
+        "category": "entertainment_streaming",
+        "decision": "ALLOW",
+        "source": "default_family_policy",
+        "source_ref": "default",
+        "overridden": [],
+        "expires_at": null,
+        "next_change_at": null,
+        "overridable": true,
+        "essential_services": "n/a"
+      }
+    ],
+    "state": "DESIRED"
+  }
+}
