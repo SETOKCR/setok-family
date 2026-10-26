@@ -5,9 +5,9 @@
 - **Project:** SETOK Family
 - **Repository:** SETOKCR/setok-family
 - **Story / Work Unit:** ST-ID-002
-- **Authorized Base:** `1d46704d15ef2721bc1cd0ec67673b8de006eb31`
+- **Authorized Base:** PENDING REFREEZE AFTER PRODUCT INPUT CLOSURE
 - **Implementation Branch:** `feature/st-id-002`
-- **Estado de ejecución:** READY
+- **Estado de ejecución:** READY_FOR_BASE
 - **Implementation Authorization:** NO
 - **Persistencia:** PERSISTED
 - **Motivo de persistencia:** RED / authentication / real human identity data / multi-session auditability
@@ -19,14 +19,14 @@
 - **Repository:** SETOKCR/setok-family
 - **Role:** Development Agent
 - **Work Unit:** ST-ID-002
-- **Work Order:** READY — preflight + Independent Check passed; Product Input Gate remains open; implementation not authorized
-- **Authorized Base:** `1d46704d15ef2721bc1cd0ec67673b8de006eb31`
+- **Work Order:** READY_FOR_BASE — preflight + Independent Check passed; Product Input Gate CLOSED; implementation not authorized
+- **Authorized Base:** PENDING REFREEZE
 - **Implementation Branch:** `feature/st-id-002`
 - **Project Binding:** REQUIRED
 
 ## GOAL
 
-Crear y validar las primeras identidades humanas reales del tenant piloto en Authentik, sin utilizar el IdP como modelo de familia ni autorización del dominio SETOK Family.
+Crear y validar las primeras identidades humanas reales de **Familia Ulate León**, primera familia productiva de SETOK Family, en Authentik, sin utilizar el IdP como modelo de familia ni autorización del dominio.
 
 ## PRODUCT REQUIREMENT
 
@@ -34,46 +34,44 @@ Crear y validar las primeras identidades humanas reales del tenant piloto en Aut
 - Independent Check: `docs/development/ST-ID-002_INDEPENDENT_CHECK.md`.
 - Arquitectura: `docs/ARCHITECTURE.md` secciones 2, 6.3–6.5 y 7.
 - Authentik autentica personas; SETOK Family autoriza acciones dentro de familias.
+- `Familia Ulate León` es el primer tenant del dominio SETOK Family, no un tenant de Authentik.
 - Un Child puede existir sin identidad de login.
 
 ## PRODUCT INPUT GATE
 
-**Status: OPEN — blocks Apply and implementation authorization.**
+**Status: CLOSED.**
 
-Antes de cualquier `APPLY`, el Product Owner debe aprobar el conjunto exacto de identidades humanas a provisionar (1–3 cuentas en esta Story). Los datos concretos se suministran fuera de Git.
+Product Owner approved:
 
-Para cada identidad se requiere únicamente:
+- exactly **2 adult human identities**;
+- interactive login: **YES for both**;
+- child login: **NO in this Story**;
+- concrete display names and email/login identifiers: supplied as operational input outside Git.
 
-- display name;
-- login/email identifier;
-- login interactivo sí/no.
-
-No se solicita al Product Owner una contraseña para versionar ni transportar por Git. Las credenciales iniciales se generan y custodian fuera de Git.
-
-No se crea identidad de login para un menor por inferencia; requiere selección explícita del Product Owner.
+No names, full emails or passwords are persisted in this Work Order, desired state or versioned evidence.
 
 ## ACCEPTANCE CRITERIA
 
 - [ ] Project Scope Handshake = `PROJECT_SCOPE_OK`.
-- [ ] Sólo se provisionan las identidades explícitamente aprobadas por PO.
-- [ ] Usuarios humanos regulares; ninguna persona como service account.
-- [ ] Ninguna identidad piloto es superuser/admin de Authentik.
-- [ ] No se modelan `Owner`, `Parent`, `Viewer`, `Child`, `Guardian`, `Family` ni relaciones familiares en Authentik.
-- [ ] No se usa Authentik multi-tenancy para representar familias.
-- [ ] No se crean OIDC apps/providers, federation, Cloudflare Access, device/provider bindings ni Outposts.
-- [ ] Al menos una identidad aprobada demuestra login interactivo correcto.
-- [ ] Recovery administrativo/recovery path verificado sin revelar secretos.
-- [ ] Credenciales y tokens ausentes de Git/evidence.
-- [ ] Evidencia minimiza PII; no persiste correos completos salvo necesidad justificada y aprobada.
-- [ ] `akadmin` permanece break-glass administrativo, separado de usuarios producto.
-- [ ] Foundation ST-ID-001 continúa healthy.
-- [ ] Provisioning/verify idempotente o fail-safe ante objetos existentes.
-- [ ] Rollback/desactivación limitada a identidades de esta Story documentada.
-- [ ] Credencial temporal de provisioning revocada/eliminada antes del cierre.
+- [ ] Provision exactly two adult human identities approved by PO.
+- [ ] Human users are regular Authentik users; no human represented as service account.
+- [ ] Neither human identity is superuser/admin in Authentik.
+- [ ] No `Owner`, `Parent`, `Viewer`, `Child`, `Guardian`, `Family` or family relationships are modeled in Authentik.
+- [ ] Authentik multi-tenancy is not used to represent Familia Ulate León.
+- [ ] No OIDC apps/providers, federation, Cloudflare Access, device/provider bindings or Outposts are created.
+- [ ] Interactive login is demonstrated for approved identities, or at minimum one identity plus reproducible validation for the second if human interaction prevents automated proof.
+- [ ] Administrative recovery/recovery path verified without revealing secrets.
+- [ ] Credentials and tokens absent from Git/evidence.
+- [ ] Evidence minimizes PII and uses aliases/opaque references; no full names/emails persisted.
+- [ ] `akadmin` remains break-glass administrative identity, separate from product humans.
+- [ ] ST-ID-001 foundation remains healthy.
+- [ ] Provisioning/verify is idempotent or collision-safe.
+- [ ] Rollback/deactivation is limited to identities created by this Story and documented.
+- [ ] Temporary provisioning credential is revoked/deleted before closure.
 
 ## ARCHITECTURE CONSTRAINTS
 
-- Authentik = Identity Plane, no Domain Core.
+- Authentik = Identity Plane, not Domain Core.
 - Human identity != device identity.
 - Family != Authentik tenant.
 - Authentication != authorization.
@@ -87,6 +85,7 @@ No se crea identidad de login para un menor por inferencia; requiere selección 
 - Owner/Parent/Viewer authorization.
 - Guardian ↔ Child permissions.
 - Child domain object creation.
+- Child login / child experience.
 - Device identities / provider bindings.
 - Federation/social login.
 - OIDC for `family.setok.cr`.
@@ -114,13 +113,13 @@ Reason: real human authentication identities, credentials and recovery state are
 
 Mandatory conditions:
 
-1. exact identity set approved by PO before Apply;
-2. no child login inferred by default;
+1. exact identity count/type approved by PO before Apply;
+2. no child login in this Story;
 3. no family/domain role modeling in Authentik;
-4. no superuser/admin privilege for pilot humans;
+4. no superuser/admin privilege for human users;
 5. temporary least-privilege provisioning credential, revoked after use;
 6. secrets and full PII absent from Git/evidence;
-7. at least one interactive login verified;
+7. interactive login verified;
 8. recovery initiation verified without secret persistence;
 9. idempotent collision-safe provisioning;
 10. ST-ID-001 health regression PASS;
@@ -137,15 +136,17 @@ A long-lived `akadmin` API token is prohibited as steady-state automation.
 
 A temporary dedicated service account/token is preferred when practical. If minimum required permissions cannot be achieved without broad permanent administrative privilege, STOP and return to Technical Director.
 
+Concrete PII is injected only at execution time from a non-versioned local source or interactive secure input. It must not be written to Git or evidence.
+
 This Story does not establish a generic reusable Authentik automation framework.
 
 ## TEST IMPACT
 
-- capture pre-existing Authentik human/service/internal user inventory without secrets;
+- capture pre-existing Authentik human/service/internal user inventory without secrets or full PII;
 - collision check before create;
-- create only approved human users;
+- create only the two approved adult human users;
 - verify no superuser/admin grants;
-- verify interactive login for at least one approved identity;
+- verify interactive login;
 - verify recovery initiation path without storing recovery token/URL;
 - re-run provisioning to prove idempotency/no duplicates;
 - verify temporary provisioning identity/token revoked;
@@ -155,11 +156,11 @@ This Story does not establish a generic reusable Authentik automation framework.
 
 ## QUALITY GATES
 
-- [ ] Product Input Gate closed before Apply.
+- [x] Product Input Gate CLOSED.
 - [ ] Project Scope = PROJECT_SCOPE_OK.
 - [x] Independent Check = PASS WITH CONDITIONS.
-- [x] Authorized Base frozen at `1d46704d15ef2721bc1cd0ec67673b8de006eb31`.
-- [x] Implementation branch `feature/st-id-002` created from exact Authorized Base.
+- [ ] Authorized Base re-frozen after product-input closure.
+- [ ] Branch lineage VERIFIED against re-frozen base.
 - [ ] Pre-existing user inventory captured non-secretly.
 - [ ] Secret/PII handling plan verified.
 - [ ] Temporary provisioning credential least-privilege and revocable.
@@ -177,14 +178,13 @@ This Story does not establish a generic reusable Authentik automation framework.
 
 - Scope mismatch/unverified.
 - Authorized Base/branch lineage not verifiable.
-- Product Input Gate open at Apply.
+- Implementation attempts to provision a different identity count/type than approved.
 - Human account needs superuser/admin privilege.
 - Family/domain authorization must be represented in Authentik.
-- Secrets must enter Git/evidence.
-- Full personal email/name must be persisted in Git without explicit need/approval.
+- Secrets or full PII must enter Git/evidence.
 - OIDC/federation/Access/device bindings become necessary.
 - Material authentication-flow changes are required beyond approved identity/recovery scope.
-- Least-privilege temporary provisioning cannot be achieved without creating broad permanent privilege.
+- Least-privilege temporary provisioning cannot be achieved without broad permanent privilege.
 - ST-ID-001 foundation becomes unhealthy.
 - Unexpected material Auto-RED surface.
 
@@ -192,7 +192,7 @@ This Story does not establish a generic reusable Authentik automation framework.
 
 - Preflight: PASS
 - Independent Check: PASS WITH CONDITIONS
-- Product Input Gate: OPEN
-- Authorized Base: `1d46704d15ef2721bc1cd0ec67673b8de006eb31`
+- Product Input Gate: CLOSED — 2 adults, interactive login YES, child login NO
+- Authorized Base: pending re-freeze after product-input closure
 - Implementation Branch: `feature/st-id-002`
 - Implementation Authorization: NO
