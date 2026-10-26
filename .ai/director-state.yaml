@@ -1,5 +1,5 @@
 schema_version: 1
-written_at_utc: 2026-10-26T03:31:00Z
+written_at_utc: 2026-10-26T03:35:00Z
 
 framework:
   repository: SETOKCR/setok-aide
@@ -15,15 +15,14 @@ scope:
 activity:
   lifecycle: active
   active_unit: ST-ID-001
-  phase: readiness
+  phase: implementation
   risk: RED-AUTO-RED-authentication-5
-  implementation_authorized: false
+  implementation_authorized: true
   authorized_base: e10279d1c31e3f02e5b7b4d4185d74f662a93877
   implementation_branch: feature/st-id-001
   candidate_commit: null
 
-open_gates:
-  - explicit Technical Director implementation authorization before Development Agent handoff
+open_gates: []
 
 canonical_refs:
   - .ai/AIDE_PROJECT.yaml
@@ -44,6 +43,6 @@ last_terminal:
   note: ST-CF-001 integrated to main and closed. One SETOK-FAMILY-MANAGED profile is active; Default/org unchanged; desired vs observed MATCH; re-apply idempotent; rollback isolated. Mobile selector remains a known pilot constraint for later provider-binding/identity work.
 
 next_action:
-  kind: implementation_authorization
+  kind: implementation
   unit: ST-ID-001
-  note: Preflight and Independent Check passed. Authorized Base e10279d1c31e3f02e5b7b4d4185d74f662a93877 and branch feature/st-id-001 are frozen and lineage verified. No Proxmox or Authentik mutation is authorized until explicit Technical Director authorization.
+  note: Development Agent reconstructs from Git, verifies PROJECT_SCOPE_OK and Authorized Base lineage, then executes only the authorized Work Order on feature/st-id-001. Stop and return to Technical Director on any Stop Condition.
