@@ -1,5 +1,5 @@
 schema_version: 1
-written_at_utc: 2026-10-26T05:05:00Z
+written_at_utc: 2026-10-26T05:20:00Z
 
 framework:
   repository: SETOKCR/setok-aide
@@ -10,19 +10,21 @@ scope:
   kind: project
   repository: SETOKCR/setok-family
   default_branch: main
-  observed_head: 5d8edd3c748a70d9bf2bfebea58153d71ea02c4e
+  observed_head: 0dbb80c30255e5987478901c3fd6f6631348f319
 
 activity:
   lifecycle: active
-  active_unit: null
-  phase: selection
-  risk: null
+  active_unit: ST-ID-002
+  phase: readiness
+  risk: RED-AUTO-RED-authentication-6
   implementation_authorized: false
-  authorized_base: null
-  implementation_branch: null
+  authorized_base: 1d46704d15ef2721bc1cd0ec67673b8de006eb31
+  implementation_branch: feature/st-id-002
   candidate_commit: null
 
-open_gates: []
+open_gates:
+  - Product Input Gate: Product Owner must approve exact 1-3 pilot human identities before Apply
+  - explicit Technical Director implementation authorization
 
 canonical_refs:
   - .ai/AIDE_PROJECT.yaml
@@ -31,9 +33,9 @@ canonical_refs:
   - docs/ARCHITECTURE.md
   - docs/ROADMAP.md
   - docs/QUALITY.md
-  - docs/stories/ST-ID-001.md
-  - .ai/work-orders/ST-ID-001.md
-  - docs/development/ST-ID-001_INDEPENDENT_CHECK.md
+  - docs/stories/ST-ID-002.md
+  - .ai/work-orders/ST-ID-002.md
+  - docs/development/ST-ID-002_INDEPENDENT_CHECK.md
 
 last_terminal:
   outcome: ACCEPT
@@ -43,6 +45,6 @@ last_terminal:
   note: ST-ID-001 integrated to main and formally closed. Authentik pilot foundation is healthy on VM 220 setok-family-idp-01; Docker socket absent; secrets separated; PostgreSQL backup verified off-VM; VM 210 unchanged by Story. Controlled coexistence validation with VM 210 running remains an operational follow-up accepted by PO, not an open Story gate.
 
 next_action:
-  kind: selection
-  unit: null
-  note: Await Product Owner direction before selecting the next Phase 1 Story. ROADMAP indicates Pilot-tenant identities next; no implementation is authorized.
+  kind: product_input
+  unit: ST-ID-002
+  note: Preflight PASS and Independent Check PASS WITH CONDITIONS. Authorized Base 1d46704d15ef2721bc1cd0ec67673b8de006eb31 and branch feature/st-id-002 are frozen. Await PO approval of exact pilot human identity set before implementation authorization. No Authentik mutation is authorized.
