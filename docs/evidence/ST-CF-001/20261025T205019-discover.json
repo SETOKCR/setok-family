@@ -1,0 +1,296 @@
+{
+  "observedAt": "2026-10-26T02:50:19.7841330Z",
+  "token": {
+    "status": "active",
+    "expires_on": "2026-11-25T05:59:59Z"
+  },
+  "account": {
+    "id": "c2120c89f39b804e7882661f7464e89f",
+    "name": "Itadmin@setok.cr's Account",
+    "type": "standard"
+  },
+  "organization": {
+    "name": "setok.cloudflareaccess.com",
+    "auth_domain": "setok.cloudflareaccess.com"
+  },
+  "defaultProfile": {
+    "policy_id": "019cbbfb-ca30-7b50-b7f8-050ec43917d9",
+    "default": true,
+    "enabled": true,
+    "profile_type": "warp",
+    "allow_mode_switch": false,
+    "allow_updates": false,
+    "allowed_to_leave": true,
+    "auto_connect": 0,
+    "captive_portal": 180,
+    "disable_auto_fallback": false,
+    "service_mode_v2": {
+      "mode": "warp"
+    },
+    "gateway_unique_id": "c2120c89f39b804e7882661f7464e89f",
+    "support_url": "",
+    "switch_locked": false,
+    "exclude": [
+      {
+        "address": "10.0.0.0/8"
+      },
+      {
+        "address": "100.64.0.0/10"
+      },
+      {
+        "address": "169.254.0.0/16",
+        "description": "DHCP Unspecified"
+      },
+      {
+        "address": "172.16.0.0/12"
+      },
+      {
+        "address": "192.0.0.0/24"
+      },
+      {
+        "address": "192.168.0.0/16"
+      },
+      {
+        "address": "224.0.0.0/24"
+      },
+      {
+        "address": "240.0.0.0/4"
+      },
+      {
+        "address": "255.255.255.255/32",
+        "description": "DHCP Broadcast"
+      },
+      {
+        "address": "fe80::/10",
+        "description": "IPv6 Link Local"
+      },
+      {
+        "address": "fd00::/8"
+      },
+      {
+        "address": "ff01::/16"
+      },
+      {
+        "address": "ff02::/16"
+      },
+      {
+        "address": "ff03::/16"
+      },
+      {
+        "address": "ff04::/16"
+      },
+      {
+        "address": "ff05::/16"
+      }
+    ],
+    "always_include": [
+      {
+        "ip": "162.159.197.4"
+      },
+      {
+        "ip": "2606:4700:102::4"
+      }
+    ],
+    "always_exclude": [
+      {
+        "ip": "162.159.197.3"
+      },
+      {
+        "ip": "2606:4700:102::3"
+      }
+    ],
+    "exclude_office_ips": false,
+    "fallback_domains": [
+      {
+        "suffix": "home.arpa"
+      },
+      {
+        "suffix": "intranet"
+      },
+      {
+        "suffix": "internal"
+      },
+      {
+        "suffix": "private"
+      },
+      {
+        "suffix": "localdomain"
+      },
+      {
+        "suffix": "domain"
+      },
+      {
+        "suffix": "lan"
+      },
+      {
+        "suffix": "home"
+      },
+      {
+        "suffix": "host"
+      },
+      {
+        "suffix": "corp"
+      },
+      {
+        "suffix": "local"
+      },
+      {
+        "suffix": "localhost"
+      },
+      {
+        "suffix": "invalid"
+      },
+      {
+        "suffix": "test"
+      }
+    ],
+    "dns_search_suffixes": [],
+    "register_interface_ip_with_dns": true,
+    "sccm_vpn_boundary_support": false,
+    "enable_netbt": false,
+    "uninstall_protection": false,
+    "enable_device_credential_authentication": false,
+    "tunnel_protocol": "masque"
+  },
+  "profiles": [
+    {
+      "policy_id": "019cbbfb-ca30-7b50-b7f8-050ec43917d9",
+      "default": true,
+      "enabled": true,
+      "profile_type": "warp",
+      "allow_mode_switch": false,
+      "allow_updates": false,
+      "allowed_to_leave": true,
+      "auto_connect": 0,
+      "captive_portal": 180,
+      "disable_auto_fallback": false,
+      "service_mode_v2": {
+        "mode": "warp"
+      },
+      "gateway_unique_id": "c2120c89f39b804e7882661f7464e89f",
+      "support_url": "",
+      "switch_locked": false,
+      "exclude": [
+        {
+          "address": "10.0.0.0/8"
+        },
+        {
+          "address": "100.64.0.0/10"
+        },
+        {
+          "address": "169.254.0.0/16",
+          "description": "DHCP Unspecified"
+        },
+        {
+          "address": "172.16.0.0/12"
+        },
+        {
+          "address": "192.0.0.0/24"
+        },
+        {
+          "address": "192.168.0.0/16"
+        },
+        {
+          "address": "224.0.0.0/24"
+        },
+        {
+          "address": "240.0.0.0/4"
+        },
+        {
+          "address": "255.255.255.255/32",
+          "description": "DHCP Broadcast"
+        },
+        {
+          "address": "fe80::/10",
+          "description": "IPv6 Link Local"
+        },
+        {
+          "address": "fd00::/8"
+        },
+        {
+          "address": "ff01::/16"
+        },
+        {
+          "address": "ff02::/16"
+        },
+        {
+          "address": "ff03::/16"
+        },
+        {
+          "address": "ff04::/16"
+        },
+        {
+          "address": "ff05::/16"
+        }
+      ],
+      "always_include": [
+        {
+          "ip": "162.159.197.4"
+        },
+        {
+          "ip": "2606:4700:102::4"
+        }
+      ],
+      "always_exclude": [
+        {
+          "ip": "162.159.197.3"
+        },
+        {
+          "ip": "2606:4700:102::3"
+        }
+      ],
+      "exclude_office_ips": false,
+      "fallback_domains": [
+        {
+          "suffix": "home.arpa"
+        },
+        {
+          "suffix": "intranet"
+        },
+        {
+          "suffix": "internal"
+        },
+        {
+          "suffix": "private"
+        },
+        {
+          "suffix": "localdomain"
+        },
+        {
+          "suffix": "domain"
+        },
+        {
+          "suffix": "lan"
+        },
+        {
+          "suffix": "home"
+        },
+        {
+          "suffix": "host"
+        },
+        {
+          "suffix": "corp"
+        },
+        {
+          "suffix": "local"
+        },
+        {
+          "suffix": "localhost"
+        },
+        {
+          "suffix": "invalid"
+        },
+        {
+          "suffix": "test"
+        }
+      ],
+      "dns_search_suffixes": [],
+      "register_interface_ip_with_dns": true,
+      "sccm_vpn_boundary_support": false,
+      "enable_netbt": false,
+      "uninstall_protection": false,
+      "enable_device_credential_authentication": false,
+      "tunnel_protocol": "masque"
+    }
+  ]
+}

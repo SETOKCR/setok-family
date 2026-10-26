@@ -1,0 +1,31 @@
+{
+  "story": "ST-CF-001",
+  "provider": "cloudflare-zero-trust",
+  "notes": "Desired state (non-secret) for the SETOK Family pilot Cloudflare Zero Trust foundation. JSON is used because PowerShell 7 parses it natively (JSON is valid YAML 1.2). Account identity is filled from verified discovery, never guessed.",
+  "account": {
+    "id": "c2120c89f39b804e7882661f7464e89f",
+    "name": "Itadmin@setok.cr's Account",
+    "boundary": "SETOK shared corporate platform; SETOK Family authorized by Product Owner for the pilot (2026-10-26)"
+  },
+  "zeroTrustOrganization": {
+    "teamDomain": "setok.cloudflareaccess.com"
+  },
+  "deviceProfile": {
+    "name": "SETOK-FAMILY-MANAGED",
+    "description": "SETOK Family technical device profile (ST-CF-001). Managed by scripts/st-cf-001; do not edit manually.",
+    "match": "os.name in {\"android\" \"ios\"}",
+    "precedence": 100,
+    "enabled": true,
+    "settings": {
+      "service_mode_v2": {
+        "mode": "warp"
+      },
+      "tunnel_protocol": "masque",
+      "switch_locked": true,
+      "auto_connect": 0,
+      "allowed_to_leave": false,
+      "allow_mode_switch": false
+    },
+    "observedPolicyId": "994b430f-fdf6-4ad9-aa6a-b7564f7133ca"
+  }
+}
