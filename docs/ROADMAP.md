@@ -14,11 +14,12 @@ Current AIDE execution state:
 - preflight: `PASS`
 - Independent Check: `PASS WITH CONDITIONS`
 - risk: `YELLOW — ordinary score 5/10`
-- Authorized Base: `PENDING`
+- Authorized Base: `df0a9dd9968c44428ab69e9e19c91fc2f164809e`
 - implementation branch: `feature/st-pol-001`
+- branch lineage: `VERIFIED — exactly one governance-only Work Order commit above Authorized Base`
 - implementation authorized: `NO`
 - Product Input Gate: `NOT REQUIRED`
-- open gates: freeze Authorized Base, verify branch lineage, explicit Technical Director implementation authorization
+- open gates: explicit Technical Director implementation authorization
 
 ## Phase 1 objective
 
@@ -124,7 +125,7 @@ Phase 2 is the SETOK Family application / mini app and consumer experience. It r
 
 ## Next governance action
 
-Freeze the ST-POL-001 Authorized Base and verify branch lineage. No implementation is authorized until explicit Technical Director authorization is recorded.
+Technical Director may issue explicit implementation authorization for ST-POL-001. Implementation remains contract/compilation/read-only provider discovery only; no Cloudflare Gateway mutation is authorized.
 
 ## Authority
 
