@@ -8,7 +8,7 @@
 - **Authorized Base:** `e10279d1c31e3f02e5b7b4d4185d74f662a93877`
 - **Implementation Branch:** `feature/st-id-001`
 - **Estado de ejecución:** READY
-- **Implementation Authorization:** NO — pending explicit Technical Director authorization
+- **Implementation Authorization:** YES — Technical Director authorization after RED preflight + Independent Check + lineage verification
 - **Persistencia:** PERSISTED
 - **Motivo de persistencia:** RED / authentication foundation / multi-session / auditability
 
@@ -29,7 +29,7 @@ Resultado requerido: `PROJECT_SCOPE_OK`.
 - **Repository:** SETOKCR/setok-family
 - **Role:** Development Agent
 - **Work Unit:** ST-ID-001
-- **Work Order:** READY — preflight and Independent Check passed; implementation not yet authorized
+- **Work Order:** READY — implementation authorized
 - **Authorized Base:** `e10279d1c31e3f02e5b7b4d4185d74f662a93877`
 - **Implementation Branch:** `feature/st-id-001`
 - **Project Binding:** REQUIRED
