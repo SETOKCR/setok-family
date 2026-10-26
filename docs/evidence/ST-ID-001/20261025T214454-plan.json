@@ -1,0 +1,31 @@
+{
+  "observedAt": "2026-10-26T03:44:54.0952674Z",
+  "output": [
+    "node=pve-02",
+    "vm210=77388d3a22ebedc70c9fe5daf4b37843b699d88df26c9a62e62ba59be588e9d2 status: running",
+    "vmid220=absent",
+    "ip=no-reply",
+    "image=present",
+    "memfree=2407MiB",
+    "Name             Type     Status     Total (KiB)      Used (KiB) Available (KiB)        %",
+    "local-lvm     lvmthin     active       144060416         9191054       134869361    6.38%"
+  ],
+  "desired": {
+    "vmid": 220,
+    "name": "setok-family-idp-01",
+    "cores": 2,
+    "memoryMiB": 2048,
+    "balloon": 0,
+    "diskGiB": 40,
+    "storage": "local-lvm",
+    "bridge": "vmbr0",
+    "image": "/var/lib/vz/template/iso/ubuntu-24.04-server-cloudimg-amd64.img",
+    "guest": "Ubuntu 24.04 LTS (cloud image)",
+    "ciuser": "setokadmin",
+    "ip": "192.168.89.22/24",
+    "gateway": "192.168.89.1",
+    "nameserver": "192.168.89.1",
+    "searchdomain": "setok.cr",
+    "onboot": true
+  }
+}
