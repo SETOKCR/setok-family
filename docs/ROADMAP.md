@@ -8,15 +8,12 @@ This roadmap orders work; implementation authority is carried by the active Stor
 
 Current AIDE execution state:
 
-- active unit: `ST-CF-001 — Establish Cloudflare Zero Trust pilot foundation`
-- Story: `docs/stories/ST-CF-001.md`
-- Work Order: `.ai/work-orders/ST-CF-001.md`
-- preflight/readiness: `PASS / READY`
+- active unit: `NONE`
+- last completed unit: `ST-CF-001 — Establish Cloudflare Zero Trust pilot foundation`
+- result: `ACCEPT`
 - risk: `AMBER 4/10`
-- Authorized Base: `4fa82d531d1452b15b7fd409465cdcf7f7400b1e`
-- implementation branch: `feature/st-cf-001`
-- implementation authorized: `YES`
-- Active Execution Alignment: `VERIFIED`
+- implementation authorized: `NO`
+- Active Execution Alignment: `NOT_APPLICABLE`
 
 ## Phase 1 objective
 
@@ -26,7 +23,7 @@ Deliver and validate a functioning parental-control platform without depending o
 
 The approved architecture defines the following implementation order:
 
-1. **Cloudflare foundation — ACTIVE: ST-CF-001, READY, implementation authorized.**
+1. **Cloudflare foundation — COMPLETE: ST-CF-001 ACCEPT.**
 2. Authentik foundation.
 3. Pilot-tenant identities.
 4. Initial provider-binding model.
@@ -50,9 +47,11 @@ The approved architecture defines the following implementation order:
 22. Phase 1 closure.
 23. API/provider contract for Phase 2.
 
-## Active unit boundary
+## Completed foundation evidence
 
-ST-CF-001 establishes only the minimum Cloudflare Zero Trust pilot foundation. It explicitly excludes baseline policies, Standard/Restricted/overlays, Cloudflare Access + Authentik authorization, app Tunnel publication, device enrollment, MDM and reusable PowerShell automation. Those remain governed by later roadmap units.
+`ST-CF-001` established an isolated custom Cloudflare device profile `SETOK-FAMILY-MANAGED` in the shared SETOK Zero Trust organization without modifying the Default profile or organization. Desired state and evidence are retained under `infra/cloudflare/`, `scripts/st-cf-001/` and `docs/evidence/ST-CF-001/`.
+
+Known deferred constraint: the current mobile selector covers Android/iOS devices in the shared Zero Trust org. Before another mobile population is introduced there, later provider-binding / identity work must narrow that selector appropriately.
 
 ## Phase 1 exit condition
 
@@ -71,8 +70,8 @@ Phase 2 is the SETOK Family application / mini app and consumer experience. It r
 
 ## Next governance action
 
-Development Agent executes only `ST-CF-001` from `feature/st-cf-001`, after obtaining `PROJECT_SCOPE_OK` locally and confirming lineage from the Authorized Base. Any Stop Condition returns control to the Technical Director.
+No implementation unit is currently active or authorized. The next planned item is **Authentik foundation**, but it must still be selected as a Story and pass normal AIDE preflight before any implementation authorization.
 
 ## Authority
 
-Detailed scope, sequencing rationale, architecture and risks remain in `docs/ARCHITECTURE.md`. The active Story and Work Order carry execution-specific scope and gates; this roadmap remains the planning authority.
+Detailed scope, sequencing rationale, architecture and risks remain in `docs/ARCHITECTURE.md`. Completed Story/Work Order/evidence preserve execution traceability; this roadmap remains the planning authority.
