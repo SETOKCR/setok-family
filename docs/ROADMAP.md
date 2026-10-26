@@ -8,11 +8,13 @@ This roadmap orders work; it does **not** authorize implementation.
 
 Current AIDE execution state:
 
-- active unit: `NONE`
+- active unit: `ST-CF-001 — Establish Cloudflare Zero Trust pilot foundation`
+- Story: `docs/stories/ST-CF-001.md`
+- Work Order: `.ai/work-orders/ST-CF-001.md`
+- preflight/readiness: `PASS / READY`
+- risk: `AMBER 4/10`
 - implementation authorized: `NO`
 - Active Execution Alignment: `NOT_APPLICABLE`
-
-No Story or Work Order is selected by this onboarding.
 
 ## Phase 1 objective
 
@@ -22,7 +24,7 @@ Deliver and validate a functioning parental-control platform without depending o
 
 The approved architecture defines the following implementation order:
 
-1. Cloudflare foundation.
+1. **Cloudflare foundation — ACTIVE: ST-CF-001, READY, implementation not yet authorized.**
 2. Authentik foundation.
 3. Pilot-tenant identities.
 4. Initial provider-binding model.
@@ -46,6 +48,10 @@ The approved architecture defines the following implementation order:
 22. Phase 1 closure.
 23. API/provider contract for Phase 2.
 
+## Active unit boundary
+
+ST-CF-001 establishes only the minimum Cloudflare Zero Trust pilot foundation. It explicitly excludes baseline policies, Standard/Restricted/overlays, Cloudflare Access + Authentik authorization, app Tunnel publication, device enrollment, MDM and reusable PowerShell automation. Those remain governed by later roadmap units.
+
 ## Phase 1 exit condition
 
 Phase 1 is complete only when the platform functions correctly without SETOK Family App and the project has validated:
@@ -63,8 +69,8 @@ Phase 2 is the SETOK Family application / mini app and consumer experience. It r
 
 ## Next governance action
 
-After AIDE adoption is validated, the Technical Director may select the first Phase 1 Story and perform normal AIDE preflight. Selection alone will not authorize implementation.
+Resolve an Authorized Base and explicit implementation authorization for `ST-CF-001` before handing the READY Work Order to a Development Agent. `READY` alone does not authorize mutation.
 
 ## Authority
 
-Detailed scope, sequencing rationale, architecture and risks remain in `docs/ARCHITECTURE.md`. This roadmap intentionally contains only the planning canon required to govern the current phase.
+Detailed scope, sequencing rationale, architecture and risks remain in `docs/ARCHITECTURE.md`. The active Story and Work Order carry execution-specific scope and gates; this roadmap remains the planning authority.
