@@ -5,8 +5,10 @@
 - **Project:** SETOK Family
 - **Repository:** SETOKCR/setok-family
 - **Story / Work Unit:** ST-CF-001
-- **Authorized Base:** N/A — not authorized yet
+- **Authorized Base:** `4fa82d531d1452b15b7fd409465cdcf7f7400b1e`
+- **Implementation Branch:** `feature/st-cf-001`
 - **Estado de ejecución:** READY
+- **Implementation Authorization:** YES — Technical Director authorization after readiness revalidation
 - **Persistencia:** PERSISTED
 - **Motivo de persistencia:** multi-session / external-provider execution and evidence
 
@@ -28,7 +30,8 @@ Resultado requerido: `PROJECT_SCOPE_OK`.
 - **Role:** Development Agent
 - **Work Unit:** ST-CF-001
 - **Work Order:** READY
-- **Authorized Base:** N/A — not authorized yet
+- **Authorized Base:** `4fa82d531d1452b15b7fd409465cdcf7f7400b1e`
+- **Implementation Branch:** `feature/st-cf-001`
 - **Project Binding:** REQUIRED
 
 ---
@@ -160,8 +163,9 @@ El agente debe:
 2. clonar `SETOKCR/setok-family` en `C:\Dev\SETOK\setok-family` si el repositorio todavía no está presente;
 3. si ya existe, verificar que el remote corresponde exactamente a `SETOKCR/setok-family` y no sobrescribir trabajo local no reconocido;
 4. obtener el `main` remoto y comprobar el Project Scope Handshake antes de cualquier mutación;
-5. trabajar desde una rama de implementación creada desde el Authorized Base que establezca el Technical Director;
-6. no almacenar tokens, secretos ni material de autenticación en archivos versionados, comandos persistidos, logs de Git o evidencia destinada al repositorio.
+5. verificar que `feature/st-cf-001` desciende exactamente del Authorized Base `4fa82d531d1452b15b7fd409465cdcf7f7400b1e` antes de usarla;
+6. trabajar únicamente en `feature/st-cf-001` para esta unidad;
+7. no almacenar tokens, secretos ni material de autenticación en archivos versionados, comandos persistidos, logs de Git o evidencia destinada al repositorio.
 
 La clonación y preparación del workspace son bootstrap operacional y no constituyen por sí mismas implementación funcional de Cloudflare.
 
@@ -184,6 +188,7 @@ Para ST-CF-001 se permite crear scripts PowerShell específicos del scope cuando
 
 - `PROJECT_SCOPE_MISMATCH` o `PROJECT_SCOPE_UNVERIFIED`.
 - El workspace local existente en `C:\Dev\SETOK\setok-family` contiene cambios no reconocidos o apunta a otro remote y no puede reconciliarse de forma segura.
+- La rama `feature/st-cf-001` no desciende del Authorized Base exacto o presenta commits no reconocidos antes del inicio del agente.
 - La cuenta/organización Cloudflare objetivo no puede identificarse con certeza como autorizada para SETOK Family.
 - La ejecución requiere cambiar authentication/authorization, privilege boundaries o cualquier superficie Auto-RED no prevista.
 - Se requiere baseline policy, Access/Auth, Tunnel de app, enrolamiento, MDM o automatización reusable para completar esta unidad.
