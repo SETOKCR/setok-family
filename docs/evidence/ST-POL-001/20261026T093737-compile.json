@@ -1,0 +1,148 @@
+{
+  "run1": {
+    "state": "COMPILED",
+    "errors": [],
+    "plan": {
+      "policy_id": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+      "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+      "provider": "cloudflare-zero-trust/gateway-dns",
+      "adapter_version": 1,
+      "state": "COMPILED",
+      "apply_status": "BLOCKED",
+      "apply_blockers": [
+        "NO_ENROLLED_DEVICE_BINDING: scope resolves to 0 device subjects; no safe selector exists",
+        "SAFE_SELECTOR_NOT_PROVEN: shared Cloudflare account requires a family/device selector proven not to match unrelated SETOK traffic",
+        "PROVIDER_MUTATION_NOT_AUTHORIZED: a separate Work Order must authorize Gateway rule creation and rollback",
+        "PLAN_ENTITLEMENT_UNVERIFIED: verify premium-class category availability on the account plan before apply"
+      ],
+      "scope": {
+        "requested": "all_device_subjects_of_tenant",
+        "resolved_device_subjects": 0,
+        "identity_selector": null,
+        "global_rule": false
+      },
+      "controls": [
+        {
+          "control": "content.adult",
+          "action": "block",
+          "selector": "dns.content_category",
+          "ids": [
+            2
+          ],
+          "entitlement": "AVAILABLE"
+        },
+        {
+          "control": "content.gambling",
+          "action": "block",
+          "selector": "dns.content_category",
+          "ids": [
+            99
+          ],
+          "entitlement": "UNVERIFIED_PLAN_ENTITLEMENT"
+        },
+        {
+          "control": "search.safe_search",
+          "action": "safesearch",
+          "selector": null,
+          "ids": [],
+          "entitlement": "n/a"
+        },
+        {
+          "control": "threat.command_and_control",
+          "action": "block",
+          "selector": "dns.security_category",
+          "ids": [
+            80
+          ],
+          "entitlement": "AVAILABLE"
+        },
+        {
+          "control": "threat.malware",
+          "action": "block",
+          "selector": "dns.security_category",
+          "ids": [
+            117
+          ],
+          "entitlement": "AVAILABLE"
+        },
+        {
+          "control": "threat.phishing",
+          "action": "block",
+          "selector": "dns.security_category",
+          "ids": [
+            131
+          ],
+          "entitlement": "AVAILABLE"
+        },
+        {
+          "control": "video.youtube_restricted",
+          "action": "ytrestricted",
+          "selector": null,
+          "ids": [],
+          "entitlement": "n/a"
+        }
+      ],
+      "rules": [
+        {
+          "order": 1,
+          "group": "threats",
+          "layer": "security_threat_baseline",
+          "action": "block",
+          "controls": [
+            "threat.command_and_control",
+            "threat.malware",
+            "threat.phishing"
+          ],
+          "traffic": "any(dns.security_category[*] in {80 117 131})",
+          "name": "SETOK-FAMILY first-family baseline threats"
+        },
+        {
+          "order": 2,
+          "group": "content",
+          "layer": "mandatory_safety_restriction",
+          "action": "block",
+          "controls": [
+            "content.adult",
+            "content.gambling"
+          ],
+          "traffic": "any(dns.content_category[*] in {2 99})",
+          "name": "SETOK-FAMILY first-family baseline content"
+        },
+        {
+          "order": 3,
+          "group": "safe-search",
+          "layer": "mandatory_safety_restriction",
+          "action": "safesearch",
+          "controls": [
+            "search.safe_search"
+          ],
+          "traffic": "all_dns_queries_in_scope",
+          "name": "SETOK-FAMILY first-family baseline safe-search"
+        },
+        {
+          "order": 4,
+          "group": "youtube-restricted",
+          "layer": "mandatory_safety_restriction",
+          "action": "ytrestricted",
+          "controls": [
+            "video.youtube_restricted"
+          ],
+          "traffic": "all_dns_queries_in_scope",
+          "name": "SETOK-FAMILY first-family baseline youtube-restricted"
+        }
+      ],
+      "warnings": [
+        "ENTITLEMENT: content.gambling uses class 'premium'; plan entitlement must be verified before apply"
+      ]
+    },
+    "planSha256": "3e7e3fda5ca8762955d2d050b7c5fb85b8505f7d63c511f73e2a4974758241c9"
+  },
+  "run2sha256": "3e7e3fda5ca8762955d2d050b7c5fb85b8505f7d63c511f73e2a4974758241c9",
+  "deterministic": true,
+  "inputs": {
+    "intentSha256": "a7f4384151305cc963854f1967b31074f4bca35637de43ed76c9ffb273a45875",
+    "adapterSha256": "2731c9d72fac4b16d9690d6a1eb4ab743948330950f92067545104116f1285c5",
+    "registrySha256": "b6091abd573d46b8e674803422596ae8c6c5822ec8dbe460ffb67b64dd4e7426",
+    "categoriesFingerprint": "1098ef7995d425568f59d956ad9fd2088cd0a32fb2f4fb8e7ba23d695581aec9"
+  }
+}

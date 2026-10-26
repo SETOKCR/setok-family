@@ -1,0 +1,227 @@
+{
+  "observedAt": "2026-10-26T15:37:37.6810360Z",
+  "summary": {
+    "baselineControls": "7/7",
+    "compileState": "COMPILED",
+    "applyStatus": "BLOCKED",
+    "claimedApplied": false,
+    "deterministic": true,
+    "precedenceTests": true,
+    "failClosedTests": true,
+    "deviceSubjects": 0,
+    "deviceBindings": 0,
+    "readOnly": {
+      "providerFingerprintsUnchanged": true,
+      "static": {
+        "httpWriteVerbs": 0,
+        "nonGetHttpCalls": 0
+      },
+      "pass": true
+    }
+  },
+  "tests": [
+    {
+      "test": "legitimate standard_mode",
+      "expected": "PASS",
+      "got": "PASS",
+      "reasons": []
+    },
+    {
+      "test": "legitimate restricted_mode",
+      "expected": "PASS",
+      "got": "PASS",
+      "reasons": []
+    },
+    {
+      "test": "legitimate temporary_override",
+      "expected": "PASS",
+      "got": "PASS",
+      "reasons": []
+    },
+    {
+      "test": "legitimate recurring_schedule",
+      "expected": "PASS",
+      "got": "PASS",
+      "reasons": []
+    },
+    {
+      "test": "legitimate essential_services",
+      "expected": "PASS",
+      "got": "PASS",
+      "reasons": []
+    },
+    {
+      "test": "decision: essential school domain categorized phishing",
+      "expected": "BLOCK/security_threat_baseline",
+      "got": "BLOCK/security_threat_baseline"
+    },
+    {
+      "test": "decision: essential messaging domain during restricted mode",
+      "expected": "ALLOW/essential_services",
+      "got": "ALLOW/essential_services"
+    },
+    {
+      "test": "decision: temporary override allows social media",
+      "expected": "ALLOW/temporary_override",
+      "got": "ALLOW/temporary_override"
+    },
+    {
+      "test": "decision: temporary override cannot reach gambling",
+      "expected": "BLOCK/mandatory_safety_restriction",
+      "got": "BLOCK/mandatory_safety_restriction"
+    },
+    {
+      "test": "decision: malware domain under every construct",
+      "expected": "BLOCK/security_threat_baseline",
+      "got": "BLOCK/security_threat_baseline"
+    },
+    {
+      "test": "decision: C2 domain in essential list",
+      "expected": "BLOCK/security_threat_baseline",
+      "got": "BLOCK/security_threat_baseline"
+    },
+    {
+      "test": "mandatory malware control removed",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reasons": [
+        "BASELINE: mandatory control threat.malware present 0 times (expected 1)"
+      ]
+    },
+    {
+      "test": "phishing changed from BLOCK",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reasons": [
+        "SCHEMA: intent does not conform to policy-intent.schema.json",
+        "BASELINE: threat.phishing must be BLOCK (found FORCE)"
+      ]
+    },
+    {
+      "test": "C2/botnet adapter mapping missing",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reasons": [
+        "UNRESOLVED: no adapter mapping for mandatory control threat.command_and_control"
+      ]
+    },
+    {
+      "test": "provider category unresolved (gambling absent)",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reasons": [
+        "UNRESOLVED: content.gambling -> provider category 'Gambling/Gambling' matched 0 times"
+      ]
+    },
+    {
+      "test": "provider category not blockable",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reasons": [
+        "UNSUPPORTED: threat.phishing category class 'noBlock' cannot be blocked"
+      ]
+    },
+    {
+      "test": "YouTube Restricted action unsupported",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reasons": [
+        "UNSUPPORTED: action 'ytrestricted' for video.youtube_restricted is not a documented DNS action"
+      ]
+    },
+    {
+      "test": "provider ID introduced into domain intent",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reasons": [
+        "SCHEMA: intent does not conform to policy-intent.schema.json",
+        "PROVIDER-LEAK: provider syntax or identifier key in domain intent",
+        "PROVIDER-LEAK: numeric identifier in domain intent"
+      ]
+    },
+    {
+      "test": "device scope invented without enrollment",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reasons": [
+        "SCHEMA: intent does not conform to policy-intent.schema.json",
+        "SCOPE: baseline scope must be tenant device subjects, never global or an invented device list"
+      ]
+    },
+    {
+      "test": "global/unscoped apply scope requested",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reasons": [
+        "SCOPE: requested scope 'global' rejected; only tenant device-subject scope is compilable"
+      ]
+    },
+    {
+      "test": "tenant not in provider-binding registry",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reasons": [
+        "TENANT: intent tenant is not an ACTIVE registry tenant"
+      ]
+    },
+    {
+      "test": "baseline marked overridable",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reasons": [
+        "SCHEMA: intent does not conform to policy-intent.schema.json",
+        "BASELINE: baseline must be non-overridable"
+      ]
+    },
+    {
+      "test": "Essential Services attempts to bypass threat baseline",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reasons": [
+        "PRECEDENCE: essential_services cannot exempt services from baseline control threat.malware",
+        "PRECEDENCE: essential_services cannot exempt services from baseline control threat.phishing"
+      ]
+    },
+    {
+      "test": "temporary override attempts to disable threat baseline",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reasons": [
+        "PRECEDENCE: temporary_override cannot ALLOW baseline control threat.command_and_control",
+        "PRECEDENCE: temporary_override cannot disable the baseline"
+      ]
+    },
+    {
+      "test": "Standard mode weakens SafeSearch",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reasons": [
+        "PRECEDENCE: standard_mode cannot UNFORCE baseline control search.safe_search"
+      ]
+    },
+    {
+      "test": "Restricted mode allows adult content",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reasons": [
+        "PRECEDENCE: restricted_mode cannot ALLOW baseline control content.adult"
+      ]
+    },
+    {
+      "test": "recurring schedule disables gambling block",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reasons": [
+        "PRECEDENCE: recurring_schedule cannot ALLOW baseline control content.gambling"
+      ]
+    },
+    {
+      "test": "recurring schedule disables malware block",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reasons": [
+        "PRECEDENCE: recurring_schedule cannot DISABLE baseline control threat.malware"
+      ]
+    }
+  ]
+}

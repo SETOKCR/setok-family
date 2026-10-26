@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://setok.cr/schemas/setok-family/policy-intent/v1",
+  "title": "SETOK Family Policy Intent (domain desired state) v1",
+  "description": "Provider-neutral policy intent. Contains SETOK semantics only: no provider syntax, rule IDs or category IDs. Cross-document invariants (registry tenant, precedence, fail-closed compilation) are enforced by scripts/st-pol-001/Invoke-StPol001.ps1.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["policy_contract_version", "policy_id", "tenant_id", "kind", "scope", "precedence_layer", "overridable", "controls"],
+  "properties": {
+    "policy_contract_version": { "const": 1 },
+    "notes": { "type": "string" },
+    "policy_id": { "type": "string", "pattern": "^pol_[0-9A-HJKMNP-TV-Z]{26}$" },
+    "tenant_id": { "type": "string", "pattern": "^tnt_[0-9A-HJKMNP-TV-Z]{26}$" },
+    "kind": { "const": "baseline" },
+    "scope": {
+      "type": "object", "additionalProperties": false, "required": ["applies_to"],
+      "properties": {
+        "applies_to": {
+          "const": "all_device_subjects_of_tenant",
+          "description": "Resolved at compile time from ACTIVE device_enrollment bindings in the provider-binding registry. Never a global/account-wide scope; never an invented device list."
+        }
+      }
+    },
+    "precedence_layer": { "const": "security_and_mandatory_safety", "description": "Layers 1-2 of ARCHITECTURE §10.4; nothing below may weaken it." },
+    "overridable": { "const": false },
+    "controls": {
+      "type": "array", "minItems": 1, "uniqueItems": true,
+      "items": { "$ref": "#/$defs/control" }
+    }
+  },
+  "$defs": {
+    "control": {
+      "type": "object", "additionalProperties": false,
+      "required": ["control", "action", "layer"],
+      "properties": {
+        "control": {
+          "enum": ["threat.malware", "threat.phishing", "threat.command_and_control", "content.adult", "content.gambling", "search.safe_search", "video.youtube_restricted"],
+          "description": "SETOK semantic control key."
+        },
+        "action": { "enum": ["BLOCK", "FORCE"] },
+        "layer": { "enum": ["security_threat_baseline", "mandatory_safety_restriction"] }
+      },
+      "allOf": [
+        { "if": { "properties": { "control": { "pattern": "^threat\\." } } }, "then": { "properties": { "action": { "const": "BLOCK" }, "layer": { "const": "security_threat_baseline" } } } },
+        { "if": { "properties": { "control": { "pattern": "^content\\." } } }, "then": { "properties": { "action": { "const": "BLOCK" }, "layer": { "const": "mandatory_safety_restriction" } } } },
+        { "if": { "properties": { "control": { "pattern": "^(search|video)\\." } } }, "then": { "properties": { "action": { "const": "FORCE" }, "layer": { "const": "mandatory_safety_restriction" } } } }
+      ]
+    }
+  }
+}

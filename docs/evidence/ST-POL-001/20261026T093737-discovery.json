@@ -1,0 +1,1037 @@
+{
+  "observedAt": "2026-10-26T15:37:37.4985123Z",
+  "account": "c2120c89f39b804e7882661f7464e89f",
+  "categories": [
+    {
+      "id": 1,
+      "name": "Ads",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 2,
+      "name": "Adult Themes",
+      "parent": null,
+      "class": "free"
+    },
+    {
+      "id": 3,
+      "name": "Business & Economy",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 4,
+      "name": "Deceptive Ads",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 5,
+      "name": "Drugs",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 6,
+      "name": "Education",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 7,
+      "name": "Entertainment",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 8,
+      "name": "Gambling",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 9,
+      "name": "Government & Politics",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 10,
+      "name": "Health",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 11,
+      "name": "Information Technology",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 12,
+      "name": "Internet Communication",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 13,
+      "name": "Job Search & Careers",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 14,
+      "name": "Login Screens",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 15,
+      "name": "Miscellaneous",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 16,
+      "name": "No Content",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 17,
+      "name": "Questionable Content",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 18,
+      "name": "Real Estate",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 19,
+      "name": "Religion",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 20,
+      "name": "Safe for Kids",
+      "parent": null,
+      "class": "removalPending"
+    },
+    {
+      "id": 21,
+      "name": "Security threats",
+      "parent": null,
+      "class": "free"
+    },
+    {
+      "id": 22,
+      "name": "Shopping & Auctions",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 23,
+      "name": "Social & Family",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 24,
+      "name": "Society & Lifestyle",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 25,
+      "name": "Sports",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 26,
+      "name": "Technology",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 27,
+      "name": "Travel",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 28,
+      "name": "Vehicles",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 29,
+      "name": "Violence",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 30,
+      "name": "Weather",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 31,
+      "name": "Blocked by Default",
+      "parent": null,
+      "class": "blocked"
+    },
+    {
+      "id": 32,
+      "name": "Security Risks",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 33,
+      "name": "Military & Weapons",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 34,
+      "name": "CIPA",
+      "parent": null,
+      "class": "premium"
+    },
+    {
+      "id": 65,
+      "name": "Abortion",
+      "parent": "Society & Lifestyle",
+      "class": "premium"
+    },
+    {
+      "id": 66,
+      "name": "Advertisements",
+      "parent": "Ads",
+      "class": "premium"
+    },
+    {
+      "id": 67,
+      "name": "Adult Themes",
+      "parent": "Adult Themes",
+      "class": "free"
+    },
+    {
+      "id": 68,
+      "name": "Anonymizer",
+      "parent": "Security threats",
+      "class": "free"
+    },
+    {
+      "id": 69,
+      "name": "APIs",
+      "parent": "Technology",
+      "class": "premium"
+    },
+    {
+      "id": 70,
+      "name": "Arts",
+      "parent": "Entertainment",
+      "class": "premium"
+    },
+    {
+      "id": 71,
+      "name": "Arts & Crafts",
+      "parent": "Society & Lifestyle",
+      "class": "premium"
+    },
+    {
+      "id": 72,
+      "name": "Astrology",
+      "parent": "Society & Lifestyle",
+      "class": "premium"
+    },
+    {
+      "id": 73,
+      "name": "Auctions & Marketplaces",
+      "parent": "Shopping & Auctions",
+      "class": "premium"
+    },
+    {
+      "id": 74,
+      "name": "Audio Streaming",
+      "parent": "Entertainment",
+      "class": "premium"
+    },
+    {
+      "id": 75,
+      "name": "Business",
+      "parent": "Business & Economy",
+      "class": "premium"
+    },
+    {
+      "id": 76,
+      "name": "Cartoons & Anime",
+      "parent": "Entertainment",
+      "class": "premium"
+    },
+    {
+      "id": 77,
+      "name": "Chat",
+      "parent": "Internet Communication",
+      "class": "premium"
+    },
+    {
+      "id": 78,
+      "name": "Clothing",
+      "parent": "Society & Lifestyle",
+      "class": "premium"
+    },
+    {
+      "id": 79,
+      "name": "Comic Books",
+      "parent": "Entertainment",
+      "class": "premium"
+    },
+    {
+      "id": 80,
+      "name": "Command and Control & Botnet",
+      "parent": "Security threats",
+      "class": "free"
+    },
+    {
+      "id": 81,
+      "name": "Content Servers",
+      "parent": "Technology",
+      "class": "premium"
+    },
+    {
+      "id": 82,
+      "name": "Coupons",
+      "parent": "Shopping & Auctions",
+      "class": "premium"
+    },
+    {
+      "id": 83,
+      "name": "Cryptomining",
+      "parent": "Security threats",
+      "class": "free"
+    },
+    {
+      "id": 84,
+      "name": "Dating & Relationships",
+      "parent": "Society & Lifestyle",
+      "class": "premium"
+    },
+    {
+      "id": 85,
+      "name": "Deceptive Ads",
+      "parent": "Questionable Content",
+      "class": "premium"
+    },
+    {
+      "id": 86,
+      "name": "Digital Postcards",
+      "parent": "Society & Lifestyle",
+      "class": "premium"
+    },
+    {
+      "id": 87,
+      "name": "Drugs",
+      "parent": "Questionable Content",
+      "class": "premium"
+    },
+    {
+      "id": 88,
+      "name": "Ecommerce",
+      "parent": "Shopping & Auctions",
+      "class": "premium"
+    },
+    {
+      "id": 89,
+      "name": "Economy & Finance",
+      "parent": "Business & Economy",
+      "class": "premium"
+    },
+    {
+      "id": 90,
+      "name": "Education",
+      "parent": "Education",
+      "class": "premium"
+    },
+    {
+      "id": 91,
+      "name": "Educational Institutions",
+      "parent": "Education",
+      "class": "premium"
+    },
+    {
+      "id": 92,
+      "name": "Entertainment",
+      "parent": "Entertainment",
+      "class": "premium"
+    },
+    {
+      "id": 93,
+      "name": "Parenting",
+      "parent": "Society & Lifestyle",
+      "class": "premium"
+    },
+    {
+      "id": 94,
+      "name": "Fashion",
+      "parent": "Society & Lifestyle",
+      "class": "premium"
+    },
+    {
+      "id": 95,
+      "name": "File Sharing",
+      "parent": "Technology",
+      "class": "premium"
+    },
+    {
+      "id": 96,
+      "name": "Fine Art",
+      "parent": "Entertainment",
+      "class": "premium"
+    },
+    {
+      "id": 97,
+      "name": "Food & Drink",
+      "parent": "Society & Lifestyle",
+      "class": "premium"
+    },
+    {
+      "id": 98,
+      "name": "Forums",
+      "parent": "Internet Communication",
+      "class": "premium"
+    },
+    {
+      "id": 99,
+      "name": "Gambling",
+      "parent": "Gambling",
+      "class": "premium"
+    },
+    {
+      "id": 100,
+      "name": "Gaming",
+      "parent": "Entertainment",
+      "class": "premium"
+    },
+    {
+      "id": 101,
+      "name": "Government/Legal",
+      "parent": "Government & Politics",
+      "class": "premium"
+    },
+    {
+      "id": 102,
+      "name": "Hacking",
+      "parent": "Questionable Content",
+      "class": "premium"
+    },
+    {
+      "id": 103,
+      "name": "Health & Fitness",
+      "parent": "Health",
+      "class": "premium"
+    },
+    {
+      "id": 104,
+      "name": "Hobbies & Interests",
+      "parent": "Society & Lifestyle",
+      "class": "premium"
+    },
+    {
+      "id": 105,
+      "name": "Home & Garden",
+      "parent": "Society & Lifestyle",
+      "class": "premium"
+    },
+    {
+      "id": 106,
+      "name": "Home Video/DVD",
+      "parent": "Entertainment",
+      "class": "premium"
+    },
+    {
+      "id": 107,
+      "name": "Humor",
+      "parent": "Entertainment",
+      "class": "premium"
+    },
+    {
+      "id": 108,
+      "name": "Information Security",
+      "parent": "Internet Communication",
+      "class": "premium"
+    },
+    {
+      "id": 109,
+      "name": "Information Technology",
+      "parent": "Technology",
+      "class": "premium"
+    },
+    {
+      "id": 110,
+      "name": "Instant Messengers",
+      "parent": "Internet Communication",
+      "class": "premium"
+    },
+    {
+      "id": 111,
+      "name": "Internet Phone & VOIP",
+      "parent": "Internet Communication",
+      "class": "premium"
+    },
+    {
+      "id": 112,
+      "name": "Jewelry",
+      "parent": "Society & Lifestyle",
+      "class": "premium"
+    },
+    {
+      "id": 113,
+      "name": "Job Search & Careers",
+      "parent": "Job Search & Careers",
+      "class": "premium"
+    },
+    {
+      "id": 114,
+      "name": "Lifestyle",
+      "parent": "Society & Lifestyle",
+      "class": "premium"
+    },
+    {
+      "id": 115,
+      "name": "Login Screens",
+      "parent": "Miscellaneous",
+      "class": "premium"
+    },
+    {
+      "id": 116,
+      "name": "Magazines",
+      "parent": "Entertainment",
+      "class": "premium"
+    },
+    {
+      "id": 117,
+      "name": "Malware",
+      "parent": "Security threats",
+      "class": "free"
+    },
+    {
+      "id": 118,
+      "name": "Messaging",
+      "parent": "Internet Communication",
+      "class": "premium"
+    },
+    {
+      "id": 119,
+      "name": "Miscellaneous",
+      "parent": "Miscellaneous",
+      "class": "premium"
+    },
+    {
+      "id": 120,
+      "name": "Movies",
+      "parent": "Entertainment",
+      "class": "premium"
+    },
+    {
+      "id": 121,
+      "name": "Music",
+      "parent": "Entertainment",
+      "class": "premium"
+    },
+    {
+      "id": 122,
+      "name": "News & Media",
+      "parent": "Entertainment",
+      "class": "premium"
+    },
+    {
+      "id": 123,
+      "name": "News, Portal & Search",
+      "parent": "Technology",
+      "class": "premium"
+    },
+    {
+      "id": 124,
+      "name": "No Content",
+      "parent": "Miscellaneous",
+      "class": "premium"
+    },
+    {
+      "id": 125,
+      "name": "Nudity",
+      "parent": "Adult Themes",
+      "class": "free"
+    },
+    {
+      "id": 126,
+      "name": "P2P",
+      "parent": "Internet Communication",
+      "class": "premium"
+    },
+    {
+      "id": 127,
+      "name": "Paranormal",
+      "parent": "Entertainment",
+      "class": "premium"
+    },
+    {
+      "id": 128,
+      "name": "Parked & For Sale Domains",
+      "parent": "Security Risks",
+      "class": "premium"
+    },
+    {
+      "id": 129,
+      "name": "Personal Blogs",
+      "parent": "Internet Communication",
+      "class": "premium"
+    },
+    {
+      "id": 130,
+      "name": "Pets",
+      "parent": "Society & Lifestyle",
+      "class": "premium"
+    },
+    {
+      "id": 131,
+      "name": "Phishing",
+      "parent": "Security threats",
+      "class": "free"
+    },
+    {
+      "id": 132,
+      "name": "Photography",
+      "parent": "Society & Lifestyle",
+      "class": "premium"
+    },
+    {
+      "id": 133,
+      "name": "Pornography",
+      "parent": "Adult Themes",
+      "class": "free"
+    },
+    {
+      "id": 134,
+      "name": "Private IP Address",
+      "parent": "Security threats",
+      "class": "free"
+    },
+    {
+      "id": 135,
+      "name": "Profanity",
+      "parent": "Questionable Content",
+      "class": "premium"
+    },
+    {
+      "id": 136,
+      "name": "Professional Networking",
+      "parent": "Society & Lifestyle",
+      "class": "premium"
+    },
+    {
+      "id": 137,
+      "name": "Politics, Advocacy, and Government-Related",
+      "parent": "Government & Politics",
+      "class": "premium"
+    },
+    {
+      "id": 138,
+      "name": "Questionable Activities",
+      "parent": "Questionable Content",
+      "class": "premium"
+    },
+    {
+      "id": 139,
+      "name": "Radio",
+      "parent": "Entertainment",
+      "class": "premium"
+    },
+    {
+      "id": 140,
+      "name": "Real Estate",
+      "parent": "Real Estate",
+      "class": "premium"
+    },
+    {
+      "id": 141,
+      "name": "URL Alias/Redirect",
+      "parent": "Miscellaneous",
+      "class": "premium"
+    },
+    {
+      "id": 142,
+      "name": "Religion & Spirituality",
+      "parent": "Religion",
+      "class": "premium"
+    },
+    {
+      "id": 143,
+      "name": "Safe for Kids",
+      "parent": "Safe for Kids",
+      "class": "removalPending"
+    },
+    {
+      "id": 144,
+      "name": "Science",
+      "parent": "Education",
+      "class": "premium"
+    },
+    {
+      "id": 145,
+      "name": "Search Engines",
+      "parent": "Technology",
+      "class": "premium"
+    },
+    {
+      "id": 146,
+      "name": "Sex Education",
+      "parent": "Health",
+      "class": "premium"
+    },
+    {
+      "id": 147,
+      "name": "Sexuality",
+      "parent": "Society & Lifestyle",
+      "class": "premium"
+    },
+    {
+      "id": 148,
+      "name": "Shopping",
+      "parent": "Shopping & Auctions",
+      "class": "premium"
+    },
+    {
+      "id": 149,
+      "name": "Social Networks",
+      "parent": "Society & Lifestyle",
+      "class": "premium"
+    },
+    {
+      "id": 150,
+      "name": "Space & Astronomy",
+      "parent": "Education",
+      "class": "premium"
+    },
+    {
+      "id": 151,
+      "name": "Spam",
+      "parent": "Security threats",
+      "class": "free"
+    },
+    {
+      "id": 152,
+      "name": "Sports",
+      "parent": "Sports",
+      "class": "premium"
+    },
+    {
+      "id": 153,
+      "name": "Spyware",
+      "parent": "Security threats",
+      "class": "free"
+    },
+    {
+      "id": 154,
+      "name": "Swimsuits",
+      "parent": "Society & Lifestyle",
+      "class": "premium"
+    },
+    {
+      "id": 155,
+      "name": "Technology",
+      "parent": "Technology",
+      "class": "premium"
+    },
+    {
+      "id": 156,
+      "name": "Television",
+      "parent": "Entertainment",
+      "class": "premium"
+    },
+    {
+      "id": 157,
+      "name": "Militancy, Hate & Extremism",
+      "parent": "Questionable Content",
+      "class": "premium"
+    },
+    {
+      "id": 158,
+      "name": "Tobacco",
+      "parent": "Society & Lifestyle",
+      "class": "premium"
+    },
+    {
+      "id": 159,
+      "name": "Translator",
+      "parent": "Technology",
+      "class": "premium"
+    },
+    {
+      "id": 160,
+      "name": "Travel",
+      "parent": "Travel",
+      "class": "premium"
+    },
+    {
+      "id": 161,
+      "name": "Unreachable",
+      "parent": "Miscellaneous",
+      "class": "premium"
+    },
+    {
+      "id": 162,
+      "name": "Unreliable Information",
+      "parent": "Questionable Content",
+      "class": "premium"
+    },
+    {
+      "id": 163,
+      "name": "Vehicles",
+      "parent": "Vehicles",
+      "class": "premium"
+    },
+    {
+      "id": 164,
+      "name": "Video Streaming",
+      "parent": "Entertainment",
+      "class": "premium"
+    },
+    {
+      "id": 165,
+      "name": "Violence",
+      "parent": "Violence",
+      "class": "premium"
+    },
+    {
+      "id": 166,
+      "name": "Weapons",
+      "parent": "Military & Weapons",
+      "class": "premium"
+    },
+    {
+      "id": 167,
+      "name": "Weather",
+      "parent": "Weather",
+      "class": "premium"
+    },
+    {
+      "id": 168,
+      "name": "Webmail",
+      "parent": "Internet Communication",
+      "class": "premium"
+    },
+    {
+      "id": 169,
+      "name": "New Domains",
+      "parent": "Security Risks",
+      "class": "premium"
+    },
+    {
+      "id": 170,
+      "name": "Child Abuse",
+      "parent": "Blocked by Default",
+      "class": "blocked"
+    },
+    {
+      "id": 171,
+      "name": "LGBTQ",
+      "parent": "Society & Lifestyle",
+      "class": "premium"
+    },
+    {
+      "id": 172,
+      "name": "Photo Sharing",
+      "parent": "Internet Communication",
+      "class": "premium"
+    },
+    {
+      "id": 173,
+      "name": "Body Art",
+      "parent": "Society & Lifestyle",
+      "class": "premium"
+    },
+    {
+      "id": 174,
+      "name": "Lingerie & Bikini",
+      "parent": "Society & Lifestyle",
+      "class": "premium"
+    },
+    {
+      "id": 175,
+      "name": "DNS Tunneling",
+      "parent": "Security threats",
+      "class": "free"
+    },
+    {
+      "id": 176,
+      "name": "DGA Domains",
+      "parent": "Security threats",
+      "class": "free"
+    },
+    {
+      "id": 177,
+      "name": "Newly Seen Domains",
+      "parent": "Security Risks",
+      "class": "premium"
+    },
+    {
+      "id": 178,
+      "name": "Brand Embedding",
+      "parent": "Security threats",
+      "class": "free"
+    },
+    {
+      "id": 179,
+      "name": "Military",
+      "parent": "Military & Weapons",
+      "class": "premium"
+    },
+    {
+      "id": 180,
+      "name": "School Cheating",
+      "parent": "Questionable Content",
+      "class": "premium"
+    },
+    {
+      "id": 181,
+      "name": "Alcohol",
+      "parent": "Society & Lifestyle",
+      "class": "premium"
+    },
+    {
+      "id": 182,
+      "name": "CIPA Filter",
+      "parent": "CIPA",
+      "class": "premium"
+    },
+    {
+      "id": 183,
+      "name": "Cryptocurrency",
+      "parent": "Business & Economy",
+      "class": "premium"
+    },
+    {
+      "id": 184,
+      "name": "Artificial Intelligence",
+      "parent": "Technology",
+      "class": "premium"
+    },
+    {
+      "id": 185,
+      "name": "Personal Finance",
+      "parent": "Business & Economy",
+      "class": "premium"
+    },
+    {
+      "id": 186,
+      "name": "Brokerage & Investing",
+      "parent": "Business & Economy",
+      "class": "premium"
+    },
+    {
+      "id": 187,
+      "name": "Compromised Domain",
+      "parent": "Security threats",
+      "class": "free"
+    },
+    {
+      "id": 188,
+      "name": "Potentially unwanted software",
+      "parent": "Security threats",
+      "class": "free"
+    },
+    {
+      "id": 189,
+      "name": "Reference",
+      "parent": "Education",
+      "class": "premium"
+    },
+    {
+      "id": 190,
+      "name": "Charity and Non-profit",
+      "parent": "Government & Politics",
+      "class": "premium"
+    },
+    {
+      "id": 191,
+      "name": "Scam",
+      "parent": "Security threats",
+      "class": "free"
+    },
+    {
+      "id": 192,
+      "name": "Remote Access",
+      "parent": "Technology",
+      "class": "premium"
+    },
+    {
+      "id": 193,
+      "name": "Shareware/Freeware",
+      "parent": "Technology",
+      "class": "premium"
+    },
+    {
+      "id": 194,
+      "name": "Keep Awake Software",
+      "parent": "Technology",
+      "class": "premium"
+    },
+    {
+      "id": 195,
+      "name": "Trackers/Analytics",
+      "parent": "Ads",
+      "class": "premium"
+    }
+  ],
+  "preexistingGatewayRules": [
+    {
+      "id": "75442a74-bbc5-4789-b417-f848e9ca62fa",
+      "name": "Do Not Inspect",
+      "action": "off",
+      "enabled": true,
+      "precedence": 0,
+      "filters": [
+        "http"
+      ]
+    },
+    {
+      "id": "fd2fa978-5730-4c6f-a904-2249e896b59b",
+      "name": "Default deny for private traffic",
+      "action": "block",
+      "enabled": false,
+      "precedence": 10000,
+      "filters": [
+        "l4"
+      ]
+    }
+  ],
+  "managedProfile": [
+    {
+      "policy_id": "994b430f-fdf6-4ad9-aa6a-b7564f7133ca",
+      "enabled": true,
+      "precedence": 100
+    }
+  ],
+  "fingerprintBefore": {
+    "rules": "27ae6b134127f11e1c79fdbea7a21a57d5982ee68e79b202a8e96047da14cd2c",
+    "profiles": "4191a25d06df87c2a32d458b295eb98a5bd7efd3111272fdef4625bc50803bd0",
+    "config": "07d2ef3063b4fb6c1a98aa424909e7f4e9a8401e508c09c6cf8815d6639f32e2",
+    "categories": "1098ef7995d425568f59d956ad9fd2088cd0a32fb2f4fb8e7ba23d695581aec9"
+  },
+  "fingerprintAfter": {
+    "rules": "27ae6b134127f11e1c79fdbea7a21a57d5982ee68e79b202a8e96047da14cd2c",
+    "profiles": "4191a25d06df87c2a32d458b295eb98a5bd7efd3111272fdef4625bc50803bd0",
+    "config": "07d2ef3063b4fb6c1a98aa424909e7f4e9a8401e508c09c6cf8815d6639f32e2",
+    "categories": "1098ef7995d425568f59d956ad9fd2088cd0a32fb2f4fb8e7ba23d695581aec9"
+  }
+}
