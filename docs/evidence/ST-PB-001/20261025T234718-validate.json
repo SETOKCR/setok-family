@@ -1,0 +1,150 @@
+{
+  "observedAt": "2026-10-26T05:47:18.5468586Z",
+  "registrySha256": "b6091abd573d46b8e674803422596ae8c6c5822ec8dbe460ffb67b64dd4e7426",
+  "schemaSha256": "064aa0d1836e279a6d580d896d8276ca681cd4c583e1b42a08f717c0871faa81",
+  "registry": {
+    "schemaOk": true,
+    "schemaErrors": null,
+    "invariantViolations": [],
+    "storyGateViolations": [],
+    "pass": true
+  },
+  "cases": [
+    {
+      "case": "missing tenant_id on binding",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "reasons": [
+        "SCHEMA: document does not conform to provider-binding-registry.schema.json",
+        "TENANT: record without tenant_id",
+        "TENANT: binding bnd_01M5VBRV60Y5XRT8X17R3T6GAY targets another tenant"
+      ]
+    },
+    {
+      "case": "duplicate active binding (same subject/provider/type/external)",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "reasons": [
+        "CARDINALITY: duplicate active binding tnt_01M5VBRV28NGNS5PX6Y1W2XJV8|sub_01M5VBRV3HEA2JQ312QP4W5NFM|authentik|identity_user|user_pk=6;user_uuid=ad9ca7d3-3506-4ace-a45f-455d4e4203b6",
+        "GATE: exactly 2 active human identity bindings to distinct subjects expected"
+      ]
+    },
+    {
+      "case": "same external identity active for two subjects",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "reasons": [
+        "CARDINALITY: external identity active for multiple targets tnt_01M5VBRV28NGNS5PX6Y1W2XJV8|authentik|identity_user|user_pk=7;user_uuid=a90988e6-de30-423c-8b6b-d799c9201f67",
+        "GATE: exactly 2 active human identity bindings to distinct subjects expected"
+      ]
+    },
+    {
+      "case": "device subject added in this Story",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "reasons": [
+        "GATE: device subjects must be 0 (found 1)"
+      ]
+    },
+    {
+      "case": "managed profile treated as a device binding",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "reasons": [
+        "TYPE: device_enrollment bnd_01M5VBRV7DDJ401VKN02FH22MD must target a device subject",
+        "GATE: device bindings must be 0 (found 1)",
+        "GATE: exactly one active managed_resource binding for SETOK-FAMILY-MANAGED expected"
+      ]
+    },
+    {
+      "case": "cross-tenant binding",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "reasons": [
+        "TENANT: binding bnd_01M5VBRV60Y5XRT8X17R3T6GAY targets another tenant",
+        "TENANT: binding bnd_01M5VBRV60Y5XRT8X17R3T6GAY uses integration of another tenant",
+        "GATE: exactly one tenant expected"
+      ]
+    },
+    {
+      "case": "internal id derived from provider uuid",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "reasons": [
+        "INDEPENDENCE: internal id sub_AD9CA7D335064ACEA45F455D4E overlaps provider identifier"
+      ]
+    },
+    {
+      "case": "shared Cloudflare account claimed as dedicated",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "reasons": [
+        "GATE: Cloudflare integration must be modeled as shared"
+      ]
+    },
+    {
+      "case": "email in registry",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "reasons": [
+        "SCHEMA: document does not conform to provider-binding-registry.schema.json",
+        "PRIVACY: email-like value present"
+      ]
+    },
+    {
+      "case": "domain role attribute on subject",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "reasons": [
+        "SCHEMA: document does not conform to provider-binding-registry.schema.json"
+      ]
+    },
+    {
+      "case": "replacement: retire old, new binding, same subject_id",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "reasons": []
+    },
+    {
+      "case": "replacement without retiring the old binding",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "reasons": [
+        "LIFECYCLE: bnd_01M5VBRV60Y5XRT8X17R3T6GAY must be RETIRED when replaced by an ACTIVE binding",
+        "GATE: exactly 2 active human identity bindings to distinct subjects expected"
+      ]
+    },
+    {
+      "case": "stale binding is not counted as an active human binding",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "reasons": [
+        "GATE: exactly 2 active human identity bindings to distinct subjects expected"
+      ]
+    },
+    {
+      "case": "RETIRED requires retired_on",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "reasons": [
+        "SCHEMA: document does not conform to provider-binding-registry.schema.json",
+        "GATE: exactly 2 active human identity bindings to distinct subjects expected"
+      ]
+    }
+  ],
+  "casesPass": true
+}

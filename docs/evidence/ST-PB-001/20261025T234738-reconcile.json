@@ -1,0 +1,264 @@
+{
+  "runs": [
+    {
+      "run": 1,
+      "observedAt": "2026-10-26T05:47:28.6701350Z",
+      "semantic": [
+        {
+          "binding_id": "bnd_01M5VBRV60Y5XRT8X17R3T6GAY",
+          "provider": "authentik",
+          "binding_type": "identity_user",
+          "observedStatus": "ACTIVE",
+          "checks": {
+            "resolvesExactlyOnce": true,
+            "pkMatches": true,
+            "active": true,
+            "typeInternal": true,
+            "notSuperuser": true,
+            "noGroupsOrRoles": true
+          }
+        },
+        {
+          "binding_id": "bnd_01M5VBRV6ESGBVHV1HN81FQAQH",
+          "provider": "authentik",
+          "binding_type": "identity_user",
+          "observedStatus": "ACTIVE",
+          "checks": {
+            "resolvesExactlyOnce": true,
+            "pkMatches": true,
+            "active": true,
+            "typeInternal": true,
+            "notSuperuser": true,
+            "noGroupsOrRoles": true
+          }
+        },
+        {
+          "binding_id": "bnd_01M5VBRV6YJ6JQYWJ4MRZC0JSV",
+          "provider": "cloudflare-zero-trust",
+          "binding_type": "integration_account",
+          "observedStatus": "ACTIVE",
+          "checks": {
+            "accountVisible": true,
+            "teamDomainMatches": true,
+            "modeledAsShared": true
+          }
+        },
+        {
+          "binding_id": "bnd_01M5VBRV7DDJ401VKN02FH22MD",
+          "provider": "cloudflare-zero-trust",
+          "binding_type": "managed_resource",
+          "observedStatus": "ACTIVE",
+          "checks": {
+            "existsExactlyOnce": true,
+            "policyIdMatches": true,
+            "notDefault": true,
+            "defaultProfileNotBound": true
+          }
+        }
+      ],
+      "authentik": {
+        "bindings": [
+          {
+            "binding_id": "bnd_01M5VBRV60Y5XRT8X17R3T6GAY",
+            "matches": 1,
+            "pk_match": true,
+            "active": true,
+            "type": "internal",
+            "superuser": false,
+            "groups": 0,
+            "roles": 0,
+            "provisioned_alias": "adult-01"
+          },
+          {
+            "binding_id": "bnd_01M5VBRV6ESGBVHV1HN81FQAQH",
+            "matches": 1,
+            "pk_match": true,
+            "active": true,
+            "type": "internal",
+            "superuser": false,
+            "groups": 0,
+            "roles": 0,
+            "provisioned_alias": "adult-02"
+          }
+        ],
+        "fingerprint_before": "d9084f5340c9a4368edaf14c71d579e8c1cfdcaec4058ec05bd43b4688905a92",
+        "fingerprint_after": "d9084f5340c9a4368edaf14c71d579e8c1cfdcaec4058ec05bd43b4688905a92",
+        "counts": {
+          "groups": 3,
+          "roles": 3,
+          "tokens": 1,
+          "applications": 0,
+          "providers": 0,
+          "sources": 1,
+          "flows": 15,
+          "outposts": 1
+        },
+        "superusers": [
+          "akadmin"
+        ]
+      },
+      "cloudflare": {
+        "accounts": [
+          {
+            "id": "c2120c89f39b804e7882661f7464e89f",
+            "type": "standard"
+          }
+        ],
+        "teamDomain": "setok.cloudflareaccess.com",
+        "profiles": [
+          {
+            "policy_id": "994b430f-fdf6-4ad9-aa6a-b7564f7133ca",
+            "name": "SETOK-FAMILY-MANAGED",
+            "default": false,
+            "enabled": true
+          },
+          {
+            "policy_id": "019cbbfb-ca30-7b50-b7f8-050ec43917d9",
+            "name": null,
+            "default": true,
+            "enabled": true
+          }
+        ],
+        "fingerprint": "8f440f12550a2984be395322809edcc762e1280b7589a067811efd2495276c13"
+      },
+      "readOnly": {
+        "authentikFingerprintUnchanged": true,
+        "cloudflareFingerprintUnchanged": true
+      }
+    },
+    {
+      "run": 2,
+      "observedAt": "2026-10-26T05:47:38.1082261Z",
+      "semantic": [
+        {
+          "binding_id": "bnd_01M5VBRV60Y5XRT8X17R3T6GAY",
+          "provider": "authentik",
+          "binding_type": "identity_user",
+          "observedStatus": "ACTIVE",
+          "checks": {
+            "resolvesExactlyOnce": true,
+            "pkMatches": true,
+            "active": true,
+            "typeInternal": true,
+            "notSuperuser": true,
+            "noGroupsOrRoles": true
+          }
+        },
+        {
+          "binding_id": "bnd_01M5VBRV6ESGBVHV1HN81FQAQH",
+          "provider": "authentik",
+          "binding_type": "identity_user",
+          "observedStatus": "ACTIVE",
+          "checks": {
+            "resolvesExactlyOnce": true,
+            "pkMatches": true,
+            "active": true,
+            "typeInternal": true,
+            "notSuperuser": true,
+            "noGroupsOrRoles": true
+          }
+        },
+        {
+          "binding_id": "bnd_01M5VBRV6YJ6JQYWJ4MRZC0JSV",
+          "provider": "cloudflare-zero-trust",
+          "binding_type": "integration_account",
+          "observedStatus": "ACTIVE",
+          "checks": {
+            "accountVisible": true,
+            "teamDomainMatches": true,
+            "modeledAsShared": true
+          }
+        },
+        {
+          "binding_id": "bnd_01M5VBRV7DDJ401VKN02FH22MD",
+          "provider": "cloudflare-zero-trust",
+          "binding_type": "managed_resource",
+          "observedStatus": "ACTIVE",
+          "checks": {
+            "existsExactlyOnce": true,
+            "policyIdMatches": true,
+            "notDefault": true,
+            "defaultProfileNotBound": true
+          }
+        }
+      ],
+      "authentik": {
+        "bindings": [
+          {
+            "binding_id": "bnd_01M5VBRV60Y5XRT8X17R3T6GAY",
+            "matches": 1,
+            "pk_match": true,
+            "active": true,
+            "type": "internal",
+            "superuser": false,
+            "groups": 0,
+            "roles": 0,
+            "provisioned_alias": "adult-01"
+          },
+          {
+            "binding_id": "bnd_01M5VBRV6ESGBVHV1HN81FQAQH",
+            "matches": 1,
+            "pk_match": true,
+            "active": true,
+            "type": "internal",
+            "superuser": false,
+            "groups": 0,
+            "roles": 0,
+            "provisioned_alias": "adult-02"
+          }
+        ],
+        "fingerprint_before": "d9084f5340c9a4368edaf14c71d579e8c1cfdcaec4058ec05bd43b4688905a92",
+        "fingerprint_after": "d9084f5340c9a4368edaf14c71d579e8c1cfdcaec4058ec05bd43b4688905a92",
+        "counts": {
+          "groups": 3,
+          "roles": 3,
+          "tokens": 1,
+          "applications": 0,
+          "providers": 0,
+          "sources": 1,
+          "flows": 15,
+          "outposts": 1
+        },
+        "superusers": [
+          "akadmin"
+        ]
+      },
+      "cloudflare": {
+        "accounts": [
+          {
+            "id": "c2120c89f39b804e7882661f7464e89f",
+            "type": "standard"
+          }
+        ],
+        "teamDomain": "setok.cloudflareaccess.com",
+        "profiles": [
+          {
+            "policy_id": "994b430f-fdf6-4ad9-aa6a-b7564f7133ca",
+            "name": "SETOK-FAMILY-MANAGED",
+            "default": false,
+            "enabled": true
+          },
+          {
+            "policy_id": "019cbbfb-ca30-7b50-b7f8-050ec43917d9",
+            "name": null,
+            "default": true,
+            "enabled": true
+          }
+        ],
+        "fingerprint": "8f440f12550a2984be395322809edcc762e1280b7589a067811efd2495276c13"
+      },
+      "readOnly": {
+        "authentikFingerprintUnchanged": true,
+        "cloudflareFingerprintUnchanged": true
+      }
+    }
+  ],
+  "repeatSameSemanticResult": true,
+  "staticReadOnly": {
+    "httpWriteCalls": 0,
+    "ormWriteCalls": 0
+  },
+  "providerFingerprintsUnchangedAcrossRuns": true,
+  "readOnlyProof": true,
+  "reconciliationPass": true
+}
