@@ -1,0 +1,94 @@
+{
+  "registry_version": 1,
+  "notes": "Desired provider-binding registry for the first productive SETOK Family tenant (ST-PB-001). Internal IDs were generated randomly (ULID format) and are not derived from any provider identifier. Observed provider state is never stored here; see docs/evidence/ST-PB-001/.",
+  "tenants": [
+    { "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8", "tenant_type": "family", "alias": "first-family", "status": "ACTIVE" }
+  ],
+  "subjects": [
+    { "subject_id": "sub_01M5VBRV3HEA2JQ312QP4W5NFM", "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8", "subject_type": "human", "human_kind": "adult", "alias": "adult-01", "status": "ACTIVE" },
+    { "subject_id": "sub_01M5VBRV41WT22T9YJ1HERC73Q", "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8", "subject_type": "human", "human_kind": "adult", "alias": "adult-02", "status": "ACTIVE" }
+  ],
+  "integrations": [
+    {
+      "integration_id": "int_01M5VBRV4G6DNP31G1108FT2Y0",
+      "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+      "provider": "authentik",
+      "capability_type": "identity",
+      "ownership": "dedicated",
+      "endpoint": "https://192.168.89.22:9443",
+      "status": "ACTIVE"
+    },
+    {
+      "integration_id": "int_01M5VBRV516Z3FXT98V4G6KT5N",
+      "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+      "provider": "cloudflare-zero-trust",
+      "capability_type": "enforcement",
+      "ownership": "shared",
+      "endpoint": "https://api.cloudflare.com/client/v4",
+      "secret_reference": "local-dpapi:%LOCALAPPDATA%\\SETOK\\setok-family\\cloudflare-st-cf-001.token.xml",
+      "not_owned": ["account", "zero-trust-organization", "default-device-profile", "any-profile-or-policy-not-bound-as-managed_resource"],
+      "status": "ACTIVE"
+    }
+  ],
+  "resources": [
+    {
+      "resource_id": "res_01M5VBRV5FVWQNKEVW704RZ7VM",
+      "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+      "integration_id": "int_01M5VBRV516Z3FXT98V4G6KT5N",
+      "resource_type": "device_profile",
+      "management": "managed_by_setok_family",
+      "alias": "family-managed-device-profile",
+      "status": "ACTIVE"
+    }
+  ],
+  "bindings": [
+    {
+      "binding_id": "bnd_01M5VBRV60Y5XRT8X17R3T6GAY",
+      "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+      "target": { "kind": "subject", "id": "sub_01M5VBRV3HEA2JQ312QP4W5NFM" },
+      "provider": "authentik",
+      "binding_type": "identity_user",
+      "integration_id": "int_01M5VBRV4G6DNP31G1108FT2Y0",
+      "external": { "user_uuid": "ad9ca7d3-3506-4ace-a45f-455d4e4203b6", "user_pk": 6 },
+      "status": "ACTIVE",
+      "valid_from": "2026-10-26",
+      "source": "ST-ID-002"
+    },
+    {
+      "binding_id": "bnd_01M5VBRV6ESGBVHV1HN81FQAQH",
+      "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+      "target": { "kind": "subject", "id": "sub_01M5VBRV41WT22T9YJ1HERC73Q" },
+      "provider": "authentik",
+      "binding_type": "identity_user",
+      "integration_id": "int_01M5VBRV4G6DNP31G1108FT2Y0",
+      "external": { "user_uuid": "a90988e6-de30-423c-8b6b-d799c9201f67", "user_pk": 7 },
+      "status": "ACTIVE",
+      "valid_from": "2026-10-26",
+      "source": "ST-ID-002"
+    },
+    {
+      "binding_id": "bnd_01M5VBRV6YJ6JQYWJ4MRZC0JSV",
+      "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+      "target": { "kind": "integration", "id": "int_01M5VBRV516Z3FXT98V4G6KT5N" },
+      "provider": "cloudflare-zero-trust",
+      "binding_type": "integration_account",
+      "integration_id": "int_01M5VBRV516Z3FXT98V4G6KT5N",
+      "external": { "account_id": "c2120c89f39b804e7882661f7464e89f", "team_domain": "setok.cloudflareaccess.com" },
+      "status": "ACTIVE",
+      "valid_from": "2026-10-26",
+      "source": "ST-CF-001"
+    },
+    {
+      "binding_id": "bnd_01M5VBRV7DDJ401VKN02FH22MD",
+      "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+      "target": { "kind": "resource", "id": "res_01M5VBRV5FVWQNKEVW704RZ7VM" },
+      "provider": "cloudflare-zero-trust",
+      "binding_type": "managed_resource",
+      "integration_id": "int_01M5VBRV516Z3FXT98V4G6KT5N",
+      "external": { "policy_id": "994b430f-fdf6-4ad9-aa6a-b7564f7133ca", "profile_name": "SETOK-FAMILY-MANAGED" },
+      "status": "ACTIVE",
+      "valid_from": "2026-10-26",
+      "source": "ST-CF-001"
+    }
+  ]
+}

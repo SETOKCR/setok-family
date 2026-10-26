@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://setok.cr/schemas/setok-family/provider-binding-registry/v1",
+  "title": "SETOK Family provider-binding registry (desired state) v1",
+  "description": "Provider-neutral, tenant-scoped registry. SETOK internal IDs are generated independently of provider IDs. Only desired/versioned facts live here; observed provider state belongs in evidence. Cross-record invariants (tenant references, uniqueness, cardinality, story gates) are enforced by scripts/st-pb-001/Invoke-StPb001.ps1 in addition to this schema.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["registry_version", "tenants", "subjects", "integrations", "resources", "bindings"],
+  "properties": {
+    "registry_version": { "const": 1 },
+    "notes": { "type": "string" },
+    "tenants": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/tenant" } },
+    "subjects": { "type": "array", "items": { "$ref": "#/$defs/subject" } },
+    "integrations": { "type": "array", "items": { "$ref": "#/$defs/integration" } },
+    "resources": { "type": "array", "items": { "$ref": "#/$defs/resource" } },
+    "bindings": { "type": "array", "items": { "$ref": "#/$defs/binding" } }
+  },
+  "$defs": {
+    "ulid": { "type": "string", "pattern": "^[0-9A-HJKMNP-TV-Z]{26}$" },
+    "tenantId":      { "type": "string", "pattern": "^tnt_[0-9A-HJKMNP-TV-Z]{26}$" },
+    "subjectId":     { "type": "string", "pattern": "^sub_[0-9A-HJKMNP-TV-Z]{26}$" },
+    "integrationId": { "type": "string", "pattern": "^int_[0-9A-HJKMNP-TV-Z]{26}$" },
+    "resourceId":    { "type": "string", "pattern": "^res_[0-9A-HJKMNP-TV-Z]{26}$" },
+    "bindingId":     { "type": "string", "pattern": "^bnd_[0-9A-HJKMNP-TV-Z]{26}$" },
+    "alias": { "type": "string", "pattern": "^[a-z][a-z0-9-]{1,40}$", "description": "Opaque label; never a real name or email." },
+    "recordStatus": { "enum": ["ACTIVE", "RETIRED"] },
+    "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+
+    "tenant": {
+      "type": "object", "additionalProperties": false,
+      "required": ["tenant_id", "tenant_type", "alias", "status"],
+      "properties": {
+        "tenant_id": { "$ref": "#/$defs/tenantId" },
+        "tenant_type": { "const": "family" },
+        "alias": { "$ref": "#/$defs/alias" },
+        "status": { "$ref": "#/$defs/recordStatus" }
+      }
+    },
+
+    "subject": {
+      "type": "object", "additionalProperties": false,
+      "required": ["subject_id", "tenant_id", "subject_type", "alias", "status"],
+      "properties": {
+        "subject_id": { "$ref": "#/$defs/subjectId" },
+        "tenant_id": { "$ref": "#/$defs/tenantId" },
+        "subject_type": { "enum": ["human", "device"], "description": "Explicit, closed set. Devices require enrollment evidence (later Stories)." },
+        "human_kind": { "enum": ["adult", "minor"] },
+        "alias": { "$ref": "#/$defs/alias" },
+        "status": { "$ref": "#/$defs/recordStatus" }
+      },
+      "allOf": [
+        { "if": { "properties": { "subject_type": { "const": "human" } } }, "then": { "required": ["human_kind"] } },
+        { "if": { "properties": { "subject_type": { "const": "device" } } }, "then": { "not": { "required": ["human_kind"] } } }
+      ]
+    },
+
+    "integration": {
+      "type": "object", "additionalProperties": false,
+      "required": ["integration_id", "tenant_id", "provider", "capability_type", "ownership", "status"],
+      "properties": {
+        "integration_id": { "$ref": "#/$defs/integrationId" },
+        "tenant_id": { "$ref": "#/$defs/tenantId" },
+        "provider": { "$ref": "#/$defs/provider" },
+        "capability_type": { "enum": ["identity", "enforcement", "device_management"] },
+        "ownership": {
+          "enum": ["dedicated", "shared"],
+          "description": "dedicated = provider instance exists only for SETOK Family; shared = SETOK Family uses a boundary owned by the wider SETOK platform and manages only its designated resources."
+        },
+        "endpoint": { "type": "string", "description": "Non-secret endpoint reference." },
+        "secret_reference": { "type": "string", "pattern": "^local-dpapi:[A-Za-z0-9._\\\\%-]+$", "description": "Reference to a local secret store entry, never a secret value." },
+        "not_owned": { "type": "array", "items": { "type": "string" }, "description": "Provider objects inside a shared boundary that SETOK Family must not claim or manage." },
+        "status": { "$ref": "#/$defs/recordStatus" }
+      },
+      "allOf": [ { "if": { "properties": { "ownership": { "const": "shared" } } }, "then": { "required": ["not_owned"] } } ]
+    },
+
+    "resource": {
+      "type": "object", "additionalProperties": false,
+      "required": ["resource_id", "tenant_id", "integration_id", "resource_type", "management", "alias", "status"],
+      "properties": {
+        "resource_id": { "$ref": "#/$defs/resourceId" },
+        "tenant_id": { "$ref": "#/$defs/tenantId" },
+        "integration_id": { "$ref": "#/$defs/integrationId" },
+        "resource_type": { "enum": ["device_profile", "gateway_policy", "identity_application"], "description": "Provider configuration objects. A device_profile is NOT a device." },
+        "management": { "const": "managed_by_setok_family" },
+        "alias": { "$ref": "#/$defs/alias" },
+        "status": { "$ref": "#/$defs/recordStatus" }
+      }
+    },
+
+    "provider": { "enum": ["authentik", "cloudflare-zero-trust", "manageengine"] },
+
+    "binding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["binding_id", "tenant_id", "target", "provider", "binding_type", "external", "status", "valid_from"],
+      "properties": {
+        "binding_id": { "$ref": "#/$defs/bindingId" },
+        "tenant_id": { "$ref": "#/$defs/tenantId" },
+        "target": {
+          "type": "object", "additionalProperties": false, "required": ["kind", "id"],
+          "properties": {
+            "kind": { "enum": ["subject", "integration", "resource"] },
+            "id": { "type": "string", "pattern": "^(sub|int|res)_[0-9A-HJKMNP-TV-Z]{26}$" }
+          }
+        },
+        "provider": { "$ref": "#/$defs/provider" },
+        "binding_type": {
+          "enum": ["identity_user", "device_enrollment", "integration_account", "managed_resource"],
+          "description": "identity_user: human subject -> IdP user; device_enrollment: device subject -> provider device (future); integration_account: integration -> provider account/org; managed_resource: resource -> provider object."
+        },
+        "integration_id": { "$ref": "#/$defs/integrationId" },
+        "external": {
+          "type": "object", "minProperties": 1,
+          "description": "Stable, non-secret provider identifiers only (no names, emails, tokens, timestamps or health).",
+          "additionalProperties": { "type": ["string", "integer"] },
+          "propertyNames": { "not": { "pattern": "(?i)(email|mail|name_full|password|secret|token|key|recovery)" } }
+        },
+        "status": {
+          "enum": ["ACTIVE", "RETIRED", "STALE", "ERROR"],
+          "description": "ACTIVE: in force. RETIRED: replaced/ended, kept for history. STALE: provider object no longer observed or unverifiable. ERROR: reconciliation contradiction requiring remediation."
+        },
+        "valid_from": { "$ref": "#/$defs/date" },
+        "retired_on": { "$ref": "#/$defs/date" },
+        "replaces": { "$ref": "#/$defs/bindingId" },
+        "source": { "type": "string", "description": "Evidence/story establishing the binding." }
+      },
+      "allOf": [
+        { "if": { "properties": { "status": { "const": "RETIRED" } } }, "then": { "required": ["retired_on"] } },
+        { "if": { "properties": { "binding_type": { "const": "identity_user" } } }, "then": { "properties": { "target": { "properties": { "kind": { "const": "subject" } } } } } },
+        { "if": { "properties": { "binding_type": { "const": "device_enrollment" } } }, "then": { "properties": { "target": { "properties": { "kind": { "const": "subject" } } } } } },
+        { "if": { "properties": { "binding_type": { "const": "integration_account" } } }, "then": { "properties": { "target": { "properties": { "kind": { "const": "integration" } } } } } },
+        { "if": { "properties": { "binding_type": { "const": "managed_resource" } } }, "then": { "properties": { "target": { "properties": { "kind": { "const": "resource" } } } } } }
+      ]
+    }
+  }
+}
