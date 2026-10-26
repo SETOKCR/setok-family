@@ -5,7 +5,9 @@
 - **Project:** SETOK Family
 - **Repository:** SETOKCR/setok-family
 - **Story / Work Unit:** ST-ID-002
-- **Estado de ejecución:** READY_FOR_BASE
+- **Authorized Base:** `1d46704d15ef2721bc1cd0ec67673b8de006eb31`
+- **Implementation Branch:** `feature/st-id-002`
+- **Estado de ejecución:** READY
 - **Implementation Authorization:** NO
 - **Persistencia:** PERSISTED
 - **Motivo de persistencia:** RED / authentication / real human identity data / multi-session auditability
@@ -17,9 +19,9 @@
 - **Repository:** SETOKCR/setok-family
 - **Role:** Development Agent
 - **Work Unit:** ST-ID-002
-- **Work Order:** READY_FOR_BASE — preflight + Independent Check complete; Product Input Gate remains open for Apply
-- **Authorized Base:** NONE
-- **Implementation Branch:** NONE
+- **Work Order:** READY — preflight + Independent Check passed; Product Input Gate remains open; implementation not authorized
+- **Authorized Base:** `1d46704d15ef2721bc1cd0ec67673b8de006eb31`
+- **Implementation Branch:** `feature/st-id-002`
 - **Project Binding:** REQUIRED
 
 ## GOAL
@@ -36,7 +38,7 @@ Crear y validar las primeras identidades humanas reales del tenant piloto en Aut
 
 ## PRODUCT INPUT GATE
 
-**Status: OPEN — blocks Apply, not readiness/base freeze.**
+**Status: OPEN — blocks Apply and implementation authorization.**
 
 Antes de cualquier `APPLY`, el Product Owner debe aprobar el conjunto exacto de identidades humanas a provisionar (1–3 cuentas en esta Story). Los datos concretos se suministran fuera de Git.
 
@@ -156,8 +158,8 @@ This Story does not establish a generic reusable Authentik automation framework.
 - [ ] Product Input Gate closed before Apply.
 - [ ] Project Scope = PROJECT_SCOPE_OK.
 - [x] Independent Check = PASS WITH CONDITIONS.
-- [ ] Authorized Base frozen.
-- [ ] Branch lineage VERIFIED.
+- [x] Authorized Base frozen at `1d46704d15ef2721bc1cd0ec67673b8de006eb31`.
+- [x] Implementation branch `feature/st-id-002` created from exact Authorized Base.
 - [ ] Pre-existing user inventory captured non-secretly.
 - [ ] Secret/PII handling plan verified.
 - [ ] Temporary provisioning credential least-privilege and revocable.
@@ -174,6 +176,7 @@ This Story does not establish a generic reusable Authentik automation framework.
 ## STOP CONDITIONS
 
 - Scope mismatch/unverified.
+- Authorized Base/branch lineage not verifiable.
 - Product Input Gate open at Apply.
 - Human account needs superuser/admin privilege.
 - Family/domain authorization must be represented in Authentik.
@@ -189,6 +192,7 @@ This Story does not establish a generic reusable Authentik automation framework.
 
 - Preflight: PASS
 - Independent Check: PASS WITH CONDITIONS
-- Product Input Gate: OPEN until pre-Apply
-- Authorized Base: pending
+- Product Input Gate: OPEN
+- Authorized Base: `1d46704d15ef2721bc1cd0ec67673b8de006eb31`
+- Implementation Branch: `feature/st-id-002`
 - Implementation Authorization: NO
