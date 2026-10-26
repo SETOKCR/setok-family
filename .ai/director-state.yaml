@@ -1,5 +1,5 @@
 schema_version: 1
-written_at_utc: 2026-10-26T00:19:00Z
+written_at_utc: 2026-10-26T00:23:00Z
 
 framework:
   repository: SETOKCR/setok-aide
@@ -10,7 +10,7 @@ scope:
   kind: project
   repository: SETOKCR/setok-family
   default_branch: main
-  observed_head: ccc255c83f3b74b82ee1e24bba62d658b6262bcb
+  observed_head: 4fa82d531d1452b15b7fd409465cdcf7f7400b1e
 
 activity:
   lifecycle: active
@@ -41,4 +41,4 @@ last_terminal: null
 next_action:
   kind: implementation
   unit: ST-CF-001
-  note: Freeze an Authorized Base and authorize implementation only after revalidating repository identity and READY Work Order; no implementation is currently authorized.
+  note: Freeze an Authorized Base, then hand off ST-CF-001 to a local Development Agent whose first task is to establish C:\Dev\SETOK\setok-family and verify PROJECT_SCOPE_OK before any provider mutation; no implementation is currently authorized.
