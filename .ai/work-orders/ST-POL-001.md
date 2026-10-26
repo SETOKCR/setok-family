@@ -7,7 +7,7 @@
 - **Story / Work Unit:** ST-POL-001
 - **Authorized Base:** `df0a9dd9968c44428ab69e9e19c91fc2f164809e`
 - **Implementation Branch:** `feature/st-pol-001`
-- **Execution state:** AUTHORIZED
+- **Execution state:** IMPLEMENTATION_DONE
 - **Implementation Authorization:** YES
 - **Persistence:** PERSISTED
 
@@ -113,13 +113,13 @@ NOT REQUIRED. The frozen architecture already defines the minimum baseline and p
 - [x] Authorized Base frozen at `df0a9dd9968c44428ab69e9e19c91fc2f164809e`.
 - [x] Branch lineage verified by construction from exact Authorized Base.
 - [x] Implementation explicitly authorized by Product Owner / Technical Director GO.
-- [ ] Baseline contract/schema PASS.
-- [ ] Precedence/invariant negative tests PASS.
-- [ ] Cloudflare read-only discovery PASS.
-- [ ] Deterministic compilation PASS.
-- [ ] No-mutation proof PASS.
-- [ ] Privacy/secret scan PASS.
-- [ ] Evidence sufficient for Technical Director review.
+- [x] Baseline contract/schema PASS.
+- [x] Precedence/invariant negative tests PASS.
+- [x] Cloudflare read-only discovery PASS.
+- [x] Deterministic compilation PASS.
+- [x] No-mutation proof PASS.
+- [x] Privacy/secret scan PASS.
+- [x] Evidence sufficient for Technical Director review.
 
 ## Closure evidence
 
@@ -129,3 +129,10 @@ NOT REQUIRED. The frozen architecture already defines the minimum baseline and p
 - Authorized Base: `df0a9dd9968c44428ab69e9e19c91fc2f164809e`
 - Implementation Branch: `feature/st-pol-001`
 - Implementation Authorization: YES
+- Accepted Candidate: `fb3ef4f429c797e1f658d65e2dc80ea305df64d6`
+- Integration Commit: `019dc396cd4f6f0fc3f77b5caa9073d7385c41f7`
+- Technical Director Decision: `ACCEPT`
+- Baseline Controls: 7/7 defined and compiled; none claimed APPLIED.
+- Provider Mutation: NO.
+- Apply Status: BLOCKED pending enrolled device binding, proven safe selector, separate provider-mutation authorization, and verification of the premium-class Gambling entitlement.
+- Evidence: `docs/evidence/ST-POL-001/`.
