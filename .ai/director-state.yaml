@@ -1,5 +1,5 @@
 schema_version: 1
-written_at_utc: 2026-10-26T15:55:00Z
+written_at_utc: 2026-10-26T16:05:00Z
 
 framework:
   repository: SETOKCR/setok-aide
@@ -10,22 +10,19 @@ scope:
   kind: project
   repository: SETOKCR/setok-family
   default_branch: main
-  observed_head: 02ec30bb7d01689e1192ec54c007e8680602491b
+  observed_head: ad4e3d861b5f05c21a52bdd1dfb14dc889676515
 
 activity:
   lifecycle: active
   active_unit: ST-POL-002
-  phase: product_input
+  phase: readiness
   risk: YELLOW-6
   implementation_authorized: false
-  authorized_base: null
-  implementation_branch: null
+  authorized_base: a7d9844f00e24acb5bd4d4a2553dd88efa892859
+  implementation_branch: feature/st-pol-002
   candidate_commit: null
 
 open_gates:
-  - Product Input approval for STANDARD / RESTRICTED / temporary overlay semantics
-  - freeze Authorized Base
-  - create and verify implementation branch
   - explicit Technical Director implementation authorization
 
 canonical_refs:
@@ -47,6 +44,6 @@ last_terminal:
   note: ST-POL-001 integrated to main and formally closed. Seven mandatory baseline controls are defined in provider-neutral desired state and deterministically compiled against read-only Cloudflare capability discovery. No Gateway/provider mutation occurred and nothing is APPLIED. Future apply remains blocked until device enrollment yields a safe selector, provider mutation is separately authorized with rollback/blast-radius controls, and premium-class Gambling entitlement is verified.
 
 next_action:
-  kind: product_input
+  kind: readiness
   unit: ST-POL-002
-  note: Preflight architecture review PASS and Independent Check PASS WITH CONDITIONS. Product Input Gate is OPEN because frozen architecture does not define the exact consumer semantics of STANDARD, RESTRICTED, STUDY, ALLOW_SOCIAL, PAUSE_ENTERTAINMENT and CLEAR_TEMPORARY. Recommended first-family semantics are documented in docs/stories/ST-POL-002.md. Do not freeze Authorized Base or authorize implementation until the PO explicitly approves or amends them.
+  note: Product Input Gate CLOSED by explicit PO approval. Authorized Base frozen at a7d9844f00e24acb5bd4d4a2553dd88efa892859. feature/st-pol-002 created from exact Authorized Base and verified one governance-only Work Order commit ahead, zero behind. Await explicit Technical Director implementation authorization. Provider mutation remains forbidden and no policy may be claimed APPLIED.
