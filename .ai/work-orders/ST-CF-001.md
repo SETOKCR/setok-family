@@ -7,7 +7,7 @@
 - **Story / Work Unit:** ST-CF-001
 - **Authorized Base:** `4fa82d531d1452b15b7fd409465cdcf7f7400b1e`
 - **Implementation Branch:** `feature/st-cf-001`
-- **Estado de ejecución:** READY
+- **Estado de ejecución:** IMPLEMENTATION_DONE
 - **Implementation Authorization:** YES — Technical Director authorization after readiness revalidation
 - **Persistencia:** PERSISTED
 - **Motivo de persistencia:** multi-session / external-provider execution and evidence
@@ -29,10 +29,10 @@ Resultado requerido: `PROJECT_SCOPE_OK`.
 - **Repository:** SETOKCR/setok-family
 - **Role:** Development Agent
 - **Work Unit:** ST-CF-001
-- **Work Order:** READY
+- **Work Order:** IMPLEMENTATION_DONE
 - **Authorized Base:** `4fa82d531d1452b15b7fd409465cdcf7f7400b1e`
 - **Implementation Branch:** `feature/st-cf-001`
-- **Project Binding:** REQUIRED
+- **Project Binding:** VERIFIED
 
 ---
 
@@ -51,13 +51,13 @@ Establecer y verificar la foundation mínima de Cloudflare Zero Trust para el te
 
 ## ACCEPTANCE CRITERIA
 
-- [ ] Existe una organization/foundation Cloudflare Zero Trust inequívocamente asociada al tenant piloto.
-- [ ] Su identidad técnica no secreta queda registrada en configuración/evidencia autorizada del proyecto.
-- [ ] El modo objetivo de tráfico queda conforme a arquitectura (`Traffic + DNS`; MASQUE como transporte objetivo inicial donde aplique y sea soportado).
-- [ ] Existe un único Device Profile técnico base para SETOK Family con los parámetros de hardening soportados en esta etapa.
-- [ ] El estado aplicado se vuelve a consultar/observar y coincide con el desired state de los objetos incluidos en esta Story.
-- [ ] No existen secretos, tokens, credenciales ni break-glass codes en Git.
-- [ ] Los objetos creados pueden revertirse/eliminarse de forma identificable sin afectar recursos ajenos a SETOK Family.
+- [x] Existe una organization/foundation Cloudflare Zero Trust inequívocamente asociada al tenant piloto dentro del boundary compartido de SETOK autorizado por el Product Owner.
+- [x] Su identidad técnica no secreta queda registrada en configuración/evidencia autorizada del proyecto.
+- [x] El modo objetivo de tráfico queda conforme a arquitectura (`Traffic + DNS`; MASQUE configurado como transporte objetivo inicial sujeto a validación posterior en dispositivo real).
+- [x] Existe un único Device Profile técnico base para SETOK Family con los parámetros de hardening soportados en esta etapa.
+- [x] La configuración aplicada se volvió a consultar y coincide con el desired state de los objetos incluidos en esta Story.
+- [x] No se almacenan API tokens, credenciales, secretos ni códigos break-glass en Git.
+- [x] Existe ruta de reversión aislada para el objeto creado sin afectar recursos ajenos a SETOK Family.
 
 ---
 
@@ -95,7 +95,7 @@ Establecer y verificar la foundation mínima de Cloudflare Zero Trust para el te
 - **Dimensiones:** Reversibilidad 1; Blast Radius 1; Datos/Estado 1; Seguridad/Finanzas 1; Contratos 0.
 - **Razón principal:** crea/modifica configuración persistente en un proveedor de seguridad del tenant piloto; rollback es viable pero deliberado y el efecto puede alcanzar la foundation de enforcement del tenant.
 - **Auto-RED aplicado:** No.
-- **Auto-RED boundary:** si la ejecución requiere modificar materialmente authentication, authorization, privilege boundary, cryptography u otra superficie Auto-RED, detener y reclasificar antes de continuar.
+- **Auto-RED boundary:** no se cruzó ninguna superficie Auto-RED durante implementación.
 
 ---
 
@@ -104,26 +104,26 @@ Establecer y verificar la foundation mínima de Cloudflare Zero Trust para el te
 - Verificación de configuración mediante lectura/consulta posterior al cambio; no aceptar sólo HTTP/API success.
 - Validación de unicidad y parámetros del Device Profile base.
 - Validación de modo `Traffic + DNS` y transporte objetivo cuando sea observable/configurable.
-- Repetición controlada de consultas/acciones aplicables para demostrar ausencia de duplicación accidental en el scope autorizado.
+- Repetición controlada de Apply para demostrar ausencia de duplicación accidental.
 - Verificación de que ningún secreto aparece en Git/diff/evidencia persistida.
-- Prueba o walkthrough de rollback de los objetos creados, sin ejecutar destrucción irreversible sobre recursos ajenos.
-- Regression test requerido: N/A para código de aplicación; sí verificación de no impacto sobre recursos Cloudflare preexistentes fuera del scope.
-- Secure coding surfaces/evidence aplicables: secret handling, least privilege, provider API input/output handling si se usa scripting ad hoc.
+- Walkthrough de rollback sin ejecutar destrucción del foundation ya aceptado.
+- Regression test requerido: N/A para código de aplicación; se verificó no impacto sobre Default profile y organización preexistente.
+- Validación real en Android/iOS: diferida a las unidades de enrollment y MASQUE/captive-portal previstas en ROADMAP.
 
 ---
 
 ## QUALITY GATES
 
-- [ ] Project Scope Handshake = `PROJECT_SCOPE_OK` antes de mutación.
-- [ ] Identidad de cuenta/organización Cloudflare objetivo verificada antes de crear/modificar objetos.
-- [ ] Estado previo relevante capturado para rollback y para demostrar que no se altera un recurso ajeno.
-- [ ] Configuración incluida en esta Story aplicada sin introducir superficies Out of Scope.
-- [ ] Estado observado post-cambio coincide con el estado esperado.
-- [ ] Device Profile único verificado.
-- [ ] Secret scan/review: ningún token, secret, credential o break-glass code persistido.
-- [ ] Rollback/remediation path verificado.
-- [ ] Evidence set suficiente para revisión del Technical Director.
-- [ ] Build/lint de aplicación: N/A para esta Story salvo que aparezca código no previsto, en cuyo caso detener por Unexpected Surface y revalidar Work Order.
+- [x] Project Scope Handshake = `PROJECT_SCOPE_OK` antes de mutación.
+- [x] Identidad de cuenta/organización Cloudflare objetivo verificada antes de crear/modificar objetos.
+- [x] Estado previo relevante capturado para rollback y para demostrar que no se altera un recurso ajeno.
+- [x] Configuración incluida en esta Story aplicada sin introducir superficies Out of Scope.
+- [x] Estado observado post-cambio coincide con el estado esperado (`MATCH`).
+- [x] Device Profile único verificado (`managedCount = 1`).
+- [x] Secret scan/review: ningún token, secret, credential o break-glass code persistido.
+- [x] Rollback/remediation path verificado mediante walkthrough.
+- [x] Evidence set suficiente para revisión del Technical Director.
+- [x] Build/lint de aplicación: N/A; no apareció código de aplicación.
 
 ---
 
@@ -131,7 +131,7 @@ Establecer y verificar la foundation mínima de Cloudflare Zero Trust para el te
 
 ### Standard deployment mechanism
 
-SETOK Family utilizará, para configuraciones de proveedores que dispongan de API soportada, el siguiente patrón operativo:
+SETOK Family utiliza, para configuraciones de proveedores que dispongan de API soportada, el siguiente patrón operativo:
 
 `Git desired state -> PowerShell -> Provider API -> observed-state verification -> evidence`
 
@@ -139,71 +139,67 @@ PowerShell es el mecanismo estándar de ingeniería para bootstrap, despliegue, 
 
 ### Development Agent as default operator
 
-La ejecución rutinaria será realizada por un Development Agent (por ejemplo Codex o Claude Code) con acceso local al repositorio y a PowerShell. El Product Owner no debe convertirse en operador manual habitual de scripts.
-
-El Product Owner interviene únicamente cuando sea necesario por:
-
-- autenticación interactiva, MFA o consentimiento humano;
-- creación/entrega inicial de credenciales o API tokens que no puedan provisionarse de forma segura por el agente;
-- aprobación explícita de una acción sensible o de alto impacto;
-- validación física/visual que requiera un dispositivo o portal no accesible al agente;
-- Stop Condition o decisión de producto que exceda la autoridad del Development Agent.
+La ejecución rutinaria es realizada por un Development Agent con acceso local al repositorio y a PowerShell. El Product Owner interviene cuando se requiere autenticación/MFA, provisión segura de credenciales, aprobación sensible, validación física o una decisión fuera de la autoridad del agente.
 
 ### Local workspace bootstrap
 
-La primera tarea del Development Agent antes de implementar ST-CF-001 será preparar el workspace local en Windows:
+Workspace utilizado:
 
 ```text
 C:\Dev\SETOK\setok-family
 ```
 
-El agente debe:
-
-1. verificar que `C:\Dev\SETOK` existe o crearlo si está autorizado;
-2. clonar `SETOKCR/setok-family` en `C:\Dev\SETOK\setok-family` si el repositorio todavía no está presente;
-3. si ya existe, verificar que el remote corresponde exactamente a `SETOKCR/setok-family` y no sobrescribir trabajo local no reconocido;
-4. obtener el `main` remoto y comprobar el Project Scope Handshake antes de cualquier mutación;
-5. verificar que `feature/st-cf-001` desciende exactamente del Authorized Base `4fa82d531d1452b15b7fd409465cdcf7f7400b1e` antes de usarla;
-6. trabajar únicamente en `feature/st-cf-001` para esta unidad;
-7. no almacenar tokens, secretos ni material de autenticación en archivos versionados, comandos persistidos, logs de Git o evidencia destinada al repositorio.
-
-La clonación y preparación del workspace son bootstrap operacional y no constituyen por sí mismas implementación funcional de Cloudflare.
+El Development Agent verificó repository binding, lineage desde Authorized Base y trabajó únicamente en `feature/st-cf-001`.
 
 ### Script evolution
 
-Para ST-CF-001 se permite crear scripts PowerShell específicos del scope cuando aporten reproducibilidad. No se debe anticipar todavía un framework general de automatización de Fase 1. Un script sólo se promueve a reusable estable cuando existe evidencia de repetición/valor suficiente; esa promoción pertenece a una unidad posterior del ROADMAP.
+Los scripts de `scripts/st-cf-001/` siguen siendo específicos de esta Story. No se promueven todavía a framework reusable; esa decisión pertenece a una unidad posterior cuando exista evidencia suficiente de repetición/valor.
 
 ---
 
 ## DELIVERABLE
 
 - Foundation Cloudflare Zero Trust del tenant piloto configurada y verificable dentro del scope de ST-CF-001.
-- Configuración/evidencia no secreta estrictamente necesaria para reproducibilidad y revisión.
-- Evidencia concisa de before/after, estado observado y rollback/remediation.
-- Workspace local del Development Agent correctamente vinculado a `SETOKCR/setok-family` antes de cualquier mutación funcional.
+- Perfil custom `SETOK-FAMILY-MANAGED` con precedence 100, selector Android/iOS, Traffic + DNS, MASQUE y hardening autorizado.
+- Desired state no secreto en `infra/cloudflare/st-cf-001.desired.json`.
+- Evidencia before/plan/apply/verify/idempotency y rollback/remediation en `docs/evidence/ST-CF-001/`.
+- Scripts PowerShell Story-specific en `scripts/st-cf-001/`.
 
 ---
 
 ## STOP CONDITIONS
 
-- `PROJECT_SCOPE_MISMATCH` o `PROJECT_SCOPE_UNVERIFIED`.
-- El workspace local existente en `C:\Dev\SETOK\setok-family` contiene cambios no reconocidos o apunta a otro remote y no puede reconciliarse de forma segura.
-- La rama `feature/st-cf-001` no desciende del Authorized Base exacto o presenta commits no reconocidos antes del inicio del agente.
-- La cuenta/organización Cloudflare objetivo no puede identificarse con certeza como autorizada para SETOK Family.
-- La ejecución requiere cambiar authentication/authorization, privilege boundaries o cualquier superficie Auto-RED no prevista.
-- Se requiere baseline policy, Access/Auth, Tunnel de app, enrolamiento, MDM o automatización reusable para completar esta unidad.
-- Aparece una limitación confirmada de Cloudflare que contradice una decisión material de arquitectura v1.4.
-- No puede asegurarse rollback sin afectar recursos ajenos al proyecto.
-- Se requiere almacenar secretos en Git o exponerlos en evidencia persistente.
-- El riesgo real excede AMBER 4/10 o un gate obligatorio no puede verificarse.
+Ninguna Stop Condition se activó durante la ejecución aceptada.
+
+Restricción conocida y diferida: el selector actual `os.name in {"android" "ios"}` cubre cualquier dispositivo móvil que se inscriba en el mismo Zero Trust org compartido. Antes de incorporar otras poblaciones móviles al org, el proyecto debe estrechar el binding por identidad/dispositivo en las unidades posteriores previstas por ROADMAP.
 
 ---
 
 ## Evidencia de cierre
 
-- Project Scope outcome: pending
-- Resultado: pending
-- Gates ejecutados: pending
-- Evidencia / referencias: pending
-- Reuse Candidates detectados: N/A
-- Unexpected Implementation Surface: N/A
+- Project Scope outcome: `PROJECT_SCOPE_OK`
+- Resultado: `ACCEPT`
+- Candidate / Implementation Commit: `4767b52966bf444469eeda45912fac43fc7f52c3`
+- Integration Merge Commit: `b704046c3d07154d705ef0c7f5218866ec126de6`
+- Gates ejecutados: PASS; rollback walked through but not executed; real-device validation deferred to enrollment units.
+- Evidencia / referencias: `docs/evidence/ST-CF-001/README.md`, discover/plan/apply/verify JSON, `infra/cloudflare/st-cf-001.desired.json`, `scripts/st-cf-001/`.
+- Reuse Candidates detectados: Story-specific PowerShell deployment pattern; retain as candidate only until later automation unit.
+- Unexpected Implementation Surface: NONE
+
+### AIDE EXECUTION RESULT
+
+```text
+AIDE EXECUTION RESULT
+Project: SETOK Family
+Repository: SETOKCR/setok-family
+Work Unit: ST-CF-001
+Project Scope: PROJECT_SCOPE_OK
+Authorized Base: 4fa82d531d1452b15b7fd409465cdcf7f7400b1e
+Implementation Commit: 4767b52966bf444469eeda45912fac43fc7f52c3
+Integration Commit: b704046c3d07154d705ef0c7f5218866ec126de6
+Scope: WITHIN WORK ORDER
+Required Gates: PASS
+Stop Conditions: NONE
+Unexpected Surface: NONE
+Technical Director Decision: ACCEPT
+```
