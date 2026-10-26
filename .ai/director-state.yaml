@@ -1,5 +1,5 @@
 schema_version: 1
-written_at_utc: 2026-10-26T05:45:00Z
+written_at_utc: 2026-10-26T05:50:00Z
 
 framework:
   repository: SETOKCR/setok-aide
@@ -15,15 +15,14 @@ scope:
 activity:
   lifecycle: active
   active_unit: ST-PB-001
-  phase: readiness
+  phase: implementation
   risk: YELLOW-4
-  implementation_authorized: false
+  implementation_authorized: true
   authorized_base: 077db01aeea2e86c616e71c0731e844334c10219
   implementation_branch: feature/st-pb-001
   candidate_commit: null
 
-open_gates:
-  - explicit Technical Director implementation authorization
+open_gates: []
 
 canonical_refs:
   - .ai/AIDE_PROJECT.yaml
@@ -44,6 +43,6 @@ last_terminal:
   note: ST-ID-002 integrated to main and formally closed. Two adult human identities for Familia Ulate León are active as regular non-admin Authentik users; both interactive logins and recovery paths were verified; temporary least-privilege provisioning credential was revoked; no child identity, family-domain authorization, OIDC/federation/Access/device-binding expansion, PII in Git, or unexpected surface was introduced. Product Owner confirmed both initial passwords are stored in Bitwarden.
 
 next_action:
-  kind: implementation_authorization
+  kind: implementation
   unit: ST-PB-001
-  note: Preflight PASS; Independent Check PASS WITH CONDITIONS; Product Input Gate not required. Authorized Base 077db01aeea2e86c616e71c0731e844334c10219. Branch feature/st-pb-001 has exactly one governance-only commit above base. Implementation must remain read-only against Authentik and Cloudflare and must create zero device bindings.
+  note: Implementation explicitly authorized. Development Agent must reconstruct from Git, verify PROJECT_SCOPE_OK and exact lineage from Authorized Base 077db01aeea2e86c616e71c0731e844334c10219, then implement the provider-binding registry and read-only reconciliation. No Authentik or Cloudflare mutation is authorized; zero device subjects/bindings; no PII or secrets in Git/evidence. Stop on any Work Order Stop Condition.
