@@ -1,5 +1,5 @@
 schema_version: 1
-written_at_utc: 2026-10-26T04:55:00Z
+written_at_utc: 2026-10-26T05:05:00Z
 
 framework:
   repository: SETOKCR/setok-aide
@@ -10,17 +10,17 @@ scope:
   kind: project
   repository: SETOKCR/setok-family
   default_branch: main
-  observed_head: 1b0c0e3d6f95c7c4a37e10af4fc211a4ab061791
+  observed_head: 5d8edd3c748a70d9bf2bfebea58153d71ea02c4e
 
 activity:
   lifecycle: active
-  active_unit: ST-ID-001
-  phase: integration
-  risk: RED-AUTO-RED-authentication-5
+  active_unit: null
+  phase: selection
+  risk: null
   implementation_authorized: false
-  authorized_base: e10279d1c31e3f02e5b7b4d4185d74f662a93877
-  implementation_branch: feature/st-id-001
-  candidate_commit: 6bcd99024ef86f7819a957c2e17e2b9a442178f7
+  authorized_base: null
+  implementation_branch: null
+  candidate_commit: null
 
 open_gates: []
 
@@ -39,10 +39,10 @@ last_terminal:
   outcome: ACCEPT
   unit: ST-ID-001
   candidate_commit: 6bcd99024ef86f7819a957c2e17e2b9a442178f7
-  integration_commit: null
-  note: ST-ID-001 candidate accepted after evidence-only FIX. Authentik foundation is healthy on VM 220, Docker socket absent, secrets separated, PostgreSQL backup verified off-VM, VM 210 unchanged by Story. Controlled coexistence validation with VM 210 running remains an operational follow-up accepted by PO and is not a blocker to candidate acceptance.
+  integration_commit: e6d1bffa65762b93069fdf480d5d67628e1fbdef
+  note: ST-ID-001 integrated to main and formally closed. Authentik pilot foundation is healthy on VM 220 setok-family-idp-01; Docker socket absent; secrets separated; PostgreSQL backup verified off-VM; VM 210 unchanged by Story. Controlled coexistence validation with VM 210 running remains an operational follow-up accepted by PO, not an open Story gate.
 
 next_action:
-  kind: integration
-  unit: ST-ID-001
-  note: Integrate accepted candidate 6bcd99024ef86f7819a957c2e17e2b9a442178f7 to main, then formally close ST-ID-001 and update ROADMAP. No further implementation mutation is authorized.
+  kind: selection
+  unit: null
+  note: Await Product Owner direction before selecting the next Phase 1 Story. ROADMAP indicates Pilot-tenant identities next; no implementation is authorized.
