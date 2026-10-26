@@ -1,5 +1,5 @@
 schema_version: 1
-written_at_utc: 2026-10-26T03:12:00Z
+written_at_utc: 2026-10-26T03:20:00Z
 
 framework:
   repository: SETOKCR/setok-aide
@@ -10,19 +10,22 @@ scope:
   kind: project
   repository: SETOKCR/setok-family
   default_branch: main
-  observed_head: d82489b4c40ae340635bda4f8da593c3b2c4517c
+  observed_head: 1a2f665ffabaca8f32a1d84628c1cb0d8d6a3fc3
 
 activity:
   lifecycle: active
-  active_unit: null
-  phase: selection
-  risk: null
+  active_unit: ST-ID-001
+  phase: preflight
+  risk: RED-AUTO-RED-authentication-5
   implementation_authorized: false
   authorized_base: null
   implementation_branch: null
   candidate_commit: null
 
-open_gates: []
+open_gates:
+  - Independent Check for ST-ID-001 authentication foundation
+  - resolve Authorized Base after Independent Check PASS
+  - explicit Technical Director implementation authorization before Development Agent handoff
 
 canonical_refs:
   - .ai/AIDE_PROJECT.yaml
@@ -31,8 +34,8 @@ canonical_refs:
   - docs/ARCHITECTURE.md
   - docs/ROADMAP.md
   - docs/QUALITY.md
-  - docs/stories/ST-CF-001.md
-  - .ai/work-orders/ST-CF-001.md
+  - docs/stories/ST-ID-001.md
+  - .ai/work-orders/ST-ID-001.md
 
 last_terminal:
   outcome: ACCEPT
@@ -42,6 +45,6 @@ last_terminal:
   note: ST-CF-001 integrated to main and closed. One SETOK-FAMILY-MANAGED profile is active; Default/org unchanged; desired vs observed MATCH; re-apply idempotent; rollback isolated. Mobile selector remains a known pilot constraint for later provider-binding/identity work.
 
 next_action:
-  kind: selection
-  unit: null
-  note: Await Product Owner direction before selecting the next Phase 1 Story. ROADMAP indicates Authentik foundation next; no implementation is authorized.
+  kind: independent_check
+  unit: ST-ID-001
+  note: Perform independent architecture/security/readiness check for the RED authentication foundation. No implementation is authorized until PASS, Authorized Base resolution and explicit Technical Director authorization.
