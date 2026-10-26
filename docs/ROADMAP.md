@@ -8,18 +8,13 @@ This roadmap orders work; implementation authority is carried by the active Stor
 
 Current AIDE execution state:
 
-- active unit: `ST-POL-001 — Establish baseline policy contract and Cloudflare compilation plan`
-- Story: `docs/stories/ST-POL-001.md`
-- Work Order: `.ai/work-orders/ST-POL-001.md`
-- preflight: `PASS`
-- Independent Check: `PASS WITH CONDITIONS`
-- risk: `YELLOW — ordinary score 5/10`
-- Authorized Base: `df0a9dd9968c44428ab69e9e19c91fc2f164809e`
-- implementation branch: `feature/st-pol-001`
-- branch lineage: `VERIFIED — exactly one governance-only Work Order commit above Authorized Base`
+- active unit: `NONE`
 - implementation authorized: `NO`
-- Product Input Gate: `NOT REQUIRED`
-- open gates: explicit Technical Director implementation authorization
+- open gates: `NONE`
+- last completed unit: `ST-POL-001 — Establish baseline policy contract and Cloudflare compilation plan`
+- Technical Director decision: `ACCEPT`
+- accepted candidate: `fb3ef4f429c797e1f658d65e2dc80ea305df64d6`
+- integration commit: `019dc396cd4f6f0fc3f77b5caa9073d7385c41f7`
 
 ## Phase 1 objective
 
@@ -31,25 +26,26 @@ Deliver and validate a functioning parental-control platform without depending o
 2. **Authentik foundation — COMPLETE: ST-ID-001 ACCEPT.**
 3. **First-family human identities — COMPLETE: ST-ID-002 ACCEPT.**
 4. **Initial provider-binding model — COMPLETE: ST-PB-001 ACCEPT.**
-5. **Baseline policies — ACTIVE: ST-POL-001.**
-6. Standard / Restricted / temporary overlays.
-7. Android enrollment.
-8. iPad Standard enrollment.
-9. iPad Enhanced / MDM enrollment.
-10. PowerShell automation.
-11. Anti-bypass testing.
-12. Define signals, freshness and confidence for Protection State.
-13. Device Capabilities matrix by platform.
-14. Validate captive portals / MASQUE / incompatible networks.
-15. Define Time Context and travel behavior.
-16. Formalize Policy Precedence.
-17. Define Command / Execution and idempotency contract.
-18. Validate Essential Services and high-impact actions.
-19. Consumer Continuity and mobile break-glass testing.
-20. Define Policy Revision / Last Known Good.
-21. Device lifecycle and Owner recovery.
-22. Phase 1 closure.
-23. API/provider contract for Phase 2.
+5. **Baseline policy contract and compilation plan — COMPLETE: ST-POL-001 ACCEPT.**
+6. **Standard / Restricted / temporary overlay policy contract — NEXT.** This unit defines provider-neutral mode/overlay intent and compilation semantics only; no Gateway apply before safe device scope exists.
+7. Android enrollment and device binding.
+8. iPad Standard enrollment and device binding.
+9. Scoped Cloudflare enforcement apply and validation for enrolled Familia Ulate León devices. Apply baseline + approved mode/overlay compilation only after selector isolation, rollback, entitlement and blast-radius gates pass.
+10. iPad Enhanced / MDM enrollment.
+11. PowerShell automation.
+12. Anti-bypass testing.
+13. Define signals, freshness and confidence for Protection State.
+14. Device Capabilities matrix by platform.
+15. Validate captive portals / MASQUE / incompatible networks.
+16. Define Time Context and travel behavior.
+17. Formalize Policy Precedence.
+18. Define Command / Execution and idempotency contract.
+19. Validate Essential Services and high-impact actions.
+20. Consumer Continuity and mobile break-glass testing.
+21. Define Policy Revision / Last Known Good.
+22. Device lifecycle and Owner recovery.
+23. Phase 1 closure.
+24. API/provider contract for Phase 2.
 
 ## Completed foundation evidence
 
@@ -93,11 +89,11 @@ Accepted candidate: `e3a0cce7d43e73fa4081a8a8500aea1b9aa0d3f8`.
 Integration commit: `e8e3a44671f57b7d9b447bcbda3579c78924f716`.
 Evidence: `docs/evidence/ST-PB-001/`.
 
-## Active unit boundary — ST-POL-001
+### ST-POL-001 — Baseline policy contract and Cloudflare compilation plan
 
-ST-POL-001 establishes the provider-neutral baseline Policy Intent and a deterministic Cloudflare DNS compilation plan, but does not apply Gateway policies yet.
+Established the provider-neutral baseline Policy Intent and deterministic Cloudflare DNS compilation plan for the first productive family tenant.
 
-Minimum baseline intent:
+Baseline contract:
 
 - malware BLOCK;
 - phishing BLOCK;
@@ -107,13 +103,26 @@ Minimum baseline intent:
 - SafeSearch FORCE;
 - YouTube Restricted Mode FORCE.
 
-Policy precedence remains owned by SETOK. Security / Threat Baseline cannot be weakened by Standard, Restricted, schedules, temporary overrides or Essential Services. Essential Services may survive ordinary parental modes but can never bypass threat blocking.
+The Story proved schema/invariants, fail-closed provider mapping, precedence protection, deterministic compilation and read-only Cloudflare capability discovery. No Gateway policy was created or changed and nothing was claimed APPLIED.
 
-Current Cloudflare documentation supports DNS Block, Safe Search and YouTube Restricted actions and security/content category selectors. ST-POL-001 will discover provider capabilities read-only and compile provider-neutral intent to a plan without encoding Cloudflare numeric IDs into domain intent.
+The compiled plan is intentionally `BLOCKED` from apply until all prerequisites are satisfied:
 
-Because the Cloudflare account is shared and there are no enrolled Familia Ulate León device bindings yet, this Story MUST NOT create/update/enable/disable/reorder/delete Gateway rules. A future provider-mutation unit may apply the compiled baseline only after a safe family/device scope is proven.
+- enrolled Familia Ulate León device binding exists;
+- safe family/device selector is proven not to match unrelated SETOK traffic;
+- provider mutation is separately authorized with rollback and blast-radius controls;
+- availability of the premium-class Cloudflare Gambling category is verified for the actual account plan.
 
-HTTP inspection/root-certificate deployment and real-device anti-bypass enforcement remain deferred to their later validation units.
+Accepted candidate: `fb3ef4f429c797e1f658d65e2dc80ea305df64d6`.
+Integration commit: `019dc396cd4f6f0fc3f77b5caa9073d7385c41f7`.
+Evidence: `docs/evidence/ST-POL-001/`.
+
+## Sequencing clarification after ST-POL-001
+
+Policy **design/compilation** and provider **enforcement apply** are now explicit separate gates.
+
+SETOK can safely define `STANDARD`, `RESTRICTED` and temporary overlays before devices are enrolled because those artifacts remain provider-neutral desired state and compilation contracts. Actual Gateway mutation must wait until enrollment creates a verifiable tenant/device scope.
+
+This prevents a shared-account rule from affecting unrelated SETOK traffic while preserving architecture-first development.
 
 ## Phase 1 exit condition
 
@@ -125,7 +134,7 @@ Phase 2 is the SETOK Family application / mini app and consumer experience. It r
 
 ## Next governance action
 
-Technical Director may issue explicit implementation authorization for ST-POL-001. Implementation remains contract/compilation/read-only provider discovery only; no Cloudflare Gateway mutation is authorized.
+Select and preflight the provider-neutral **Standard / Restricted / temporary overlay policy contract**. This next unit must remain non-mutative against Cloudflare; scoped enforcement apply is a separate later gate after device enrollment.
 
 ## Authority
 
