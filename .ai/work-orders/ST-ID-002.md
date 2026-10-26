@@ -8,7 +8,7 @@
 - **Authorized Base:** `3494c39efd3bbdda3f52d79b2abe0bd2a6073cc9`
 - **Implementation Branch:** `feature/st-id-002`
 - **Estado de ejecución:** READY
-- **Implementation Authorization:** NO
+- **Implementation Authorization:** YES — explicitly authorized by Product Owner and Technical Director
 - **Persistencia:** PERSISTED
 - **Motivo de persistencia:** RED / authentication / real human identity data / multi-session auditability
 
@@ -19,7 +19,7 @@
 - **Repository:** SETOKCR/setok-family
 - **Role:** Development Agent
 - **Work Unit:** ST-ID-002
-- **Work Order:** READY — preflight + Independent Check passed; Product Input Gate CLOSED; implementation not authorized
+- **Work Order:** READY — preflight + Independent Check passed; Product Input Gate CLOSED; implementation authorized
 - **Authorized Base:** `3494c39efd3bbdda3f52d79b2abe0bd2a6073cc9`
 - **Implementation Branch:** `feature/st-id-002`
 - **Project Binding:** REQUIRED
@@ -114,7 +114,7 @@ A long-lived `akadmin` API token is prohibited. Concrete PII is injected only at
 - [ ] Project Scope = PROJECT_SCOPE_OK.
 - [x] Independent Check = PASS WITH CONDITIONS.
 - [x] Authorized Base frozen at `3494c39efd3bbdda3f52d79b2abe0bd2a6073cc9`.
-- [ ] Branch lineage VERIFIED.
+- [x] Branch lineage VERIFIED.
 - [ ] Pre-existing user inventory captured non-secretly.
 - [ ] Secret/PII handling plan verified.
 - [ ] Temporary provisioning credential least-privilege and revocable.
@@ -149,4 +149,5 @@ A long-lived `akadmin` API token is prohibited. Concrete PII is injected only at
 - Product Input Gate: CLOSED — 2 adults, interactive login YES, child login NO
 - Authorized Base: `3494c39efd3bbdda3f52d79b2abe0bd2a6073cc9`
 - Implementation Branch: `feature/st-id-002`
-- Implementation Authorization: NO
+- Branch lineage: VERIFIED
+- Implementation Authorization: YES
