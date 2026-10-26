@@ -8,12 +8,15 @@ This roadmap orders work; implementation authority is carried by the active Stor
 
 Current AIDE execution state:
 
-- active unit: `NONE`
-- last completed unit: `ST-CF-001 — Establish Cloudflare Zero Trust pilot foundation`
-- result: `ACCEPT`
-- risk: `AMBER 4/10`
+- active unit: `ST-ID-001 — Establish Authentik pilot identity foundation`
+- Story: `docs/stories/ST-ID-001.md`
+- Work Order: `.ai/work-orders/ST-ID-001.md`
+- preflight: `PASS WITH RED GATE`
+- risk: `RED — Auto-RED(authentication), ordinary score 5/10`
 - implementation authorized: `NO`
+- Authorized Base: `NONE`
 - Active Execution Alignment: `NOT_APPLICABLE`
+- open gate: Independent Check before implementation authorization
 
 ## Phase 1 objective
 
@@ -24,7 +27,7 @@ Deliver and validate a functioning parental-control platform without depending o
 The approved architecture defines the following implementation order:
 
 1. **Cloudflare foundation — COMPLETE: ST-CF-001 ACCEPT.**
-2. Authentik foundation.
+2. **Authentik foundation — ACTIVE: ST-ID-001, preflight passed, RED gate open, implementation not authorized.**
 3. Pilot-tenant identities.
 4. Initial provider-binding model.
 5. Baseline policies.
@@ -53,6 +56,12 @@ The approved architecture defines the following implementation order:
 
 Known deferred constraint: the current mobile selector covers Android/iOS devices in the shared Zero Trust org. Before another mobile population is introduced there, later provider-binding / identity work must narrow that selector appropriately.
 
+## Active unit boundary
+
+`ST-ID-001` establishes only the Authentik self-hosted pilot foundation: deployment, persistence, secure bootstrap, backup/remediation and operational verification. It explicitly excludes real family users, domain roles, Guardian↔Child authorization, federation, OIDC for the app, Cloudflare Access integration and commercial HA.
+
+Because this Story establishes the authoritative human authentication mechanism, it is `RED` by `Auto-RED(authentication)`. AIDE requires reinforced review; implementation remains blocked until the Independent Check passes and an Authorized Base is frozen.
+
 ## Phase 1 exit condition
 
 Phase 1 is complete only when the platform functions correctly without SETOK Family App and the project has validated:
@@ -70,7 +79,7 @@ Phase 2 is the SETOK Family application / mini app and consumer experience. It r
 
 ## Next governance action
 
-No implementation unit is currently active or authorized. The next planned item is **Authentik foundation**, but it must still be selected as a Story and pass normal AIDE preflight before any implementation authorization.
+Perform an Independent Check of `ST-ID-001` architecture/security/readiness. Only after PASS may the Technical Director resolve an Authorized Base, create the implementation branch and consider implementation authorization.
 
 ## Authority
 
