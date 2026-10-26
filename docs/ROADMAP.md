@@ -4,7 +4,7 @@
 
 Current focus: **Phase 1 — Infrastructure, Enforcement and Identity**.
 
-This roadmap orders work; it does **not** authorize implementation.
+This roadmap orders work; implementation authority is carried by the active Story/Work Order and Technical Director state.
 
 Current AIDE execution state:
 
@@ -13,8 +13,10 @@ Current AIDE execution state:
 - Work Order: `.ai/work-orders/ST-CF-001.md`
 - preflight/readiness: `PASS / READY`
 - risk: `AMBER 4/10`
-- implementation authorized: `NO`
-- Active Execution Alignment: `NOT_APPLICABLE`
+- Authorized Base: `4fa82d531d1452b15b7fd409465cdcf7f7400b1e`
+- implementation branch: `feature/st-cf-001`
+- implementation authorized: `YES`
+- Active Execution Alignment: `VERIFIED`
 
 ## Phase 1 objective
 
@@ -24,7 +26,7 @@ Deliver and validate a functioning parental-control platform without depending o
 
 The approved architecture defines the following implementation order:
 
-1. **Cloudflare foundation — ACTIVE: ST-CF-001, READY, implementation not yet authorized.**
+1. **Cloudflare foundation — ACTIVE: ST-CF-001, READY, implementation authorized.**
 2. Authentik foundation.
 3. Pilot-tenant identities.
 4. Initial provider-binding model.
@@ -69,7 +71,7 @@ Phase 2 is the SETOK Family application / mini app and consumer experience. It r
 
 ## Next governance action
 
-Resolve an Authorized Base and explicit implementation authorization for `ST-CF-001` before handing the READY Work Order to a Development Agent. `READY` alone does not authorize mutation.
+Development Agent executes only `ST-CF-001` from `feature/st-cf-001`, after obtaining `PROJECT_SCOPE_OK` locally and confirming lineage from the Authorized Base. Any Stop Condition returns control to the Technical Director.
 
 ## Authority
 
