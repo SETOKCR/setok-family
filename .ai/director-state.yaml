@@ -1,5 +1,5 @@
 schema_version: 1
-written_at_utc: 2026-10-26T15:15:00Z
+written_at_utc: 2026-10-26T15:20:00Z
 
 framework:
   repository: SETOKCR/setok-aide
@@ -10,19 +10,20 @@ scope:
   kind: project
   repository: SETOKCR/setok-family
   default_branch: main
-  observed_head: eac5f3871a31c05d9209d3a5ac0df95c1fd6545e
+  observed_head: df0a9dd9968c44428ab69e9e19c91fc2f164809e
 
 activity:
   lifecycle: active
-  active_unit: null
-  phase: selection
-  risk: null
+  active_unit: ST-POL-001
+  phase: readiness
+  risk: YELLOW-5
   implementation_authorized: false
-  authorized_base: null
-  implementation_branch: null
+  authorized_base: df0a9dd9968c44428ab69e9e19c91fc2f164809e
+  implementation_branch: feature/st-pol-001
   candidate_commit: null
 
-open_gates: []
+open_gates:
+  - explicit Technical Director implementation authorization
 
 canonical_refs:
   - .ai/AIDE_PROJECT.yaml
@@ -31,10 +32,9 @@ canonical_refs:
   - docs/ARCHITECTURE.md
   - docs/ROADMAP.md
   - docs/QUALITY.md
-  - docs/stories/ST-PB-001.md
-  - .ai/work-orders/ST-PB-001.md
-  - docs/development/ST-PB-001_INDEPENDENT_CHECK.md
-  - docs/evidence/ST-PB-001/README.md
+  - docs/stories/ST-POL-001.md
+  - .ai/work-orders/ST-POL-001.md
+  - docs/development/ST-POL-001_INDEPENDENT_CHECK.md
 
 last_terminal:
   outcome: ACCEPT
@@ -44,6 +44,6 @@ last_terminal:
   note: ST-PB-001 integrated to main and formally closed. Provider-neutral tenant-scoped binding registry established for Familia Ulate León with two opaque adult subject bindings to Authentik, shared Cloudflare integration/resource bindings, lifecycle/cardinality rules, zero device subjects/bindings, read-only provider reconciliation, unchanged provider fingerprints, and no PII/secrets in versioned state or evidence.
 
 next_action:
-  kind: selection
-  unit: null
-  note: ROADMAP indicates Baseline policies next. No implementation is authorized. Reconstruct current main and run normal Story/preflight/Independent Check/Work Order gates before any policy mutation.
+  kind: implementation_authorization
+  unit: ST-POL-001
+  note: Preflight PASS; Independent Check PASS WITH CONDITIONS; Product Input Gate NOT REQUIRED. Authorized Base df0a9dd9968c44428ab69e9e19c91fc2f164809e. Branch feature/st-pol-001 has exactly one governance-only commit above base. Implementation is contract/compilation/read-only discovery only; no Cloudflare Gateway mutation is authorized and no rule may be claimed APPLIED.
