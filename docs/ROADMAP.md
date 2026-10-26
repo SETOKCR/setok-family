@@ -14,11 +14,11 @@ Current AIDE execution state:
 - preflight architecture review: `PASS`
 - Independent Check: `PASS WITH CONDITIONS`
 - risk: `YELLOW — ordinary score 6/10`
-- Product Input Gate: `OPEN`
+- Product Input Gate: `CLOSED — explicit PO approval`
 - Authorized Base: `PENDING`
 - implementation branch: `PENDING`
 - implementation authorized: `NO`
-- open gates: Product Input approval, freeze Authorized Base, create/verify implementation branch, explicit Technical Director implementation authorization
+- open gates: freeze Authorized Base, create/verify implementation branch, explicit Technical Director implementation authorization
 
 ## Phase 1 objective
 
@@ -31,7 +31,7 @@ Deliver and validate a functioning parental-control platform without depending o
 3. **First-family human identities — COMPLETE: ST-ID-002 ACCEPT.**
 4. **Initial provider-binding model — COMPLETE: ST-PB-001 ACCEPT.**
 5. **Baseline policy contract and compilation plan — COMPLETE: ST-POL-001 ACCEPT.**
-6. **Standard / Restricted / temporary overlay policy contract — ACTIVE: ST-POL-002.** Product semantics require PO approval before Authorized Base freeze. No Gateway apply in this unit.
+6. **Standard / Restricted / temporary overlay policy contract — ACTIVE: ST-POL-002.** Product semantics approved. No Gateway apply in this unit.
 7. Android enrollment and device binding.
 8. iPad Standard enrollment and device binding.
 9. Scoped Cloudflare enforcement apply and validation for enrolled Familia Ulate León devices. Apply baseline + approved mode/overlay compilation only after selector isolation, rollback, entitlement and blast-radius gates pass.
@@ -124,9 +124,18 @@ Evidence: `docs/evidence/ST-POL-001/`.
 
 ST-POL-002 defines provider-neutral persistent modes, temporary overlays, expiration/reversal and deterministic composition. It does not mutate Cloudflare and cannot claim enforcement `APPLIED`.
 
-Architecture already fixes baseline protection, precedence ownership, reversibility and Essential Services behavior. Product Input is required only for the exact first-family consumer semantics of `STANDARD`, `RESTRICTED` and the initial overlay set.
+The Product Owner approved the first-family semantics:
 
-Recommended semantics pending PO approval are documented in `docs/stories/ST-POL-002.md`.
+- `STANDARD`: baseline, with no additional leisure restriction by default;
+- `RESTRICTED`: baseline + social media, gaming and entertainment/streaming leisure blocked;
+- `STUDY`: bounded temporary block of those three leisure categories;
+- `ALLOW_SOCIAL`: bounded temporary social-media allow over `STUDY`/`RESTRICTED`, never weakening baseline or mandatory safety;
+- `PAUSE_ENTERTAINMENT`: bounded temporary block of social media, gaming and entertainment/streaming leisure;
+- `CLEAR_TEMPORARY`: remove temporary overlays and restore the persistent mode.
+
+Approved normalized categories: `social_media`, `gaming`, `entertainment_streaming`.
+
+Essential Services survive ordinary mode/overlay restrictions but never Security / Threat Baseline. Temporary overlays remain bounded and reversible.
 
 ## Sequencing clarification after ST-POL-001
 
@@ -146,7 +155,7 @@ Phase 2 is the SETOK Family application / mini app and consumer experience. It r
 
 ## Next governance action
 
-Close the ST-POL-002 Product Input Gate by explicit PO approval or amendment of the recommended `STANDARD`, `RESTRICTED`, `STUDY`, `ALLOW_SOCIAL`, `PAUSE_ENTERTAINMENT` and `CLEAR_TEMPORARY` semantics. Only then freeze Authorized Base and prepare implementation.
+Freeze the ST-POL-002 Authorized Base, create `feature/st-pol-002` from that exact commit, verify branch lineage, then require explicit Technical Director implementation authorization. No Cloudflare mutation is authorized.
 
 ## Authority
 
