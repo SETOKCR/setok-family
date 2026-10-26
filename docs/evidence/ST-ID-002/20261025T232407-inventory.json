@@ -1,0 +1,107 @@
+{
+  "observedAt": "2026-10-26T05:24:07.9465875Z",
+  "inventory": {
+    "users": [
+      {
+        "pk": 1,
+        "uuid": "f7b6ab94-cc2f-46a4-8f3d-f57e9b917a2b",
+        "label": "AnonymousUser",
+        "type": "internal",
+        "active": true,
+        "superuser": false,
+        "groups": 0,
+        "roles": 0,
+        "usablePassword": false
+      },
+      {
+        "pk": 2,
+        "uuid": "04ca0b30-1992-421c-aef6-3fcc890be523",
+        "label": "ak-outpost-c14c6897b29146f989b4f7be75ad8027",
+        "type": "internal_service_account",
+        "active": true,
+        "superuser": false,
+        "groups": 0,
+        "roles": 1,
+        "usablePassword": false
+      },
+      {
+        "pk": 4,
+        "uuid": "466b3ba5-1697-4dad-a4ff-05891e74ee67",
+        "label": "akadmin",
+        "type": "internal",
+        "active": true,
+        "superuser": true,
+        "groups": 1,
+        "roles": 0,
+        "usablePassword": true
+      },
+      {
+        "pk": 6,
+        "uuid": "ad9ca7d3-3506-4ace-a45f-455d4e4203b6",
+        "label": "human:adult-01",
+        "type": "internal",
+        "active": true,
+        "superuser": false,
+        "groups": 0,
+        "roles": 0,
+        "usablePassword": true
+      },
+      {
+        "pk": 7,
+        "uuid": "a90988e6-de30-423c-8b6b-d799c9201f67",
+        "label": "human:adult-02",
+        "type": "internal",
+        "active": true,
+        "superuser": false,
+        "groups": 0,
+        "roles": 0,
+        "usablePassword": true
+      }
+    ],
+    "groups": [
+      "authentik Admins",
+      "authentik Agent-Users",
+      "authentik Read-only"
+    ],
+    "roles": [
+      "ak-managed-role--user-2",
+      "authentik Agent-Users",
+      "authentik Read-only"
+    ],
+    "applications": 0,
+    "providers": 0,
+    "sources": [
+      "authentik-built-in"
+    ],
+    "outposts": [
+      "authentik Embedded Outpost"
+    ],
+    "brands": 1,
+    "tenants": 1,
+    "tokens": {
+      "api": 1,
+      "recovery": 0,
+      "app_password": 0,
+      "verification": 0
+    },
+    "provisionerPresent": {
+      "user": 0,
+      "role": 0,
+      "token": 0
+    },
+    "collisions": [
+      {
+        "alias": "adult-01",
+        "usernameExists": true,
+        "emailExists": true,
+        "ownedByStory": true
+      },
+      {
+        "alias": "adult-02",
+        "usernameExists": true,
+        "emailExists": true,
+        "ownedByStory": true
+      }
+    ]
+  }
+}

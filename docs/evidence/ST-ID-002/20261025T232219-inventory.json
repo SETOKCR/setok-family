@@ -1,0 +1,85 @@
+{
+  "observedAt": "2026-10-26T05:22:19.4760698Z",
+  "inventory": {
+    "users": [
+      {
+        "pk": 1,
+        "uuid": "f7b6ab94-cc2f-46a4-8f3d-f57e9b917a2b",
+        "label": "AnonymousUser",
+        "type": "internal",
+        "active": true,
+        "superuser": false,
+        "groups": 0,
+        "roles": 0,
+        "usablePassword": false
+      },
+      {
+        "pk": 2,
+        "uuid": "04ca0b30-1992-421c-aef6-3fcc890be523",
+        "label": "ak-outpost-c14c6897b29146f989b4f7be75ad8027",
+        "type": "internal_service_account",
+        "active": true,
+        "superuser": false,
+        "groups": 0,
+        "roles": 1,
+        "usablePassword": false
+      },
+      {
+        "pk": 4,
+        "uuid": "466b3ba5-1697-4dad-a4ff-05891e74ee67",
+        "label": "akadmin",
+        "type": "internal",
+        "active": true,
+        "superuser": true,
+        "groups": 1,
+        "roles": 0,
+        "usablePassword": true
+      }
+    ],
+    "groups": [
+      "authentik Admins",
+      "authentik Agent-Users",
+      "authentik Read-only"
+    ],
+    "roles": [
+      "ak-managed-role--user-2",
+      "authentik Agent-Users",
+      "authentik Read-only"
+    ],
+    "applications": 0,
+    "providers": 0,
+    "sources": [
+      "authentik-built-in"
+    ],
+    "outposts": [
+      "authentik Embedded Outpost"
+    ],
+    "brands": 1,
+    "tenants": 1,
+    "tokens": {
+      "api": 1,
+      "recovery": 0,
+      "app_password": 0,
+      "verification": 0
+    },
+    "provisionerPresent": {
+      "user": 0,
+      "role": 0,
+      "token": 0
+    },
+    "collisions": [
+      {
+        "alias": "adult-01",
+        "usernameExists": false,
+        "emailExists": false,
+        "ownedByStory": false
+      },
+      {
+        "alias": "adult-02",
+        "usernameExists": false,
+        "emailExists": false,
+        "ownedByStory": false
+      }
+    ]
+  }
+}

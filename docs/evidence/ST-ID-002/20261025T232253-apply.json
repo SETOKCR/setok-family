@@ -1,0 +1,39 @@
+{
+  "observedAt": "2026-10-26T05:22:53.9798081Z",
+  "preCollisions": [
+    {
+      "alias": "adult-01",
+      "usernameExists": false,
+      "emailExists": false,
+      "ownedByStory": false
+    },
+    {
+      "alias": "adult-02",
+      "usernameExists": false,
+      "emailExists": false,
+      "ownedByStory": false
+    }
+  ],
+  "provisioner": {
+    "bootstrap": [
+      "SA_SUPERUSER=False",
+      "SA_PERMS=add_user,change_user,reset_user_password,view_user"
+    ],
+    "revoke": "REMAINING=0,0,0",
+    "revoked": true
+  },
+  "results": [
+    {
+      "alias": "adult-01",
+      "pk": 6,
+      "uuid": "ad9ca7d3-3506-4ace-a45f-455d4e4203b6",
+      "action": "CREATE"
+    },
+    {
+      "alias": "adult-02",
+      "pk": 7,
+      "uuid": "a90988e6-de30-423c-8b6b-d799c9201f67",
+      "action": "CREATE"
+    }
+  ]
+}
