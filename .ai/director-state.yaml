@@ -1,5 +1,5 @@
 schema_version: 1
-written_at_utc: 2026-10-26T00:15:22Z
+written_at_utc: 2026-10-26T00:19:00Z
 
 framework:
   repository: SETOKCR/setok-aide
@@ -10,19 +10,21 @@ scope:
   kind: project
   repository: SETOKCR/setok-family
   default_branch: main
-  observed_head: 64b70e6c0f65a8353610932338c8069e18bed209
+  observed_head: ccc255c83f3b74b82ee1e24bba62d658b6262bcb
 
 activity:
   lifecycle: active
-  active_unit: null
-  phase: selection
-  risk: null
+  active_unit: ST-CF-001
+  phase: readiness
+  risk: AMBER-4
   implementation_authorized: false
   authorized_base: null
   implementation_branch: null
   candidate_commit: null
 
-open_gates: []
+open_gates:
+  - resolve Authorized Base before implementation authorization
+  - explicit Technical Director implementation authorization before Development Agent handoff
 
 canonical_refs:
   - .ai/AIDE_PROJECT.yaml
@@ -31,10 +33,12 @@ canonical_refs:
   - docs/ARCHITECTURE.md
   - docs/ROADMAP.md
   - docs/QUALITY.md
+  - docs/stories/ST-CF-001.md
+  - .ai/work-orders/ST-CF-001.md
 
 last_terminal: null
 
 next_action:
-  kind: selection
-  unit: null
-  note: Await Product Owner direction before selecting the first Phase 1 Story; no implementation is authorized.
+  kind: implementation
+  unit: ST-CF-001
+  note: Freeze an Authorized Base and authorize implementation only after revalidating repository identity and READY Work Order; no implementation is currently authorized.
