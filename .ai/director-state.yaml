@@ -1,5 +1,5 @@
 schema_version: 1
-written_at_utc: 2026-10-26T05:50:00Z
+written_at_utc: 2026-10-26T15:15:00Z
 
 framework:
   repository: SETOKCR/setok-aide
@@ -10,16 +10,16 @@ scope:
   kind: project
   repository: SETOKCR/setok-family
   default_branch: main
-  observed_head: 077db01aeea2e86c616e71c0731e844334c10219
+  observed_head: eac5f3871a31c05d9209d3a5ac0df95c1fd6545e
 
 activity:
   lifecycle: active
-  active_unit: ST-PB-001
-  phase: implementation
-  risk: YELLOW-4
-  implementation_authorized: true
-  authorized_base: 077db01aeea2e86c616e71c0731e844334c10219
-  implementation_branch: feature/st-pb-001
+  active_unit: null
+  phase: selection
+  risk: null
+  implementation_authorized: false
+  authorized_base: null
+  implementation_branch: null
   candidate_commit: null
 
 open_gates: []
@@ -34,15 +34,16 @@ canonical_refs:
   - docs/stories/ST-PB-001.md
   - .ai/work-orders/ST-PB-001.md
   - docs/development/ST-PB-001_INDEPENDENT_CHECK.md
+  - docs/evidence/ST-PB-001/README.md
 
 last_terminal:
   outcome: ACCEPT
-  unit: ST-ID-002
-  candidate_commit: 9111781ac67a1db4194102368be311849d59d174
-  integration_commit: c506ac29b1d1463c5003adc98a41eaf8b5c28d05
-  note: ST-ID-002 integrated to main and formally closed. Two adult human identities for Familia Ulate León are active as regular non-admin Authentik users; both interactive logins and recovery paths were verified; temporary least-privilege provisioning credential was revoked; no child identity, family-domain authorization, OIDC/federation/Access/device-binding expansion, PII in Git, or unexpected surface was introduced. Product Owner confirmed both initial passwords are stored in Bitwarden.
+  unit: ST-PB-001
+  candidate_commit: e3a0cce7d43e73fa4081a8a8500aea1b9aa0d3f8
+  integration_commit: e8e3a44671f57b7d9b447bcbda3579c78924f716
+  note: ST-PB-001 integrated to main and formally closed. Provider-neutral tenant-scoped binding registry established for Familia Ulate León with two opaque adult subject bindings to Authentik, shared Cloudflare integration/resource bindings, lifecycle/cardinality rules, zero device subjects/bindings, read-only provider reconciliation, unchanged provider fingerprints, and no PII/secrets in versioned state or evidence.
 
 next_action:
-  kind: implementation
-  unit: ST-PB-001
-  note: Implementation explicitly authorized. Development Agent must reconstruct from Git, verify PROJECT_SCOPE_OK and exact lineage from Authorized Base 077db01aeea2e86c616e71c0731e844334c10219, then implement the provider-binding registry and read-only reconciliation. No Authentik or Cloudflare mutation is authorized; zero device subjects/bindings; no PII or secrets in Git/evidence. Stop on any Work Order Stop Condition.
+  kind: selection
+  unit: null
+  note: ROADMAP indicates Baseline policies next. No implementation is authorized. Reconstruct current main and run normal Story/preflight/Independent Check/Work Order gates before any policy mutation.
