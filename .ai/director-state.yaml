@@ -1,5 +1,5 @@
 schema_version: 1
-written_at_utc: 2026-10-26T16:05:00Z
+written_at_utc: 2026-10-26T16:50:00Z
 
 framework:
   repository: SETOKCR/setok-aide
@@ -15,15 +15,14 @@ scope:
 activity:
   lifecycle: active
   active_unit: ST-POL-002
-  phase: readiness
+  phase: implementation
   risk: YELLOW-6
-  implementation_authorized: false
+  implementation_authorized: true
   authorized_base: a7d9844f00e24acb5bd4d4a2553dd88efa892859
   implementation_branch: feature/st-pol-002
   candidate_commit: null
 
-open_gates:
-  - explicit Technical Director implementation authorization
+open_gates: []
 
 canonical_refs:
   - .ai/AIDE_PROJECT.yaml
@@ -44,6 +43,6 @@ last_terminal:
   note: ST-POL-001 integrated to main and formally closed. Seven mandatory baseline controls are defined in provider-neutral desired state and deterministically compiled against read-only Cloudflare capability discovery. No Gateway/provider mutation occurred and nothing is APPLIED. Future apply remains blocked until device enrollment yields a safe selector, provider mutation is separately authorized with rollback/blast-radius controls, and premium-class Gambling entitlement is verified.
 
 next_action:
-  kind: readiness
+  kind: implementation
   unit: ST-POL-002
-  note: Product Input Gate CLOSED by explicit PO approval. Authorized Base frozen at a7d9844f00e24acb5bd4d4a2553dd88efa892859. feature/st-pol-002 created from exact Authorized Base and verified one governance-only Work Order commit ahead, zero behind. Await explicit Technical Director implementation authorization. Provider mutation remains forbidden and no policy may be claimed APPLIED.
+  note: Implementation explicitly authorized. Development Agent must reconstruct from Git, verify PROJECT_SCOPE_OK and exact lineage from Authorized Base a7d9844f00e24acb5bd4d4a2553dd88efa892859, then implement the approved provider-neutral STANDARD / RESTRICTED / temporary overlay contract. Cloudflare/provider mutation remains forbidden; zero device subjects/bindings may be created; no policy may be claimed APPLIED. Stop on any Work Order Stop Condition and return an exact candidate commit with evidence.
