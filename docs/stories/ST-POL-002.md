@@ -2,7 +2,7 @@
 
 ## Status
 
-PREFLIGHT — PRODUCT INPUT REQUIRED
+PREFLIGHT — PRODUCT INPUT APPROVED
 
 ## Goal
 
@@ -52,9 +52,11 @@ This Story implements the frozen architecture concepts:
 
 ## Product Input Gate
 
-Architecture does not define the exact consumer semantics of `STANDARD`, `RESTRICTED` or the first temporary overlays. These are Product Owner decisions.
+**CLOSED — APPROVED by Product Owner.**
 
-### Recommended first-family semantics — pending PO approval
+The following first-family semantics are authoritative for this Story.
+
+### Approved first-family semantics
 
 `STANDARD`
 - ST-POL-001 baseline remains active;
@@ -88,8 +90,6 @@ Temporary overlays:
    - removes temporary overlays and returns immediately to the persistent mode;
    - does not alter baseline or recurring schedule definitions.
 
-The Story must remain gated until the PO approves or adjusts these semantics.
-
 ## Composition invariants
 
 Conceptual precedence relevant to this Story:
@@ -114,9 +114,9 @@ Required invariants:
 - conflicting overlays resolve by explicit precedence/time semantics, never provider rule order accident;
 - provider IDs and provider-specific expressions stay outside domain intent.
 
-## Proposed normalized categories
+## Approved normalized categories
 
-The domain may use provider-neutral functional categories such as:
+The domain uses provider-neutral functional categories:
 
 - `social_media`;
 - `gaming`;
@@ -148,8 +148,8 @@ until later enrollment creates real device bindings and the scoped enforcement g
 
 - Product Input Gate CLOSED by explicit PO decision;
 - schema and contract PASS;
-- `STANDARD` and `RESTRICTED` semantics versioned;
-- approved temporary overlays versioned;
+- `STANDARD` and `RESTRICTED` semantics versioned exactly as approved;
+- approved temporary overlays versioned exactly as approved;
 - composition deterministic;
 - precedence/invariant tests PASS;
 - expiration/restore tests PASS;
