@@ -1,5 +1,5 @@
 schema_version: 1
-written_at_utc: 2026-10-26T03:05:00Z
+written_at_utc: 2026-10-26T03:12:00Z
 
 framework:
   repository: SETOKCR/setok-aide
@@ -10,20 +10,19 @@ scope:
   kind: project
   repository: SETOKCR/setok-family
   default_branch: main
-  observed_head: 0bcd1bd07b107d665bcfdccdbd80f320162288e3
+  observed_head: d82489b4c40ae340635bda4f8da593c3b2c4517c
 
 activity:
   lifecycle: active
-  active_unit: ST-CF-001
-  phase: review
-  risk: AMBER-4
-  implementation_authorized: true
-  authorized_base: 4fa82d531d1452b15b7fd409465cdcf7f7400b1e
-  implementation_branch: feature/st-cf-001
-  candidate_commit: 4767b52966bf444469eeda45912fac43fc7f52c3
+  active_unit: null
+  phase: selection
+  risk: null
+  implementation_authorized: false
+  authorized_base: null
+  implementation_branch: null
+  candidate_commit: null
 
-open_gates:
-  - integrate accepted candidate to main and close ST-CF-001
+open_gates: []
 
 canonical_refs:
   - .ai/AIDE_PROJECT.yaml
@@ -39,9 +38,10 @@ last_terminal:
   outcome: ACCEPT
   unit: ST-CF-001
   candidate_commit: 4767b52966bf444469eeda45912fac43fc7f52c3
-  note: Evidence verifies one isolated SETOK-FAMILY-MANAGED profile, Default/org unchanged, desired vs observed MATCH, idempotent re-apply, secret separation and isolated rollback path. Mobile selector remains a known pilot limitation until later provider-binding/identity work.
+  integration_commit: b704046c3d07154d705ef0c7f5218866ec126de6
+  note: ST-CF-001 integrated to main and closed. One SETOK-FAMILY-MANAGED profile is active; Default/org unchanged; desired vs observed MATCH; re-apply idempotent; rollback isolated. Mobile selector remains a known pilot constraint for later provider-binding/identity work.
 
 next_action:
-  kind: integration
-  unit: ST-CF-001
-  note: Integrate accepted candidate into main, preserve the known shared-org selector limitation as a later provider-binding constraint, then close ST-CF-001 and advance roadmap selection.
+  kind: selection
+  unit: null
+  note: Await Product Owner direction before selecting the next Phase 1 Story. ROADMAP indicates Authentik foundation next; no implementation is authorized.
