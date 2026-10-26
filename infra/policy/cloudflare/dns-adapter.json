@@ -1,0 +1,18 @@
+{
+  "adapter": "cloudflare-zero-trust/gateway-dns",
+  "adapter_version": 1,
+  "notes": "Provider adapter data, NOT domain intent. Categories are resolved by provider NAME against read-only discovery at compile time; numeric category IDs appear only in compiled plans/evidence. DNS actions are documented Gateway DNS policy actions (no read API exists for actions).",
+  "documented_dns_actions": ["block", "safesearch", "ytrestricted"],
+  "mappings": {
+    "threat.malware":             { "kind": "category", "selector": "dns.security_category", "parent": "Security threats", "name": "Malware",                      "action": "block" },
+    "threat.phishing":            { "kind": "category", "selector": "dns.security_category", "parent": "Security threats", "name": "Phishing",                     "action": "block" },
+    "threat.command_and_control": { "kind": "category", "selector": "dns.security_category", "parent": "Security threats", "name": "Command and Control & Botnet", "action": "block" },
+    "content.adult":              { "kind": "parent_category", "selector": "dns.content_category", "name": "Adult Themes",                               "action": "block" },
+    "content.gambling":           { "kind": "category", "selector": "dns.content_category",  "parent": "Gambling",         "name": "Gambling",                     "action": "block" },
+    "search.safe_search":         { "kind": "action",   "action": "safesearch" },
+    "video.youtube_restricted":   { "kind": "action",   "action": "ytrestricted" }
+  },
+  "rule_naming": "SETOK-FAMILY {tenant_alias} baseline {group}",
+  "blocked_category_classes": ["noBlock", "removalPending"],
+  "entitlement_unverified_classes": ["premium"]
+}

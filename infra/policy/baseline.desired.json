@@ -1,0 +1,19 @@
+{
+  "policy_contract_version": 1,
+  "notes": "Baseline Policy Intent for the first productive family tenant (ST-POL-001). Desired state only: DESIRED, not APPLIED. Provider compilation is kept outside this document (adapter data and evidence).",
+  "policy_id": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+  "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+  "kind": "baseline",
+  "scope": { "applies_to": "all_device_subjects_of_tenant" },
+  "precedence_layer": "security_and_mandatory_safety",
+  "overridable": false,
+  "controls": [
+    { "control": "threat.malware",             "action": "BLOCK", "layer": "security_threat_baseline" },
+    { "control": "threat.phishing",            "action": "BLOCK", "layer": "security_threat_baseline" },
+    { "control": "threat.command_and_control", "action": "BLOCK", "layer": "security_threat_baseline" },
+    { "control": "content.adult",              "action": "BLOCK", "layer": "mandatory_safety_restriction" },
+    { "control": "content.gambling",           "action": "BLOCK", "layer": "mandatory_safety_restriction" },
+    { "control": "search.safe_search",         "action": "FORCE", "layer": "mandatory_safety_restriction" },
+    { "control": "video.youtube_restricted",   "action": "FORCE", "layer": "mandatory_safety_restriction" }
+  ]
+}
