@@ -1,5 +1,5 @@
 schema_version: 1
-written_at_utc: 2026-10-26T15:45:00Z
+written_at_utc: 2026-10-26T15:55:00Z
 
 framework:
   repository: SETOKCR/setok-aide
@@ -10,19 +10,23 @@ scope:
   kind: project
   repository: SETOKCR/setok-family
   default_branch: main
-  observed_head: 1e12a11558dddd894106501605a7526638f24b05
+  observed_head: 02ec30bb7d01689e1192ec54c007e8680602491b
 
 activity:
   lifecycle: active
-  active_unit: null
-  phase: selection
-  risk: null
+  active_unit: ST-POL-002
+  phase: product_input
+  risk: YELLOW-6
   implementation_authorized: false
   authorized_base: null
   implementation_branch: null
   candidate_commit: null
 
-open_gates: []
+open_gates:
+  - Product Input approval for STANDARD / RESTRICTED / temporary overlay semantics
+  - freeze Authorized Base
+  - create and verify implementation branch
+  - explicit Technical Director implementation authorization
 
 canonical_refs:
   - .ai/AIDE_PROJECT.yaml
@@ -31,10 +35,9 @@ canonical_refs:
   - docs/ARCHITECTURE.md
   - docs/ROADMAP.md
   - docs/QUALITY.md
-  - docs/stories/ST-POL-001.md
-  - .ai/work-orders/ST-POL-001.md
-  - docs/development/ST-POL-001_INDEPENDENT_CHECK.md
-  - docs/evidence/ST-POL-001/README.md
+  - docs/stories/ST-POL-002.md
+  - .ai/work-orders/ST-POL-002.md
+  - docs/development/ST-POL-002_INDEPENDENT_CHECK.md
 
 last_terminal:
   outcome: ACCEPT
@@ -44,6 +47,6 @@ last_terminal:
   note: ST-POL-001 integrated to main and formally closed. Seven mandatory baseline controls are defined in provider-neutral desired state and deterministically compiled against read-only Cloudflare capability discovery. No Gateway/provider mutation occurred and nothing is APPLIED. Future apply remains blocked until device enrollment yields a safe selector, provider mutation is separately authorized with rollback/blast-radius controls, and premium-class Gambling entitlement is verified.
 
 next_action:
-  kind: selection
-  unit: null
-  note: ROADMAP now selects the Standard / Restricted / temporary overlay policy contract next. Keep this next unit provider-neutral and non-mutative against Cloudflare. Actual scoped enforcement apply is a separate later gate after Android and iPad Standard enrollment/device bindings establish safe tenant/device scope.
+  kind: product_input
+  unit: ST-POL-002
+  note: Preflight architecture review PASS and Independent Check PASS WITH CONDITIONS. Product Input Gate is OPEN because frozen architecture does not define the exact consumer semantics of STANDARD, RESTRICTED, STUDY, ALLOW_SOCIAL, PAUSE_ENTERTAINMENT and CLEAR_TEMPORARY. Recommended first-family semantics are documented in docs/stories/ST-POL-002.md. Do not freeze Authorized Base or authorize implementation until the PO explicitly approves or amends them.
