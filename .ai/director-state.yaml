@@ -1,5 +1,5 @@
 schema_version: 1
-written_at_utc: 2026-10-26T05:25:00Z
+written_at_utc: 2026-10-26T05:30:00Z
 
 framework:
   repository: SETOKCR/setok-aide
@@ -15,15 +15,14 @@ scope:
 activity:
   lifecycle: active
   active_unit: ST-ID-002
-  phase: readiness
+  phase: implementation
   risk: RED-AUTO-RED-authentication-6
-  implementation_authorized: false
+  implementation_authorized: true
   authorized_base: 3494c39efd3bbdda3f52d79b2abe0bd2a6073cc9
   implementation_branch: feature/st-id-002
   candidate_commit: null
 
-open_gates:
-  - explicit Technical Director implementation authorization
+open_gates: []
 
 canonical_refs:
   - .ai/AIDE_PROJECT.yaml
@@ -44,6 +43,6 @@ last_terminal:
   note: ST-ID-001 integrated to main and formally closed. Authentik foundation is healthy on VM 220 setok-family-idp-01; Docker socket absent; secrets separated; PostgreSQL backup verified off-VM; VM 210 unchanged by Story. Controlled coexistence validation with VM 210 running remains an operational follow-up accepted by PO, not an open Story gate.
 
 next_action:
-  kind: implementation_authorization
+  kind: implementation
   unit: ST-ID-002
-  note: Preflight PASS, Independent Check PASS WITH CONDITIONS, and Product Input Gate CLOSED. Authorized Base 3494c39efd3bbdda3f52d79b2abe0bd2a6073cc9; branch feature/st-id-002 is rebound with governance-only commit. Exact human PII remains outside Git. Await explicit Technical Director implementation authorization; no Authentik mutation is authorized yet.
+  note: Implementation explicitly authorized. Development Agent must reconstruct from Git, verify PROJECT_SCOPE_OK and branch lineage, then provision exactly two approved adult identities using operational PII outside Git/evidence. Child login remains out of scope. Stop on any Work Order Stop Condition.
