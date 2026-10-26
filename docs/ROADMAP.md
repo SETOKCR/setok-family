@@ -8,14 +8,16 @@ This roadmap orders work; implementation authority is carried by the active Stor
 
 Current AIDE execution state:
 
-- active unit: `NONE`
-- last completed: `ST-ID-001 — Establish Authentik pilot identity foundation`
-- result: `ACCEPT`
-- risk: `RED — Auto-RED(authentication), ordinary score 5/10`
+- active unit: `ST-ID-002 — Establish pilot human identities`
+- Story: `docs/stories/ST-ID-002.md`
+- Work Order: `.ai/work-orders/ST-ID-002.md`
+- preflight: `PASS`
+- Independent Check: `PASS WITH CONDITIONS`
+- risk: `RED — Auto-RED(authentication), ordinary score 6/10`
 - implementation authorized: `NO`
-- Authorized Base: `NONE`
-- Active Execution Alignment: `NOT_APPLICABLE`
-- open gates: `NONE`
+- Authorized Base: `NONE — freeze pending after governance sync`
+- Product Input Gate: `OPEN — exact 1–3 human identities must be approved by PO before Apply`
+- open gates: Authorized Base/branch freeze; Product Input Gate before Apply; explicit Technical Director implementation authorization
 
 ## Phase 1 objective
 
@@ -27,7 +29,7 @@ The approved architecture defines the following implementation order:
 
 1. **Cloudflare foundation — COMPLETE: ST-CF-001 ACCEPT.**
 2. **Authentik foundation — COMPLETE: ST-ID-001 ACCEPT.**
-3. **Pilot-tenant identities — NEXT PLANNED; not yet selected or authorized.**
+3. **Pilot-tenant identities — ACTIVE: ST-ID-002, preflight PASS, Independent Check PASS WITH CONDITIONS, implementation not authorized.**
 4. Initial provider-binding model.
 5. Baseline policies.
 6. Standard / Restricted / temporary overlays.
@@ -77,6 +79,29 @@ Integration commit: `e6d1bffa65762b93069fdf480d5d67628e1fbdef`.
 
 Operational follow-up: the Product Owner will restart VM 210 under controlled observation to validate long-term memory coexistence. This is not an open implementation gate for ST-ID-001.
 
+## Active unit boundary — ST-ID-002
+
+ST-ID-002 creates and validates only human authentication identities in Authentik.
+
+It does **not** model family authorization in the IdP. Specifically, this Story does not create or use Authentik constructs as `Owner`, `Parent`, `Viewer`, `Child`, `Guardian`, `Family` or Guardian↔Child permissions.
+
+A Child does not receive a login identity by default merely because a Child domain entity exists. Child login requires explicit PO selection.
+
+The exact human identity values are operational input and remain outside Git. Before Apply, PO approves an initial set of 1–3 human identities.
+
+Independent Check mandatory conditions include:
+
+- regular human users, not service accounts;
+- no superuser/admin grants to pilot humans;
+- temporary least-privilege provisioning credential, revoked after use;
+- credentials and full PII outside Git/evidence;
+- interactive login validation;
+- recovery-path validation;
+- collision-safe/idempotent provisioning;
+- clean scope scan and ST-ID-001 health regression check.
+
+Because this Story creates real authentication identities and credential/recovery state, it remains `RED` by `Auto-RED(authentication)`.
+
 ## Phase 1 exit condition
 
 Phase 1 is complete only when the platform functions correctly without SETOK Family App and the project has validated:
@@ -94,7 +119,7 @@ Phase 2 is the SETOK Family application / mini app and consumer experience. It r
 
 ## Next governance action
 
-Await Product Owner direction before selecting the next Story. Architecture order indicates **Pilot-tenant identities** next. Selection is not implementation authorization; the next unit must pass the normal AIDE preflight before execution.
+Freeze the Authorized Base and implementation branch for ST-ID-002. Implementation remains unauthorized. Before Apply, close the Product Input Gate by approving the exact pilot human identity set, then issue explicit Technical Director implementation authorization.
 
 ## Authority
 
