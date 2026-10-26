@@ -5,9 +5,9 @@
 - **Project:** SETOK Family
 - **Repository:** SETOKCR/setok-family
 - **Story / Work Unit:** ST-ID-002
-- **Authorized Base:** PENDING REFREEZE AFTER PRODUCT INPUT CLOSURE
+- **Authorized Base:** `3494c39efd3bbdda3f52d79b2abe0bd2a6073cc9`
 - **Implementation Branch:** `feature/st-id-002`
-- **Estado de ejecución:** READY_FOR_BASE
+- **Estado de ejecución:** READY
 - **Implementation Authorization:** NO
 - **Persistencia:** PERSISTED
 - **Motivo de persistencia:** RED / authentication / real human identity data / multi-session auditability
@@ -19,8 +19,8 @@
 - **Repository:** SETOKCR/setok-family
 - **Role:** Development Agent
 - **Work Unit:** ST-ID-002
-- **Work Order:** READY_FOR_BASE — preflight + Independent Check passed; Product Input Gate CLOSED; implementation not authorized
-- **Authorized Base:** PENDING REFREEZE
+- **Work Order:** READY — preflight + Independent Check passed; Product Input Gate CLOSED; implementation not authorized
+- **Authorized Base:** `3494c39efd3bbdda3f52d79b2abe0bd2a6073cc9`
 - **Implementation Branch:** `feature/st-id-002`
 - **Project Binding:** REQUIRED
 
@@ -41,14 +41,7 @@ Crear y validar las primeras identidades humanas reales de **Familia Ulate León
 
 **Status: CLOSED.**
 
-Product Owner approved:
-
-- exactly **2 adult human identities**;
-- interactive login: **YES for both**;
-- child login: **NO in this Story**;
-- concrete display names and email/login identifiers: supplied as operational input outside Git.
-
-No names, full emails or passwords are persisted in this Work Order, desired state or versioned evidence.
+Product Owner approved exactly **2 adult human identities**, both with interactive login. Child login is excluded from this Story. Concrete names/emails are operational input outside Git and must not be persisted in versioned desired state, logs or evidence.
 
 ## ACCEPTANCE CRITERIA
 
@@ -99,11 +92,7 @@ No names, full emails or passwords are persisted in this Work Order, desired sta
 
 - **Classification:** RED — Auto-RED(authentication)
 - **Ordinary score:** 6/10
-- Reversibility 1
-- Blast Radius 1
-- Data/State 2
-- Security/Finance 2
-- Contracts 0
+- Reversibility 1; Blast Radius 1; Data/State 2; Security/Finance 2; Contracts 0.
 
 Reason: real human authentication identities, credentials and recovery state are introduced.
 
@@ -111,56 +100,21 @@ Reason: real human authentication identities, credentials and recovery state are
 
 **PASS WITH CONDITIONS** — `docs/development/ST-ID-002_INDEPENDENT_CHECK.md`.
 
-Mandatory conditions:
-
-1. exact identity count/type approved by PO before Apply;
-2. no child login in this Story;
-3. no family/domain role modeling in Authentik;
-4. no superuser/admin privilege for human users;
-5. temporary least-privilege provisioning credential, revoked after use;
-6. secrets and full PII absent from Git/evidence;
-7. interactive login verified;
-8. recovery initiation verified without secret persistence;
-9. idempotent collision-safe provisioning;
-10. ST-ID-001 health regression PASS;
-11. post-apply scope scan clean;
-12. rollback/deactivation documented.
+Mandatory conditions: exact approved identity count/type; no child login; no family/domain role modeling; no human admin/superuser; temporary least-privilege provisioning credential revoked after use; no secrets/full PII in Git/evidence; interactive login verification; recovery verification; collision-safe/idempotent provisioning; ST-ID-001 health regression PASS; clean post-apply scope scan; rollback/deactivation documented.
 
 ## EXECUTION MODEL
 
-Preferred:
-
 `Git non-secret desired shape -> story-specific automation -> controlled privileged bootstrap -> temporary least-privilege Authentik API credential -> supported API provisioning -> observed-state verification -> credential revocation -> non-secret evidence`
 
-A long-lived `akadmin` API token is prohibited as steady-state automation.
-
-A temporary dedicated service account/token is preferred when practical. If minimum required permissions cannot be achieved without broad permanent administrative privilege, STOP and return to Technical Director.
-
-Concrete PII is injected only at execution time from a non-versioned local source or interactive secure input. It must not be written to Git or evidence.
-
-This Story does not establish a generic reusable Authentik automation framework.
-
-## TEST IMPACT
-
-- capture pre-existing Authentik human/service/internal user inventory without secrets or full PII;
-- collision check before create;
-- create only the two approved adult human users;
-- verify no superuser/admin grants;
-- verify interactive login;
-- verify recovery initiation path without storing recovery token/URL;
-- re-run provisioning to prove idempotency/no duplicates;
-- verify temporary provisioning identity/token revoked;
-- verify no OIDC/federation/Access/domain-role/device-binding expansion;
-- verify ST-ID-001 foundation health unchanged;
-- secret and PII scan of Git/evidence.
+A long-lived `akadmin` API token is prohibited. Concrete PII is injected only at execution time from a non-versioned local source or secure interactive input.
 
 ## QUALITY GATES
 
 - [x] Product Input Gate CLOSED.
 - [ ] Project Scope = PROJECT_SCOPE_OK.
 - [x] Independent Check = PASS WITH CONDITIONS.
-- [ ] Authorized Base re-frozen after product-input closure.
-- [ ] Branch lineage VERIFIED against re-frozen base.
+- [x] Authorized Base frozen at `3494c39efd3bbdda3f52d79b2abe0bd2a6073cc9`.
+- [ ] Branch lineage VERIFIED.
 - [ ] Pre-existing user inventory captured non-secretly.
 - [ ] Secret/PII handling plan verified.
 - [ ] Temporary provisioning credential least-privilege and revocable.
@@ -193,6 +147,6 @@ This Story does not establish a generic reusable Authentik automation framework.
 - Preflight: PASS
 - Independent Check: PASS WITH CONDITIONS
 - Product Input Gate: CLOSED — 2 adults, interactive login YES, child login NO
-- Authorized Base: pending re-freeze after product-input closure
+- Authorized Base: `3494c39efd3bbdda3f52d79b2abe0bd2a6073cc9`
 - Implementation Branch: `feature/st-id-002`
 - Implementation Authorization: NO
