@@ -5,9 +5,9 @@
 - **Project:** SETOK Family
 - **Repository:** SETOKCR/setok-family
 - **Story / Work Unit:** ST-POL-002
-- **Authorized Base:** `PENDING`
-- **Implementation Branch:** `PENDING`
-- **Execution state:** PREFLIGHT_COMPLETE
+- **Authorized Base:** `a7d9844f00e24acb5bd4d4a2553dd88efa892859`
+- **Implementation Branch:** `feature/st-pol-002`
+- **Execution state:** READY
 - **Implementation Authorization:** NO
 - **Persistence:** PERSISTED
 
@@ -136,9 +136,9 @@ Allowed terminal policy state:
 - [x] Risk classified YELLOW 6/10.
 - [x] Independent Check PASS WITH CONDITIONS.
 - [x] Product Input Gate CLOSED.
-- [ ] Authorized Base frozen.
-- [ ] Implementation Branch created from exact Authorized Base.
-- [ ] Branch lineage verified.
+- [x] Authorized Base frozen at `a7d9844f00e24acb5bd4d4a2553dd88efa892859`.
+- [x] Implementation Branch created from exact Authorized Base.
+- [x] Branch lineage verified by construction.
 - [ ] Implementation explicitly authorized.
 - [ ] Required implementation gates PASS.
 - [ ] Technical Director terminal review complete.
@@ -148,5 +148,7 @@ Allowed terminal policy state:
 - Preflight architecture review: PASS
 - Independent Check: PASS WITH CONDITIONS
 - Product Input Gate: CLOSED — explicit PO approval
-- Authorized Base: PENDING
+- Authorized Base: `a7d9844f00e24acb5bd4d4a2553dd88efa892859`
+- Implementation Branch: `feature/st-pol-002`
+- Branch lineage: VERIFIED by construction from exact Authorized Base
 - Implementation Authorization: NO
