@@ -1,17 +1,17 @@
-# ST-ID-002 — Establish pilot human identities
+# ST-ID-002 — Establish first-family human identities
 
 ## Estado
 
 - **Project:** SETOK Family
 - **Repository:** SETOKCR/setok-family
 - **Phase:** Phase 1 — Infrastructure, Enforcement and Identity
-- **State:** SELECTED / PREFLIGHT
+- **State:** SELECTED / PREFLIGHT COMPLETE
 - **Risk:** RED — Auto-RED(authentication), ordinary score 6/10
 - **Implementation authorized:** NO
 
 ## Goal
 
-Establecer las primeras identidades humanas reales del tenant piloto en Authentik y demostrar creación, autenticación, recuperación y administración segura, manteniendo estrictamente separadas identidad humana y autorización del dominio SETOK Family.
+Establecer las primeras identidades humanas reales de la primera familia productiva, **Familia Ulate León**, en Authentik y demostrar creación, autenticación, recuperación y administración segura, manteniendo estrictamente separadas identidad humana y autorización del dominio SETOK Family.
 
 ## Product intent
 
@@ -19,40 +19,46 @@ Authentik responde **quién es la persona**. SETOK Family decidirá posteriormen
 
 Esta Story no utilizará Authentik para modelar `Family`, `Owner`, `Parent`, `Viewer`, `Guardian ↔ Child` ni dispositivos.
 
-## Pilot identity set
+**Familia Ulate León es el primer tenant del dominio SETOK Family; no es un tenant de Authentik.**
 
-La Story soporta inicialmente **1–3 identidades humanas internas** del piloto. Los datos concretos de las personas (nombre, correo y credencial inicial) se suministrarán fuera de Git durante ejecución.
+## Approved identity set
 
-No se crea una identidad de login para un menor por defecto. Un `Child` puede existir sin cuenta humana; una identidad infantil sólo se crea si el Product Owner la selecciona explícitamente para una experiencia que requiera login.
+El Product Owner aprobó **dos identidades humanas adultas**, ambas con login interactivo habilitado.
+
+Los nombres visibles y correos concretos se suministran únicamente como input operativo fuera de Git durante ejecución. No deben persistirse completos en desired state, logs versionados ni evidencia salvo necesidad excepcional expresamente aprobada.
+
+No se crea una identidad de login para un menor en esta Story. La experiencia infantil autenticada queda diferida.
 
 ### Product Input Gate
 
-Antes de `APPLY`, el Product Owner debe indicar el conjunto exacto de identidades humanas a provisionar. Para cada una:
+**CLOSED.**
 
-- nombre visible;
-- correo/identificador de login;
-- si debe tener login interactivo en esta etapa.
+- approved human identities: 2 adults;
+- interactive login: YES for both;
+- child login: NO in this Story;
+- concrete PII: operational input outside Git.
 
 No se solicita ni versiona contraseña elegida por el usuario. Las credenciales iniciales se generan de forma segura y se entregan/custodian fuera de Git.
 
 ## Acceptance criteria
 
 - [ ] Project Scope Handshake = `PROJECT_SCOPE_OK` antes de mutación.
-- [ ] Se provisiona únicamente el conjunto de identidades humanas aprobado por el Product Owner.
+- [ ] Se provisionan exactamente dos identidades humanas adultas aprobadas por el Product Owner.
 - [ ] Cada identidad humana es un usuario regular de Authentik; ninguna persona se representa mediante service account.
 - [ ] Username/login identifier es único y el estado observado coincide con el conjunto aprobado.
-- [ ] Ningún usuario piloto recibe privilegio de superuser ni acceso administrativo de Authentik.
+- [ ] Ningún usuario recibe privilegio de superuser ni acceso administrativo de Authentik.
 - [ ] No se crean grupos o atributos `Owner`, `Parent`, `Viewer`, `Child`, `Guardian`, `Family` o equivalentes para implementar autorización del dominio.
-- [ ] No se utiliza Authentik multi-tenancy para representar la familia Ulate León.
+- [ ] No se utiliza Authentik multi-tenancy para representar Familia Ulate León.
 - [ ] No se crean aplicaciones OIDC, providers, federation/social login, Cloudflare Access integration ni provider/device bindings.
-- [ ] Se verifica autenticación interactiva de al menos una identidad humana del piloto.
+- [ ] Se verifica autenticación interactiva de las identidades aprobadas o, como mínimo, de una con evidencia suficiente y procedimiento reproducible para la segunda.
 - [ ] Se verifica un camino de recuperación administrativa/recovery sin exponer secretos en evidencia.
 - [ ] Las credenciales iniciales no aparecen en Git, logs persistidos ni evidencia versionada.
-- [ ] Cualquier dato personal persistido en Git se limita a lo estrictamente necesario; por defecto la evidencia usa identificadores no secretos y evita correos completos.
+- [ ] La evidencia usa aliases/opaque references y evita nombres/correos completos.
 - [ ] Se conserva `akadmin` como break-glass administrativo y no se usa como identidad humana del producto.
 - [ ] La foundation ST-ID-001 permanece saludable y no se modifica su infraestructura base.
 - [ ] Operaciones de provisioning/verify son idempotentes o detectan de forma segura objetos ya existentes.
 - [ ] Rollback/desactivación de las identidades creadas queda documentado y limitado a esta Story.
+- [ ] La credencial temporal de provisioning queda revocada/eliminada antes del cierre.
 
 ## Architecture constraints
 
@@ -63,7 +69,7 @@ No se solicita ni versiona contraseña elegida por el usuario. Las credenciales 
 - A Child does not require a login identity.
 - Least privilege and secret separation are mandatory.
 - No direct WAN exposure is introduced.
-- Configuration desired state may be versioned, but personal credentials and secrets are not.
+- Configuration desired state may be versioned, but personal credentials and full PII are not.
 
 ## Out of scope
 
@@ -71,6 +77,7 @@ No se solicita ni versiona contraseña elegida por el usuario. Las credenciales 
 - `Owner`, `Parent`, `Viewer` authorization.
 - Guardian ↔ Child permission relationships.
 - Child domain object creation.
+- Child login / child experience.
 - Device identity or provider bindings.
 - Google/Microsoft/Apple federation.
 - OIDC application/provider for `family.setok.cr`.
@@ -88,7 +95,7 @@ No se solicita ni versiona contraseña elegida por el usuario. Las credenciales 
 Ordinary score: **6/10**
 
 - Reversibility: 1 — users can be disabled/deleted; rollback is localized.
-- Blast Radius: 1 — pilot Authentik only.
+- Blast Radius: 1 — Authentik identity plane only.
 - Data/State: 2 — real human identity data is introduced.
 - Security/Finance: 2 — login credentials and recovery affect authentication security.
 - Contracts: 0.
@@ -97,24 +104,30 @@ The RED classification is mandatory because the Story creates real authenticatio
 
 ## Required independent check
 
-Before implementation authorization, independently verify:
+Independent Check: **PASS WITH CONDITIONS** (`docs/development/ST-ID-002_INDEPENDENT_CHECK.md`).
 
-1. identity/domain separation;
-2. least privilege and absence of superuser grants;
-3. credential generation/custody;
-4. recovery path;
-5. privacy/minimization of evidence;
-6. provisioning method and idempotency;
-7. no OIDC/federation/Access/domain-role expansion;
-8. rollback/deactivation semantics.
+Mandatory conditions:
+
+1. exact identity count and type approved by PO before Apply;
+2. no child login inferred by default;
+3. no family/domain role modeling in Authentik;
+4. no superuser/admin privilege for human users;
+5. temporary least-privilege provisioning credential, revoked after use;
+6. secrets and full PII absent from Git/evidence;
+7. interactive login verified;
+8. recovery initiation verified without secret persistence;
+9. idempotent collision-safe provisioning;
+10. ST-ID-001 health regression PASS;
+11. post-apply scope scan clean;
+12. rollback/deactivation documented.
 
 ## Expected evidence
 
-- non-secret desired identity set using aliases/opaque references where practical;
+- non-secret desired identity shape using aliases/opaque references;
 - pre-apply observed user inventory;
-- apply result without passwords/tokens;
-- post-apply user inventory;
-- authentication success evidence for at least one approved identity without credential disclosure;
+- apply result without names, emails, passwords or tokens;
+- post-apply user inventory using aliases/opaque references;
+- authentication success evidence without credential disclosure;
 - recovery-path evidence;
 - secret/privacy scan;
 - rollback/remediation procedure.
@@ -122,10 +135,10 @@ Before implementation authorization, independently verify:
 ## Stop conditions
 
 - `PROJECT_SCOPE_MISMATCH` or `PROJECT_SCOPE_UNVERIFIED`.
-- Exact pilot identity set has not been approved by Product Owner before Apply.
+- Implementation attempts to provision a different identity count/type than PO approved.
 - Implementation requires modeling family roles/relationships inside Authentik.
 - A human account would require superuser privilege.
-- Secrets or passwords must be persisted in Git/evidence.
+- Secrets, passwords, names or full emails must be persisted in Git/evidence.
 - OIDC, federation, Cloudflare Access or device bindings become necessary to complete the Story.
 - Material authentication flow changes become necessary beyond creating/verifying users and recovery.
 - Foundation health from ST-ID-001 is degraded by the change.
