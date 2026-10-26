@@ -7,8 +7,8 @@
 - **Story / Work Unit:** ST-POL-001
 - **Authorized Base:** `df0a9dd9968c44428ab69e9e19c91fc2f164809e`
 - **Implementation Branch:** `feature/st-pol-001`
-- **Execution state:** READY
-- **Implementation Authorization:** NO
+- **Execution state:** AUTHORIZED
+- **Implementation Authorization:** YES
 - **Persistence:** PERSISTED
 
 ## AIDE execution context
@@ -112,7 +112,7 @@ NOT REQUIRED. The frozen architecture already defines the minimum baseline and p
 - [x] Product Input Gate NOT REQUIRED.
 - [x] Authorized Base frozen at `df0a9dd9968c44428ab69e9e19c91fc2f164809e`.
 - [x] Branch lineage verified by construction from exact Authorized Base.
-- [ ] Implementation explicitly authorized.
+- [x] Implementation explicitly authorized by Product Owner / Technical Director GO.
 - [ ] Baseline contract/schema PASS.
 - [ ] Precedence/invariant negative tests PASS.
 - [ ] Cloudflare read-only discovery PASS.
@@ -128,4 +128,4 @@ NOT REQUIRED. The frozen architecture already defines the minimum baseline and p
 - Product Input Gate: NOT REQUIRED
 - Authorized Base: `df0a9dd9968c44428ab69e9e19c91fc2f164809e`
 - Implementation Branch: `feature/st-pol-001`
-- Implementation Authorization: NO
+- Implementation Authorization: YES
