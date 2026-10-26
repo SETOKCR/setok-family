@@ -1,5 +1,5 @@
 schema_version: 1
-written_at_utc: 2026-10-26T01:46:00Z
+written_at_utc: 2026-10-26T03:05:00Z
 
 framework:
   repository: SETOKCR/setok-aide
@@ -15,14 +15,15 @@ scope:
 activity:
   lifecycle: active
   active_unit: ST-CF-001
-  phase: implementation
+  phase: review
   risk: AMBER-4
   implementation_authorized: true
   authorized_base: 4fa82d531d1452b15b7fd409465cdcf7f7400b1e
   implementation_branch: feature/st-cf-001
-  candidate_commit: null
+  candidate_commit: 4767b52966bf444469eeda45912fac43fc7f52c3
 
-open_gates: []
+open_gates:
+  - integrate accepted candidate to main and close ST-CF-001
 
 canonical_refs:
   - .ai/AIDE_PROJECT.yaml
@@ -34,9 +35,13 @@ canonical_refs:
   - docs/stories/ST-CF-001.md
   - .ai/work-orders/ST-CF-001.md
 
-last_terminal: null
+last_terminal:
+  outcome: ACCEPT
+  unit: ST-CF-001
+  candidate_commit: 4767b52966bf444469eeda45912fac43fc7f52c3
+  note: Evidence verifies one isolated SETOK-FAMILY-MANAGED profile, Default/org unchanged, desired vs observed MATCH, idempotent re-apply, secret separation and isolated rollback path. Mobile selector remains a known pilot limitation until later provider-binding/identity work.
 
 next_action:
-  kind: implementation
+  kind: integration
   unit: ST-CF-001
-  note: Development Agent establishes C:\Dev\SETOK\setok-family, verifies PROJECT_SCOPE_OK and authorized-base lineage, then executes only the authorized Work Order on feature/st-cf-001. Stop and return to Technical Director on any Stop Condition.
+  note: Integrate accepted candidate into main, preserve the known shared-org selector limitation as a later provider-binding constraint, then close ST-CF-001 and advance roadmap selection.
