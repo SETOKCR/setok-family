@@ -8,13 +8,17 @@ This roadmap orders work; implementation authority is carried by the active Stor
 
 Current AIDE execution state:
 
-- active unit: `NONE`
+- active unit: `ST-POL-002 — Establish Standard / Restricted / temporary overlay policy contract`
+- Story: `docs/stories/ST-POL-002.md`
+- Work Order: `.ai/work-orders/ST-POL-002.md`
+- preflight architecture review: `PASS`
+- Independent Check: `PASS WITH CONDITIONS`
+- risk: `YELLOW — ordinary score 6/10`
+- Product Input Gate: `OPEN`
+- Authorized Base: `PENDING`
+- implementation branch: `PENDING`
 - implementation authorized: `NO`
-- open gates: `NONE`
-- last completed unit: `ST-POL-001 — Establish baseline policy contract and Cloudflare compilation plan`
-- Technical Director decision: `ACCEPT`
-- accepted candidate: `fb3ef4f429c797e1f658d65e2dc80ea305df64d6`
-- integration commit: `019dc396cd4f6f0fc3f77b5caa9073d7385c41f7`
+- open gates: Product Input approval, freeze Authorized Base, create/verify implementation branch, explicit Technical Director implementation authorization
 
 ## Phase 1 objective
 
@@ -27,7 +31,7 @@ Deliver and validate a functioning parental-control platform without depending o
 3. **First-family human identities — COMPLETE: ST-ID-002 ACCEPT.**
 4. **Initial provider-binding model — COMPLETE: ST-PB-001 ACCEPT.**
 5. **Baseline policy contract and compilation plan — COMPLETE: ST-POL-001 ACCEPT.**
-6. **Standard / Restricted / temporary overlay policy contract — NEXT.** This unit defines provider-neutral mode/overlay intent and compilation semantics only; no Gateway apply before safe device scope exists.
+6. **Standard / Restricted / temporary overlay policy contract — ACTIVE: ST-POL-002.** Product semantics require PO approval before Authorized Base freeze. No Gateway apply in this unit.
 7. Android enrollment and device binding.
 8. iPad Standard enrollment and device binding.
 9. Scoped Cloudflare enforcement apply and validation for enrolled Familia Ulate León devices. Apply baseline + approved mode/overlay compilation only after selector isolation, rollback, entitlement and blast-radius gates pass.
@@ -116,9 +120,17 @@ Accepted candidate: `fb3ef4f429c797e1f658d65e2dc80ea305df64d6`.
 Integration commit: `019dc396cd4f6f0fc3f77b5caa9073d7385c41f7`.
 Evidence: `docs/evidence/ST-POL-001/`.
 
+## Active unit boundary — ST-POL-002
+
+ST-POL-002 defines provider-neutral persistent modes, temporary overlays, expiration/reversal and deterministic composition. It does not mutate Cloudflare and cannot claim enforcement `APPLIED`.
+
+Architecture already fixes baseline protection, precedence ownership, reversibility and Essential Services behavior. Product Input is required only for the exact first-family consumer semantics of `STANDARD`, `RESTRICTED` and the initial overlay set.
+
+Recommended semantics pending PO approval are documented in `docs/stories/ST-POL-002.md`.
+
 ## Sequencing clarification after ST-POL-001
 
-Policy **design/compilation** and provider **enforcement apply** are now explicit separate gates.
+Policy **design/compilation** and provider **enforcement apply** are explicit separate gates.
 
 SETOK can safely define `STANDARD`, `RESTRICTED` and temporary overlays before devices are enrolled because those artifacts remain provider-neutral desired state and compilation contracts. Actual Gateway mutation must wait until enrollment creates a verifiable tenant/device scope.
 
@@ -134,7 +146,7 @@ Phase 2 is the SETOK Family application / mini app and consumer experience. It r
 
 ## Next governance action
 
-Select and preflight the provider-neutral **Standard / Restricted / temporary overlay policy contract**. This next unit must remain non-mutative against Cloudflare; scoped enforcement apply is a separate later gate after device enrollment.
+Close the ST-POL-002 Product Input Gate by explicit PO approval or amendment of the recommended `STANDARD`, `RESTRICTED`, `STUDY`, `ALLOW_SOCIAL`, `PAUSE_ENTERTAINMENT` and `CLEAR_TEMPORARY` semantics. Only then freeze Authorized Base and prepare implementation.
 
 ## Authority
 
