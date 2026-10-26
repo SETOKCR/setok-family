@@ -1,0 +1,31 @@
+{
+  "observedAt": "2026-10-26T04:49:07.7386630Z",
+  "host": "pve-02",
+  "output": [
+    "## uptime",
+    " 22:49:02 up 46 days,  1:58,  1 user,  load average: 0.21, 0.21, 0.23",
+    "## free -m",
+    "               total        used        free      shared  buff/cache   available",
+    "Mem:            7819        3996        2377          51        1752        3822",
+    "Swap:           7819           0        7819",
+    "## vmstat 1 3 (si/so = swap-in/out)",
+    "procs -----------memory---------- ---swap-- -----io---- -system-- -------cpu-------",
+    " r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st gu",
+    " 0  0      0 2434432 550300 1243996    0    0    77    48  672    2  0  0 99  0  0  1",
+    " 0  0      0 2434284 550300 1244144    0    0     0     8 1362 1222  1  0 98  0  0  1",
+    " 0  0      0 2435168 550300 1244144    0    0     0    12 1019  954  0  0 99  0  0  0",
+    "## qm list",
+    "      VMID NAME                 STATUS     MEM(MB)    BOOTDISK(GB) PID       ",
+    "       210 setok-live-01        stopped    4096              40.00 0         ",
+    "       220 setok-family-idp-01  running    2048              40.00 3329074   ",
+    "## vm220 rss",
+    "vm220_rss_MiB=2081",
+    "## vm210",
+    "77388d3a22ebedc70c9fe5daf4b37843b699d88df26c9a62e62ba59be588e9d2",
+    "status: stopped"
+  ],
+  "vm210": {
+    "observed": "77388d3a22ebedc70c9fe5daf4b37843b699d88df26c9a62e62ba59be588e9d2 status: stopped",
+    "unchanged": true
+  }
+}

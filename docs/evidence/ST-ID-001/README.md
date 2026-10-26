@@ -23,7 +23,8 @@ This is the non-secret evidence for the Authentik pilot identity foundation. Eve
 | `20261025T221425-verify.json` | Verify | All healthy and checks pass (details below) |
 | `20261025T221445-backup.json` | Backup | pg_dump -Fc copied to valhalla and verified |
 | `20261025T221455-createvm.json` and `20261025T221500-deploy.json` | Re-run | Idempotent: "VM exists; not recreating", ".env exists; secrets kept", "Bootstrap hash already present; unchanged" |
-| `20261025T221511-usage.json` and `20261025T221511-host-usage.json` | Usage | CPU and RAM after the stack stabilized |
+| `20261025T221511-usage.json` | Usage | VM 220 CPU and RAM after the stack stabilized |
+| `20261025T224902-usage.json` and `20261025T224907-host-usage.json` | Usage (FIX re-run) | VM 220 and pve-02 metrics produced by the script. They replace an earlier host-usage file that recorded a PowerShell `$host` object instead of the real metrics |
 
 The timestamps in file names are local time (UTC-6).
 

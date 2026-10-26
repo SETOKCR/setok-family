@@ -226,5 +226,22 @@ echo "## disk"; df -h / | tail -1
 '@
         Save-Evidence 'usage' ([pscustomobject]@{ observedAt = (Get-Date).ToUniversalTime().ToString('o'); output = $u })
         $u
+        # Host-side view of pve-02. Named $hostUsage: $host/$Host is a PowerShell automatic variable.
+        $hostUsage = Pve @"
+echo "## uptime"; uptime
+echo "## free -m"; free -m
+echo "## vmstat 1 3 (si/so = swap-in/out)"; vmstat 1 3
+echo "## qm list"; qm list
+echo "## vm220 rss"; ps -o rss= -p `$(cat /run/qemu-server/$($vm.vmid).pid) | awk '{printf "vm$($vm.vmid)_rss_MiB=%d\n", `$1/1024}'
+echo "## vm210"; sha256sum /etc/pve/qemu-server/210.conf | cut -d' ' -f1; qm status 210
+"@
+        $vm210 = Get-Vm210Fingerprint
+        Save-Evidence 'host-usage' ([pscustomobject]@{
+            observedAt = (Get-Date).ToUniversalTime().ToString('o')
+            host       = $desired.proxmox.node
+            output     = @($hostUsage | ForEach-Object { "$_" })
+            vm210      = [pscustomobject]@{ observed = $vm210; unchanged = ($vm210 -like "$vm210Sha*") }
+        })
+        $hostUsage
     }
 }
