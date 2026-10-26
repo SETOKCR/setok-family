@@ -1,0 +1,35 @@
+framework:
+  name: SETOK-AIDE
+  version: 1.2.3
+
+project:
+  name: SETOK Family
+  repository: SETOKCR/setok-family
+  type: family-digital-safety-platform
+
+documents:
+  product: docs/PRODUCT.md
+  architecture: docs/ARCHITECTURE.md
+  roadmap: docs/ROADMAP.md
+  quality: docs/QUALITY.md
+  adr: docs/architecture/decisions
+
+commands:
+  build: null
+  test_targeted: null
+  test_full: null
+  lint: null
+  run: null
+
+delivery:
+  requires_release_verification: false
+
+risk:
+  auto_red: []
+
+reusables:
+  configs: {}
+  scripts: {}
+  recipes: {}
+  templates: {}
+  skills: {}
