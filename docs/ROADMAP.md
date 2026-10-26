@@ -8,13 +8,17 @@ This roadmap orders work; implementation authority is carried by the active Stor
 
 Current AIDE execution state:
 
-- active unit: `NONE`
+- active unit: `ST-POL-001 — Establish baseline policy contract and Cloudflare compilation plan`
+- Story: `docs/stories/ST-POL-001.md`
+- Work Order: `.ai/work-orders/ST-POL-001.md`
+- preflight: `PASS`
+- Independent Check: `PASS WITH CONDITIONS`
+- risk: `YELLOW — ordinary score 5/10`
+- Authorized Base: `PENDING`
+- implementation branch: `feature/st-pol-001`
 - implementation authorized: `NO`
-- open gates: `NONE`
-- last completed unit: `ST-PB-001 — Establish initial provider-binding registry`
-- Technical Director decision: `ACCEPT`
-- accepted candidate: `e3a0cce7d43e73fa4081a8a8500aea1b9aa0d3f8`
-- integration commit: `e8e3a44671f57b7d9b447bcbda3579c78924f716`
+- Product Input Gate: `NOT REQUIRED`
+- open gates: freeze Authorized Base, verify branch lineage, explicit Technical Director implementation authorization
 
 ## Phase 1 objective
 
@@ -26,7 +30,7 @@ Deliver and validate a functioning parental-control platform without depending o
 2. **Authentik foundation — COMPLETE: ST-ID-001 ACCEPT.**
 3. **First-family human identities — COMPLETE: ST-ID-002 ACCEPT.**
 4. **Initial provider-binding model — COMPLETE: ST-PB-001 ACCEPT.**
-5. **Baseline policies — NEXT.**
+5. **Baseline policies — ACTIVE: ST-POL-001.**
 6. Standard / Restricted / temporary overlays.
 7. Android enrollment.
 8. iPad Standard enrollment.
@@ -88,6 +92,28 @@ Accepted candidate: `e3a0cce7d43e73fa4081a8a8500aea1b9aa0d3f8`.
 Integration commit: `e8e3a44671f57b7d9b447bcbda3579c78924f716`.
 Evidence: `docs/evidence/ST-PB-001/`.
 
+## Active unit boundary — ST-POL-001
+
+ST-POL-001 establishes the provider-neutral baseline Policy Intent and a deterministic Cloudflare DNS compilation plan, but does not apply Gateway policies yet.
+
+Minimum baseline intent:
+
+- malware BLOCK;
+- phishing BLOCK;
+- command-and-control / botnet BLOCK;
+- adult content BLOCK;
+- gambling BLOCK;
+- SafeSearch FORCE;
+- YouTube Restricted Mode FORCE.
+
+Policy precedence remains owned by SETOK. Security / Threat Baseline cannot be weakened by Standard, Restricted, schedules, temporary overrides or Essential Services. Essential Services may survive ordinary parental modes but can never bypass threat blocking.
+
+Current Cloudflare documentation supports DNS Block, Safe Search and YouTube Restricted actions and security/content category selectors. ST-POL-001 will discover provider capabilities read-only and compile provider-neutral intent to a plan without encoding Cloudflare numeric IDs into domain intent.
+
+Because the Cloudflare account is shared and there are no enrolled Familia Ulate León device bindings yet, this Story MUST NOT create/update/enable/disable/reorder/delete Gateway rules. A future provider-mutation unit may apply the compiled baseline only after a safe family/device scope is proven.
+
+HTTP inspection/root-certificate deployment and real-device anti-bypass enforcement remain deferred to their later validation units.
+
 ## Phase 1 exit condition
 
 Phase 1 is complete only when the platform functions correctly without SETOK Family App and the project has validated enforcement, bypass resistance, identities, provider APIs, states/overlays and Standard vs Enhanced Protection.
@@ -98,7 +124,7 @@ Phase 2 is the SETOK Family application / mini app and consumer experience. It r
 
 ## Next governance action
 
-Select and preflight **Baseline policies**. No implementation is authorized until its Story/Work Order passes the normal AIDE gates.
+Freeze the ST-POL-001 Authorized Base and verify branch lineage. No implementation is authorized until explicit Technical Director authorization is recorded.
 
 ## Authority
 
