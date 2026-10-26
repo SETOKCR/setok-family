@@ -1,0 +1,8 @@
+{
+  "location": "%LOCALAPPDATA%\\SETOK\\setok-family\\backups\\authentik\\authentik-20261025T221441.dump",
+  "bytes": 3065821,
+  "sha256": "bf99e36a882ce675d1b4d721af392ff33f9b961cfdd8d260cbbc461568c0b6d2",
+  "tocEntries": 1819,
+  "tableDataEntries": 230,
+  "format": "pg_dump custom (-Fc)"
+}

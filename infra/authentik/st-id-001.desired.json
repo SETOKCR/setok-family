@@ -1,0 +1,87 @@
+{
+  "story": "ST-ID-001",
+  "notes": "Non-secret desired state for the SETOK Family pilot Authentik foundation. Secret values never appear here; only their names and where they live.",
+  "proxmox": {
+    "node": "pve-02",
+    "sshHost": "192.168.89.20",
+    "sshUser": "root",
+    "sshIdentity": "~/.ssh/id_ed25519_setok_proxmox",
+    "doNotModify": [
+      210
+    ],
+    "outOfScopeHosts": [
+      "pve-lab (192.168.89.16)"
+    ]
+  },
+  "vm": {
+    "vmid": 220,
+    "name": "setok-family-idp-01",
+    "cores": 2,
+    "memoryMiB": 2048,
+    "balloon": 0,
+    "diskGiB": 40,
+    "storage": "local-lvm",
+    "bridge": "vmbr0",
+    "image": "/var/lib/vz/template/iso/ubuntu-24.04-server-cloudimg-amd64.img",
+    "guest": "Ubuntu 24.04 LTS (cloud image)",
+    "ciuser": "setokadmin",
+    "ip": "192.168.89.22/24",
+    "gateway": "192.168.89.1",
+    "nameserver": "192.168.89.1",
+    "searchdomain": "setok.cr",
+    "onboot": true
+  },
+  "runtime": {
+    "packages": [
+      "docker.io",
+      "docker-compose-v2",
+      "qemu-guest-agent",
+      "ufw"
+    ],
+    "firewall": {
+      "default": "deny incoming",
+      "allowFrom": "192.168.89.0/24",
+      "ports": [
+        22,
+        9000,
+        9443
+      ]
+    }
+  },
+  "authentik": {
+    "deployDir": "/opt/authentik",
+    "composeFile": "infra/authentik/compose.yml",
+    "image": "ghcr.io/goauthentik/server:2026.8.5",
+    "postgresImage": "docker.io/library/postgres:16-alpine",
+    "baseUrl": "http://192.168.89.22:9000",
+    "persistence": {
+      "postgresVolume": "authentik_database",
+      "bindMounts": [
+        "./data",
+        "./certs",
+        "./custom-templates"
+      ]
+    },
+    "hardening": {
+      "dockerSocketMounted": false,
+      "outposts": "none created; the built-in embedded outpost object is an Authentik default",
+      "errorReporting": false
+    },
+    "secretsOnVm": {
+      "file": "/opt/authentik/.env (root:root 0600)",
+      "names": [
+        "PG_PASS",
+        "AUTHENTIK_SECRET_KEY",
+        "AUTHENTIK_BOOTSTRAP_PASSWORD_HASH"
+      ]
+    },
+    "secretsOnValhalla": {
+      "akadminPassword": "%LOCALAPPDATA%\\SETOK\\setok-family\\authentik-akadmin.xml (DPAPI CurrentUser)",
+      "sshKey": "~/.ssh/setok_family_idp_ed25519"
+    }
+  },
+  "backup": {
+    "method": "pg_dump -Fc streamed over SSH (no copy left on the VM)",
+    "destination": "%LOCALAPPDATA%\\SETOK\\setok-family\\backups\\authentik\\ on valhalla"
+  }
+}

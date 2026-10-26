@@ -1,0 +1,17 @@
+{
+  "observedAt": "2026-10-26T04:15:11.4427590Z",
+  "output": [
+    "## uptime",
+    " 04:15:08 up 16 min,  1 user,  load average: 0.34, 0.54, 0.53",
+    "## free -m",
+    "               total        used        free      shared  buff/cache   available",
+    "Mem:            1967        1197         282          38         719         770",
+    "Swap:              0           0           0",
+    "## docker stats",
+    "authentik-worker-1 cpu=0.15% mem=316.7MiB / 1.921GiB (16.10%)",
+    "authentik-server-1 cpu=0.60% mem=379.1MiB / 1.921GiB (19.26%)",
+    "authentik-postgresql-1 cpu=0.03% mem=74.39MiB / 1.921GiB (3.78%)",
+    "## disk",
+    "/dev/sda1        38G  5.0G   33G  14% /"
+  ]
+}
