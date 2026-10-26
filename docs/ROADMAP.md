@@ -14,10 +14,11 @@ Current AIDE execution state:
 - preflight: `PASS`
 - Independent Check: `PASS WITH CONDITIONS`
 - risk: `RED — Auto-RED(authentication), ordinary score 5/10`
+- Authorized Base: `e10279d1c31e3f02e5b7b4d4185d74f662a93877`
+- implementation branch: `feature/st-id-001`
+- branch lineage: `VERIFIED` — one governance-only Work Order commit above Authorized Base
 - implementation authorized: `NO`
-- Authorized Base: `PENDING FREEZE`
-- Active Execution Alignment: `NOT_APPLICABLE`
-- open gate: freeze Authorized Base and implementation branch, then explicit implementation authorization
+- open gate: explicit Technical Director implementation authorization
 
 ## Phase 1 objective
 
@@ -28,7 +29,7 @@ Deliver and validate a functioning parental-control platform without depending o
 The approved architecture defines the following implementation order:
 
 1. **Cloudflare foundation — COMPLETE: ST-CF-001 ACCEPT.**
-2. **Authentik foundation — ACTIVE: ST-ID-001, preflight + Independent Check passed; implementation not yet authorized.**
+2. **Authentik foundation — ACTIVE: ST-ID-001, READY, implementation not yet authorized.**
 3. Pilot-tenant identities.
 4. Initial provider-binding model.
 5. Baseline policies.
@@ -89,7 +90,7 @@ Phase 2 is the SETOK Family application / mini app and consumer experience. It r
 
 ## Next governance action
 
-Freeze the current canonical `main` state as the Authorized Base, create the implementation branch for `ST-ID-001`, verify lineage and then issue explicit Technical Director implementation authorization before any infrastructure mutation.
+Technical Director issues explicit implementation authorization for `ST-ID-001` before any Proxmox or Authentik mutation. Development Agent then reconstructs from Git, verifies `PROJECT_SCOPE_OK` and exact branch lineage, and executes only the authorized Work Order.
 
 ## Authority
 
