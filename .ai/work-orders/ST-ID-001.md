@@ -49,7 +49,10 @@ Establecer la foundation self-hosted de Authentik para el piloto de SETOK Family
 
 ## ACCEPTANCE CRITERIA
 
-- [ ] Authentik self-hosted del piloto está desplegado y operativo en infraestructura SETOK controlada.
+- [ ] Authentik self-hosted del piloto está desplegado y operativo en una **VM dedicada** sobre Proxmox `pve-02`.
+- [ ] La VM existente `210 (setok-live-01)` no se modifica.
+- [ ] Deployment base: Linux estable + Docker Engine + Docker Compose, siguiendo el método soportado por Authentik para esta escala.
+- [ ] Sizing inicial: **2 vCPU, 2 GiB RAM y 32–40 GiB disco**; cualquier ampliación debe justificarse por evidencia observada.
 - [ ] No existe exposición WAN directa no protegida; cualquier publicación externa posterior debe respetar la arquitectura.
 - [ ] Desired state no secreto registra versión/despliegue, hostname/base URL, persistencia y configuración reproducible.
 - [ ] PostgreSQL y volúmenes persistentes relevantes tienen backup/restore documentado y backup verificable.
@@ -68,6 +71,8 @@ Establecer la foundation self-hosted de Authentik para el piloto de SETOK Family
 - Authentik es Identity Plane, no Domain Core.
 - Authentik no modela familias ni autorización Guardian ↔ Child.
 - Piloto: self-hosted; Proxmox es válido como hosting del piloto pero no contrato de producto.
+- Deployment de esta Story: VM dedicada sobre `pve-02`; no LXC/PCT.
+- Docker Compose se ejecuta dentro de la VM Linux, no directamente sobre Proxmox ni dentro de la VM `setok-live-01`.
 - No introducir HA comercial en esta Story.
 - Configuración deseada versionada; secretos separados.
 - API-first/automation-first donde exista API soportada.
@@ -86,6 +91,7 @@ Establecer la foundation self-hosted de Authentik para el piloto de SETOK Family
 - Provider/device bindings.
 - MFA de consumidores.
 - HA comercial.
+- LXC/PCT para Authentik en esta Story.
 - SETOK Family App / mini app.
 
 ---
@@ -105,6 +111,8 @@ Establecer la foundation self-hosted de Authentik para el piloto de SETOK Family
 ## TEST IMPACT
 
 - Verificar despliegue limpio/repetible y health de componentes requeridos.
+- Verificar que la VM dedicada es el único target mutado y que `setok-live-01` permanece intacta.
+- Verificar sizing efectivo y registrar consumo inicial para decidir si 2 GiB son suficientes.
 - Verificar persistencia PostgreSQL y volúmenes requeridos.
 - Verificar backup generado y procedimiento de restore/remediation sin ejecutar destrucción innecesaria.
 - Verificar que secretos no estén versionados ni expuestos en evidencia.
@@ -121,7 +129,7 @@ Establecer la foundation self-hosted de Authentik para el piloto de SETOK Family
 - [ ] Project Scope Handshake = `PROJECT_SCOPE_OK` antes de mutación.
 - [ ] Independent Check de arquitectura/seguridad para la foundation = PASS antes de autorización.
 - [ ] Authorized Base congelado y branch de implementación verificada antes de mutación.
-- [ ] Target de infraestructura identificado sin afectar otros proyectos/servicios.
+- [ ] Target: VM dedicada en `pve-02`; VM 210 explícitamente fuera de alcance.
 - [ ] Secret handling plan verificado antes de bootstrap.
 - [ ] Network exposure path verificado; no direct WAN exposure.
 - [ ] Persistencia PostgreSQL/volúmenes verificada.
@@ -137,9 +145,19 @@ Establecer la foundation self-hosted de Authentik para el piloto de SETOK Family
 
 Patrón preferido:
 
-`Git desired state -> PowerShell/host automation -> supported Authentik deployment/API -> observed-state verification -> evidence`
+`Git desired state -> PowerShell/host automation -> VM Linux -> Docker Compose -> Authentik -> observed-state verification -> evidence`
 
-Para el piloto puede usarse Docker Compose en infraestructura Proxmox/Linux si el Independent Check confirma que el host, persistencia, networking y secret handling son adecuados. No se introduce un framework genérico de automatización en esta Story.
+Target de infraestructura aprobado por Product Owner para el piloto:
+
+- Proxmox node: `pve-02`
+- new dedicated VM: name target `setok-family-idp-01`
+- initial sizing: 2 vCPU / 2 GiB RAM / 32–40 GiB disk
+- guest: stable Linux
+- runtime: Docker Engine + Docker Compose
+- existing VM `210 (setok-live-01)`: DO NOT MODIFY
+- direct WAN exposure: forbidden
+
+No se introduce un framework genérico de automatización en esta Story.
 
 Las credenciales bootstrap no se entregan al agente por Git ni por documentación persistente. Si se necesita intervención humana, el Product Owner realiza sólo el paso mínimo y el agente continúa con validación automatizada.
 
@@ -151,6 +169,7 @@ Las credenciales bootstrap no se entregan al agente por Git ni por documentació
 - Desired state no secreto de la foundation.
 - Scripts/configuración específica necesaria para bootstrap/validation.
 - Evidencia de health, persistencia, backup/remediation y secret separation.
+- Evidencia de que `setok-live-01` no fue alterada.
 
 ---
 
@@ -159,6 +178,7 @@ Las credenciales bootstrap no se entregan al agente por Git ni por documentació
 - `PROJECT_SCOPE_MISMATCH` o `PROJECT_SCOPE_UNVERIFIED`.
 - Independent Check no aprobado.
 - Target host/namespace puede afectar otro proyecto o servicio y no puede aislarse.
+- La ejecución requiere modificar `210 (setok-live-01)`.
 - La implementación requiere exposición WAN directa no protegida.
 - Requiere persistir secretos en Git o evidencia.
 - Requiere crear usuarios reales, federation, OIDC, Access o autorización familiar para completar la foundation.
