@@ -5,9 +5,10 @@
 - **Project:** SETOK Family
 - **Repository:** SETOKCR/setok-family
 - **Story / Work Unit:** ST-ID-001
-- **Authorized Base:** N/A — to be frozen after readiness commit
-- **Estado de ejecución:** READY_FOR_BASE
-- **Implementation Authorization:** NO
+- **Authorized Base:** `e10279d1c31e3f02e5b7b4d4185d74f662a93877`
+- **Implementation Branch:** `feature/st-id-001`
+- **Estado de ejecución:** READY
+- **Implementation Authorization:** NO — pending explicit Technical Director authorization
 - **Persistencia:** PERSISTED
 - **Motivo de persistencia:** RED / authentication foundation / multi-session / auditability
 
@@ -28,8 +29,9 @@ Resultado requerido: `PROJECT_SCOPE_OK`.
 - **Repository:** SETOKCR/setok-family
 - **Role:** Development Agent
 - **Work Unit:** ST-ID-001
-- **Work Order:** READY_FOR_BASE — Independent Check passed; Authorized Base not yet frozen
-- **Authorized Base:** N/A — not authorized yet
+- **Work Order:** READY — preflight and Independent Check passed; implementation not yet authorized
+- **Authorized Base:** `e10279d1c31e3f02e5b7b4d4185d74f662a93877`
+- **Implementation Branch:** `feature/st-id-001`
 - **Project Binding:** REQUIRED
 
 ---
@@ -135,7 +137,7 @@ Establecer la foundation self-hosted de Authentik para el piloto de SETOK Family
 
 - [ ] Project Scope Handshake = `PROJECT_SCOPE_OK` antes de mutación.
 - [x] Independent Check de arquitectura/seguridad = PASS WITH CONDITIONS.
-- [ ] Authorized Base congelado y branch de implementación verificada antes de mutación.
+- [x] Authorized Base congelado en `e10279d1c31e3f02e5b7b4d4185d74f662a93877`; implementation branch `feature/st-id-001` creada desde ese SHA.
 - [ ] Target: VM dedicada en `pve-02`; VM 210 explícitamente fuera de alcance.
 - [ ] Secret handling plan verificado antes de bootstrap.
 - [ ] Docker socket absent from worker for this scope.
@@ -205,7 +207,7 @@ Las credenciales bootstrap no se entregan al agente por Git ni por documentació
 
 - Project Scope outcome: pending
 - Resultado: pending
-- Gates ejecutados: Independent Check PASS WITH CONDITIONS; remaining execution gates pending
+- Gates ejecutados: Independent Check PASS WITH CONDITIONS; Authorized Base/branch frozen; execution gates pending
 - Evidencia / referencias: `docs/development/ST-ID-001_INDEPENDENT_CHECK.md`
 - Independent Check: PASS WITH CONDITIONS
 - Reuse Candidates detectados: N/A
