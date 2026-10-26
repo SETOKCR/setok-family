@@ -1,5 +1,5 @@
 schema_version: 1
-written_at_utc: 2026-10-26T03:35:00Z
+written_at_utc: 2026-10-26T04:55:00Z
 
 framework:
   repository: SETOKCR/setok-aide
@@ -15,12 +15,12 @@ scope:
 activity:
   lifecycle: active
   active_unit: ST-ID-001
-  phase: implementation
+  phase: integration
   risk: RED-AUTO-RED-authentication-5
-  implementation_authorized: true
+  implementation_authorized: false
   authorized_base: e10279d1c31e3f02e5b7b4d4185d74f662a93877
   implementation_branch: feature/st-id-001
-  candidate_commit: null
+  candidate_commit: 6bcd99024ef86f7819a957c2e17e2b9a442178f7
 
 open_gates: []
 
@@ -37,12 +37,12 @@ canonical_refs:
 
 last_terminal:
   outcome: ACCEPT
-  unit: ST-CF-001
-  candidate_commit: 4767b52966bf444469eeda45912fac43fc7f52c3
-  integration_commit: b704046c3d07154d705ef0c7f5218866ec126de6
-  note: ST-CF-001 integrated to main and closed. One SETOK-FAMILY-MANAGED profile is active; Default/org unchanged; desired vs observed MATCH; re-apply idempotent; rollback isolated. Mobile selector remains a known pilot constraint for later provider-binding/identity work.
+  unit: ST-ID-001
+  candidate_commit: 6bcd99024ef86f7819a957c2e17e2b9a442178f7
+  integration_commit: null
+  note: ST-ID-001 candidate accepted after evidence-only FIX. Authentik foundation is healthy on VM 220, Docker socket absent, secrets separated, PostgreSQL backup verified off-VM, VM 210 unchanged by Story. Controlled coexistence validation with VM 210 running remains an operational follow-up accepted by PO and is not a blocker to candidate acceptance.
 
 next_action:
-  kind: implementation
+  kind: integration
   unit: ST-ID-001
-  note: Development Agent reconstructs from Git, verifies PROJECT_SCOPE_OK and Authorized Base lineage, then executes only the authorized Work Order on feature/st-id-001. Stop and return to Technical Director on any Stop Condition.
+  note: Integrate accepted candidate 6bcd99024ef86f7819a957c2e17e2b9a442178f7 to main, then formally close ST-ID-001 and update ROADMAP. No further implementation mutation is authorized.
