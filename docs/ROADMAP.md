@@ -8,13 +8,17 @@ This roadmap orders work; implementation authority is carried by the active Stor
 
 Current AIDE execution state:
 
-- active unit: `NONE`
+- active unit: `ST-PB-001 — Establish initial provider-binding registry`
+- Story: `docs/stories/ST-PB-001.md`
+- Work Order: `.ai/work-orders/ST-PB-001.md`
+- preflight: `PASS`
+- Independent Check: `PASS WITH CONDITIONS`
+- risk: `YELLOW — ordinary score 4/10`
+- Authorized Base: `PENDING`
+- implementation branch: `feature/st-pb-001`
 - implementation authorized: `NO`
-- open gates: `NONE`
-- last completed unit: `ST-ID-002 — first-family human identities`
-- Technical Director decision: `ACCEPT`
-- accepted candidate: `9111781ac67a1db4194102368be311849d59d174`
-- integration commit: `c506ac29b1d1463c5003adc98a41eaf8b5c28d05`
+- Product Input Gate: `NOT REQUIRED`
+- open gates: freeze Authorized Base, verify branch lineage, explicit Technical Director implementation authorization
 
 ## Phase 1 objective
 
@@ -25,7 +29,7 @@ Deliver and validate a functioning parental-control platform without depending o
 1. **Cloudflare foundation — COMPLETE: ST-CF-001 ACCEPT.**
 2. **Authentik foundation — COMPLETE: ST-ID-001 ACCEPT.**
 3. **First-family human identities — COMPLETE: ST-ID-002 ACCEPT.**
-4. **Initial provider-binding model — NEXT.**
+4. **Initial provider-binding model — ACTIVE: ST-PB-001.**
 5. Baseline policies.
 6. Standard / Restricted / temporary overlays.
 7. Android enrollment.
@@ -52,7 +56,7 @@ Deliver and validate a functioning parental-control platform without depending o
 
 Established an isolated custom Cloudflare device profile `SETOK-FAMILY-MANAGED` in the shared SETOK Zero Trust organization without modifying the Default profile or organization.
 
-Known deferred constraint: the current mobile selector covers Android/iOS devices in the shared Zero Trust org. Before another mobile population is introduced there, later provider-binding / identity work must narrow that selector appropriately.
+Known deferred constraint: the current mobile selector covers Android/iOS devices in the shared Zero Trust org. Before another project enrolls mobile devices here, it needs a narrower selector. ST-PB-001 models the integration/resource boundary but does not mutate or narrow this selector.
 
 ### ST-ID-001 — Authentik foundation
 
@@ -83,7 +87,26 @@ Accepted candidate: `9111781ac67a1db4194102368be311849d59d174`.
 Integration commit: `c506ac29b1d1463c5003adc98a41eaf8b5c28d05`.
 Evidence: `docs/evidence/ST-ID-002/`.
 
-Operational custody follow-up: Product Owner confirmed both initial passwords are stored in Bitwarden. Temporary DPAPI credential copies can now be removed after final local confirmation.
+Operational custody follow-up: Product Owner confirmed both initial passwords are stored in Bitwarden. Temporary DPAPI credential copies may be removed after local confirmation; the non-secret identities input may remain for operational reconciliation while useful.
+
+## Active unit boundary — ST-PB-001
+
+ST-PB-001 establishes the first provider-neutral binding registry for Familia Ulate León and reconciles it read-only against the accepted Authentik and Cloudflare foundations.
+
+The Story establishes stable internal SETOK references and external bindings without creating a Phase 2 runtime database. It must preserve these boundaries:
+
+- every binding is tenant-scoped;
+- SETOK internal IDs are independent from provider IDs;
+- two opaque adult human subjects bind to the existing Authentik users;
+- Cloudflare shared account/org/profile are integration/resource bindings, not family/human/device identities;
+- the shared Cloudflare account is not claimed as exclusively owned by SETOK Family;
+- desired state and observed provider state remain separate;
+- no real PII/secrets in Git/evidence;
+- no device subject or device binding is created before enrollment;
+- no provider mutation is allowed;
+- no Owner/Parent/Viewer/Guardian/Child authorization is encoded in providers/bindings.
+
+Independent Check mandatory conditions additionally require explicit lifecycle/replacement semantics and cardinality that supports future multi-provider bindings without duplicate active bindings.
 
 ## Phase 1 exit condition
 
@@ -95,7 +118,7 @@ Phase 2 is the SETOK Family application / mini app and consumer experience. It r
 
 ## Next governance action
 
-Select and preflight the **Initial provider-binding model**. No implementation is authorized until its Story/Work Order passes the normal AIDE gates.
+Freeze the ST-PB-001 Authorized Base and verify branch lineage. No implementation is authorized until explicit Technical Director authorization is recorded.
 
 ## Authority
 
