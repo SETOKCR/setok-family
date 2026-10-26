@@ -1,5 +1,5 @@
 schema_version: 1
-written_at_utc: 2026-10-26T15:30:00Z
+written_at_utc: 2026-10-26T15:45:00Z
 
 framework:
   repository: SETOKCR/setok-aide
@@ -10,16 +10,16 @@ scope:
   kind: project
   repository: SETOKCR/setok-family
   default_branch: main
-  observed_head: e585bb6018658da42602651236294b535f1b7b32
+  observed_head: 1e12a11558dddd894106501605a7526638f24b05
 
 activity:
   lifecycle: active
-  active_unit: ST-POL-001
-  phase: implementation
-  risk: YELLOW-5
-  implementation_authorized: true
-  authorized_base: df0a9dd9968c44428ab69e9e19c91fc2f164809e
-  implementation_branch: feature/st-pol-001
+  active_unit: null
+  phase: selection
+  risk: null
+  implementation_authorized: false
+  authorized_base: null
+  implementation_branch: null
   candidate_commit: null
 
 open_gates: []
@@ -34,15 +34,16 @@ canonical_refs:
   - docs/stories/ST-POL-001.md
   - .ai/work-orders/ST-POL-001.md
   - docs/development/ST-POL-001_INDEPENDENT_CHECK.md
+  - docs/evidence/ST-POL-001/README.md
 
 last_terminal:
   outcome: ACCEPT
-  unit: ST-PB-001
-  candidate_commit: e3a0cce7d43e73fa4081a8a8500aea1b9aa0d3f8
-  integration_commit: e8e3a44671f57b7d9b447bcbda3579c78924f716
-  note: ST-PB-001 integrated to main and formally closed. Provider-neutral tenant-scoped binding registry established for Familia Ulate León with two opaque adult subject bindings to Authentik, shared Cloudflare integration/resource bindings, lifecycle/cardinality rules, zero device subjects/bindings, read-only provider reconciliation, unchanged provider fingerprints, and no PII/secrets in versioned state or evidence.
+  unit: ST-POL-001
+  candidate_commit: fb3ef4f429c797e1f658d65e2dc80ea305df64d6
+  integration_commit: 019dc396cd4f6f0fc3f77b5caa9073d7385c41f7
+  note: ST-POL-001 integrated to main and formally closed. Seven mandatory baseline controls are defined in provider-neutral desired state and deterministically compiled against read-only Cloudflare capability discovery. No Gateway/provider mutation occurred and nothing is APPLIED. Future apply remains blocked until device enrollment yields a safe selector, provider mutation is separately authorized with rollback/blast-radius controls, and premium-class Gambling entitlement is verified.
 
 next_action:
-  kind: implementation
-  unit: ST-POL-001
-  note: Implementation explicitly authorized. Development Agent must reconstruct from Git, verify PROJECT_SCOPE_OK and exact lineage from Authorized Base df0a9dd9968c44428ab69e9e19c91fc2f164809e, then implement the provider-neutral baseline Policy Intent contract and deterministic Cloudflare DNS compilation/read-only discovery. No Cloudflare Gateway mutation is authorized; no rule may be described as APPLIED; no device subject or binding may be invented. Stop on any Work Order Stop Condition.
+  kind: selection
+  unit: null
+  note: ROADMAP now selects the Standard / Restricted / temporary overlay policy contract next. Keep this next unit provider-neutral and non-mutative against Cloudflare. Actual scoped enforcement apply is a separate later gate after Android and iPad Standard enrollment/device bindings establish safe tenant/device scope.
