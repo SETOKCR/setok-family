@@ -14,10 +14,12 @@ Current AIDE execution state:
 - preflight: `PASS`
 - Independent Check: `PASS WITH CONDITIONS`
 - risk: `RED — Auto-RED(authentication), ordinary score 6/10`
+- Authorized Base: `1d46704d15ef2721bc1cd0ec67673b8de006eb31`
+- implementation branch: `feature/st-id-002`
+- branch lineage: `VERIFIED — branch created from exact Authorized Base; governance-only Work Order binding commit above base`
 - implementation authorized: `NO`
-- Authorized Base: `NONE — freeze pending after governance sync`
 - Product Input Gate: `OPEN — exact 1–3 human identities must be approved by PO before Apply`
-- open gates: Authorized Base/branch freeze; Product Input Gate before Apply; explicit Technical Director implementation authorization
+- open gates: Product Input Gate; explicit Technical Director implementation authorization
 
 ## Phase 1 objective
 
@@ -29,7 +31,7 @@ The approved architecture defines the following implementation order:
 
 1. **Cloudflare foundation — COMPLETE: ST-CF-001 ACCEPT.**
 2. **Authentik foundation — COMPLETE: ST-ID-001 ACCEPT.**
-3. **Pilot-tenant identities — ACTIVE: ST-ID-002, preflight PASS, Independent Check PASS WITH CONDITIONS, implementation not authorized.**
+3. **Pilot-tenant identities — ACTIVE: ST-ID-002, READY, implementation not authorized.**
 4. Initial provider-binding model.
 5. Baseline policies.
 6. Standard / Restricted / temporary overlays.
@@ -119,7 +121,7 @@ Phase 2 is the SETOK Family application / mini app and consumer experience. It r
 
 ## Next governance action
 
-Freeze the Authorized Base and implementation branch for ST-ID-002. Implementation remains unauthorized. Before Apply, close the Product Input Gate by approving the exact pilot human identity set, then issue explicit Technical Director implementation authorization.
+Close the ST-ID-002 Product Input Gate by approving the exact pilot human identity set. After that, Technical Director may issue explicit implementation authorization. No Authentik mutation is currently authorized.
 
 ## Authority
 
