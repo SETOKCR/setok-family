@@ -5,7 +5,7 @@
 - **Project:** SETOK Family
 - **Repository:** SETOKCR/setok-family
 - **Story / Work Unit:** ST-ID-002
-- **Estado de ejecución:** PREFLIGHT
+- **Estado de ejecución:** READY_FOR_BASE
 - **Implementation Authorization:** NO
 - **Persistencia:** PERSISTED
 - **Motivo de persistencia:** RED / authentication / real human identity data / multi-session auditability
@@ -17,7 +17,7 @@
 - **Repository:** SETOKCR/setok-family
 - **Role:** Development Agent
 - **Work Unit:** ST-ID-002
-- **Work Order:** PREFLIGHT
+- **Work Order:** READY_FOR_BASE — preflight + Independent Check complete; Product Input Gate remains open for Apply
 - **Authorized Base:** NONE
 - **Implementation Branch:** NONE
 - **Project Binding:** REQUIRED
@@ -29,11 +29,14 @@ Crear y validar las primeras identidades humanas reales del tenant piloto en Aut
 ## PRODUCT REQUIREMENT
 
 - Story: `docs/stories/ST-ID-002.md`.
+- Independent Check: `docs/development/ST-ID-002_INDEPENDENT_CHECK.md`.
 - Arquitectura: `docs/ARCHITECTURE.md` secciones 2, 6.3–6.5 y 7.
 - Authentik autentica personas; SETOK Family autoriza acciones dentro de familias.
 - Un Child puede existir sin identidad de login.
 
 ## PRODUCT INPUT GATE
+
+**Status: OPEN — blocks Apply, not readiness/base freeze.**
 
 Antes de cualquier `APPLY`, el Product Owner debe aprobar el conjunto exacto de identidades humanas a provisionar (1–3 cuentas en esta Story). Los datos concretos se suministran fuera de Git.
 
@@ -43,7 +46,9 @@ Para cada identidad se requiere únicamente:
 - login/email identifier;
 - login interactivo sí/no.
 
-No se solicita al Product Owner una contraseña para versionar ni transportar por chat/Git. Las credenciales iniciales se generan y custodian fuera de Git.
+No se solicita al Product Owner una contraseña para versionar ni transportar por Git. Las credenciales iniciales se generan y custodian fuera de Git.
+
+No se crea identidad de login para un menor por inferencia; requiere selección explícita del Product Owner.
 
 ## ACCEPTANCE CRITERIA
 
@@ -62,6 +67,7 @@ No se solicita al Product Owner una contraseña para versionar ni transportar po
 - [ ] Foundation ST-ID-001 continúa healthy.
 - [ ] Provisioning/verify idempotente o fail-safe ante objetos existentes.
 - [ ] Rollback/desactivación limitada a identidades de esta Story documentada.
+- [ ] Credencial temporal de provisioning revocada/eliminada antes del cierre.
 
 ## ARCHITECTURE CONSTRAINTS
 
@@ -100,45 +106,70 @@ No se solicita al Product Owner una contraseña para versionar ni transportar po
 
 Reason: real human authentication identities, credentials and recovery state are introduced.
 
-## REQUIRED INDEPENDENT CHECK
+## INDEPENDENT CHECK
 
-Must PASS before Authorized Base / implementation authorization.
+**PASS WITH CONDITIONS** — `docs/development/ST-ID-002_INDEPENDENT_CHECK.md`.
 
-Check:
+Mandatory conditions:
 
-1. identity/domain separation;
-2. least privilege;
-3. credential custody;
-4. recovery path;
-5. privacy/minimal evidence;
-6. provisioning API/method and idempotency;
-7. no scope expansion into federation/OIDC/Access/domain roles;
-8. rollback/deactivation.
+1. exact identity set approved by PO before Apply;
+2. no child login inferred by default;
+3. no family/domain role modeling in Authentik;
+4. no superuser/admin privilege for pilot humans;
+5. temporary least-privilege provisioning credential, revoked after use;
+6. secrets and full PII absent from Git/evidence;
+7. at least one interactive login verified;
+8. recovery initiation verified without secret persistence;
+9. idempotent collision-safe provisioning;
+10. ST-ID-001 health regression PASS;
+11. post-apply scope scan clean;
+12. rollback/deactivation documented.
 
 ## EXECUTION MODEL
 
 Preferred:
 
-`Git non-secret desired state -> story-specific automation -> Authentik supported API/controlled admin bootstrap -> observed-state verification -> non-secret evidence`
+`Git non-secret desired shape -> story-specific automation -> controlled privileged bootstrap -> temporary least-privilege Authentik API credential -> supported API provisioning -> observed-state verification -> credential revocation -> non-secret evidence`
 
-If automation requires an Authentik API credential, do not use a long-lived `akadmin` token as the steady-state design. Prefer a dedicated, least-privilege and time-bounded automation identity/token, or a one-time privileged bootstrap followed by revocation, subject to Independent Check.
+A long-lived `akadmin` API token is prohibited as steady-state automation.
+
+A temporary dedicated service account/token is preferred when practical. If minimum required permissions cannot be achieved without broad permanent administrative privilege, STOP and return to Technical Director.
+
+This Story does not establish a generic reusable Authentik automation framework.
+
+## TEST IMPACT
+
+- capture pre-existing Authentik human/service/internal user inventory without secrets;
+- collision check before create;
+- create only approved human users;
+- verify no superuser/admin grants;
+- verify interactive login for at least one approved identity;
+- verify recovery initiation path without storing recovery token/URL;
+- re-run provisioning to prove idempotency/no duplicates;
+- verify temporary provisioning identity/token revoked;
+- verify no OIDC/federation/Access/domain-role/device-binding expansion;
+- verify ST-ID-001 foundation health unchanged;
+- secret and PII scan of Git/evidence.
 
 ## QUALITY GATES
 
 - [ ] Product Input Gate closed before Apply.
 - [ ] Project Scope = PROJECT_SCOPE_OK.
-- [ ] Independent Check PASS.
+- [x] Independent Check = PASS WITH CONDITIONS.
 - [ ] Authorized Base frozen.
 - [ ] Branch lineage VERIFIED.
 - [ ] Pre-existing user inventory captured non-secretly.
 - [ ] Secret/PII handling plan verified.
+- [ ] Temporary provisioning credential least-privilege and revocable.
 - [ ] No superuser/domain-role grants.
 - [ ] Login verification PASS.
 - [ ] Recovery verification PASS.
+- [ ] Provisioning credential revoked.
 - [ ] Foundation health regression PASS.
 - [ ] Scope scan PASS.
 - [ ] Secret/privacy scan PASS.
 - [ ] Rollback/remediation documented.
+- [ ] Evidence sufficient for Technical Director review.
 
 ## STOP CONDITIONS
 
@@ -147,11 +178,17 @@ If automation requires an Authentik API credential, do not use a long-lived `aka
 - Human account needs superuser/admin privilege.
 - Family/domain authorization must be represented in Authentik.
 - Secrets must enter Git/evidence.
+- Full personal email/name must be persisted in Git without explicit need/approval.
 - OIDC/federation/Access/device bindings become necessary.
 - Material authentication-flow changes are required beyond approved identity/recovery scope.
+- Least-privilege temporary provisioning cannot be achieved without creating broad permanent privilege.
 - ST-ID-001 foundation becomes unhealthy.
 - Unexpected material Auto-RED surface.
 
 ## Evidencia de cierre
 
-Pending preflight and Independent Check.
+- Preflight: PASS
+- Independent Check: PASS WITH CONDITIONS
+- Product Input Gate: OPEN until pre-Apply
+- Authorized Base: pending
+- Implementation Authorization: NO
