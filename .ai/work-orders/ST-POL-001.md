@@ -5,9 +5,9 @@
 - **Project:** SETOK Family
 - **Repository:** SETOKCR/setok-family
 - **Story / Work Unit:** ST-POL-001
-- **Authorized Base:** PENDING
+- **Authorized Base:** `df0a9dd9968c44428ab69e9e19c91fc2f164809e`
 - **Implementation Branch:** `feature/st-pol-001`
-- **Execution state:** READY_FOR_BASE
+- **Execution state:** READY
 - **Implementation Authorization:** NO
 - **Persistence:** PERSISTED
 
@@ -110,8 +110,8 @@ NOT REQUIRED. The frozen architecture already defines the minimum baseline and p
 - [x] Risk classified YELLOW 5/10.
 - [x] Independent Check PASS WITH CONDITIONS.
 - [x] Product Input Gate NOT REQUIRED.
-- [ ] Authorized Base frozen.
-- [ ] Branch lineage verified.
+- [x] Authorized Base frozen at `df0a9dd9968c44428ab69e9e19c91fc2f164809e`.
+- [x] Branch lineage verified by construction from exact Authorized Base.
 - [ ] Implementation explicitly authorized.
 - [ ] Baseline contract/schema PASS.
 - [ ] Precedence/invariant negative tests PASS.
@@ -123,4 +123,9 @@ NOT REQUIRED. The frozen architecture already defines the minimum baseline and p
 
 ## Closure evidence
 
-PENDING.
+- Preflight: PASS
+- Independent Check: PASS WITH CONDITIONS
+- Product Input Gate: NOT REQUIRED
+- Authorized Base: `df0a9dd9968c44428ab69e9e19c91fc2f164809e`
+- Implementation Branch: `feature/st-pol-001`
+- Implementation Authorization: NO
