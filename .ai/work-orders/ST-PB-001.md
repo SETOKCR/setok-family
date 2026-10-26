@@ -5,9 +5,9 @@
 - **Project:** SETOK Family
 - **Repository:** SETOKCR/setok-family
 - **Story / Work Unit:** ST-PB-001
-- **Authorized Base:** PENDING
+- **Authorized Base:** `077db01aeea2e86c616e71c0731e844334c10219`
 - **Implementation Branch:** `feature/st-pb-001`
-- **Execution state:** READY_FOR_BASE
+- **Execution state:** READY
 - **Implementation Authorization:** NO
 - **Persistence:** PERSISTED
 
@@ -107,8 +107,8 @@ All mandatory conditions are incorporated into this Work Order.
 - [x] Risk classified YELLOW 4/10.
 - [x] Independent Check PASS WITH CONDITIONS.
 - [x] Independent Check conditions incorporated.
-- [ ] Authorized Base frozen.
-- [ ] Branch lineage verified.
+- [x] Authorized Base frozen at `077db01aeea2e86c616e71c0731e844334c10219`.
+- [x] Branch lineage verified by construction from exact Authorized Base.
 - [ ] Implementation explicitly authorized.
 - [ ] Schema/tenant/cardinality checks PASS.
 - [ ] Authentik reconciliation PASS.
@@ -119,4 +119,9 @@ All mandatory conditions are incorporated into this Work Order.
 
 ## Closure evidence
 
-PENDING.
+- Preflight: PASS
+- Independent Check: PASS WITH CONDITIONS
+- Product Input Gate: NOT REQUIRED
+- Authorized Base: `077db01aeea2e86c616e71c0731e844334c10219`
+- Implementation Branch: `feature/st-pb-001`
+- Implementation Authorization: NO
