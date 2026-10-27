@@ -1,0 +1,20 @@
+{
+  "checks": {
+    "mailboxStoredLocally": true,
+    "writeTokenStoredLocally": true,
+    "mailboxIsSingleExactAddress": true,
+    "writeTokenActive": true,
+    "writeTokenExpiresOn": "2026-11-03T05:59:59Z",
+    "writeTokenDistinctFromStCf001": true,
+    "noWarpApp": true,
+    "noManagedPolicyYet": true,
+    "oneTimePinIdpPresent": true,
+    "serviceTokens": 0
+  },
+  "delta": [
+    "+1 Access policy 'SETOK-FAMILY-DEVICE-ENROLLMENT allow family-enrollment-01' decision=allow include=[email: <family-enrollment-01>]",
+    "+1 Access application 'SETOK-FAMILY-DEVICE-ENROLLMENT' type=warp allowed_idps=[One-time PIN] policies=[that policy]"
+  ],
+  "forbidden": "Gateway, device profiles, IdPs, service tokens, posture rules, devices, registrations, unrelated Access resources",
+  "rollback": "DELETE /access/apps/{observed app id}; DELETE /access/policies/{observed policy id}; re-snapshot and compare with pre"
+}

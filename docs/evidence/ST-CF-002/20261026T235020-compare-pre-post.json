@@ -1,0 +1,117 @@
+{
+  "surfaces": [
+    {
+      "surface": "gatewayRules",
+      "unchanged": true,
+      "countBefore": 2,
+      "countAfter": 2
+    },
+    {
+      "surface": "gatewayLists",
+      "unchanged": true,
+      "countBefore": 0,
+      "countAfter": 0
+    },
+    {
+      "surface": "gatewayConfig",
+      "unchanged": true,
+      "countBefore": 1,
+      "countAfter": 1
+    },
+    {
+      "surface": "deviceSettings",
+      "unchanged": true,
+      "countBefore": 1,
+      "countAfter": 1
+    },
+    {
+      "surface": "defaultProfile",
+      "unchanged": true,
+      "countBefore": 1,
+      "countAfter": 1
+    },
+    {
+      "surface": "managedProfile",
+      "unchanged": true,
+      "countBefore": 1,
+      "countAfter": 1
+    },
+    {
+      "surface": "allDeviceProfiles",
+      "unchanged": true,
+      "countBefore": 2,
+      "countAfter": 2
+    },
+    {
+      "surface": "accessOrganization",
+      "unchanged": true,
+      "countBefore": 1,
+      "countAfter": 1
+    },
+    {
+      "surface": "identityProviders",
+      "unchanged": true,
+      "countBefore": 1,
+      "countAfter": 1
+    },
+    {
+      "surface": "accessGroups",
+      "unchanged": true,
+      "countBefore": 0,
+      "countAfter": 0
+    },
+    {
+      "surface": "serviceTokens",
+      "unchanged": true,
+      "countBefore": 0,
+      "countAfter": 0
+    },
+    {
+      "surface": "postureRules",
+      "unchanged": true,
+      "countBefore": 2,
+      "countAfter": 2
+    },
+    {
+      "surface": "physicalDevices",
+      "unchanged": true,
+      "countBefore": 0,
+      "countAfter": 0
+    },
+    {
+      "surface": "registrations",
+      "unchanged": true,
+      "countBefore": 0,
+      "countAfter": 0
+    },
+    {
+      "surface": "unrelatedAccessApps",
+      "unchanged": true,
+      "countBefore": 0,
+      "countAfter": 0
+    },
+    {
+      "surface": "unrelatedAccessPolicies",
+      "unchanged": true,
+      "countBefore": 0,
+      "countAfter": 0
+    }
+  ],
+  "newAccessApps": [
+    {
+      "id": "51a1308a-c003-465d-8bf6-b34ee6abf659",
+      "name": "Warp Login App",
+      "type": "warp"
+    }
+  ],
+  "newAccessPolicies": [
+    {
+      "id": "c991f7f4-7745-4f7f-afc6-3b868cdfca7e",
+      "name": "SETOK-FAMILY-DEVICE-ENROLLMENT allow family-enrollment-01",
+      "decision": "allow",
+      "includeCount": 1
+    }
+  ],
+  "removedAccessObjects": [],
+  "deltaAsExpected": true
+}
