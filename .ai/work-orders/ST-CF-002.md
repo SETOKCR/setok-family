@@ -5,9 +5,9 @@
 - **Project:** SETOK Family
 - **Repository:** SETOKCR/setok-family
 - **Story / Work Unit:** ST-CF-002
-- **Authorized Base:** `PENDING`
-- **Implementation Branch:** `PENDING`
-- **Execution state:** PREFLIGHT_COMPLETE
+- **Authorized Base:** `0e32888cb8d78c488cbe4a231e7767a38ed9853b`
+- **Implementation Branch:** `feature/st-cf-002`
+- **Execution state:** READY
 - **Implementation Authorization:** NO
 - **Persistence:** PERSISTED
 
@@ -198,9 +198,9 @@ Rollback is not automatic cleanup after success.
 - [x] Risk classified RED.
 - [x] Independent Check PASS WITH CONDITIONS.
 - [x] Product Input Gate CLOSED.
-- [ ] Authorized Base frozen.
-- [ ] Implementation Branch created from exact Authorized Base.
-- [ ] Branch lineage verified.
+- [x] Authorized Base frozen at `0e32888cb8d78c488cbe4a231e7767a38ed9853b`.
+- [x] Implementation Branch created from exact Authorized Base.
+- [x] Branch lineage verified by construction.
 - [ ] Explicit Technical Director implementation authorization.
 - [ ] Required implementation gates PASS or controlled STOP.
 - [ ] Technical Director terminal review complete.
@@ -212,5 +212,7 @@ Rollback is not automatic cleanup after success.
 - Product Input Gate: CLOSED
 - Enrollment identity alias: `family-enrollment-01`
 - Real mailbox: operational input only, outside Git
-- Authorized Base: PENDING
+- Authorized Base: `0e32888cb8d78c488cbe4a231e7767a38ed9853b`
+- Implementation Branch: `feature/st-cf-002`
+- Branch lineage: VERIFIED by construction from exact Authorized Base
 - Implementation Authorization: NO
