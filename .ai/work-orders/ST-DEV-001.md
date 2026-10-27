@@ -8,8 +8,9 @@
 - **Execution attempt:** `r2`
 - **Authorized Base:** `f09d114d29ae7fffc1d8516cd287c83188d4ae00`
 - **Implementation Branch:** `feature/st-dev-001-r2`
-- **Execution state:** AUTHORIZED
+- **Execution state:** CLOSED
 - **Implementation Authorization:** YES — explicit Technical Director authorization by Product Owner GO
+- **Terminal Decision:** ACCEPT
 - **Persistence:** PERSISTED
 
 ## AIDE execution context
@@ -36,7 +37,7 @@ This unit mutates external authentication/enrollment state on a physical endpoin
 
 **PASS WITH CONDITIONS** — `docs/development/ST-DEV-001_INDEPENDENT_CHECK.md`.
 
-The original Independent Check remains applicable. No architecture or product-semantic change occurred during dependency remediation.
+The original Independent Check remained applicable throughout r2.
 
 ## Resume history
 
@@ -51,149 +52,109 @@ The original Independent Check remains applicable. No architecture or product-se
 - device bindings created: 0;
 - blocker: Cloudflare device-enrollment permissions did not exist.
 
-The r1 branch is retained as immutable historical evidence and MUST NOT be rebased or reused for r2.
+The r1 branch is retained as immutable historical evidence and MUST NOT be rebased or reused.
 
 ### Dependency resolution — ST-CF-002
 
-ST-CF-002 was accepted and integrated before r2.
-
-Resulting provider capability:
-
-- exactly one SETOK-managed Cloudflare Access application of type `warp` exists (provider-fixed name `Warp Login App`);
-- exactly one `allow` policy exists for operational alias `family-enrollment-01`;
-- existing One-time PIN IdP remains the only allowed IdP for that enrollment application;
-- the application/policy are bound in the provider-binding registry as SETOK-managed `enrollment_authorization` infrastructure;
-- Gateway, Default profile, `SETOK-FAMILY-MANAGED`, posture rules, service-token state, devices and registrations were unchanged by ST-CF-002;
-- the temporary ST-CF-002 write token was revoked after acceptance.
-
-Therefore the r1 blocker is resolved. ST-DEV-001 r2 MUST nevertheless repeat Stage A from fresh provider state before any device or endpoint mutation.
+ST-CF-002 was accepted and integrated before r2. It established exactly one SETOK-managed Cloudflare Access application of type `warp`, exactly one exact-identity `allow` policy for `family-enrollment-01`, and the existing One-time PIN IdP, without Gateway/profile/IdP/service-token/posture/device/registration mutation.
 
 ### Attempt r2 — Stage D controlled stop (RESOLVED)
 
 - Stage A PASS and Stage B PASS (device subject `android-01`): commit `316db038513e65b10b28e3117f42c6aac04e9d33`.
 - Manual enrollment produced exactly 1 new physical device and 1 registration, both with id `01a17f4d-0062-19de-b716-1df58125a3d4`, Android, `warp`, MASQUE. 15 of 15 shared surfaces were unchanged.
-- Stop: the observed model was `Redmi Note 13 Pro+ 5G (23090RA98G)`, which did not match the documented "Xiaomi Redmi Note 14 Pro". Controlled-stop evidence is in commit `dca100755dbe043be44b44ab65091e3c79c1c433`; it is preserved and not rewritten.
-- Product Owner confirmation: the enrolled handset IS the intended first-family Android device; the earlier target was incorrect.
-- Technical Director disposition: RESUME Stage D with the existing provider objects. Do not revoke or re-enroll.
+- Stop: observed model `Redmi Note 13 Pro+ 5G (23090RA98G)` did not match the documented `Xiaomi Redmi Note 14 Pro`.
+- Controlled-stop evidence: `dca100755dbe043be44b44ab65091e3c79c1c433`.
+- Product Owner confirmed the enrolled handset is the intended first-family Android device and the earlier target was documentation error.
+- Technical Director disposition: RESUME with existing provider objects; do not revoke or re-enroll.
 - Mismatch stop condition: **RESOLVED**.
 
 ## Product Input Gate
 
-**NOT REQUIRED.**
-
-The architecture already fixes the Android platform, Google Family Link + Cloudflare One split, no Android MDM and separation of human/device identity. Credentials and physical interaction are operational inputs, not product-semantic decisions.
+**NOT REQUIRED** for the original implementation shape. The one product-semantic correction encountered during execution — confirmation of the intended physical handset — was explicitly resolved by the Product Owner and recorded above.
 
 ## Target
 
 - physical platform: Android;
-- approved first-family physical target: `Redmi Note 13 Pro+ 5G (23090RA98G)`, corrected from "Xiaomi Redmi Note 14 Pro" after the r2 Stage D provider observation and explicit PO confirmation (see Resume history);
-- SETOK alias after creation: opaque, e.g. `android-01`;
+- approved first-family physical target: `Redmi Note 13 Pro+ 5G (23090RA98G)`;
+- SETOK alias: `android-01`;
 - Cloudflare organization: existing shared SETOK Zero Trust organization;
-- intended existing device profile: `SETOK-FAMILY-MANAGED`;
-- client mode target: Traffic + DNS / WARP;
+- managed device profile: `SETOK-FAMILY-MANAGED`;
+- client mode: Traffic + DNS / WARP;
 - Android MDM: forbidden.
 
 ## Enrollment identity boundary
 
-Manual enrollment uses the existing dedicated operational identity represented in Git only as `family-enrollment-01`.
+Manual enrollment uses the dedicated operational identity represented in Git only as `family-enrollment-01`.
 
 - actual mailbox/login/OTP stays outside Git;
 - enrollment identity is NOT a SETOK human/member/Child identity;
-- do not create an Authentik device user or Child login;
-- do not persist email/display name/OTP/token in registry or evidence.
+- no Authentik device user or Child login exists;
+- no email/display name/OTP/token is persisted in registry or evidence.
 
-## Authorized implementation shape after a new explicit GO
+## Completed execution
 
 ### Stage A — fresh read-only discovery
 
-Before any external or endpoint mutation:
-
-1. verify `PROJECT_SCOPE_OK` and exact r2 Authorized Base lineage;
-2. inventory current Cloudflare devices and device registrations;
-3. verify the ST-CF-002 `enrollment_authorization` app/policy still exist and reconcile to the registry-bound provider IDs;
-4. verify policy decision remains `allow`, include cardinality remains exactly 1 and only One-time PIN is attached;
-5. confirm `SETOK-FAMILY-MANAGED` exists unchanged;
-6. fingerprint Gateway policies, Default profile, `SETOK-FAMILY-MANAGED`, enrollment authorization, IdPs, service tokens and posture rules;
-7. verify no existing registry device subject/binding already represents the target;
-8. verify the operational enrollment mailbox is still locally available without exposing it to Git/evidence.
-
-Expected pre-enrollment device state remains 0 devices / 0 registrations unless a new external state is explicitly explained. Any unexpected device/registration or ownership ambiguity is a STOP for TD review.
-
-If enrollment would require changing enrollment permissions, login methods, service tokens, profile match rules, Gateway configuration or the ST-CF-002 enrollment authorization, STOP before mutation.
+PASS. Current Cloudflare devices/registrations, enrollment authorization, managed profile, Gateway, IdPs, service tokens and posture rules were inventoried and fingerprinted. ST-CF-002 enrollment authorization reconciled exactly and no unexpected pre-existing device was present.
 
 ### Stage B — desired internal device identity
 
-Only after Stage A PASS:
+PASS. Exactly one provider-neutral Android device subject was created:
 
-- minimally evolve provider-binding schema only if required to represent provider-neutral Android platform metadata;
-- create exactly one internal device subject under the existing tenant;
-- internal ID must be random/provider-independent;
-- do not create Child/Guardian domain entities or human login identities.
+`sub_01M5Y0XYAMFT3MXRRJV5MFBY3N` / `android-01`.
 
 ### Stage C — physical manual enrollment
 
-Only after Stage A PASS and Stage B validation:
-
-- install/open Cloudflare One Agent as needed on the target Android device;
-- enroll using the existing SETOK team name and `family-enrollment-01` operational identity;
-- approve Android VPN connection/profile as required by the supported manual flow;
-- do not use ManageEngine/MDM/service-token managed deployment;
-- do not alter provider policy/profile configuration to force success.
-
-Physical interaction may require the Product Owner to complete steps on the handset. The Development Agent must stop at the exact interaction point and give precise instructions rather than bypassing it.
+PASS. The Product Owner enrolled the handset through Cloudflare One Agent using the supported manual flow. The only provider mutation was the handset's own registration.
 
 ### Stage D — observe and bind
 
-After successful enrollment:
+PASS after the resolved model correction. The physical device and registration were deterministically identified and exactly one ACTIVE `device_enrollment` binding was created:
 
-- inventory Cloudflare again;
-- deterministically identify the new physical device and registration using pre/post delta and provider facts;
-- capture only stable non-secret external identifiers required for binding;
-- create exactly one ACTIVE `device_enrollment` binding to the existing Cloudflare enforcement integration;
-- verify intended profile/mode observed;
-- verify Traffic + DNS / WARP connected state where provider/device observation permits;
-- reconcile desired binding against observed provider state at least twice with identical semantic result.
+- provider device/registration: `01a17f4d-0062-19de-b716-1df58125a3d4`;
+- SETOK device subject: `sub_01M5Y0XYAMFT3MXRRJV5MFBY3N`;
+- binding: `bnd_01M5ZND7V8TK28E2V23Z4MRFEJ`.
+
+Reconciliation ran twice with identical semantic result: `MATCH`, deterministic.
 
 ### Stage E — immutability and rollback evidence
 
-Prove unchanged:
+PASS.
 
-- Gateway;
+Proven unchanged:
+
+- Gateway rules/lists/config;
 - Default profile;
 - `SETOK-FAMILY-MANAGED` configuration/match expression;
-- ST-CF-002 enrollment authorization app/policy semantics;
+- ST-CF-002 enrollment authorization semantics;
 - IdPs/login methods;
 - service tokens;
 - posture rules;
 - unrelated devices/registrations;
 - existing human subjects/bindings.
 
-No policy may be claimed `APPLIED` and `SAFE_SELECTOR_NOT_YET_PROVEN` must remain explicit.
+Rollback/offboarding semantics are documented in `docs/evidence/ST-DEV-001/README.md`.
 
-## Provider mutation boundary
+## Provider mutation boundary result
 
-The only intended external provider mutation in ST-DEV-001 r2 is the target Android device's own Cloudflare enrollment/registration caused by the supported manual client flow.
+The only external provider mutation was the target Android device's supported Cloudflare enrollment/registration. No Gateway policy, enrollment authorization, IdP, service-token, Default profile, managed profile, selector, MDM or unrelated device mutation occurred.
 
-Forbidden without new explicit Technical Director authorization: Gateway mutation; ST-CF-002 enrollment app/policy mutation; enrollment-permission, IdP/login, service-token, profile/default/selector changes; `unique_client_id` fabrication; Android MDM; unrelated device/registration mutation.
+## Registry invariants result
 
-## Registry invariants
-
-- exactly one new device subject;
-- exactly one ACTIVE Cloudflare `device_enrollment` binding after successful enrollment;
-- no human/device identity collapse;
-- provider IDs only in external binding data;
-- no PII/secrets in desired state/evidence;
-- existing adults and ST-CF-002 enrollment authorization unchanged.
+- exactly one new device subject: PASS;
+- exactly one ACTIVE Cloudflare `device_enrollment` binding: PASS;
+- no human/device identity collapse: PASS;
+- provider IDs only in external binding data: PASS;
+- no PII/secrets in desired state/evidence: PASS;
+- existing adults and managed enrollment authorization unchanged: PASS.
 
 ## Safe-selector boundary
 
-Successful terminal state remains:
+Terminal state:
 
 `DEVICE_ENROLLED / DEVICE_BOUND / SAFE_SELECTOR_NOT_YET_PROVEN`
 
-## Stop conditions
-
-Repository/lineage mismatch; ST-CF-002 enrollment authorization mismatch/ambiguity; unexplained pre-existing device/registration; inability to identify target deterministically; any required shared enrollment/IdP/service-token/profile/Gateway mutation; Android MDM/managed UUID requirement; PII/secret versioning; Child/Auth user requirement; unrelated device mutation; unexpected Auto-RED surface.
+Safe family/device selector isolation remains explicitly deferred to the later scoped-enforcement Story. No Gateway policy is claimed APPLIED.
 
 ## Quality gates
 
@@ -205,19 +166,22 @@ Repository/lineage mismatch; ST-CF-002 enrollment authorization mismatch/ambigui
 - [x] ST-CF-002 dependency accepted/integrated and temporary write credential revoked.
 - [x] r2 Authorized Base frozen at `f09d114d29ae7fffc1d8516cd287c83188d4ae00`.
 - [x] r2 Implementation Branch created from exact Authorized Base.
-- [x] r2 branch lineage verified by construction.
-- [x] New explicit Technical Director implementation authorization.
-- [ ] Required implementation gates PASS or controlled STOP.
-- [ ] Technical Director terminal review complete.
+- [x] r2 branch lineage verified.
+- [x] Explicit Technical Director implementation authorization.
+- [x] Required implementation gates PASS; controlled stops resolved safely.
+- [x] Technical Director terminal review complete: ACCEPT.
+- [x] Accepted candidate integrated to `main`.
 
 ## Closure evidence
 
 - Resume preflight: PASS
 - Independent Check: PASS WITH CONDITIONS
-- Product Input Gate: NOT REQUIRED
-- Prior controlled stop: `74cb833a1fcbc2e452fd7d0dde578b22ca9fdaf4`
+- Prior r1 controlled stop: `74cb833a1fcbc2e452fd7d0dde578b22ca9fdaf4`
 - Dependency resolution: ST-CF-002 ACCEPT / integrated
 - r2 Authorized Base: `f09d114d29ae7fffc1d8516cd287c83188d4ae00`
 - r2 Implementation Branch: `feature/st-dev-001-r2`
-- r2 Implementation Authorization: YES — explicit Product Owner GO / Technical Director authorization
-- r2 Stage D controlled stop: device-class mismatch at `dca100755dbe043be44b44ab65091e3c79c1c433`. RESOLVED by PO confirmation; the target was corrected to `Redmi Note 13 Pro+ 5G (23090RA98G)`.
+- r2 Stage D controlled stop: `dca100755dbe043be44b44ab65091e3c79c1c433` — RESOLVED by PO confirmation
+- accepted candidate: `bab5ff7259491f0bb1b56d47a9bf3de901635614`
+- integration commit: `afaaaf30754dca1a6312ef554017123904abfb4c`
+- terminal decision: `ACCEPT`
+- terminal state: `DEVICE_ENROLLED / DEVICE_BOUND / SAFE_SELECTOR_NOT_YET_PROVEN`
