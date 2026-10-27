@@ -6,22 +6,14 @@ Current focus: **Phase 1 — Infrastructure, Enforcement and Identity**.
 
 Current AIDE execution state:
 
-- active unit: `ST-DEV-001 — Establish first Android device enrollment and provider binding`
-- execution attempt: `r2`
-- phase: `readiness`
-- risk: `RED`
-- preflight: `PASS`
-- Independent Check: `PASS WITH CONDITIONS`
-- Product Input Gate: `NOT REQUIRED`
-- prior r1 execution: `CONTROLLED STOP at Stage A`, no external mutation
-- prior r1 branch: `feature/st-dev-001` retained as historical evidence
-- dependency ST-CF-002: `COMPLETE — ACCEPT`
-- Authorized Base r2: `f09d114d29ae7fffc1d8516cd287c83188d4ae00`
-- implementation branch r2: `feature/st-dev-001-r2`
-- branch lineage: `VERIFIED — one governance-only Work Order commit ahead, zero behind`
-- implementation authorized: `NO`
+- last completed unit: `ST-DEV-001 — Establish first Android device enrollment and provider binding`
+- terminal decision: `ACCEPT`
+- accepted candidate: `bab5ff7259491f0bb1b56d47a9bf3de901635614`
+- integration commit: `afaaaf30754dca1a6312ef554017123904abfb4c`
+- terminal state: `DEVICE_ENROLLED / DEVICE_BOUND / SAFE_SELECTOR_NOT_YET_PROVEN`
+- next planned unit: `iPad Standard enrollment and device binding`
+- implementation authorization for next unit: `NO`
 - safe selector: `NOT_YET_PROVEN`
-- open gate: explicit Technical Director implementation authorization for r2
 
 ## Phase 1 objective
 
@@ -35,9 +27,9 @@ Deliver and validate a functioning parental-control platform without depending o
 4. **Initial provider-binding model — COMPLETE: ST-PB-001 ACCEPT.**
 5. **Baseline policy contract and compilation plan — COMPLETE: ST-POL-001 ACCEPT.**
 6. **Standard / Restricted / temporary overlay policy contract — COMPLETE: ST-POL-002 ACCEPT.**
-7. **Android enrollment and device binding — ACTIVE/READY: ST-DEV-001 r2.**
+7. **Android enrollment and device binding — COMPLETE: ST-DEV-001 ACCEPT.**
 7a. **Cloudflare device enrollment permissions — COMPLETE: ST-CF-002 ACCEPT.**
-8. iPad Standard enrollment and device binding.
+8. **iPad Standard enrollment and device binding — NEXT.**
 9. Scoped Cloudflare enforcement apply and validation for enrolled Familia Ulate León devices.
 10. iPad Enhanced / MDM enrollment.
 11. PowerShell automation.
@@ -64,38 +56,50 @@ ST-CF-002 established the minimum durable Cloudflare device-enrollment authoriza
 - existing One-time PIN IdP only;
 - no Gateway, profile, IdP, service-token, posture, physical-device or registration mutation.
 
-Cloudflare forces the provider display name `Warp Login App`; SETOK ownership is therefore bound by the managed provider IDs recorded in the registry.
-
 Accepted candidate: `678aaff9722af68238dec3ea5c57eeb84c1e7735`.
 Integration commit: `14f38ceb2eb043e62740de6bbe2987014f7824b3`.
 Evidence: `docs/evidence/ST-CF-002/`.
 
-The temporary ST-CF-002 write token was revoked after acceptance.
+## ST-DEV-001 closure
 
-## ST-DEV-001 r2 boundary
+ST-DEV-001 established the first real SETOK Family Android device binding.
 
-The r1 branch is intentionally not rebased or reused. It remains historical evidence of the controlled stop at Stage A (`74cb833a1fcbc2e452fd7d0dde578b22ca9fdaf4`).
+Final physical target:
 
-ST-DEV-001 r2 begins from the post-ST-CF-002 main state. Before any provider or handset mutation, the Development Agent must run a **fresh Stage A** and prove:
+`Redmi Note 13 Pro+ 5G (23090RA98G)`
 
-- the managed `warp` enrollment app/policy still exist and reconcile to the registry-bound IDs;
-- the policy remains one exact-identity `allow` policy with One-time PIN only;
-- Gateway, Default and `SETOK-FAMILY-MANAGED` remain unchanged;
-- no unexpected physical devices/registrations exist;
-- no additional shared-account mutation is required;
-- registry still has no device subject/binding for the target.
+The earlier `Xiaomi Redmi Note 14 Pro` target was corrected after provider observation and explicit Product Owner confirmation. The controlled-stop history was preserved.
 
-Only after Stage A passes may r2 create exactly one provider-neutral Android device subject and proceed toward manual Cloudflare One enrollment.
+Final identity chain:
 
-The only intended provider mutation is the target Android's own supported enrollment/registration. Gateway, profile, enrollment-authorization, IdP, service-token, posture and unrelated-device changes remain forbidden.
+- SETOK subject: `sub_01M5Y0XYAMFT3MXRRJV5MFBY3N` / `android-01`;
+- Cloudflare device/registration: `01a17f4d-0062-19de-b716-1df58125a3d4`;
+- SETOK binding: `bnd_01M5ZND7V8TK28E2V23Z4MRFEJ`;
+- binding type: `device_enrollment`;
+- status: `ACTIVE`;
+- observed profile: `SETOK-FAMILY-MANAGED`;
+- registration type: WARP;
+- tunnel: MASQUE.
 
-Successful terminal state remains:
+Validation:
+
+- reconciliation `MATCH` twice and deterministic;
+- 15/15 shared Cloudflare surfaces unchanged;
+- no Gateway policy applied or changed;
+- no Android MDM;
+- no Child login;
+- no PII/secrets in versioned evidence;
+- rollback/offboarding documented.
+
+Evidence: `docs/evidence/ST-DEV-001/`.
+
+Successful terminal state:
 
 `DEVICE_ENROLLED / DEVICE_BOUND / SAFE_SELECTOR_NOT_YET_PROVEN`
 
 ## Deferred enforcement findings
 
-Before Gateway apply, the project must still prove provider entitlement, first-match behavior, safe family/device selector isolation, rollback and blast radius.
+Before Gateway apply, the project must still prove provider entitlement, first-match behavior, safe family/device selector isolation, rollback and blast radius. The shared `SETOK-FAMILY-MANAGED` profile still matches Android/iOS broadly; ST-DEV-001 does not claim safe policy isolation.
 
 ## Phase 1 exit condition
 
@@ -107,7 +111,7 @@ SETOK Family application / mini app remains deferred until Phase 1 platform vali
 
 ## Next governance action
 
-Await explicit Technical Director implementation authorization for ST-DEV-001 r2. The next GO authorizes fresh Stage A read-only discovery and, only if it passes, the approved device-identity/enrollment flow.
+Begin discovery/preflight for **iPad Standard enrollment and device binding**. No implementation authorization is implied by ROADMAP ordering; Story, risk, Independent Check and Work Order readiness must be established before any iPad or provider mutation.
 
 ## Authority
 
