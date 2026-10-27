@@ -68,6 +68,15 @@ Resulting provider capability:
 
 Therefore the r1 blocker is resolved. ST-DEV-001 r2 MUST nevertheless repeat Stage A from fresh provider state before any device or endpoint mutation.
 
+### Attempt r2 — Stage D controlled stop (RESOLVED)
+
+- Stage A PASS and Stage B PASS (device subject `android-01`): commit `316db038513e65b10b28e3117f42c6aac04e9d33`.
+- Manual enrollment produced exactly 1 new physical device and 1 registration, both with id `01a17f4d-0062-19de-b716-1df58125a3d4`, Android, `warp`, MASQUE. 15 of 15 shared surfaces were unchanged.
+- Stop: the observed model was `Redmi Note 13 Pro+ 5G (23090RA98G)`, which did not match the documented "Xiaomi Redmi Note 14 Pro". Controlled-stop evidence is in commit `dca100755dbe043be44b44ab65091e3c79c1c433`; it is preserved and not rewritten.
+- Product Owner confirmation: the enrolled handset IS the intended first-family Android device; the earlier target was incorrect.
+- Technical Director disposition: RESUME Stage D with the existing provider objects. Do not revoke or re-enroll.
+- Mismatch stop condition: **RESOLVED**.
+
 ## Product Input Gate
 
 **NOT REQUIRED.**
@@ -77,7 +86,7 @@ The architecture already fixes the Android platform, Google Family Link + Cloudf
 ## Target
 
 - physical platform: Android;
-- approved first-family device class: Xiaomi Redmi Note 14 Pro;
+- approved first-family physical target: `Redmi Note 13 Pro+ 5G (23090RA98G)`, corrected from "Xiaomi Redmi Note 14 Pro" after the r2 Stage D provider observation and explicit PO confirmation (see Resume history);
 - SETOK alias after creation: opaque, e.g. `android-01`;
 - Cloudflare organization: existing shared SETOK Zero Trust organization;
 - intended existing device profile: `SETOK-FAMILY-MANAGED`;
@@ -211,3 +220,4 @@ Repository/lineage mismatch; ST-CF-002 enrollment authorization mismatch/ambigui
 - r2 Authorized Base: `f09d114d29ae7fffc1d8516cd287c83188d4ae00`
 - r2 Implementation Branch: `feature/st-dev-001-r2`
 - r2 Implementation Authorization: YES — explicit Product Owner GO / Technical Director authorization
+- r2 Stage D controlled stop: device-class mismatch at `dca100755dbe043be44b44ab65091e3c79c1c433`. RESOLVED by PO confirmation; the target was corrected to `Redmi Note 13 Pro+ 5G (23090RA98G)`.
