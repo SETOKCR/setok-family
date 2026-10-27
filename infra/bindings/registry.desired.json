@@ -6,7 +6,8 @@
   ],
   "subjects": [
     { "subject_id": "sub_01M5VBRV3HEA2JQ312QP4W5NFM", "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8", "subject_type": "human", "human_kind": "adult", "alias": "adult-01", "status": "ACTIVE" },
-    { "subject_id": "sub_01M5VBRV41WT22T9YJ1HERC73Q", "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8", "subject_type": "human", "human_kind": "adult", "alias": "adult-02", "status": "ACTIVE" }
+    { "subject_id": "sub_01M5VBRV41WT22T9YJ1HERC73Q", "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8", "subject_type": "human", "human_kind": "adult", "alias": "adult-02", "status": "ACTIVE" },
+    { "subject_id": "sub_01M5Y0XYAMFT3MXRRJV5MFBY3N", "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8", "subject_type": "device", "alias": "android-01", "status": "ACTIVE" }
   ],
   "integrations": [
     {

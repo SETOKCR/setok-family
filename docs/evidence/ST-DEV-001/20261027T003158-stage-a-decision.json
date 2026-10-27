@@ -1,0 +1,25 @@
+{
+  "snapshot": "20261027T003150-snapshot-pre.json",
+  "checks": {
+    "noPhysicalDevices": true,
+    "noRegistrations": true,
+    "enrollmentAppIsRegistryBound": true,
+    "exactlyOneWarpApp": true,
+    "onlyOneTimePin": true,
+    "onlyRegistryPolicyAttached": true,
+    "policyAllow": true,
+    "includeCardinalityOne": true,
+    "includeExactEmail": true,
+    "includeIsOperationalIdentity": true,
+    "noRequireOrExclude": true,
+    "exactlyOneAccessPolicy": true,
+    "managedProfileUnchanged": true,
+    "zeroServiceTokens": true,
+    "zeroDeviceSubjects": true,
+    "zeroDeviceBindings": true,
+    "operationalIdentityAvailableLocally": true
+  },
+  "decision": "PASS",
+  "failed": [],
+  "sharedMutationRequired": "NO: enrollment permission exists (ST-CF-002), One-time PIN available, SETOK-FAMILY-MANAGED matches android, no profile/Gateway/IdP/service-token change needed"
+}
