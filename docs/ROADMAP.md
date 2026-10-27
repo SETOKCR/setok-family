@@ -17,10 +17,11 @@ Current AIDE execution state:
 - Product Input Gate: `CLOSED`
 - enrollment identity alias: `family-enrollment-01`
 - real mailbox: operational input only, outside Git
-- Authorized Base: `PENDING`
-- implementation branch: `PENDING`
+- Authorized Base: `0e32888cb8d78c488cbe4a231e7767a38ed9853b`
+- implementation branch: `feature/st-cf-002`
+- branch lineage: `VERIFIED — exactly one governance-only Work Order commit above Authorized Base`
 - implementation authorized: `NO`
-- open gates: freeze Authorized Base, create/verify implementation branch, explicit Technical Director implementation authorization
+- open gates: explicit Technical Director implementation authorization
 
 ## Phase 1 objective
 
@@ -171,7 +172,7 @@ Phase 2 is the SETOK Family application / mini app and consumer experience. It r
 
 ## Next governance action
 
-Freeze the ST-CF-002 Authorized Base, create `feature/st-cf-002` from that exact commit, verify lineage and require explicit Technical Director implementation authorization. No Cloudflare Access mutation is authorized before that GO.
+Technical Director may issue explicit implementation authorization for ST-CF-002. Until that GO, no Cloudflare Access mutation is authorized.
 
 ## Authority
 
