@@ -1,0 +1,76 @@
+{
+  "from": "pre",
+  "to": "final",
+  "surfaces": [
+    {
+      "surface": "gatewayRules",
+      "unchanged": true
+    },
+    {
+      "surface": "gatewayLists",
+      "unchanged": true
+    },
+    {
+      "surface": "gatewayConfig",
+      "unchanged": true
+    },
+    {
+      "surface": "deviceSettings",
+      "unchanged": true
+    },
+    {
+      "surface": "defaultProfile",
+      "unchanged": true
+    },
+    {
+      "surface": "managedProfile",
+      "unchanged": true
+    },
+    {
+      "surface": "allDeviceProfiles",
+      "unchanged": true
+    },
+    {
+      "surface": "accessOrganization",
+      "unchanged": true
+    },
+    {
+      "surface": "identityProviders",
+      "unchanged": true
+    },
+    {
+      "surface": "accessApps",
+      "unchanged": true
+    },
+    {
+      "surface": "enrollmentApp",
+      "unchanged": true
+    },
+    {
+      "surface": "accessPolicies",
+      "unchanged": true
+    },
+    {
+      "surface": "accessGroups",
+      "unchanged": true
+    },
+    {
+      "surface": "serviceTokens",
+      "unchanged": true
+    },
+    {
+      "surface": "postureRules",
+      "unchanged": true
+    }
+  ],
+  "allSharedUnchanged": true,
+  "enrollmentAuthorizationUnchanged": true,
+  "newPhysicalDevices": [
+    "01a17f4d-0062-19de-b716-1df58125a3d4"
+  ],
+  "removedPhysicalDevices": [],
+  "newRegistrations": [
+    "01a17f4d-0062-19de-b716-1df58125a3d4"
+  ],
+  "removedRegistrations": []
+}

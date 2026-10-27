@@ -111,6 +111,18 @@
       "status": "ACTIVE",
       "valid_from": "2026-10-27",
       "source": "ST-CF-002"
+    },
+    {
+      "binding_id": "bnd_01M5ZND7V8TK28E2V23Z4MRFEJ",
+      "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+      "target": { "kind": "subject", "id": "sub_01M5Y0XYAMFT3MXRRJV5MFBY3N" },
+      "provider": "cloudflare-zero-trust",
+      "binding_type": "device_enrollment",
+      "integration_id": "int_01M5VBRV516Z3FXT98V4G6KT5N",
+      "external": { "physical_device_id": "01a17f4d-0062-19de-b716-1df58125a3d4", "registration_id": "01a17f4d-0062-19de-b716-1df58125a3d4" },
+      "status": "ACTIVE",
+      "valid_from": "2026-10-27",
+      "source": "ST-DEV-001"
     }
   ]
 }

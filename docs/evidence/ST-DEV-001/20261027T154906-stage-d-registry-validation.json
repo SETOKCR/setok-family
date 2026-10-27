@@ -1,0 +1,25 @@
+{
+  "registrySha256": "477f50c94e8b0a1d856c405094d594b866ac650c007a05ea4b8699a43e7ecd95",
+  "deviceSubjects": [
+    {
+      "subject_id": "sub_01M5Y0XYAMFT3MXRRJV5MFBY3N",
+      "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+      "subject_type": "device",
+      "alias": "android-01",
+      "status": "ACTIVE"
+    }
+  ],
+  "deviceEnrollmentBindings": 1,
+  "humanSubjects": [
+    {
+      "subject_id": "sub_01M5VBRV3HEA2JQ312QP4W5NFM",
+      "alias": "adult-01"
+    },
+    {
+      "subject_id": "sub_01M5VBRV41WT22T9YJ1HERC73Q",
+      "alias": "adult-02"
+    }
+  ],
+  "violations": [],
+  "pass": true
+}

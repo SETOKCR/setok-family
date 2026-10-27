@@ -18,8 +18,10 @@
 #>
 [CmdletBinding()]
 param(
-    [Parameter(Mandatory)][ValidateSet('Snapshot', 'Gate', 'CreateSubject', 'Validate')][string]$Step,
-    [string]$Label = 'pre'
+    [Parameter(Mandatory)][ValidateSet('Snapshot', 'Gate', 'CreateSubject', 'Validate', 'Bind', 'Reconcile', 'Compare')][string]$Step,
+    [string]$Label = 'pre',
+    [string]$ProviderDeviceId,
+    [string]$Against = 'final'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -145,7 +147,47 @@ function Test-Registry($r) {
     $humans = @($r.subjects | Where-Object subject_type -eq 'human')
     if ($humans.Count -ne 2) { $v.Add('HUMANS: expected the 2 existing adult subjects') }
     if (($r | ConvertTo-Json -Depth 20 -Compress) -match '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}') { $v.Add('PRIVACY: email-like value in registry') }
+    $db = @($r.bindings | Where-Object binding_type -eq 'device_enrollment')
+    if ($db.Count -gt 1) { $v.Add("DEVICE-BINDING: at most 1 device_enrollment binding allowed (found $($db.Count))") }
+    foreach ($b in $db) {
+        if ($b.target.kind -ne 'subject' -or $b.target.id -notin @($dev.subject_id)) { $v.Add('DEVICE-BINDING: must target the device subject') }
+        if ($b.provider -ne 'cloudflare-zero-trust' -or $b.integration_id -ne $cfInt) { $v.Add('DEVICE-BINDING: must use the Cloudflare enforcement integration') }
+        if ((@($b.external.PSObject.Properties.Name | Sort-Object) -join ',') -ne 'physical_device_id,registration_id') { $v.Add('DEVICE-BINDING: external must hold only physical_device_id and registration_id') }
+    }
     , $v.ToArray()
+}
+
+# Minimal, sanitized provider observation of one device (no user, email, IP, serial, key or virtual IP).
+function Get-DeviceObservation([string]$Id) {
+    $phys = @(Read-Get "/accounts/$acct/devices/physical-devices"); $regs = @(Read-Get "/accounts/$acct/devices/registrations")
+    $p = @($phys | Where-Object id -eq $Id)[0]
+    $rg = @($regs | Where-Object { $_.id -eq $Id -or $_.device.id -eq $Id })
+    $rd = if ($rg.Count -eq 1) { Read-Get "/accounts/$acct/devices/registrations/$($rg[0].id)?include=policy,device" } else { $null }
+    [pscustomobject]@{
+        physicalDeviceCount = $phys.Count; registrationCount = $regs.Count
+        physicalDeviceId = $p.id; device_type = $p.device_type; model = $p.model; model_name = $p.name; os_version = $p.os_version; client_version = $p.client_version
+        active_registrations = $p.active_registrations
+        registrationsForDevice = $rg.Count; registrationId = $rd.id; registration_type = $rd.registration_type; tunnel_type = $rd.tunnel_type
+        registrationDeviceId = $rd.device.id
+        profile = [pscustomobject]@{ policy_id = $rd.policy.id; name = $rd.policy.name; default = $rd.policy.default; deleted = $rd.policy.deleted }
+        revoked = [bool]$rd.revoked_at
+    }
+}
+function Test-Binding($obs, $binding, $managed) {
+    [ordered]@{
+        bindingExistsOnce        = [bool]$binding
+        physicalDevicePresent    = ($obs.physicalDeviceId -eq $binding.external.physical_device_id)
+        registrationPresent      = ($obs.registrationId -eq $binding.external.registration_id -and $obs.registrationsForDevice -eq 1)
+        registrationPointsToDevice = ($obs.registrationDeviceId -eq $obs.physicalDeviceId)
+        platformAndroid          = ($obs.device_type -eq 'android')
+        modelIsApprovedTarget    = ($obs.model -eq '23090RA98G' -and $obs.model_name -eq 'Redmi Note 13 Pro+ 5G')
+        registrationTypeWarp     = ($obs.registration_type -eq 'warp')
+        tunnelMasque             = ($obs.tunnel_type -eq 'masque')
+        intendedProfileObserved  = ($obs.profile.policy_id -eq $managedId -and $obs.profile.name -eq 'SETOK-FAMILY-MANAGED' -and -not $obs.profile.default -and -not $obs.profile.deleted)
+        managedProfileTrafficAndDns = ($managed.service_mode -eq 'warp' -and $managed.switch_locked -eq $true)
+        notRevoked               = (-not $obs.revoked)
+        onlyDeviceInAccount      = ($obs.physicalDeviceCount -eq 1 -and $obs.registrationCount -eq 1)
+    }
 }
 
 switch ($Step) {
@@ -207,5 +249,74 @@ switch ($Step) {
             violations = $v; pass = ($v.Count -eq 0) })
         if ($v.Count) { $v; exit 1 }
         'STAGE B registry validation: PASS'
+    }
+    'Bind' {
+        if (-not $ProviderDeviceId) { throw '-ProviderDeviceId is required' }
+        $r = Read-Registry
+        $dev = @($r.subjects | Where-Object { $_.subject_type -eq 'device' -and $_.alias -eq $DeviceAlias })
+        if ($dev.Count -ne 1) { throw 'STOP: device subject android-01 not found exactly once' }
+        $existing = @($r.bindings | Where-Object binding_type -eq 'device_enrollment')
+        if ($existing.Count -eq 1 -and $existing[0].external.physical_device_id -eq $ProviderDeviceId -and $existing[0].target.id -eq $dev[0].subject_id) { "NONE: binding $($existing[0].binding_id) already exists"; break }
+        if ($existing.Count) { throw 'STOP: an unexpected device_enrollment binding already exists' }
+        $obs = Get-DeviceObservation $ProviderDeviceId
+        if (-not $obs.physicalDeviceId -or $obs.registrationsForDevice -ne 1 -or $obs.registrationDeviceId -ne $ProviderDeviceId -or $obs.physicalDeviceCount -ne 1) { throw 'STOP: provider device/registration cannot be bound deterministically' }
+        $a = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'; $ms = [DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds(); $t = ''
+        for ($i = 0; $i -lt 10; $i++) { $t = $a[[int]($ms % 32)] + $t; $ms = [math]::Floor($ms / 32) }
+        $bb = [byte[]]::new(16); [Security.Cryptography.RandomNumberGenerator]::Fill($bb)
+        $bid = "bnd_$t" + (-join ($bb | ForEach-Object { $a[$_ % 32] }))
+        $raw = [IO.File]::ReadAllText($regPath)
+        $anchor = '"source": "ST-CF-002"' + "`n" + '    }' + "`n" + '  ]'
+        if (([regex]::Matches($raw, [regex]::Escape($anchor))).Count -ne 1) { throw 'STOP: registry anchor for bindings not found exactly once' }
+        $entry = @"
+"source": "ST-CF-002"
+    },
+    {
+      "binding_id": "$bid",
+      "tenant_id": "$tenant",
+      "target": { "kind": "subject", "id": "$($dev[0].subject_id)" },
+      "provider": "cloudflare-zero-trust",
+      "binding_type": "device_enrollment",
+      "integration_id": "$cfInt",
+      "external": { "physical_device_id": "$($obs.physicalDeviceId)", "registration_id": "$($obs.registrationId)" },
+      "status": "ACTIVE",
+      "valid_from": "$((Get-Date).ToUniversalTime().ToString('yyyy-MM-dd'))",
+      "source": "ST-DEV-001"
+    }
+  ]
+"@.Replace("`r`n", "`n").TrimEnd("`n")
+        [IO.File]::WriteAllText($regPath, $raw.Replace($anchor, $entry))
+        "CREATE: binding $bid -> $($dev[0].subject_id) (physical $($obs.physicalDeviceId), registration $($obs.registrationId))"
+    }
+    'Reconcile' {
+        $r = Read-Registry
+        $b = @($r.bindings | Where-Object { $_.binding_type -eq 'device_enrollment' -and $_.status -eq 'ACTIVE' })
+        if ($b.Count -ne 1) { throw "STOP: expected exactly 1 ACTIVE device_enrollment binding (found $($b.Count))" }
+        $runs = foreach ($n in 1, 2) {
+            $obs = Get-DeviceObservation $b[0].external.physical_device_id
+            $snap = Get-Snapshot
+            [pscustomobject]@{ run = $n; observation = $obs; checks = (Test-Binding $obs $b[0] $snap.surfaces.managedProfile); enrollmentAuthorization = $snap.enrollmentAuthorization }
+        }
+        $sem = { param($x) $x | Select-Object @{ n = 'observation'; e = { $_.observation | Select-Object * -ExcludeProperty client_version } }, checks, enrollmentAuthorization | ConvertTo-Json -Depth 10 -Compress }
+        $same = ((& $sem $runs[0]) -eq (& $sem $runs[1]))
+        $match = -not (@($runs.checks | ForEach-Object { $_.Values }) -contains $false)
+        Save-Evidence 'stage-d-reconcile' ([pscustomobject]@{ binding = $b[0]; runs = $runs; deterministic = $same; verdict = $(if ($match) { 'MATCH' } else { 'DRIFT' })
+            note = 'Cloudflare One client UI state (Connected) is PO-observed; provider evidence = active registration, MASQUE tunnel, SETOK-FAMILY-MANAGED (Traffic + DNS) assignment.' })
+        $runs[1].checks | Format-Table -AutoSize
+        "verdict: $(if ($match) { 'MATCH' } else { 'DRIFT' }); deterministic: $same"
+        if (-not ($match -and $same)) { exit 1 }
+    }
+    'Compare' {
+        $find = { param($l) Get-ChildItem $evidence -Filter "*-snapshot-$l.json" | Sort-Object Name | Select-Object -Last 1 }
+        $a = Get-Content (& $find $Label) -Raw | ConvertFrom-Json -DateKind String
+        $b = Get-Content (& $find $Against) -Raw | ConvertFrom-Json -DateKind String
+        $rows = foreach ($p in $a.surfaces.PSObject.Properties.Name) { [pscustomobject]@{ surface = $p; unchanged = ($a.surfaces.$p.sha256 -eq $b.surfaces.$p.sha256) } }
+        $eaSame = (($a.enrollmentAuthorization | ConvertTo-Json -Compress) -eq ($b.enrollmentAuthorization | ConvertTo-Json -Compress))
+        $newPhys = @($b.devices.physicalIds | Where-Object { $_ -notin @($a.devices.physicalIds) }); $gonePhys = @($a.devices.physicalIds | Where-Object { $_ -notin @($b.devices.physicalIds) })
+        $newRegs = @($b.devices.registrationIds | Where-Object { $_ -notin @($a.devices.registrationIds) }); $goneRegs = @($a.devices.registrationIds | Where-Object { $_ -notin @($b.devices.registrationIds) })
+        $res = [pscustomobject]@{ from = $Label; to = $Against; surfaces = $rows; allSharedUnchanged = -not ($rows.unchanged -contains $false); enrollmentAuthorizationUnchanged = $eaSame
+            newPhysicalDevices = $newPhys; removedPhysicalDevices = $gonePhys; newRegistrations = $newRegs; removedRegistrations = $goneRegs }
+        Save-Evidence "compare-$Label-$Against" $res
+        $rows | Format-Table -AutoSize
+        "enrollment authorization unchanged: $eaSame; new physical: $($newPhys -join ','); removed physical: $($gonePhys.Count); new regs: $($newRegs -join ','); removed regs: $($goneRegs.Count)"
     }
 }
