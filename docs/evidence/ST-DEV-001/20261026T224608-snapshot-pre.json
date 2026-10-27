@@ -1,0 +1,90 @@
+{
+  "observedAt": "2026-10-27T04:46:08.2383611Z",
+  "account": "c2120c89f39b804e7882661f7464e89f",
+  "shared": {
+    "gatewayRules": {
+      "count": 2,
+      "byFilter": [
+        "http=1",
+        "l4=1"
+      ],
+      "sha256": "27ae6b134127f11e1c79fdbea7a21a57d5982ee68e79b202a8e96047da14cd2c"
+    },
+    "gatewayLists": {
+      "count": 0,
+      "sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+    },
+    "gatewayConfig": {
+      "sha256": "07d2ef3063b4fb6c1a98aa424909e7f4e9a8401e508c09c6cf8815d6639f32e2"
+    },
+    "deviceSettings": {
+      "sha256": "973bee7c66a821df489face27b52fd759704876400f814551f24661ba3efe2c7"
+    },
+    "defaultProfile": {
+      "policy_id": "019cbbfb-ca30-7b50-b7f8-050ec43917d9",
+      "sha256": "e4d1a4a1a6c91becb5fc5f049629f87e94ddf0f475319b006b4309924530c984"
+    },
+    "managedProfile": {
+      "policy_id": "994b430f-fdf6-4ad9-aa6a-b7564f7133ca",
+      "found": 1,
+      "match": "os.name in {\"android\" \"ios\"}",
+      "precedence": 100,
+      "enabled": true,
+      "service_mode": "warp",
+      "tunnel_protocol": "masque",
+      "switch_locked": true,
+      "allowed_to_leave": false,
+      "sha256": "d97adc999d40e15edb68684a1b3205b8b54b3ba21ac55d090cc7c99c7b455434"
+    },
+    "allProfiles": {
+      "count": 2,
+      "ids": [
+        "019cbbfb-ca30-7b50-b7f8-050ec43917d9",
+        "994b430f-fdf6-4ad9-aa6a-b7564f7133ca"
+      ],
+      "sha256": "4191a25d06df87c2a32d458b295eb98a5bd7efd3111272fdef4625bc50803bd0"
+    },
+    "accessOrganization": {
+      "auth_domain": "setok.cloudflareaccess.com",
+      "sha256": "3b86d570d1640b07ff79f43ae8f07b1c1260f12340fcf3424fd03873c97db92c"
+    },
+    "identityProviders": {
+      "count": 1,
+      "types": [
+        "onetimepin"
+      ],
+      "sha256": "540524cf75076e74f85570e941fa21fac87f7758ec1d727c89efcb5134b66d2d"
+    },
+    "accessApps": {
+      "count": 0,
+      "warpEnrollmentApps": 0,
+      "sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+    },
+    "accessPolicies": {
+      "count": 0,
+      "sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+    },
+    "serviceTokens": {
+      "count": 0,
+      "sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+    },
+    "postureRules": {
+      "count": 2,
+      "sha256": "edc02af297a5672f753baa1a391975b5aeb0047654afa7e7345f8e4f1c47a9bf"
+    }
+  },
+  "devices": {
+    "physicalDevices": [],
+    "registrations": [],
+    "legacyDevices": [],
+    "sha256": {
+      "physical": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+      "registrations": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+    }
+  },
+  "registry": {
+    "sha256": "b6091abd573d46b8e674803422596ae8c6c5822ec8dbe460ffb67b64dd4e7426",
+    "deviceSubjects": 0,
+    "cloudflareDeviceBindings": 0
+  }
+}
