@@ -1,0 +1,101 @@
+{
+  "observedAt": "2026-10-27T21:43:46.5539401Z",
+  "preSnapshotAt": "2026-10-27T06:31:50.8792417Z",
+  "newPhysicalDevices": [
+    {
+      "id": "01a17f4d-0062-19de-b716-1df58125a3d4",
+      "device_type": "android",
+      "model": "23090RA98G",
+      "model_name": "Redmi Note 13 Pro+ 5G",
+      "os_version": "16.0.0",
+      "client_version": "2.5.7",
+      "created_at": "2026-10-27T21:38:35.6175760Z",
+      "createdAfterPreSnapshot": true,
+      "active_registrations": 1
+    }
+  ],
+  "newRegistrations": [
+    {
+      "id": "01a17f4d-0062-19de-b716-1df58125a3d4",
+      "device_id": "01a17f4d-0062-19de-b716-1df58125a3d4",
+      "registration_type": "warp",
+      "tunnel_type": "masque",
+      "key_type": "secp256r1",
+      "created_at": "2026-10-27T21:38:35.6175760Z"
+    }
+  ],
+  "preExistingDevices": 0,
+  "identification": {
+    "exactlyOneNewPhysical": true,
+    "exactlyOneNewRegistration": true,
+    "registrationPointsToNewDevice": true,
+    "platformAndroid": true,
+    "approvedDeviceClass": "Xiaomi Redmi Note 14 Pro",
+    "observedModelName": "Redmi Note 13 Pro+ 5G",
+    "observedModelCode": "23090RA98G",
+    "matchesApprovedDeviceClass": false
+  },
+  "sharedSurfacesUnchanged": [
+    {
+      "surface": "gatewayRules",
+      "unchanged": true
+    },
+    {
+      "surface": "gatewayLists",
+      "unchanged": true
+    },
+    {
+      "surface": "gatewayConfig",
+      "unchanged": true
+    },
+    {
+      "surface": "deviceSettings",
+      "unchanged": true
+    },
+    {
+      "surface": "defaultProfile",
+      "unchanged": true
+    },
+    {
+      "surface": "managedProfile",
+      "unchanged": true
+    },
+    {
+      "surface": "allDeviceProfiles",
+      "unchanged": true
+    },
+    {
+      "surface": "accessOrganization",
+      "unchanged": true
+    },
+    {
+      "surface": "identityProviders",
+      "unchanged": true
+    },
+    {
+      "surface": "accessApps",
+      "unchanged": true
+    },
+    {
+      "surface": "enrollmentApp",
+      "unchanged": true
+    },
+    {
+      "surface": "accessPolicies",
+      "unchanged": true
+    },
+    {
+      "surface": "accessGroups",
+      "unchanged": true
+    },
+    {
+      "surface": "serviceTokens",
+      "unchanged": true
+    },
+    {
+      "surface": "postureRules",
+      "unchanged": true
+    }
+  ],
+  "omitted": "user email/name/id, public_ip, serial_number, registration public key, virtual IPs (not needed for identification)"
+}
