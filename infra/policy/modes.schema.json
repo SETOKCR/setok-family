@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://setok.cr/schemas/setok-family/policy-modes/v1",
+  "title": "SETOK Family persistent modes, temporary overlays and actions (domain desired state) v1",
+  "description": "Provider-neutral catalog. Only ordinary leisure categories may be affected; baseline controls (ST-POL-001) are not addressable here. Cross-document invariants (approved semantics, conflicts, baseline non-regression) are enforced by scripts/st-pol-002/Invoke-StPol002.ps1.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["modes_contract_version", "tenant_id", "baseline_policy_id", "precedence", "leisure_categories", "default_persistent_mode", "persistent_modes", "temporary_overlays", "actions", "conflict_rules", "recurring_schedules", "emergency_parent_actions"],
+  "properties": {
+    "modes_contract_version": { "const": 1 },
+    "notes": { "type": "string" },
+    "tenant_id": { "type": "string", "pattern": "^tnt_[0-9A-HJKMNP-TV-Z]{26}$" },
+    "baseline_policy_id": { "type": "string", "pattern": "^pol_[0-9A-HJKMNP-TV-Z]{26}$" },
+    "precedence": {
+      "type": "array", "minItems": 8, "maxItems": 8,
+      "items": { "enum": ["security_threat_baseline", "mandatory_safety_restriction", "essential_services", "emergency_parent_action", "temporary_override", "active_mode", "recurring_schedule", "default_family_policy"] }
+    },
+    "leisure_categories": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/leisureCategory" } },
+    "default_persistent_mode": { "enum": ["STANDARD", "RESTRICTED"] },
+    "persistent_modes": {
+      "type": "object", "additionalProperties": false, "required": ["STANDARD", "RESTRICTED"],
+      "properties": { "STANDARD": { "$ref": "#/$defs/mode" }, "RESTRICTED": { "$ref": "#/$defs/mode" } }
+    },
+    "temporary_overlays": {
+      "type": "object", "additionalProperties": false, "required": ["STUDY", "ALLOW_SOCIAL", "PAUSE_ENTERTAINMENT"],
+      "properties": { "STUDY": { "$ref": "#/$defs/overlay" }, "ALLOW_SOCIAL": { "$ref": "#/$defs/overlay" }, "PAUSE_ENTERTAINMENT": { "$ref": "#/$defs/overlay" } }
+    },
+    "actions": {
+      "type": "object", "additionalProperties": false, "required": ["CLEAR_TEMPORARY"],
+      "properties": {
+        "CLEAR_TEMPORARY": {
+          "type": "object", "additionalProperties": false, "required": ["removes", "preserves"],
+          "properties": {
+            "removes": { "const": ["temporary_overlays"] },
+            "preserves": { "const": ["persistent_mode", "baseline", "recurring_schedules"] }
+          }
+        }
+      }
+    },
+    "conflict_rules": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["category", "between", "winner", "basis"],
+        "properties": {
+          "category": { "$ref": "#/$defs/leisureCategory" },
+          "between": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "$ref": "#/$defs/overlayType" } },
+          "winner": { "$ref": "#/$defs/overlayType" },
+          "basis": { "type": "string" }
+        }
+      }
+    },
+    "recurring_schedules": { "type": "array", "maxItems": 0, "description": "Contract boundary only (layer 7); no schedules are defined in ST-POL-002." },
+    "emergency_parent_actions": { "type": "array", "maxItems": 0, "description": "Contract boundary only (layer 4)." }
+  },
+  "$defs": {
+    "leisureCategory": { "enum": ["social_media", "gaming", "entertainment_streaming"] },
+    "overlayType": { "enum": ["STUDY", "ALLOW_SOCIAL", "PAUSE_ENTERTAINMENT"] },
+    "effect": {
+      "type": "object", "additionalProperties": false, "required": ["category", "action"],
+      "properties": { "category": { "$ref": "#/$defs/leisureCategory" }, "action": { "enum": ["BLOCK", "ALLOW"] } }
+    },
+    "mode": {
+      "type": "object", "additionalProperties": false, "required": ["layer", "effects"],
+      "properties": { "layer": { "const": "active_mode" }, "effects": { "type": "array", "items": { "$ref": "#/$defs/effect" } } }
+    },
+    "overlay": {
+      "type": "object", "additionalProperties": false, "required": ["layer", "requires_expiry", "effects", "may_override", "preserves_essential_services"],
+      "properties": {
+        "layer": { "const": "temporary_override" },
+        "requires_expiry": { "const": true },
+        "effects": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/effect" } },
+        "may_override": {
+          "type": "array", "description": "Lower or same-layer sources this overlay's ALLOW effects may override.",
+          "items": { "type": "string", "pattern": "^(mode:(STANDARD|RESTRICTED)|overlay:(STUDY|ALLOW_SOCIAL|PAUSE_ENTERTAINMENT))$" }
+        },
+        "preserves_essential_services": { "const": true }
+      }
+    }
+  }
+}

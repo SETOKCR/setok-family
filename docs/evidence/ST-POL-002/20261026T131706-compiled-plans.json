@@ -1,0 +1,940 @@
+{
+  "S01 STANDARD": {
+    "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+    "for_effective_at": "2026-11-02T15:00:00Z",
+    "persistent_mode": "STANDARD",
+    "desired_state": "DESIRED",
+    "compile_state": "COMPILED",
+    "apply_status": "APPLY_BLOCKED",
+    "apply_blockers": [
+      "NO_ENROLLED_DEVICE_BINDING",
+      "SAFE_SELECTOR_NOT_PROVEN",
+      "PROVIDER_MUTATION_NOT_AUTHORIZED",
+      "PROVIDER_ORDERING_SEMANTICS_UNVERIFIED_ON_DEVICE",
+      "PLAN_ENTITLEMENT_UNVERIFIED"
+    ],
+    "scope": {
+      "requested": "all_device_subjects_of_tenant",
+      "resolved_device_subjects": 0,
+      "identity_selector": null,
+      "global_rule": false
+    },
+    "rules": [
+      {
+        "key": "baseline-threats",
+        "action": "block",
+        "traffic": "any(dns.security_category[*] in {80 117 131})",
+        "source": "security_threat_baseline",
+        "order": 1
+      },
+      {
+        "key": "baseline-content",
+        "action": "block",
+        "traffic": "any(dns.content_category[*] in {2 99})",
+        "source": "mandatory_safety_restriction",
+        "order": 2
+      },
+      {
+        "key": "essential-services-allow",
+        "action": "allow",
+        "traffic": "<essential catalog: empty, rule omitted> and not any(dns.security_category[*] in {80 117 131}) and not any(dns.content_category[*] in {2 99})",
+        "source": "essential_services",
+        "omitted": true,
+        "order": 3
+      },
+      {
+        "key": "leisure-block",
+        "action": "block",
+        "source": "effective_leisure_decision",
+        "omitted": true,
+        "traffic": "<no leisure category blocked>",
+        "categories": [
+          null
+        ],
+        "valid_until": null,
+        "order": 4
+      },
+      {
+        "key": "baseline-safe-search",
+        "action": "safesearch",
+        "traffic": "any(dns.content_category[*] in {145})",
+        "source": "mandatory_safety_restriction",
+        "order": 5
+      },
+      {
+        "key": "baseline-youtube-restricted",
+        "action": "ytrestricted",
+        "traffic": "any(dns.domains[*] in {\"m.youtube.com\" \"youtube-nocookie.com\" \"youtube.com\" \"youtube.googleapis.com\" \"youtubei.googleapis.com\"})",
+        "source": "mandatory_safety_restriction",
+        "order": 6
+      }
+    ],
+    "warnings": [
+      "ENTITLEMENT: baseline 'Gambling' is premium-class"
+    ]
+  },
+  "S02 RESTRICTED": {
+    "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+    "for_effective_at": "2026-11-02T15:00:00Z",
+    "persistent_mode": "RESTRICTED",
+    "desired_state": "DESIRED",
+    "compile_state": "COMPILED",
+    "apply_status": "APPLY_BLOCKED",
+    "apply_blockers": [
+      "NO_ENROLLED_DEVICE_BINDING",
+      "SAFE_SELECTOR_NOT_PROVEN",
+      "PROVIDER_MUTATION_NOT_AUTHORIZED",
+      "PROVIDER_ORDERING_SEMANTICS_UNVERIFIED_ON_DEVICE",
+      "PLAN_ENTITLEMENT_UNVERIFIED"
+    ],
+    "scope": {
+      "requested": "all_device_subjects_of_tenant",
+      "resolved_device_subjects": 0,
+      "identity_selector": null,
+      "global_rule": false
+    },
+    "rules": [
+      {
+        "key": "baseline-threats",
+        "action": "block",
+        "traffic": "any(dns.security_category[*] in {80 117 131})",
+        "source": "security_threat_baseline",
+        "order": 1
+      },
+      {
+        "key": "baseline-content",
+        "action": "block",
+        "traffic": "any(dns.content_category[*] in {2 99})",
+        "source": "mandatory_safety_restriction",
+        "order": 2
+      },
+      {
+        "key": "essential-services-allow",
+        "action": "allow",
+        "traffic": "<essential catalog: empty, rule omitted> and not any(dns.security_category[*] in {80 117 131}) and not any(dns.content_category[*] in {2 99})",
+        "source": "essential_services",
+        "omitted": true,
+        "order": 3
+      },
+      {
+        "key": "leisure-block",
+        "action": "block",
+        "source": "effective_leisure_decision",
+        "omitted": false,
+        "traffic": "any(dns.content_category[*] in {74 100 149 164})",
+        "categories": [
+          "entertainment_streaming",
+          "gaming",
+          "social_media"
+        ],
+        "valid_until": null,
+        "order": 4
+      },
+      {
+        "key": "baseline-safe-search",
+        "action": "safesearch",
+        "traffic": "any(dns.content_category[*] in {145})",
+        "source": "mandatory_safety_restriction",
+        "order": 5
+      },
+      {
+        "key": "baseline-youtube-restricted",
+        "action": "ytrestricted",
+        "traffic": "any(dns.domains[*] in {\"m.youtube.com\" \"youtube-nocookie.com\" \"youtube.com\" \"youtube.googleapis.com\" \"youtubei.googleapis.com\"})",
+        "source": "mandatory_safety_restriction",
+        "order": 6
+      }
+    ],
+    "warnings": [
+      "ENTITLEMENT: baseline 'Gambling' is premium-class",
+      "ENTITLEMENT: entertainment_streaming -> 'Audio Streaming' is premium-class",
+      "ENTITLEMENT: entertainment_streaming -> 'Video Streaming' is premium-class",
+      "ENTITLEMENT: gaming -> 'Gaming' is premium-class",
+      "ENTITLEMENT: social_media -> 'Social Networks' is premium-class"
+    ]
+  },
+  "S03 RESTRICTED + ALLOW_SOCIAL (active)": {
+    "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+    "for_effective_at": "2026-11-02T15:10:00Z",
+    "persistent_mode": "RESTRICTED",
+    "desired_state": "DESIRED",
+    "compile_state": "COMPILED",
+    "apply_status": "APPLY_BLOCKED",
+    "apply_blockers": [
+      "NO_ENROLLED_DEVICE_BINDING",
+      "SAFE_SELECTOR_NOT_PROVEN",
+      "PROVIDER_MUTATION_NOT_AUTHORIZED",
+      "PROVIDER_ORDERING_SEMANTICS_UNVERIFIED_ON_DEVICE",
+      "PLAN_ENTITLEMENT_UNVERIFIED"
+    ],
+    "scope": {
+      "requested": "all_device_subjects_of_tenant",
+      "resolved_device_subjects": 0,
+      "identity_selector": null,
+      "global_rule": false
+    },
+    "rules": [
+      {
+        "key": "baseline-threats",
+        "action": "block",
+        "traffic": "any(dns.security_category[*] in {80 117 131})",
+        "source": "security_threat_baseline",
+        "order": 1
+      },
+      {
+        "key": "baseline-content",
+        "action": "block",
+        "traffic": "any(dns.content_category[*] in {2 99})",
+        "source": "mandatory_safety_restriction",
+        "order": 2
+      },
+      {
+        "key": "essential-services-allow",
+        "action": "allow",
+        "traffic": "<essential catalog: empty, rule omitted> and not any(dns.security_category[*] in {80 117 131}) and not any(dns.content_category[*] in {2 99})",
+        "source": "essential_services",
+        "omitted": true,
+        "order": 3
+      },
+      {
+        "key": "leisure-block",
+        "action": "block",
+        "source": "effective_leisure_decision",
+        "omitted": false,
+        "traffic": "any(dns.content_category[*] in {74 100 164})",
+        "categories": [
+          "entertainment_streaming",
+          "gaming"
+        ],
+        "valid_until": null,
+        "order": 4
+      },
+      {
+        "key": "baseline-safe-search",
+        "action": "safesearch",
+        "traffic": "any(dns.content_category[*] in {145})",
+        "source": "mandatory_safety_restriction",
+        "order": 5
+      },
+      {
+        "key": "baseline-youtube-restricted",
+        "action": "ytrestricted",
+        "traffic": "any(dns.domains[*] in {\"m.youtube.com\" \"youtube-nocookie.com\" \"youtube.com\" \"youtube.googleapis.com\" \"youtubei.googleapis.com\"})",
+        "source": "mandatory_safety_restriction",
+        "order": 6
+      }
+    ],
+    "warnings": [
+      "ENTITLEMENT: baseline 'Gambling' is premium-class",
+      "ENTITLEMENT: entertainment_streaming -> 'Audio Streaming' is premium-class",
+      "ENTITLEMENT: entertainment_streaming -> 'Video Streaming' is premium-class",
+      "ENTITLEMENT: gaming -> 'Gaming' is premium-class"
+    ]
+  },
+  "S04 RESTRICTED + ALLOW_SOCIAL (at expiry)": {
+    "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+    "for_effective_at": "2026-11-02T15:30:00Z",
+    "persistent_mode": "RESTRICTED",
+    "desired_state": "DESIRED",
+    "compile_state": "COMPILED",
+    "apply_status": "APPLY_BLOCKED",
+    "apply_blockers": [
+      "NO_ENROLLED_DEVICE_BINDING",
+      "SAFE_SELECTOR_NOT_PROVEN",
+      "PROVIDER_MUTATION_NOT_AUTHORIZED",
+      "PROVIDER_ORDERING_SEMANTICS_UNVERIFIED_ON_DEVICE",
+      "PLAN_ENTITLEMENT_UNVERIFIED"
+    ],
+    "scope": {
+      "requested": "all_device_subjects_of_tenant",
+      "resolved_device_subjects": 0,
+      "identity_selector": null,
+      "global_rule": false
+    },
+    "rules": [
+      {
+        "key": "baseline-threats",
+        "action": "block",
+        "traffic": "any(dns.security_category[*] in {80 117 131})",
+        "source": "security_threat_baseline",
+        "order": 1
+      },
+      {
+        "key": "baseline-content",
+        "action": "block",
+        "traffic": "any(dns.content_category[*] in {2 99})",
+        "source": "mandatory_safety_restriction",
+        "order": 2
+      },
+      {
+        "key": "essential-services-allow",
+        "action": "allow",
+        "traffic": "<essential catalog: empty, rule omitted> and not any(dns.security_category[*] in {80 117 131}) and not any(dns.content_category[*] in {2 99})",
+        "source": "essential_services",
+        "omitted": true,
+        "order": 3
+      },
+      {
+        "key": "leisure-block",
+        "action": "block",
+        "source": "effective_leisure_decision",
+        "omitted": false,
+        "traffic": "any(dns.content_category[*] in {74 100 149 164})",
+        "categories": [
+          "entertainment_streaming",
+          "gaming",
+          "social_media"
+        ],
+        "valid_until": null,
+        "order": 4
+      },
+      {
+        "key": "baseline-safe-search",
+        "action": "safesearch",
+        "traffic": "any(dns.content_category[*] in {145})",
+        "source": "mandatory_safety_restriction",
+        "order": 5
+      },
+      {
+        "key": "baseline-youtube-restricted",
+        "action": "ytrestricted",
+        "traffic": "any(dns.domains[*] in {\"m.youtube.com\" \"youtube-nocookie.com\" \"youtube.com\" \"youtube.googleapis.com\" \"youtubei.googleapis.com\"})",
+        "source": "mandatory_safety_restriction",
+        "order": 6
+      }
+    ],
+    "warnings": [
+      "ENTITLEMENT: baseline 'Gambling' is premium-class",
+      "ENTITLEMENT: entertainment_streaming -> 'Audio Streaming' is premium-class",
+      "ENTITLEMENT: entertainment_streaming -> 'Video Streaming' is premium-class",
+      "ENTITLEMENT: gaming -> 'Gaming' is premium-class",
+      "ENTITLEMENT: social_media -> 'Social Networks' is premium-class"
+    ]
+  },
+  "S05 STANDARD + STUDY (active)": {
+    "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+    "for_effective_at": "2026-11-02T15:05:00Z",
+    "persistent_mode": "STANDARD",
+    "desired_state": "DESIRED",
+    "compile_state": "COMPILED",
+    "apply_status": "APPLY_BLOCKED",
+    "apply_blockers": [
+      "NO_ENROLLED_DEVICE_BINDING",
+      "SAFE_SELECTOR_NOT_PROVEN",
+      "PROVIDER_MUTATION_NOT_AUTHORIZED",
+      "PROVIDER_ORDERING_SEMANTICS_UNVERIFIED_ON_DEVICE",
+      "PLAN_ENTITLEMENT_UNVERIFIED"
+    ],
+    "scope": {
+      "requested": "all_device_subjects_of_tenant",
+      "resolved_device_subjects": 0,
+      "identity_selector": null,
+      "global_rule": false
+    },
+    "rules": [
+      {
+        "key": "baseline-threats",
+        "action": "block",
+        "traffic": "any(dns.security_category[*] in {80 117 131})",
+        "source": "security_threat_baseline",
+        "order": 1
+      },
+      {
+        "key": "baseline-content",
+        "action": "block",
+        "traffic": "any(dns.content_category[*] in {2 99})",
+        "source": "mandatory_safety_restriction",
+        "order": 2
+      },
+      {
+        "key": "essential-services-allow",
+        "action": "allow",
+        "traffic": "<essential catalog: empty, rule omitted> and not any(dns.security_category[*] in {80 117 131}) and not any(dns.content_category[*] in {2 99})",
+        "source": "essential_services",
+        "omitted": true,
+        "order": 3
+      },
+      {
+        "key": "leisure-block",
+        "action": "block",
+        "source": "effective_leisure_decision",
+        "omitted": false,
+        "traffic": "any(dns.content_category[*] in {74 100 149 164})",
+        "categories": [
+          "entertainment_streaming",
+          "gaming",
+          "social_media"
+        ],
+        "valid_until": "2026-11-02T16:00:00Z",
+        "order": 4
+      },
+      {
+        "key": "baseline-safe-search",
+        "action": "safesearch",
+        "traffic": "any(dns.content_category[*] in {145})",
+        "source": "mandatory_safety_restriction",
+        "order": 5
+      },
+      {
+        "key": "baseline-youtube-restricted",
+        "action": "ytrestricted",
+        "traffic": "any(dns.domains[*] in {\"m.youtube.com\" \"youtube-nocookie.com\" \"youtube.com\" \"youtube.googleapis.com\" \"youtubei.googleapis.com\"})",
+        "source": "mandatory_safety_restriction",
+        "order": 6
+      }
+    ],
+    "warnings": [
+      "ENTITLEMENT: baseline 'Gambling' is premium-class",
+      "ENTITLEMENT: entertainment_streaming -> 'Audio Streaming' is premium-class",
+      "ENTITLEMENT: entertainment_streaming -> 'Video Streaming' is premium-class",
+      "ENTITLEMENT: gaming -> 'Gaming' is premium-class",
+      "ENTITLEMENT: social_media -> 'Social Networks' is premium-class"
+    ]
+  },
+  "S06 STANDARD + STUDY (expired)": {
+    "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+    "for_effective_at": "2026-11-02T16:00:00Z",
+    "persistent_mode": "STANDARD",
+    "desired_state": "DESIRED",
+    "compile_state": "COMPILED",
+    "apply_status": "APPLY_BLOCKED",
+    "apply_blockers": [
+      "NO_ENROLLED_DEVICE_BINDING",
+      "SAFE_SELECTOR_NOT_PROVEN",
+      "PROVIDER_MUTATION_NOT_AUTHORIZED",
+      "PROVIDER_ORDERING_SEMANTICS_UNVERIFIED_ON_DEVICE",
+      "PLAN_ENTITLEMENT_UNVERIFIED"
+    ],
+    "scope": {
+      "requested": "all_device_subjects_of_tenant",
+      "resolved_device_subjects": 0,
+      "identity_selector": null,
+      "global_rule": false
+    },
+    "rules": [
+      {
+        "key": "baseline-threats",
+        "action": "block",
+        "traffic": "any(dns.security_category[*] in {80 117 131})",
+        "source": "security_threat_baseline",
+        "order": 1
+      },
+      {
+        "key": "baseline-content",
+        "action": "block",
+        "traffic": "any(dns.content_category[*] in {2 99})",
+        "source": "mandatory_safety_restriction",
+        "order": 2
+      },
+      {
+        "key": "essential-services-allow",
+        "action": "allow",
+        "traffic": "<essential catalog: empty, rule omitted> and not any(dns.security_category[*] in {80 117 131}) and not any(dns.content_category[*] in {2 99})",
+        "source": "essential_services",
+        "omitted": true,
+        "order": 3
+      },
+      {
+        "key": "leisure-block",
+        "action": "block",
+        "source": "effective_leisure_decision",
+        "omitted": true,
+        "traffic": "<no leisure category blocked>",
+        "categories": [
+          null
+        ],
+        "valid_until": null,
+        "order": 4
+      },
+      {
+        "key": "baseline-safe-search",
+        "action": "safesearch",
+        "traffic": "any(dns.content_category[*] in {145})",
+        "source": "mandatory_safety_restriction",
+        "order": 5
+      },
+      {
+        "key": "baseline-youtube-restricted",
+        "action": "ytrestricted",
+        "traffic": "any(dns.domains[*] in {\"m.youtube.com\" \"youtube-nocookie.com\" \"youtube.com\" \"youtube.googleapis.com\" \"youtubei.googleapis.com\"})",
+        "source": "mandatory_safety_restriction",
+        "order": 6
+      }
+    ],
+    "warnings": [
+      "ENTITLEMENT: baseline 'Gambling' is premium-class"
+    ]
+  },
+  "S07 STANDARD + STUDY + ALLOW_SOCIAL": {
+    "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+    "for_effective_at": "2026-11-02T15:15:00Z",
+    "persistent_mode": "STANDARD",
+    "desired_state": "DESIRED",
+    "compile_state": "COMPILED",
+    "apply_status": "APPLY_BLOCKED",
+    "apply_blockers": [
+      "NO_ENROLLED_DEVICE_BINDING",
+      "SAFE_SELECTOR_NOT_PROVEN",
+      "PROVIDER_MUTATION_NOT_AUTHORIZED",
+      "PROVIDER_ORDERING_SEMANTICS_UNVERIFIED_ON_DEVICE",
+      "PLAN_ENTITLEMENT_UNVERIFIED"
+    ],
+    "scope": {
+      "requested": "all_device_subjects_of_tenant",
+      "resolved_device_subjects": 0,
+      "identity_selector": null,
+      "global_rule": false
+    },
+    "rules": [
+      {
+        "key": "baseline-threats",
+        "action": "block",
+        "traffic": "any(dns.security_category[*] in {80 117 131})",
+        "source": "security_threat_baseline",
+        "order": 1
+      },
+      {
+        "key": "baseline-content",
+        "action": "block",
+        "traffic": "any(dns.content_category[*] in {2 99})",
+        "source": "mandatory_safety_restriction",
+        "order": 2
+      },
+      {
+        "key": "essential-services-allow",
+        "action": "allow",
+        "traffic": "<essential catalog: empty, rule omitted> and not any(dns.security_category[*] in {80 117 131}) and not any(dns.content_category[*] in {2 99})",
+        "source": "essential_services",
+        "omitted": true,
+        "order": 3
+      },
+      {
+        "key": "leisure-block",
+        "action": "block",
+        "source": "effective_leisure_decision",
+        "omitted": false,
+        "traffic": "any(dns.content_category[*] in {74 100 164})",
+        "categories": [
+          "entertainment_streaming",
+          "gaming"
+        ],
+        "valid_until": "2026-11-02T16:00:00Z",
+        "order": 4
+      },
+      {
+        "key": "baseline-safe-search",
+        "action": "safesearch",
+        "traffic": "any(dns.content_category[*] in {145})",
+        "source": "mandatory_safety_restriction",
+        "order": 5
+      },
+      {
+        "key": "baseline-youtube-restricted",
+        "action": "ytrestricted",
+        "traffic": "any(dns.domains[*] in {\"m.youtube.com\" \"youtube-nocookie.com\" \"youtube.com\" \"youtube.googleapis.com\" \"youtubei.googleapis.com\"})",
+        "source": "mandatory_safety_restriction",
+        "order": 6
+      }
+    ],
+    "warnings": [
+      "ENTITLEMENT: baseline 'Gambling' is premium-class",
+      "ENTITLEMENT: entertainment_streaming -> 'Audio Streaming' is premium-class",
+      "ENTITLEMENT: entertainment_streaming -> 'Video Streaming' is premium-class",
+      "ENTITLEMENT: gaming -> 'Gaming' is premium-class"
+    ]
+  },
+  "S08 STUDY + ALLOW_SOCIAL after social expiry": {
+    "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+    "for_effective_at": "2026-11-02T15:40:00Z",
+    "persistent_mode": "STANDARD",
+    "desired_state": "DESIRED",
+    "compile_state": "COMPILED",
+    "apply_status": "APPLY_BLOCKED",
+    "apply_blockers": [
+      "NO_ENROLLED_DEVICE_BINDING",
+      "SAFE_SELECTOR_NOT_PROVEN",
+      "PROVIDER_MUTATION_NOT_AUTHORIZED",
+      "PROVIDER_ORDERING_SEMANTICS_UNVERIFIED_ON_DEVICE",
+      "PLAN_ENTITLEMENT_UNVERIFIED"
+    ],
+    "scope": {
+      "requested": "all_device_subjects_of_tenant",
+      "resolved_device_subjects": 0,
+      "identity_selector": null,
+      "global_rule": false
+    },
+    "rules": [
+      {
+        "key": "baseline-threats",
+        "action": "block",
+        "traffic": "any(dns.security_category[*] in {80 117 131})",
+        "source": "security_threat_baseline",
+        "order": 1
+      },
+      {
+        "key": "baseline-content",
+        "action": "block",
+        "traffic": "any(dns.content_category[*] in {2 99})",
+        "source": "mandatory_safety_restriction",
+        "order": 2
+      },
+      {
+        "key": "essential-services-allow",
+        "action": "allow",
+        "traffic": "<essential catalog: empty, rule omitted> and not any(dns.security_category[*] in {80 117 131}) and not any(dns.content_category[*] in {2 99})",
+        "source": "essential_services",
+        "omitted": true,
+        "order": 3
+      },
+      {
+        "key": "leisure-block",
+        "action": "block",
+        "source": "effective_leisure_decision",
+        "omitted": false,
+        "traffic": "any(dns.content_category[*] in {74 100 149 164})",
+        "categories": [
+          "entertainment_streaming",
+          "gaming",
+          "social_media"
+        ],
+        "valid_until": "2026-11-02T16:00:00Z",
+        "order": 4
+      },
+      {
+        "key": "baseline-safe-search",
+        "action": "safesearch",
+        "traffic": "any(dns.content_category[*] in {145})",
+        "source": "mandatory_safety_restriction",
+        "order": 5
+      },
+      {
+        "key": "baseline-youtube-restricted",
+        "action": "ytrestricted",
+        "traffic": "any(dns.domains[*] in {\"m.youtube.com\" \"youtube-nocookie.com\" \"youtube.com\" \"youtube.googleapis.com\" \"youtubei.googleapis.com\"})",
+        "source": "mandatory_safety_restriction",
+        "order": 6
+      }
+    ],
+    "warnings": [
+      "ENTITLEMENT: baseline 'Gambling' is premium-class",
+      "ENTITLEMENT: entertainment_streaming -> 'Audio Streaming' is premium-class",
+      "ENTITLEMENT: entertainment_streaming -> 'Video Streaming' is premium-class",
+      "ENTITLEMENT: gaming -> 'Gaming' is premium-class",
+      "ENTITLEMENT: social_media -> 'Social Networks' is premium-class"
+    ]
+  },
+  "S09 RESTRICTED + PAUSE + ALLOW_SOCIAL": {
+    "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+    "for_effective_at": "2026-11-02T15:10:00Z",
+    "persistent_mode": "RESTRICTED",
+    "desired_state": "DESIRED",
+    "compile_state": "COMPILED",
+    "apply_status": "APPLY_BLOCKED",
+    "apply_blockers": [
+      "NO_ENROLLED_DEVICE_BINDING",
+      "SAFE_SELECTOR_NOT_PROVEN",
+      "PROVIDER_MUTATION_NOT_AUTHORIZED",
+      "PROVIDER_ORDERING_SEMANTICS_UNVERIFIED_ON_DEVICE",
+      "PLAN_ENTITLEMENT_UNVERIFIED"
+    ],
+    "scope": {
+      "requested": "all_device_subjects_of_tenant",
+      "resolved_device_subjects": 0,
+      "identity_selector": null,
+      "global_rule": false
+    },
+    "rules": [
+      {
+        "key": "baseline-threats",
+        "action": "block",
+        "traffic": "any(dns.security_category[*] in {80 117 131})",
+        "source": "security_threat_baseline",
+        "order": 1
+      },
+      {
+        "key": "baseline-content",
+        "action": "block",
+        "traffic": "any(dns.content_category[*] in {2 99})",
+        "source": "mandatory_safety_restriction",
+        "order": 2
+      },
+      {
+        "key": "essential-services-allow",
+        "action": "allow",
+        "traffic": "<essential catalog: empty, rule omitted> and not any(dns.security_category[*] in {80 117 131}) and not any(dns.content_category[*] in {2 99})",
+        "source": "essential_services",
+        "omitted": true,
+        "order": 3
+      },
+      {
+        "key": "leisure-block",
+        "action": "block",
+        "source": "effective_leisure_decision",
+        "omitted": false,
+        "traffic": "any(dns.content_category[*] in {74 100 149 164})",
+        "categories": [
+          "entertainment_streaming",
+          "gaming",
+          "social_media"
+        ],
+        "valid_until": "2026-11-02T15:30:00Z",
+        "order": 4
+      },
+      {
+        "key": "baseline-safe-search",
+        "action": "safesearch",
+        "traffic": "any(dns.content_category[*] in {145})",
+        "source": "mandatory_safety_restriction",
+        "order": 5
+      },
+      {
+        "key": "baseline-youtube-restricted",
+        "action": "ytrestricted",
+        "traffic": "any(dns.domains[*] in {\"m.youtube.com\" \"youtube-nocookie.com\" \"youtube.com\" \"youtube.googleapis.com\" \"youtubei.googleapis.com\"})",
+        "source": "mandatory_safety_restriction",
+        "order": 6
+      }
+    ],
+    "warnings": [
+      "ENTITLEMENT: baseline 'Gambling' is premium-class",
+      "ENTITLEMENT: entertainment_streaming -> 'Audio Streaming' is premium-class",
+      "ENTITLEMENT: entertainment_streaming -> 'Video Streaming' is premium-class",
+      "ENTITLEMENT: gaming -> 'Gaming' is premium-class",
+      "ENTITLEMENT: social_media -> 'Social Networks' is premium-class"
+    ]
+  },
+  "S10 overlapping STUDY+STUDY+PAUSE, latest wins": {
+    "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+    "for_effective_at": "2026-11-02T15:30:00Z",
+    "persistent_mode": "STANDARD",
+    "desired_state": "DESIRED",
+    "compile_state": "COMPILED",
+    "apply_status": "APPLY_BLOCKED",
+    "apply_blockers": [
+      "NO_ENROLLED_DEVICE_BINDING",
+      "SAFE_SELECTOR_NOT_PROVEN",
+      "PROVIDER_MUTATION_NOT_AUTHORIZED",
+      "PROVIDER_ORDERING_SEMANTICS_UNVERIFIED_ON_DEVICE",
+      "PLAN_ENTITLEMENT_UNVERIFIED"
+    ],
+    "scope": {
+      "requested": "all_device_subjects_of_tenant",
+      "resolved_device_subjects": 0,
+      "identity_selector": null,
+      "global_rule": false
+    },
+    "rules": [
+      {
+        "key": "baseline-threats",
+        "action": "block",
+        "traffic": "any(dns.security_category[*] in {80 117 131})",
+        "source": "security_threat_baseline",
+        "order": 1
+      },
+      {
+        "key": "baseline-content",
+        "action": "block",
+        "traffic": "any(dns.content_category[*] in {2 99})",
+        "source": "mandatory_safety_restriction",
+        "order": 2
+      },
+      {
+        "key": "essential-services-allow",
+        "action": "allow",
+        "traffic": "<essential catalog: empty, rule omitted> and not any(dns.security_category[*] in {80 117 131}) and not any(dns.content_category[*] in {2 99})",
+        "source": "essential_services",
+        "omitted": true,
+        "order": 3
+      },
+      {
+        "key": "leisure-block",
+        "action": "block",
+        "source": "effective_leisure_decision",
+        "omitted": false,
+        "traffic": "any(dns.content_category[*] in {74 100 149 164})",
+        "categories": [
+          "entertainment_streaming",
+          "gaming",
+          "social_media"
+        ],
+        "valid_until": "2026-11-02T15:45:00Z",
+        "order": 4
+      },
+      {
+        "key": "baseline-safe-search",
+        "action": "safesearch",
+        "traffic": "any(dns.content_category[*] in {145})",
+        "source": "mandatory_safety_restriction",
+        "order": 5
+      },
+      {
+        "key": "baseline-youtube-restricted",
+        "action": "ytrestricted",
+        "traffic": "any(dns.domains[*] in {\"m.youtube.com\" \"youtube-nocookie.com\" \"youtube.com\" \"youtube.googleapis.com\" \"youtubei.googleapis.com\"})",
+        "source": "mandatory_safety_restriction",
+        "order": 6
+      }
+    ],
+    "warnings": [
+      "ENTITLEMENT: baseline 'Gambling' is premium-class",
+      "ENTITLEMENT: entertainment_streaming -> 'Audio Streaming' is premium-class",
+      "ENTITLEMENT: entertainment_streaming -> 'Video Streaming' is premium-class",
+      "ENTITLEMENT: gaming -> 'Gaming' is premium-class",
+      "ENTITLEMENT: social_media -> 'Social Networks' is premium-class"
+    ]
+  },
+  "S11 overlapping, after first STUDY/PAUSE expiry": {
+    "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+    "for_effective_at": "2026-11-02T16:30:00Z",
+    "persistent_mode": "STANDARD",
+    "desired_state": "DESIRED",
+    "compile_state": "COMPILED",
+    "apply_status": "APPLY_BLOCKED",
+    "apply_blockers": [
+      "NO_ENROLLED_DEVICE_BINDING",
+      "SAFE_SELECTOR_NOT_PROVEN",
+      "PROVIDER_MUTATION_NOT_AUTHORIZED",
+      "PROVIDER_ORDERING_SEMANTICS_UNVERIFIED_ON_DEVICE",
+      "PLAN_ENTITLEMENT_UNVERIFIED"
+    ],
+    "scope": {
+      "requested": "all_device_subjects_of_tenant",
+      "resolved_device_subjects": 0,
+      "identity_selector": null,
+      "global_rule": false
+    },
+    "rules": [
+      {
+        "key": "baseline-threats",
+        "action": "block",
+        "traffic": "any(dns.security_category[*] in {80 117 131})",
+        "source": "security_threat_baseline",
+        "order": 1
+      },
+      {
+        "key": "baseline-content",
+        "action": "block",
+        "traffic": "any(dns.content_category[*] in {2 99})",
+        "source": "mandatory_safety_restriction",
+        "order": 2
+      },
+      {
+        "key": "essential-services-allow",
+        "action": "allow",
+        "traffic": "<essential catalog: empty, rule omitted> and not any(dns.security_category[*] in {80 117 131}) and not any(dns.content_category[*] in {2 99})",
+        "source": "essential_services",
+        "omitted": true,
+        "order": 3
+      },
+      {
+        "key": "leisure-block",
+        "action": "block",
+        "source": "effective_leisure_decision",
+        "omitted": false,
+        "traffic": "any(dns.content_category[*] in {74 100 149 164})",
+        "categories": [
+          "entertainment_streaming",
+          "gaming",
+          "social_media"
+        ],
+        "valid_until": "2026-11-02T17:00:00Z",
+        "order": 4
+      },
+      {
+        "key": "baseline-safe-search",
+        "action": "safesearch",
+        "traffic": "any(dns.content_category[*] in {145})",
+        "source": "mandatory_safety_restriction",
+        "order": 5
+      },
+      {
+        "key": "baseline-youtube-restricted",
+        "action": "ytrestricted",
+        "traffic": "any(dns.domains[*] in {\"m.youtube.com\" \"youtube-nocookie.com\" \"youtube.com\" \"youtube.googleapis.com\" \"youtubei.googleapis.com\"})",
+        "source": "mandatory_safety_restriction",
+        "order": 6
+      }
+    ],
+    "warnings": [
+      "ENTITLEMENT: baseline 'Gambling' is premium-class",
+      "ENTITLEMENT: entertainment_streaming -> 'Audio Streaming' is premium-class",
+      "ENTITLEMENT: entertainment_streaming -> 'Video Streaming' is premium-class",
+      "ENTITLEMENT: gaming -> 'Gaming' is premium-class",
+      "ENTITLEMENT: social_media -> 'Social Networks' is premium-class"
+    ]
+  },
+  "S12 overlay not yet active": {
+    "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+    "for_effective_at": "2026-11-02T15:10:00Z",
+    "persistent_mode": "STANDARD",
+    "desired_state": "DESIRED",
+    "compile_state": "COMPILED",
+    "apply_status": "APPLY_BLOCKED",
+    "apply_blockers": [
+      "NO_ENROLLED_DEVICE_BINDING",
+      "SAFE_SELECTOR_NOT_PROVEN",
+      "PROVIDER_MUTATION_NOT_AUTHORIZED",
+      "PROVIDER_ORDERING_SEMANTICS_UNVERIFIED_ON_DEVICE",
+      "PLAN_ENTITLEMENT_UNVERIFIED"
+    ],
+    "scope": {
+      "requested": "all_device_subjects_of_tenant",
+      "resolved_device_subjects": 0,
+      "identity_selector": null,
+      "global_rule": false
+    },
+    "rules": [
+      {
+        "key": "baseline-threats",
+        "action": "block",
+        "traffic": "any(dns.security_category[*] in {80 117 131})",
+        "source": "security_threat_baseline",
+        "order": 1
+      },
+      {
+        "key": "baseline-content",
+        "action": "block",
+        "traffic": "any(dns.content_category[*] in {2 99})",
+        "source": "mandatory_safety_restriction",
+        "order": 2
+      },
+      {
+        "key": "essential-services-allow",
+        "action": "allow",
+        "traffic": "<essential catalog: empty, rule omitted> and not any(dns.security_category[*] in {80 117 131}) and not any(dns.content_category[*] in {2 99})",
+        "source": "essential_services",
+        "omitted": true,
+        "order": 3
+      },
+      {
+        "key": "leisure-block",
+        "action": "block",
+        "source": "effective_leisure_decision",
+        "omitted": true,
+        "traffic": "<no leisure category blocked>",
+        "categories": [
+          null
+        ],
+        "valid_until": null,
+        "order": 4
+      },
+      {
+        "key": "baseline-safe-search",
+        "action": "safesearch",
+        "traffic": "any(dns.content_category[*] in {145})",
+        "source": "mandatory_safety_restriction",
+        "order": 5
+      },
+      {
+        "key": "baseline-youtube-restricted",
+        "action": "ytrestricted",
+        "traffic": "any(dns.domains[*] in {\"m.youtube.com\" \"youtube-nocookie.com\" \"youtube.com\" \"youtube.googleapis.com\" \"youtubei.googleapis.com\"})",
+        "source": "mandatory_safety_restriction",
+        "order": 6
+      }
+    ],
+    "warnings": [
+      "ENTITLEMENT: baseline 'Gambling' is premium-class"
+    ]
+  }
+}

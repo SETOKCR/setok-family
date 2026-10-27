@@ -1,0 +1,971 @@
+{
+  "inputs": {
+    "baseline": "a7f4384151305cc963854f1967b31074f4bca35637de43ed76c9ffb273a45875",
+    "modes": "8e1c14ece3e0b4edd7827ca57f60a17cfa745600d5dcd92d1878d92bccd76fe2",
+    "adapter": "2731c9d72fac4b16d9690d6a1eb4ab743948330950f92067545104116f1285c5",
+    "adapterModes": "420e5e35e057ceeba03ef9ee2b1ee300c31dd575cfbf96ced62ae2d44ead546a",
+    "discovery": "4c92e9e31ee1a5d74dd9dc79f8c5d93e69744f3d8425f899bea0d12d7ba4e55a",
+    "registry": "b6091abd573d46b8e674803422596ae8c6c5822ec8dbe460ffb67b64dd4e7426"
+  },
+  "summary": {
+    "persistentModes": "2/2",
+    "temporaryOverlays": "4/4",
+    "productSemantics": true,
+    "baselineNonRegression": true,
+    "composition": true,
+    "deterministic": true,
+    "expirationRestore": true,
+    "conflictResolution": true,
+    "essentialServices": true,
+    "scheduleBoundary": true,
+    "failClosed": true,
+    "compilation": true,
+    "outputsSha256": "487a442e145b4dcf75a253eb8d1b6d85a27a7241d4a3e496f4d1ff5eea524e8d",
+    "networkCallsInScript": 0,
+    "providerMutation": false,
+    "claimedApplied": false,
+    "deviceSubjects": 0,
+    "deviceBindings": 0,
+    "tests": 111,
+    "failures": 0
+  },
+  "results": [
+    {
+      "group": "schema/semantics",
+      "test": "approved modes config validates (schema, tenant, precedence, exact PO semantics, conflicts, provider-neutral)",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "group": "composition",
+      "test": "S01 STANDARD :: entertainment_streaming",
+      "expected": "ALLOW/default_family_policy",
+      "got": "ALLOW/default_family_policy",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "composition",
+      "test": "S01 STANDARD :: gaming",
+      "expected": "ALLOW/default_family_policy",
+      "got": "ALLOW/default_family_policy",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "composition",
+      "test": "S01 STANDARD :: social_media",
+      "expected": "ALLOW/default_family_policy",
+      "got": "ALLOW/default_family_policy",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "baseline-non-regression",
+      "test": "S01 STANDARD :: 7 baseline controls unchanged",
+      "expected": "True",
+      "got": "True",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "compilation",
+      "test": "S01 STANDARD :: plan COMPILED/APPLY_BLOCKED and ordering invariants",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "group": "composition",
+      "test": "S02 RESTRICTED :: entertainment_streaming",
+      "expected": "BLOCK/mode:RESTRICTED",
+      "got": "BLOCK/mode:RESTRICTED",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "composition",
+      "test": "S02 RESTRICTED :: gaming",
+      "expected": "BLOCK/mode:RESTRICTED",
+      "got": "BLOCK/mode:RESTRICTED",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "composition",
+      "test": "S02 RESTRICTED :: social_media",
+      "expected": "BLOCK/mode:RESTRICTED",
+      "got": "BLOCK/mode:RESTRICTED",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "baseline-non-regression",
+      "test": "S02 RESTRICTED :: 7 baseline controls unchanged",
+      "expected": "True",
+      "got": "True",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "compilation",
+      "test": "S02 RESTRICTED :: plan COMPILED/APPLY_BLOCKED and ordering invariants",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "group": "composition",
+      "test": "S03 RESTRICTED + ALLOW_SOCIAL (active) :: entertainment_streaming",
+      "expected": "BLOCK/mode:RESTRICTED",
+      "got": "BLOCK/mode:RESTRICTED",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "composition",
+      "test": "S03 RESTRICTED + ALLOW_SOCIAL (active) :: gaming",
+      "expected": "BLOCK/mode:RESTRICTED",
+      "got": "BLOCK/mode:RESTRICTED",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "composition",
+      "test": "S03 RESTRICTED + ALLOW_SOCIAL (active) :: social_media",
+      "expected": "ALLOW/overlay:ALLOW_SOCIAL",
+      "got": "ALLOW/overlay:ALLOW_SOCIAL",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "baseline-non-regression",
+      "test": "S03 RESTRICTED + ALLOW_SOCIAL (active) :: 7 baseline controls unchanged",
+      "expected": "True",
+      "got": "True",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "compilation",
+      "test": "S03 RESTRICTED + ALLOW_SOCIAL (active) :: plan COMPILED/APPLY_BLOCKED and ordering invariants",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "group": "composition",
+      "test": "S04 RESTRICTED + ALLOW_SOCIAL (at expiry) :: entertainment_streaming",
+      "expected": "BLOCK/mode:RESTRICTED",
+      "got": "BLOCK/mode:RESTRICTED",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "composition",
+      "test": "S04 RESTRICTED + ALLOW_SOCIAL (at expiry) :: gaming",
+      "expected": "BLOCK/mode:RESTRICTED",
+      "got": "BLOCK/mode:RESTRICTED",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "composition",
+      "test": "S04 RESTRICTED + ALLOW_SOCIAL (at expiry) :: social_media",
+      "expected": "BLOCK/mode:RESTRICTED",
+      "got": "BLOCK/mode:RESTRICTED",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "baseline-non-regression",
+      "test": "S04 RESTRICTED + ALLOW_SOCIAL (at expiry) :: 7 baseline controls unchanged",
+      "expected": "True",
+      "got": "True",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "compilation",
+      "test": "S04 RESTRICTED + ALLOW_SOCIAL (at expiry) :: plan COMPILED/APPLY_BLOCKED and ordering invariants",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "group": "composition",
+      "test": "S05 STANDARD + STUDY (active) :: entertainment_streaming",
+      "expected": "BLOCK/overlay:STUDY",
+      "got": "BLOCK/overlay:STUDY",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "composition",
+      "test": "S05 STANDARD + STUDY (active) :: gaming",
+      "expected": "BLOCK/overlay:STUDY",
+      "got": "BLOCK/overlay:STUDY",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "composition",
+      "test": "S05 STANDARD + STUDY (active) :: social_media",
+      "expected": "BLOCK/overlay:STUDY",
+      "got": "BLOCK/overlay:STUDY",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "baseline-non-regression",
+      "test": "S05 STANDARD + STUDY (active) :: 7 baseline controls unchanged",
+      "expected": "True",
+      "got": "True",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "compilation",
+      "test": "S05 STANDARD + STUDY (active) :: plan COMPILED/APPLY_BLOCKED and ordering invariants",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "group": "composition",
+      "test": "S06 STANDARD + STUDY (expired) :: entertainment_streaming",
+      "expected": "ALLOW/default_family_policy",
+      "got": "ALLOW/default_family_policy",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "composition",
+      "test": "S06 STANDARD + STUDY (expired) :: gaming",
+      "expected": "ALLOW/default_family_policy",
+      "got": "ALLOW/default_family_policy",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "composition",
+      "test": "S06 STANDARD + STUDY (expired) :: social_media",
+      "expected": "ALLOW/default_family_policy",
+      "got": "ALLOW/default_family_policy",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "baseline-non-regression",
+      "test": "S06 STANDARD + STUDY (expired) :: 7 baseline controls unchanged",
+      "expected": "True",
+      "got": "True",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "compilation",
+      "test": "S06 STANDARD + STUDY (expired) :: plan COMPILED/APPLY_BLOCKED and ordering invariants",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "group": "composition",
+      "test": "S07 STANDARD + STUDY + ALLOW_SOCIAL :: entertainment_streaming",
+      "expected": "BLOCK/overlay:STUDY",
+      "got": "BLOCK/overlay:STUDY",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "composition",
+      "test": "S07 STANDARD + STUDY + ALLOW_SOCIAL :: gaming",
+      "expected": "BLOCK/overlay:STUDY",
+      "got": "BLOCK/overlay:STUDY",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "composition",
+      "test": "S07 STANDARD + STUDY + ALLOW_SOCIAL :: social_media",
+      "expected": "ALLOW/overlay:ALLOW_SOCIAL",
+      "got": "ALLOW/overlay:ALLOW_SOCIAL",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "baseline-non-regression",
+      "test": "S07 STANDARD + STUDY + ALLOW_SOCIAL :: 7 baseline controls unchanged",
+      "expected": "True",
+      "got": "True",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "compilation",
+      "test": "S07 STANDARD + STUDY + ALLOW_SOCIAL :: plan COMPILED/APPLY_BLOCKED and ordering invariants",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "group": "composition",
+      "test": "S08 STUDY + ALLOW_SOCIAL after social expiry :: entertainment_streaming",
+      "expected": "BLOCK/overlay:STUDY",
+      "got": "BLOCK/overlay:STUDY",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "composition",
+      "test": "S08 STUDY + ALLOW_SOCIAL after social expiry :: gaming",
+      "expected": "BLOCK/overlay:STUDY",
+      "got": "BLOCK/overlay:STUDY",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "composition",
+      "test": "S08 STUDY + ALLOW_SOCIAL after social expiry :: social_media",
+      "expected": "BLOCK/overlay:STUDY",
+      "got": "BLOCK/overlay:STUDY",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "baseline-non-regression",
+      "test": "S08 STUDY + ALLOW_SOCIAL after social expiry :: 7 baseline controls unchanged",
+      "expected": "True",
+      "got": "True",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "compilation",
+      "test": "S08 STUDY + ALLOW_SOCIAL after social expiry :: plan COMPILED/APPLY_BLOCKED and ordering invariants",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "group": "composition",
+      "test": "S09 RESTRICTED + PAUSE + ALLOW_SOCIAL :: entertainment_streaming",
+      "expected": "BLOCK/overlay:PAUSE_ENTERTAINMENT",
+      "got": "BLOCK/overlay:PAUSE_ENTERTAINMENT",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "composition",
+      "test": "S09 RESTRICTED + PAUSE + ALLOW_SOCIAL :: gaming",
+      "expected": "BLOCK/overlay:PAUSE_ENTERTAINMENT",
+      "got": "BLOCK/overlay:PAUSE_ENTERTAINMENT",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "composition",
+      "test": "S09 RESTRICTED + PAUSE + ALLOW_SOCIAL :: social_media",
+      "expected": "BLOCK/overlay:PAUSE_ENTERTAINMENT",
+      "got": "BLOCK/overlay:PAUSE_ENTERTAINMENT",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "baseline-non-regression",
+      "test": "S09 RESTRICTED + PAUSE + ALLOW_SOCIAL :: 7 baseline controls unchanged",
+      "expected": "True",
+      "got": "True",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "compilation",
+      "test": "S09 RESTRICTED + PAUSE + ALLOW_SOCIAL :: plan COMPILED/APPLY_BLOCKED and ordering invariants",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "group": "composition",
+      "test": "S10 overlapping STUDY+STUDY+PAUSE, latest wins :: entertainment_streaming",
+      "expected": "BLOCK/overlay:STUDY",
+      "got": "BLOCK/overlay:STUDY",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "composition",
+      "test": "S10 overlapping STUDY+STUDY+PAUSE, latest wins :: gaming",
+      "expected": "BLOCK/overlay:STUDY",
+      "got": "BLOCK/overlay:STUDY",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "composition",
+      "test": "S10 overlapping STUDY+STUDY+PAUSE, latest wins :: social_media",
+      "expected": "BLOCK/overlay:STUDY",
+      "got": "BLOCK/overlay:STUDY",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "baseline-non-regression",
+      "test": "S10 overlapping STUDY+STUDY+PAUSE, latest wins :: 7 baseline controls unchanged",
+      "expected": "True",
+      "got": "True",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "compilation",
+      "test": "S10 overlapping STUDY+STUDY+PAUSE, latest wins :: plan COMPILED/APPLY_BLOCKED and ordering invariants",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "group": "composition",
+      "test": "S11 overlapping, after first STUDY/PAUSE expiry :: entertainment_streaming",
+      "expected": "BLOCK/overlay:STUDY",
+      "got": "BLOCK/overlay:STUDY",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "composition",
+      "test": "S11 overlapping, after first STUDY/PAUSE expiry :: gaming",
+      "expected": "BLOCK/overlay:STUDY",
+      "got": "BLOCK/overlay:STUDY",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "composition",
+      "test": "S11 overlapping, after first STUDY/PAUSE expiry :: social_media",
+      "expected": "BLOCK/overlay:STUDY",
+      "got": "BLOCK/overlay:STUDY",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "baseline-non-regression",
+      "test": "S11 overlapping, after first STUDY/PAUSE expiry :: 7 baseline controls unchanged",
+      "expected": "True",
+      "got": "True",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "compilation",
+      "test": "S11 overlapping, after first STUDY/PAUSE expiry :: plan COMPILED/APPLY_BLOCKED and ordering invariants",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "group": "composition",
+      "test": "S12 overlay not yet active :: entertainment_streaming",
+      "expected": "ALLOW/default_family_policy",
+      "got": "ALLOW/default_family_policy",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "composition",
+      "test": "S12 overlay not yet active :: gaming",
+      "expected": "ALLOW/default_family_policy",
+      "got": "ALLOW/default_family_policy",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "composition",
+      "test": "S12 overlay not yet active :: social_media",
+      "expected": "ALLOW/default_family_policy",
+      "got": "ALLOW/default_family_policy",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "baseline-non-regression",
+      "test": "S12 overlay not yet active :: 7 baseline controls unchanged",
+      "expected": "True",
+      "got": "True",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "compilation",
+      "test": "S12 overlay not yet active :: plan COMPILED/APPLY_BLOCKED and ordering invariants",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "group": "explanation",
+      "test": "S03 social explains overridden RESTRICTED, expiry and underlying mode",
+      "expected": "mode:RESTRICTED|2026-11-02T15:30:00Z|RESTRICTED",
+      "got": "mode:RESTRICTED|2026-11-02T15:30:00Z|RESTRICTED",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "conflict",
+      "test": "S09 ALLOW_SOCIAL listed as overridden by PAUSE_ENTERTAINMENT",
+      "expected": "True",
+      "got": "True",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "conflict",
+      "test": "S10 winner is the latest-expiring overlay instance",
+      "expected": "ovl_01M60000000000000000000004|2026-11-02T17:00:00Z",
+      "got": "ovl_01M60000000000000000000004|2026-11-02T17:00:00Z",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "conflict",
+      "test": "S10 conflict order independent of overlay input order",
+      "expected": "True",
+      "got": "True",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "clear-temporary",
+      "test": "CLEAR_TEMPORARY on S07 restores STANDARD immediately",
+      "expected": "True",
+      "got": "True",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "clear-temporary",
+      "test": "CLEAR_TEMPORARY on S07 keeps persistent mode, baseline and schedules",
+      "expected": "True",
+      "got": "True",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "clear-temporary",
+      "test": "CLEAR_TEMPORARY on S03 restores RESTRICTED immediately",
+      "expected": "True",
+      "got": "True",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "clear-temporary",
+      "test": "CLEAR_TEMPORARY on S03 keeps persistent mode, baseline and schedules",
+      "expected": "True",
+      "got": "True",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "essential-services",
+      "test": "essential social service under RESTRICTED",
+      "expected": "ALLOW/essential_services",
+      "got": "ALLOW/essential_services",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "essential-services",
+      "test": "essential streaming service under STUDY",
+      "expected": "ALLOW/essential_services",
+      "got": "ALLOW/essential_services",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "essential-services",
+      "test": "essential service categorized phishing",
+      "expected": "BLOCK/security_threat_baseline",
+      "got": "BLOCK/security_threat_baseline",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "essential-services",
+      "test": "essential service categorized malware",
+      "expected": "BLOCK/security_threat_baseline",
+      "got": "BLOCK/security_threat_baseline",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "essential-services",
+      "test": "essential service categorized C2",
+      "expected": "BLOCK/security_threat_baseline",
+      "got": "BLOCK/security_threat_baseline",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "essential-services",
+      "test": "essential service categorized gambling",
+      "expected": "BLOCK/mandatory_safety_restriction",
+      "got": "BLOCK/mandatory_safety_restriction",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "essential-services",
+      "test": "non-essential social service under RESTRICTED",
+      "expected": "BLOCK/active_mode",
+      "got": "BLOCK/active_mode",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "essential-services",
+      "test": "Essential Services contract exempting malware -> FAIL",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": [
+        "ESSENTIAL: cannot exempt from threat.malware (only leisure categories)"
+      ]
+    },
+    {
+      "group": "schedule-boundary",
+      "test": "schedule block applies under STANDARD (layer 7)",
+      "expected": "BLOCK/recurring_schedule",
+      "got": "BLOCK/recurring_schedule",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "schedule-boundary",
+      "test": "schedule allow cannot beat RESTRICTED (layer 6 > 7)",
+      "expected": "BLOCK/active_mode",
+      "got": "BLOCK/active_mode",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "schedule-boundary",
+      "test": "schedule cannot touch malware baseline",
+      "expected": "BLOCK",
+      "got": "BLOCK",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "fail-closed",
+      "test": "STANDARD attempts to disable malware baseline",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": [
+        "SCHEMA: modes config does not conform to modes.schema.json",
+        "SEMANTICS: mode:STANDARD effects differ from PO-approved semantics"
+      ]
+    },
+    {
+      "group": "fail-closed",
+      "test": "RESTRICTED attempts to weaken SafeSearch",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": [
+        "SCHEMA: modes config does not conform to modes.schema.json",
+        "SEMANTICS: mode:RESTRICTED effects differ from PO-approved semantics"
+      ]
+    },
+    {
+      "group": "fail-closed",
+      "test": "overlay disables phishing",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": [
+        "SCHEMA: modes config does not conform to modes.schema.json",
+        "SEMANTICS: overlay:ALLOW_SOCIAL effects differ from PO-approved semantics"
+      ]
+    },
+    {
+      "group": "fail-closed",
+      "test": "overlay disables C2",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": [
+        "SCHEMA: modes config does not conform to modes.schema.json",
+        "SEMANTICS: overlay:STUDY effects differ from PO-approved semantics"
+      ]
+    },
+    {
+      "group": "fail-closed",
+      "test": "overlay disables adult content",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": [
+        "SCHEMA: modes config does not conform to modes.schema.json",
+        "SEMANTICS: overlay:PAUSE_ENTERTAINMENT effects differ from PO-approved semantics"
+      ]
+    },
+    {
+      "group": "fail-closed",
+      "test": "overlay disables gambling",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": [
+        "SCHEMA: modes config does not conform to modes.schema.json",
+        "SEMANTICS: overlay:ALLOW_SOCIAL effects differ from PO-approved semantics"
+      ]
+    },
+    {
+      "group": "fail-closed",
+      "test": "overlay disables YouTube Restricted",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": [
+        "SCHEMA: modes config does not conform to modes.schema.json",
+        "SEMANTICS: overlay:ALLOW_SOCIAL effects differ from PO-approved semantics"
+      ]
+    },
+    {
+      "group": "fail-closed",
+      "test": "unknown overlay defined",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": [
+        "SCHEMA: modes config does not conform to modes.schema.json",
+        "SEMANTICS: unknown overlay PARTY_MODE",
+        "CONFLICT: ALLOW_SOCIAL vs PARTY_MODE on social_media has 0 declared winners (exactly 1 required)"
+      ]
+    },
+    {
+      "group": "fail-closed",
+      "test": "provider ID inside domain intent",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": [
+        "SCHEMA: modes config does not conform to modes.schema.json",
+        "PROVIDER-LEAK: provider syntax or identifier in domain intent",
+        "PROVIDER-LEAK: numeric identifier in domain intent"
+      ]
+    },
+    {
+      "group": "fail-closed",
+      "test": "provider expression inside domain intent",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": [
+        "PROVIDER-LEAK: provider syntax or identifier in domain intent"
+      ]
+    },
+    {
+      "group": "fail-closed",
+      "test": "conflicting overlays without a declared winner",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": [
+        "CONFLICT: ALLOW_SOCIAL vs PAUSE_ENTERTAINMENT on social_media has 0 declared winners (exactly 1 required)"
+      ]
+    },
+    {
+      "group": "fail-closed",
+      "test": "conflicting overlays with two declared winners",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": [
+        "CONFLICT: ALLOW_SOCIAL vs PAUSE_ENTERTAINMENT on social_media has 2 declared winners (exactly 1 required)"
+      ]
+    },
+    {
+      "group": "fail-closed",
+      "test": "ALLOW_SOCIAL widened beyond approved override set",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": [
+        "SEMANTICS: ALLOW_SOCIAL may override only RESTRICTED or STUDY"
+      ]
+    },
+    {
+      "group": "fail-closed",
+      "test": "RESTRICTED differs from approved semantics",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": [
+        "SEMANTICS: mode:RESTRICTED effects differ from PO-approved semantics"
+      ]
+    },
+    {
+      "group": "fail-closed",
+      "test": "ALLOW_SOCIAL affects gaming",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": [
+        "SEMANTICS: overlay:ALLOW_SOCIAL effects differ from PO-approved semantics",
+        "CONFLICT: ALLOW_SOCIAL vs PAUSE_ENTERTAINMENT on gaming has 0 declared winners (exactly 1 required)",
+        "CONFLICT: ALLOW_SOCIAL vs STUDY on gaming has 0 declared winners (exactly 1 required)"
+      ]
+    },
+    {
+      "group": "fail-closed",
+      "test": "overlay contract without required expiry",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": [
+        "SCHEMA: modes config does not conform to modes.schema.json"
+      ]
+    },
+    {
+      "group": "fail-closed",
+      "test": "precedence reordered",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": [
+        "PRECEDENCE: layer order differs from ARCHITECTURE §10.4"
+      ]
+    },
+    {
+      "group": "fail-closed",
+      "test": "temporary overlay without expiry",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "fail-closed",
+      "test": "overlay expiry before activation",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "fail-closed",
+      "test": "unknown overlay type in state",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "fail-closed",
+      "test": "CLEAR_TEMPORARY submitted as overlay",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "fail-closed",
+      "test": "invented device selector",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "fail-closed",
+      "test": "invented family selector scope",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "fail-closed",
+      "test": "unknown persistent mode",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "fail-closed",
+      "test": "overlay id is not an internal ULID",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "fail-closed",
+      "test": "composition refuses nondeterministic overlay conflict at runtime",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "fail-closed",
+      "test": "compiled plan marked APPLIED",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "fail-closed",
+      "test": "plan with allow rule before threat baseline",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "fail-closed",
+      "test": "plan with global rule",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "fail-closed",
+      "test": "leisure provider category unresolved",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "group": "determinism",
+      "test": "composition + compilation identical across repeated runs",
+      "expected": "True",
+      "got": "True",
+      "ok": true,
+      "detail": "487a442e145b4dcf75a253eb8d1b6d85a27a7241d4a3e496f4d1ff5eea524e8d"
+    }
+  ]
+}

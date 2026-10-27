@@ -1,0 +1,30 @@
+{
+  "adapter": "cloudflare-zero-trust/gateway-dns",
+  "adapter_extension": "modes",
+  "adapter_version": 1,
+  "notes": "Adapter data for ST-POL-002, NOT domain intent. Categories are resolved by provider NAME against read-only discovery evidence; numeric IDs appear only in compiled plans.",
+  "leisure_mappings": {
+    "social_media":            [ { "selector": "dns.content_category", "parent": "Society & Lifestyle", "name": "Social Networks" } ],
+    "gaming":                  [ { "selector": "dns.content_category", "parent": "Entertainment", "name": "Gaming" } ],
+    "entertainment_streaming": [ { "selector": "dns.content_category", "parent": "Entertainment", "name": "Video Streaming" },
+                                 { "selector": "dns.content_category", "parent": "Entertainment", "name": "Audio Streaming" } ]
+  },
+  "baseline_rule_scoping": {
+    "search.safe_search":       { "selector": "dns.content_category", "parent": "Technology", "name": "Search Engines" },
+    "video.youtube_restricted": { "selector": "dns.domains", "domains": ["youtube.com", "m.youtube.com", "youtubei.googleapis.com", "youtube.googleapis.com", "youtube-nocookie.com"] }
+  },
+  "rule_order": [
+    "baseline-threats",
+    "baseline-content",
+    "essential-services-allow",
+    "leisure-block",
+    "baseline-safe-search",
+    "baseline-youtube-restricted"
+  ],
+  "ordering_rationale": [
+    "Gateway DNS rules are first-match. Threat and mandatory-content blocks come first, so no later allow can short-circuit them.",
+    "Essential-services allow comes before leisure blocks so that essentials survive leisure restrictions. Its traffic always excludes the threat and mandatory content categories, and its catalog may not contain SafeSearch or YouTube targets.",
+    "Leisure blocks come before the SafeSearch and YouTube rules, so a blocked streaming service is blocked (stricter) rather than rewritten to restricted mode.",
+    "SafeSearch and YouTube Restricted are scoped to their targets, never all queries, so they cannot terminate evaluation for unrelated traffic."
+  ]
+}

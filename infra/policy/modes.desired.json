@@ -1,0 +1,69 @@
+{
+  "modes_contract_version": 1,
+  "notes": "PO-approved first-family modes and temporary overlays (ST-POL-002). Desired state only; never APPLIED by this document. Baseline controls are owned by baseline.desired.json and are not addressable here.",
+  "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+  "baseline_policy_id": "pol_01M5WDGX38EV8110CN2BH1RKRQ",
+  "precedence": [
+    "security_threat_baseline",
+    "mandatory_safety_restriction",
+    "essential_services",
+    "emergency_parent_action",
+    "temporary_override",
+    "active_mode",
+    "recurring_schedule",
+    "default_family_policy"
+  ],
+  "leisure_categories": ["social_media", "gaming", "entertainment_streaming"],
+  "default_persistent_mode": "STANDARD",
+  "persistent_modes": {
+    "STANDARD": { "layer": "active_mode", "effects": [] },
+    "RESTRICTED": {
+      "layer": "active_mode",
+      "effects": [
+        { "category": "social_media", "action": "BLOCK" },
+        { "category": "gaming", "action": "BLOCK" },
+        { "category": "entertainment_streaming", "action": "BLOCK" }
+      ]
+    }
+  },
+  "temporary_overlays": {
+    "STUDY": {
+      "layer": "temporary_override",
+      "requires_expiry": true,
+      "effects": [
+        { "category": "social_media", "action": "BLOCK" },
+        { "category": "gaming", "action": "BLOCK" },
+        { "category": "entertainment_streaming", "action": "BLOCK" }
+      ],
+      "may_override": [],
+      "preserves_essential_services": true
+    },
+    "ALLOW_SOCIAL": {
+      "layer": "temporary_override",
+      "requires_expiry": true,
+      "effects": [ { "category": "social_media", "action": "ALLOW" } ],
+      "may_override": ["mode:RESTRICTED", "overlay:STUDY"],
+      "preserves_essential_services": true
+    },
+    "PAUSE_ENTERTAINMENT": {
+      "layer": "temporary_override",
+      "requires_expiry": true,
+      "effects": [
+        { "category": "social_media", "action": "BLOCK" },
+        { "category": "gaming", "action": "BLOCK" },
+        { "category": "entertainment_streaming", "action": "BLOCK" }
+      ],
+      "may_override": [],
+      "preserves_essential_services": true
+    }
+  },
+  "actions": {
+    "CLEAR_TEMPORARY": { "removes": ["temporary_overlays"], "preserves": ["persistent_mode", "baseline", "recurring_schedules"] }
+  },
+  "conflict_rules": [
+    { "category": "social_media", "between": ["ALLOW_SOCIAL", "STUDY"], "winner": "ALLOW_SOCIAL", "basis": "PO-approved: ALLOW_SOCIAL may override STUDY for social media" },
+    { "category": "social_media", "between": ["ALLOW_SOCIAL", "PAUSE_ENTERTAINMENT"], "winner": "PAUSE_ENTERTAINMENT", "basis": "PO-approved: ALLOW_SOCIAL may override only RESTRICTED or STUDY; it is not authorized to override PAUSE_ENTERTAINMENT" }
+  ],
+  "recurring_schedules": [],
+  "emergency_parent_actions": []
+}

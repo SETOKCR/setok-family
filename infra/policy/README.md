@@ -37,4 +37,12 @@ All of these must hold before any Gateway rule is created:
 5. **Rollback:** each created rule is identified by name and id, and deleting exactly those rules restores the prior state.
 6. **Authorization:** a separate Work Order explicitly authorizes provider mutation.
 
+## Modes and temporary overlays (ST-POL-002)
+
+The persistent modes and temporary overlays are defined in these files:
+- `modes.schema.json` and `modes.desired.json` define the persistent modes `STANDARD` and `RESTRICTED`, the temporary overlays `STUDY`, `ALLOW_SOCIAL` and `PAUSE_ENTERTAINMENT`, and the action `CLEAR_TEMPORARY`. Together they cover the leisure categories `social_media`, `gaming` and `entertainment_streaming`.
+- `cloudflare/dns-adapter.modes.json` holds the leisure-category names and the provider rule order.
+
+Overlay conflicts are resolved only by explicit `conflict_rules`. The composition engine and the Effective Policy Decision are implemented in `scripts/st-pol-002/Invoke-StPol002.ps1`. Results are recorded in `docs/evidence/ST-POL-002/README.md`.
+
 HTTP inspection, root certificates, AV scanning and the anti-bypass work (DoH/DoT/VPN) are not part of this plan. They have not been verified.
