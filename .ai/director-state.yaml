@@ -1,5 +1,5 @@
 schema_version: 1
-written_at_utc: 2026-10-27T06:10:00Z
+written_at_utc: 2026-10-27T06:18:00Z
 
 framework:
   repository: SETOKCR/setok-aide
@@ -10,22 +10,21 @@ scope:
   kind: project
   repository: SETOKCR/setok-family
   default_branch: main
-  observed_head: d62700795deb1cda45e88b39ea73f0a63bf5bf18
+  observed_head: f96491995087d26d9da0ace530901164c140d05f
 
 activity:
   lifecycle: active
   active_unit: ST-DEV-001
-  phase: resume-preflight
+  execution_attempt: r2
+  phase: readiness
   risk: RED
   implementation_authorized: false
-  authorized_base: null
-  implementation_branch: feature/st-dev-001
+  authorized_base: f09d114d29ae7fffc1d8516cd287c83188d4ae00
+  implementation_branch: feature/st-dev-001-r2
   candidate_commit: null
 
 open_gates:
-  - refresh ST-DEV-001 Authorized Base/branch continuity against current main
-  - fresh Stage A read-only discovery
-  - explicit Technical Director implementation authorization before new mutation
+  - explicit Technical Director implementation authorization for ST-DEV-001 r2
 
 canonical_refs:
   - .ai/AIDE_PROJECT.yaml
@@ -39,6 +38,17 @@ canonical_refs:
   - docs/development/ST-DEV-001_INDEPENDENT_CHECK.md
   - docs/evidence/ST-CF-002/README.md
 
+prior_attempts:
+  - unit: ST-DEV-001
+    attempt: r1
+    branch: feature/st-dev-001
+    state: CONTROLLED_STOP
+    stage: A
+    candidate_commit: 74cb833a1fcbc2e452fd7d0dde578b22ca9fdaf4
+    external_mutation_performed: false
+    blocker: device-enrollment permissions absent
+    disposition: retain as immutable historical evidence; do not rebase or reuse
+
 last_terminal:
   outcome: ACCEPT
   unit: ST-CF-002
@@ -49,6 +59,7 @@ last_terminal:
 blocked_units: []
 
 next_action:
-  kind: resume-preflight
+  kind: readiness
   unit: ST-DEV-001
-  note: Previous ST-DEV-001 execution stopped safely at Stage A with no external mutation because device-enrollment permissions were absent. ST-CF-002 has removed that blocker. Reconstruct ST-DEV-001 from Git, refresh base/branch continuity against current main, and rerun Stage A read-only against the managed warp app/policy before any device subject or handset enrollment mutation. Successful terminal state must remain DEVICE_ENROLLED / DEVICE_BOUND / SAFE_SELECTOR_NOT_YET_PROVEN.
+  execution_attempt: r2
+  note: Resume preflight PASS. New Authorized Base frozen at f09d114d29ae7fffc1d8516cd287c83188d4ae00. feature/st-dev-001-r2 created from that exact base and verified one governance-only Work Order commit ahead, zero behind. Await explicit implementation authorization. After authorization, Development Agent must begin with a fresh Stage A read-only discovery that reconciles the ST-CF-002 enrollment authorization and proves no unexpected device/provider state before any device subject or handset enrollment mutation. Successful terminal state remains DEVICE_ENROLLED / DEVICE_BOUND / SAFE_SELECTOR_NOT_YET_PROVEN.
