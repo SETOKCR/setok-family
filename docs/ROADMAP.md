@@ -15,10 +15,11 @@ Current AIDE execution state:
 - Independent Check: `PASS WITH CONDITIONS`
 - risk: `RED`
 - Product Input Gate: `NOT REQUIRED`
-- Authorized Base: `PENDING`
-- implementation branch: `PENDING`
+- Authorized Base: `8c2758026623209a655ace744fef977b3e018fc5`
+- implementation branch: `feature/st-dev-001`
+- branch lineage: `VERIFIED — exactly one governance-only Work Order commit above Authorized Base`
 - implementation authorized: `NO`
-- open gates: freeze Authorized Base, create/verify implementation branch, explicit Technical Director implementation authorization
+- open gates: explicit Technical Director implementation authorization
 
 ## Phase 1 objective
 
@@ -163,7 +164,7 @@ Phase 2 is the SETOK Family application / mini app and consumer experience. It r
 
 ## Next governance action
 
-Freeze the ST-DEV-001 Authorized Base, create `feature/st-dev-001` from that exact commit, verify branch lineage, and require explicit Technical Director implementation authorization. No physical enrollment/provider mutation is authorized before that GO.
+Technical Director may issue explicit implementation authorization for ST-DEV-001. Before any external mutation, the Development Agent must perform Stage A read-only discovery. If safe manual enrollment would require changing shared enrollment/auth/profile/Gateway controls, execution must STOP before mutation.
 
 ## Authority
 
