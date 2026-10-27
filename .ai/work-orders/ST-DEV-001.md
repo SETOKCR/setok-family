@@ -6,9 +6,9 @@
 - **Repository:** SETOKCR/setok-family
 - **Story / Work Unit:** ST-DEV-001
 - **Execution attempt:** `r2`
-- **Authorized Base:** `PENDING`
-- **Implementation Branch:** `PENDING`
-- **Execution state:** RESUME_PREFLIGHT_COMPLETE
+- **Authorized Base:** `f09d114d29ae7fffc1d8516cd287c83188d4ae00`
+- **Implementation Branch:** `feature/st-dev-001-r2`
+- **Execution state:** READY
 - **Implementation Authorization:** NO
 - **Persistence:** PERSISTED
 
@@ -161,98 +161,30 @@ Prove unchanged:
 
 No policy may be claimed `APPLIED` and `SAFE_SELECTOR_NOT_YET_PROVEN` must remain explicit.
 
-Document rollback/offboarding across:
-
-1. SETOK binding retirement;
-2. Cloudflare registration/device revoke/delete;
-3. local Android client disconnect/uninstall as appropriate;
-4. removal/revocation of enrollment authorization only when permanent platform-wide offboarding semantics actually require it; do not delete the shared SETOK Family enrollment authorization merely to offboard one device.
-
-Provider deletion alone must not be described as permanent offboarding while the enrollment identity remains authorized.
-
 ## Provider mutation boundary
 
 The only intended external provider mutation in ST-DEV-001 r2 is the target Android device's own Cloudflare enrollment/registration caused by the supported manual client flow.
 
-Forbidden without new explicit Technical Director authorization:
-
-- Gateway DNS/HTTP/Network rules or lists create/update/delete/reorder;
-- ST-CF-002 enrollment app/policy edits/deletion;
-- device-enrollment permission changes;
-- login-method/IdP changes;
-- service-token creation/changes;
-- `SETOK-FAMILY-MANAGED` edits;
-- Default profile edits;
-- device profile selector/match edits;
-- `unique_client_id` fabrication/injection;
-- ManageEngine or other Android MDM deployment;
-- mutation of unrelated Cloudflare devices/registrations.
+Forbidden without new explicit Technical Director authorization: Gateway mutation; ST-CF-002 enrollment app/policy mutation; enrollment-permission, IdP/login, service-token, profile/default/selector changes; `unique_client_id` fabrication; Android MDM; unrelated device/registration mutation.
 
 ## Registry invariants
 
 - exactly one new device subject;
-- device subject belongs to the existing first-family tenant;
-- no `human_kind` on device subject;
-- internal subject ID independent from provider IDs;
 - exactly one ACTIVE Cloudflare `device_enrollment` binding after successful enrollment;
-- real provider external IDs only inside binding `external` data;
-- no real email/name/secrets/tokens in desired state/evidence;
-- existing adults unchanged;
-- existing ST-CF-002 enrollment_authorization resource/binding remains unchanged;
-- other integrations/resources/bindings unchanged except the new device subject/binding and minimal backward-compatible schema evolution if needed.
+- no human/device identity collapse;
+- provider IDs only in external binding data;
+- no PII/secrets in desired state/evidence;
+- existing adults and ST-CF-002 enrollment authorization unchanged.
 
 ## Safe-selector boundary
 
-This Work Order MUST NOT claim safe selector completion.
-
-Successful terminal wording must retain conceptually:
+Successful terminal state remains:
 
 `DEVICE_ENROLLED / DEVICE_BOUND / SAFE_SELECTOR_NOT_YET_PROVEN`
 
-The later scoped-enforcement Story owns proof that a Cloudflare selector isolates only the intended family/device traffic.
-
-## Required validation
-
-- `PROJECT_SCOPE_OK`;
-- exact r2 Authorized Base lineage;
-- fresh pre-enrollment provider inventory/fingerprints;
-- ST-CF-002 enrollment authorization reconciles MATCH before enrollment;
-- Product Input Gate NOT REQUIRED;
-- exactly one new Android device subject;
-- exactly one ACTIVE Cloudflare device binding after success;
-- deterministic pre/post identification of target provider object;
-- intended profile observed or controlled STOP;
-- Traffic + DNS / WARP connected state observed or controlled STOP;
-- repeated reconciliation deterministic;
-- no Gateway mutation;
-- no Default profile mutation;
-- no `SETOK-FAMILY-MANAGED` mutation;
-- no enrollment-authorization mutation;
-- no IdP/service-token/posture mutation;
-- no Android MDM;
-- no Child login;
-- no PII/secrets in Git/evidence;
-- rollback/offboarding documented;
-- safe selector NOT PROVEN.
-
 ## Stop conditions
 
-- repository mismatch;
-- r2 Authorized Base/branch lineage mismatch;
-- ST-CF-002 enrollment authorization missing, mismatched or ambiguously owned;
-- unexpected pre-existing physical device/registration cannot be explained safely;
-- target cannot be uniquely distinguished from pre-existing Cloudflare devices;
-- proposed manual enrollment requires shared enrollment permission/login-method/service-token mutation;
-- target would require Android MDM or administrator-supplied `unique_client_id`;
-- `SETOK-FAMILY-MANAGED` must be edited to enroll/match target;
-- Gateway mutation is required or attempted;
-- Default profile change is required or attempted;
-- ST-CF-002 enrollment app/policy mutation is required or attempted;
-- unrelated device/registration would be changed;
-- enrollment identity must be committed to Git/evidence;
-- a Child login/Auth user must be created to make enrollment work;
-- existing architecture/provider facts are materially contradicted;
-- unexpected Auto-RED surface.
+Repository/lineage mismatch; ST-CF-002 enrollment authorization mismatch/ambiguity; unexplained pre-existing device/registration; inability to identify target deterministically; any required shared enrollment/IdP/service-token/profile/Gateway mutation; Android MDM/managed UUID requirement; PII/secret versioning; Child/Auth user requirement; unrelated device mutation; unexpected Auto-RED surface.
 
 ## Quality gates
 
@@ -262,9 +194,9 @@ The later scoped-enforcement Story owns proof that a Cloudflare selector isolate
 - [x] Product Input Gate NOT REQUIRED.
 - [x] r1 CONTROLLED STOP preserved as historical evidence.
 - [x] ST-CF-002 dependency accepted/integrated and temporary write credential revoked.
-- [ ] r2 Authorized Base frozen.
-- [ ] r2 Implementation Branch created from exact Authorized Base.
-- [ ] r2 branch lineage verified.
+- [x] r2 Authorized Base frozen at `f09d114d29ae7fffc1d8516cd287c83188d4ae00`.
+- [x] r2 Implementation Branch created from exact Authorized Base.
+- [x] r2 branch lineage verified by construction.
 - [ ] New explicit Technical Director implementation authorization.
 - [ ] Required implementation gates PASS or controlled STOP.
 - [ ] Technical Director terminal review complete.
@@ -272,9 +204,10 @@ The later scoped-enforcement Story owns proof that a Cloudflare selector isolate
 ## Closure evidence
 
 - Resume preflight: PASS
-- Independent Check: PASS WITH CONDITIONS (still applicable)
+- Independent Check: PASS WITH CONDITIONS
 - Product Input Gate: NOT REQUIRED
 - Prior controlled stop: `74cb833a1fcbc2e452fd7d0dde578b22ca9fdaf4`
 - Dependency resolution: ST-CF-002 ACCEPT / integrated
-- r2 Authorized Base: PENDING
+- r2 Authorized Base: `f09d114d29ae7fffc1d8516cd287c83188d4ae00`
+- r2 Implementation Branch: `feature/st-dev-001-r2`
 - r2 Implementation Authorization: NO
