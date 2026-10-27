@@ -1,5 +1,5 @@
 schema_version: 1
-written_at_utc: 2026-10-27T06:25:00Z
+written_at_utc: 2026-10-27T21:58:00Z
 
 framework:
   repository: SETOKCR/setok-aide
@@ -10,21 +10,23 @@ scope:
   kind: project
   repository: SETOKCR/setok-family
   default_branch: main
-  observed_head: f96491995087d26d9da0ace530901164c140d05f
+  observed_head: 8d0f78b2ae7142620936d641ed7c7f103b10d117
 
 activity:
   lifecycle: active
-  active_unit: ST-DEV-001
-  execution_attempt: r2
-  phase: implementation
-  risk: RED
-  implementation_authorized: true
-  authorized_base: f09d114d29ae7fffc1d8516cd287c83188d4ae00
-  implementation_branch: feature/st-dev-001-r2
-  authorization_commit: 8f5d5f0b22af0e88ac6187ef2d5eb770e9e6eebb
+  active_unit: null
+  phase: between-units
+  risk: null
+  implementation_authorized: false
+  authorized_base: null
+  implementation_branch: null
   candidate_commit: null
 
-open_gates: []
+open_gates:
+  - define Story / Work Order for iPad Standard enrollment and device binding
+  - run Independent Check and risk classification
+  - freeze Authorized Base and implementation branch
+  - explicit Technical Director implementation authorization before any iPad or provider mutation
 
 canonical_refs:
   - .ai/AIDE_PROJECT.yaml
@@ -36,7 +38,7 @@ canonical_refs:
   - docs/stories/ST-DEV-001.md
   - .ai/work-orders/ST-DEV-001.md
   - docs/development/ST-DEV-001_INDEPENDENT_CHECK.md
-  - docs/evidence/ST-CF-002/README.md
+  - docs/evidence/ST-DEV-001/README.md
 
 prior_attempts:
   - unit: ST-DEV-001
@@ -47,19 +49,28 @@ prior_attempts:
     candidate_commit: 74cb833a1fcbc2e452fd7d0dde578b22ca9fdaf4
     external_mutation_performed: false
     blocker: device-enrollment permissions absent
-    disposition: retain as immutable historical evidence; do not rebase or reuse
+    disposition: retained as immutable historical evidence
+  - unit: ST-DEV-001
+    attempt: r2
+    state: CONTROLLED_STOP_RESOLVED
+    stage: D
+    candidate_commit: dca100755dbe043be44b44ab65091e3c79c1c433
+    blocker: documented handset model mismatch
+    resolution: Product Owner confirmed Redmi Note 13 Pro+ 5G (23090RA98G) is the intended first-family Android device
 
 last_terminal:
   outcome: ACCEPT
-  unit: ST-CF-002
-  candidate_commit: 678aaff9722af68238dec3ea5c57eeb84c1e7735
-  integration_commit: 14f38ceb2eb043e62740de6bbe2987014f7824b3
-  note: ST-CF-002 established one managed Cloudflare warp enrollment application and one exact-identity allow policy using the existing One-time PIN IdP. Reconciliation was deterministic and idempotent. Blast-radius evidence proved no Gateway/profile/IdP/service-token/posture/device/registration mutation. Temporary ST-CF-002 write credential was revoked after acceptance. Safe selector remains NOT_YET_PROVEN.
+  unit: ST-DEV-001
+  execution_attempt: r2
+  candidate_commit: bab5ff7259491f0bb1b56d47a9bf3de901635614
+  integration_commit: afaaaf30754dca1a6312ef554017123904abfb4c
+  work_order_closure_commit: 3b42261bd63c387e1c5871b354cf03f25420b1b3
+  roadmap_closure_commit: 8d0f78b2ae7142620936d641ed7c7f103b10d117
+  note: First productive Android device enrolled and bound. SETOK subject sub_01M5Y0XYAMFT3MXRRJV5MFBY3N is bound through bnd_01M5ZND7V8TK28E2V23Z4MRFEJ to Cloudflare device/registration 01a17f4d-0062-19de-b716-1df58125a3d4. Reconciliation MATCH x2 and deterministic. SETOK-FAMILY-MANAGED observed, WARP/MASQUE active, 15/15 shared surfaces unchanged, no Gateway policy applied, no Android MDM, no Child login, no PII/secrets versioned. Terminal state DEVICE_ENROLLED / DEVICE_BOUND / SAFE_SELECTOR_NOT_YET_PROVEN.
 
 blocked_units: []
 
 next_action:
-  kind: implementation
-  unit: ST-DEV-001
-  execution_attempt: r2
-  note: Implementation authorized at commit 8f5d5f0b22af0e88ac6187ef2d5eb770e9e6eebb. Development Agent must start with fresh Stage A read-only discovery, reconcile ST-CF-002 enrollment authorization, verify zero unexpected devices/registrations, fingerprint Gateway/Default/SETOK-FAMILY-MANAGED/IdP/service-token/posture surfaces, and STOP on any mismatch before creating a device subject or touching the handset. If Stage A passes, proceed only within the Work Order boundaries to the manual Redmi enrollment interaction point. Successful terminal state remains DEVICE_ENROLLED / DEVICE_BOUND / SAFE_SELECTOR_NOT_YET_PROVEN.
+  kind: discovery-preflight
+  unit: iPad Standard enrollment and device binding
+  note: Begin the next Phase 1 unit from current main. Architecture intent is Standard iPad enrollment/device binding first; iPad Enhanced / MDM remains a later separate unit. Do not infer implementation authorization from ROADMAP ordering. Reconstruct current provider/device state, define the Story and risk, perform Independent Check, and freeze a new Authorized Base before any mutation.
