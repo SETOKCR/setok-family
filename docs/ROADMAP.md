@@ -11,7 +11,8 @@ Current AIDE execution state:
 - accepted candidate: `bab5ff7259491f0bb1b56d47a9bf3de901635614`
 - integration commit: `afaaaf30754dca1a6312ef554017123904abfb4c`
 - terminal state: `DEVICE_ENROLLED / DEVICE_BOUND / SAFE_SELECTOR_NOT_YET_PROVEN`
-- next planned unit: `iPad Standard enrollment and device binding`
+- next planned unit: `Scoped Cloudflare enforcement / safe-selector validation for android-01`
+- iPad Standard enrollment: `DEFERRED — later Phase 1`
 - implementation authorization for next unit: `NO`
 - safe selector: `NOT_YET_PROVEN`
 
@@ -29,11 +30,11 @@ Deliver and validate a functioning parental-control platform without depending o
 6. **Standard / Restricted / temporary overlay policy contract — COMPLETE: ST-POL-002 ACCEPT.**
 7. **Android enrollment and device binding — COMPLETE: ST-DEV-001 ACCEPT.**
 7a. **Cloudflare device enrollment permissions — COMPLETE: ST-CF-002 ACCEPT.**
-8. **iPad Standard enrollment and device binding — NEXT.**
-9. Scoped Cloudflare enforcement apply and validation for enrolled Familia Ulate León devices.
-10. iPad Enhanced / MDM enrollment.
-11. PowerShell automation.
-12. Anti-bypass testing.
+8. **Scoped Cloudflare enforcement / safe-selector validation for `android-01` — NEXT.**
+9. **Android anti-bypass and real-device behavior validation.**
+10. **PowerShell automation / operational reconciliation**, refined from enforcement findings.
+11. **iPad Standard enrollment and device binding — DEFERRED until Android enforcement architecture is proven.**
+12. **iPad Enhanced / MDM enrollment — DEFERRED; evaluate only after Standard/iOS capability gaps are known.**
 13. Define signals, freshness and confidence for Protection State.
 14. Device Capabilities matrix by platform.
 15. Validate captive portals / MASQUE / incompatible networks.
@@ -46,6 +47,19 @@ Deliver and validate a functioning parental-control platform without depending o
 22. Device lifecycle and Owner recovery.
 23. Phase 1 closure.
 24. API/provider contract for Phase 2.
+
+## Priority decision — 2026-10-27
+
+The Product Owner elected to defer iPad work. Technical Director disposition: **APPROVED**.
+
+Rationale:
+
+- Android now provides a real enrolled and bound productive endpoint;
+- the highest unresolved architecture risk is safe policy isolation inside the shared Cloudflare Zero Trust organization;
+- adding iOS before proving scoped enforcement would increase platform surface without reducing that core risk;
+- if safe selector / policy ordering requires an architecture change, it is safer to discover that with one bound endpoint before onboarding another platform.
+
+The iPad remains in Phase 1 scope but is no longer a prerequisite for validating core enforcement architecture.
 
 ## ST-CF-002 closure
 
@@ -97,6 +111,21 @@ Successful terminal state:
 
 `DEVICE_ENROLLED / DEVICE_BOUND / SAFE_SELECTOR_NOT_YET_PROVEN`
 
+## Next unit boundary — scoped enforcement / safe selector
+
+The next unit must determine whether Cloudflare can isolate policy enforcement to `android-01` / Familia Ulate León without affecting unrelated devices in the shared SETOK organization.
+
+Before any Gateway mutation it must establish, at minimum:
+
+- which provider selectors are actually available for the enrolled Android registration;
+- whether the bound Cloudflare device/registration identifiers can participate safely in Gateway policy scope;
+- first-match / precedence behavior for the proposed rules;
+- entitlement for policy categories previously left APPLY_BLOCKED;
+- blast radius against all non-target devices/resources;
+- deterministic rollback and restoration to the existing no-enforcement state.
+
+No existing ST-POL-001 or ST-POL-002 plan may be marked `APPLIED` until this isolation is independently proven.
+
 ## Deferred enforcement findings
 
 Before Gateway apply, the project must still prove provider entitlement, first-match behavior, safe family/device selector isolation, rollback and blast radius. The shared `SETOK-FAMILY-MANAGED` profile still matches Android/iOS broadly; ST-DEV-001 does not claim safe policy isolation.
@@ -111,7 +140,7 @@ SETOK Family application / mini app remains deferred until Phase 1 platform vali
 
 ## Next governance action
 
-Begin discovery/preflight for **iPad Standard enrollment and device binding**. No implementation authorization is implied by ROADMAP ordering; Story, risk, Independent Check and Work Order readiness must be established before any iPad or provider mutation.
+Begin discovery/preflight for **Scoped Cloudflare enforcement / safe-selector validation for `android-01`**. No provider mutation is authorized by this ROADMAP decision. The next unit must receive its own Story, risk classification, Independent Check, Work Order, Authorized Base and explicit implementation authorization before any Gateway change.
 
 ## Authority
 
