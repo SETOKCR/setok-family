@@ -1,5 +1,5 @@
 schema_version: 1
-written_at_utc: 2026-10-27T04:20:00Z
+written_at_utc: 2026-10-27T04:24:00Z
 
 framework:
   repository: SETOKCR/setok-aide
@@ -15,15 +15,14 @@ scope:
 activity:
   lifecycle: active
   active_unit: ST-DEV-001
-  phase: readiness
+  phase: implementation
   risk: RED
-  implementation_authorized: false
+  implementation_authorized: true
   authorized_base: 8c2758026623209a655ace744fef977b3e018fc5
   implementation_branch: feature/st-dev-001
   candidate_commit: null
 
-open_gates:
-  - explicit Technical Director implementation authorization
+open_gates: []
 
 canonical_refs:
   - .ai/AIDE_PROJECT.yaml
@@ -44,6 +43,6 @@ last_terminal:
   note: ST-POL-002 integrated to main and formally closed. PO-approved STANDARD / RESTRICTED / temporary overlay semantics are versioned; composition, expiry/restore, conflict resolution, baseline non-regression and Essential Services invariants passed. No provider mutation occurred, zero device subjects/bindings were created and all compiled Cloudflare plans remain APPLY_BLOCKED.
 
 next_action:
-  kind: readiness
+  kind: implementation
   unit: ST-DEV-001
-  note: Preflight PASS and Independent Check PASS WITH CONDITIONS. Product Input Gate NOT REQUIRED. Authorized Base frozen at 8c2758026623209a655ace744fef977b3e018fc5. feature/st-dev-001 created from that exact base and verified one governance-only Work Order commit ahead, zero behind. Await explicit implementation authorization. Before any external mutation the agent must run Stage A read-only discovery; if safe manual Android enrollment requires shared Cloudflare enrollment/auth/profile/Gateway mutation, STOP before mutation. Successful completion must retain SAFE_SELECTOR_NOT_YET_PROVEN.
+  note: Implementation explicitly authorized by Product Owner GO. Development Agent must reconstruct from Git, verify PROJECT_SCOPE_OK and exact lineage from Authorized Base 8c2758026623209a655ace744fef977b3e018fc5. Stage A read-only discovery is mandatory before any external mutation. Only the target device's supported manual Cloudflare enrollment/registration is authorized. If safe enrollment requires shared enrollment-permission, login-method, service-token, profile-selector, SETOK-FAMILY-MANAGED, Default-profile or Gateway mutation, STOP before mutation. Successful completion must retain SAFE_SELECTOR_NOT_YET_PROVEN.
