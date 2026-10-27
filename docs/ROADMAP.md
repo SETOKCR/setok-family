@@ -8,18 +8,19 @@ This roadmap orders work; implementation authority is carried by the active Stor
 
 Current AIDE execution state:
 
-- active unit: `ST-DEV-001 — Establish first Android device enrollment and provider binding`
-- Story: `docs/stories/ST-DEV-001.md`
-- Work Order: `.ai/work-orders/ST-DEV-001.md`
+- active unit: `ST-CF-002 — Establish Cloudflare device enrollment permissions`
+- Story: `docs/stories/ST-CF-002.md`
+- Work Order: `.ai/work-orders/ST-CF-002.md`
 - preflight: `PASS`
 - Independent Check: `PASS WITH CONDITIONS`
 - risk: `RED`
-- Product Input Gate: `NOT REQUIRED`
-- Authorized Base: `8c2758026623209a655ace744fef977b3e018fc5`
-- implementation branch: `feature/st-dev-001`
-- branch lineage: `VERIFIED — exactly one governance-only Work Order commit above Authorized Base`
+- Product Input Gate: `CLOSED`
+- enrollment identity alias: `family-enrollment-01`
+- real mailbox: operational input only, outside Git
+- Authorized Base: `PENDING`
+- implementation branch: `PENDING`
 - implementation authorized: `NO`
-- open gates: explicit Technical Director implementation authorization
+- open gates: freeze Authorized Base, create/verify implementation branch, explicit Technical Director implementation authorization
 
 ## Phase 1 objective
 
@@ -33,7 +34,8 @@ Deliver and validate a functioning parental-control platform without depending o
 4. **Initial provider-binding model — COMPLETE: ST-PB-001 ACCEPT.**
 5. **Baseline policy contract and compilation plan — COMPLETE: ST-POL-001 ACCEPT.**
 6. **Standard / Restricted / temporary overlay policy contract — COMPLETE: ST-POL-002 ACCEPT.**
-7. **Android enrollment and device binding — ACTIVE: ST-DEV-001.**
+7. **Android enrollment and device binding — BLOCKED: ST-DEV-001 controlled stop at Stage A.** Requires device-enrollment permissions first.
+7a. **Cloudflare device enrollment permissions — ACTIVE: ST-CF-002.**
 8. iPad Standard enrollment and device binding.
 9. Scoped Cloudflare enforcement apply and validation for enrolled Familia Ulate León devices. Apply baseline + approved mode/overlay compilation only after selector isolation, rollback, entitlement and blast-radius gates pass.
 10. iPad Enhanced / MDM enrollment.
@@ -105,16 +107,7 @@ Evidence: `docs/evidence/ST-POL-001/`.
 
 ### ST-POL-002 — Standard / Restricted / temporary overlay policy contract
 
-Established the PO-approved provider-neutral policy semantics:
-
-- `STANDARD`: baseline with no additional leisure restriction;
-- `RESTRICTED`: blocks `social_media`, `gaming` and `entertainment_streaming`;
-- `STUDY`: bounded temporary block of those three categories;
-- `ALLOW_SOCIAL`: bounded temporary allow of social media over `RESTRICTED`/`STUDY` only;
-- `PAUSE_ENTERTAINMENT`: bounded temporary block of the three leisure categories;
-- `CLEAR_TEMPORARY`: clears temporary overlays and restores the persistent mode.
-
-The Story proved baseline non-regression, deterministic composition, fixed-time expiry/restore, explicit overlay conflict resolution, Essential Services semantics and fail-closed behavior. It generated Cloudflare compilation plans only in `DESIRED / COMPILED / APPLY_BLOCKED`; no provider mutation occurred, no device subject/binding was created and no policy was claimed `APPLIED`.
+Established the PO-approved provider-neutral policy semantics and deterministic composition. No provider mutation occurred and all Cloudflare plans remain `APPLY_BLOCKED`.
 
 Accepted candidate: `8e0121e2b45e39a759f2774a4427d72de5b9d155`.
 Integration commit: `a3d7aff30ff4a1f8729d5ee59d9ea2f8b572f85b`.
@@ -122,37 +115,51 @@ Evidence: `docs/evidence/ST-POL-002/`.
 
 Deferred enforcement findings carried forward:
 
-- Cloudflare categories required for Gambling, Social Networks, Gaming, Video Streaming and Audio Streaming are premium-class and actual-plan entitlement must be proven before apply;
-- Gateway first-match ordering and the refined SafeSearch/YouTube scoping must be validated on an enrolled test device before enforcement is accepted;
+- premium-class entitlement must be proven before apply;
+- Gateway first-match ordering must be validated on an enrolled test device;
 - safe family/device selector isolation remains mandatory because the Cloudflare account is shared.
 
-## Active unit boundary — ST-DEV-001
+## Blocked unit — ST-DEV-001
 
-ST-DEV-001 establishes the first real Android device identity and Cloudflare device-registration binding.
+ST-DEV-001 stopped correctly at Stage A with **no external mutation**.
 
-Target architecture:
+Observed:
 
-- first-family Xiaomi Redmi Note 14 Pro;
-- Google Family Link remains authority for screen time/apps;
-- Cloudflare One Client remains network-enforcement provider;
-- no ManageEngine/Android MDM;
-- exactly one new SETOK device subject and, after successful enrollment, exactly one ACTIVE Cloudflare `device_enrollment` binding.
+- 0 physical devices / registrations;
+- 0 Access apps;
+- 0 Access policies;
+- 0 service tokens;
+- One-time PIN is the only IdP;
+- `SETOK-FAMILY-MANAGED`, Default and Gateway remained unchanged;
+- registry still has 0 device subjects and 0 device bindings.
 
-Manual enrollment must use a dedicated operational integration identity whose real value/credentials remain outside Git. That enrollment identity is not a SETOK family member, Child login or internal device identity.
+Controlled-stop candidate/evidence commit: `74cb833a1fcbc2e452fd7d0dde578b22ca9fdaf4` on `feature/st-dev-001`.
 
-Because the Cloudflare organization is shared, the only intended external mutation in this Story is the target device's supported manual enrollment/registration. Any need to change shared enrollment permissions, login methods, service tokens, device-profile selectors, `SETOK-FAMILY-MANAGED`, Default profile or Gateway policies is a hard STOP pending separate authorization.
+Stop reason: manual Cloudflare One enrollment requires device-enrollment permissions, which do not yet exist and were outside ST-DEV-001 authorization.
 
-Successful completion does **not** prove a safe Gateway selector. The required terminal state remains conceptually:
+ST-DEV-001 resumes only after ST-CF-002 is accepted, from a fresh Stage A discovery.
 
-`DEVICE_ENROLLED / DEVICE_BOUND / SAFE_SELECTOR_NOT_YET_PROVEN`
+## Active unit boundary — ST-CF-002
 
-Current Cloudflare documentation also indicates that administrator-supplied `unique_client_id` on Android is a managed-deployment capability and cannot be manually assigned; ST-DEV-001 therefore does not introduce MDM solely to create such a selector.
+ST-CF-002 creates the minimum durable enrollment authorization for SETOK Family inside the shared Cloudflare account:
+
+- one Access application type `warp`, named `SETOK-FAMILY-DEVICE-ENROLLMENT`;
+- one `allow` policy;
+- exactly one operational enrollment identity, represented in Git only as `family-enrollment-01`;
+- existing One-time PIN IdP only;
+- no domain/everyone/group rule;
+- no service token;
+- no Gateway, profile, selector, posture, device or login-method changes.
+
+The managed enrollment app/policy is intended to remain after successful completion because Android enrollment resumes next and iPad Standard enrollment follows. Rollback remains deletion of only the created policy/app by observed IDs.
+
+The real enrollment mailbox selected by the Product Owner remains operational input outside Git/evidence.
 
 ## Sequencing clarification
 
-Policy **design/compilation** and provider **enforcement apply** are separate gates.
+Policy design/compilation and provider enforcement apply remain separate gates.
 
-Android and iPad Standard enrollment create the real device identities/bindings needed to evaluate safe tenant/device scope. Only after those units may scoped Cloudflare enforcement be considered for provider mutation.
+ST-CF-002 only enables authentication eligibility for device enrollment. It does not enroll a device and does not prove safe Gateway selector isolation.
 
 ## Phase 1 exit condition
 
@@ -164,7 +171,7 @@ Phase 2 is the SETOK Family application / mini app and consumer experience. It r
 
 ## Next governance action
 
-Technical Director may issue explicit implementation authorization for ST-DEV-001. Before any external mutation, the Development Agent must perform Stage A read-only discovery. If safe manual enrollment would require changing shared enrollment/auth/profile/Gateway controls, execution must STOP before mutation.
+Freeze the ST-CF-002 Authorized Base, create `feature/st-cf-002` from that exact commit, verify lineage and require explicit Technical Director implementation authorization. No Cloudflare Access mutation is authorized before that GO.
 
 ## Authority
 
