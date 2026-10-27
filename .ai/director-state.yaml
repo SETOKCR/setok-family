@@ -1,5 +1,5 @@
 schema_version: 1
-written_at_utc: 2026-10-27T21:58:00Z
+written_at_utc: 2026-10-27T22:00:00Z
 
 framework:
   repository: SETOKCR/setok-aide
@@ -10,7 +10,7 @@ scope:
   kind: project
   repository: SETOKCR/setok-family
   default_branch: main
-  observed_head: 8d0f78b2ae7142620936d641ed7c7f103b10d117
+  observed_head: b3b21bf34182a24bd0df1ebec22e6d5042efab08
 
 activity:
   lifecycle: active
@@ -23,10 +23,11 @@ activity:
   candidate_commit: null
 
 open_gates:
-  - define Story / Work Order for iPad Standard enrollment and device binding
-  - run Independent Check and risk classification
-  - freeze Authorized Base and implementation branch
-  - explicit Technical Director implementation authorization before any iPad or provider mutation
+  - define Story / Work Order for scoped Cloudflare enforcement and safe-selector validation on android-01
+  - classify risk and run Independent Check
+  - verify available Cloudflare selectors, first-match behavior, entitlement and blast radius before any Gateway mutation
+  - freeze new Authorized Base and implementation branch
+  - explicit Technical Director implementation authorization before any Gateway policy apply
 
 canonical_refs:
   - .ai/AIDE_PROJECT.yaml
@@ -68,9 +69,19 @@ last_terminal:
   roadmap_closure_commit: 8d0f78b2ae7142620936d641ed7c7f103b10d117
   note: First productive Android device enrolled and bound. SETOK subject sub_01M5Y0XYAMFT3MXRRJV5MFBY3N is bound through bnd_01M5ZND7V8TK28E2V23Z4MRFEJ to Cloudflare device/registration 01a17f4d-0062-19de-b716-1df58125a3d4. Reconciliation MATCH x2 and deterministic. SETOK-FAMILY-MANAGED observed, WARP/MASQUE active, 15/15 shared surfaces unchanged, no Gateway policy applied, no Android MDM, no Child login, no PII/secrets versioned. Terminal state DEVICE_ENROLLED / DEVICE_BOUND / SAFE_SELECTOR_NOT_YET_PROVEN.
 
+priority_decisions:
+  - date: 2026-10-27
+    decision: defer iPad Standard enrollment and iPad Enhanced/MDM until later Phase 1
+    rationale: Android provides a sufficient real endpoint for validating the core enforcement architecture; safe selector isolation in the shared Cloudflare organization is the highest unresolved risk and should be proven before adding iOS surface area
+    roadmap_commit: b3b21bf34182a24bd0df1ebec22e6d5042efab08
+
 blocked_units: []
+
+deferred_units:
+  - iPad Standard enrollment and device binding
+  - iPad Enhanced / MDM enrollment
 
 next_action:
   kind: discovery-preflight
-  unit: iPad Standard enrollment and device binding
-  note: Begin the next Phase 1 unit from current main. Architecture intent is Standard iPad enrollment/device binding first; iPad Enhanced / MDM remains a later separate unit. Do not infer implementation authorization from ROADMAP ordering. Reconstruct current provider/device state, define the Story and risk, perform Independent Check, and freeze a new Authorized Base before any mutation.
+  unit: scoped Cloudflare enforcement / safe-selector validation for android-01
+  note: Reconstruct current main and current provider state. Define the next Story and Work Order around proving a selector that isolates android-01 / Familia Ulate Leon inside the shared SETOK Cloudflare organization. Discovery must determine available provider selectors, first-match behavior, entitlement for previously APPLY_BLOCKED categories, blast radius and rollback. No Gateway mutation is authorized until Independent Check, Authorized Base and a new explicit implementation authorization are complete.
