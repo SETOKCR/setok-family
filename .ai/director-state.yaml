@@ -1,5 +1,5 @@
 schema_version: 1
-written_at_utc: 2026-10-27T06:18:00Z
+written_at_utc: 2026-10-27T06:25:00Z
 
 framework:
   repository: SETOKCR/setok-aide
@@ -16,15 +16,15 @@ activity:
   lifecycle: active
   active_unit: ST-DEV-001
   execution_attempt: r2
-  phase: readiness
+  phase: implementation
   risk: RED
-  implementation_authorized: false
+  implementation_authorized: true
   authorized_base: f09d114d29ae7fffc1d8516cd287c83188d4ae00
   implementation_branch: feature/st-dev-001-r2
+  authorization_commit: 8f5d5f0b22af0e88ac6187ef2d5eb770e9e6eebb
   candidate_commit: null
 
-open_gates:
-  - explicit Technical Director implementation authorization for ST-DEV-001 r2
+open_gates: []
 
 canonical_refs:
   - .ai/AIDE_PROJECT.yaml
@@ -59,7 +59,7 @@ last_terminal:
 blocked_units: []
 
 next_action:
-  kind: readiness
+  kind: implementation
   unit: ST-DEV-001
   execution_attempt: r2
-  note: Resume preflight PASS. New Authorized Base frozen at f09d114d29ae7fffc1d8516cd287c83188d4ae00. feature/st-dev-001-r2 created from that exact base and verified one governance-only Work Order commit ahead, zero behind. Await explicit implementation authorization. After authorization, Development Agent must begin with a fresh Stage A read-only discovery that reconciles the ST-CF-002 enrollment authorization and proves no unexpected device/provider state before any device subject or handset enrollment mutation. Successful terminal state remains DEVICE_ENROLLED / DEVICE_BOUND / SAFE_SELECTOR_NOT_YET_PROVEN.
+  note: Implementation authorized at commit 8f5d5f0b22af0e88ac6187ef2d5eb770e9e6eebb. Development Agent must start with fresh Stage A read-only discovery, reconcile ST-CF-002 enrollment authorization, verify zero unexpected devices/registrations, fingerprint Gateway/Default/SETOK-FAMILY-MANAGED/IdP/service-token/posture surfaces, and STOP on any mismatch before creating a device subject or touching the handset. If Stage A passes, proceed only within the Work Order boundaries to the manual Redmi enrollment interaction point. Successful terminal state remains DEVICE_ENROLLED / DEVICE_BOUND / SAFE_SELECTOR_NOT_YET_PROVEN.
