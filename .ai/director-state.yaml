@@ -1,5 +1,5 @@
 schema_version: 1
-written_at_utc: 2026-10-27T04:24:00Z
+written_at_utc: 2026-10-27T04:55:00Z
 
 framework:
   repository: SETOKCR/setok-aide
@@ -10,19 +10,20 @@ scope:
   kind: project
   repository: SETOKCR/setok-family
   default_branch: main
-  observed_head: 3388c350a451630d1c5bebf26bd82156da5dc059
+  observed_head: a978a6dd00c935a703cfa3ae1b412b724404b7b3
 
 activity:
   lifecycle: active
-  active_unit: ST-DEV-001
-  phase: implementation
+  active_unit: ST-CF-002
+  phase: readiness
   risk: RED
-  implementation_authorized: true
-  authorized_base: 8c2758026623209a655ace744fef977b3e018fc5
-  implementation_branch: feature/st-dev-001
+  implementation_authorized: false
+  authorized_base: 0e32888cb8d78c488cbe4a231e7767a38ed9853b
+  implementation_branch: feature/st-cf-002
   candidate_commit: null
 
-open_gates: []
+open_gates:
+  - explicit Technical Director implementation authorization
 
 canonical_refs:
   - .ai/AIDE_PROJECT.yaml
@@ -31,9 +32,18 @@ canonical_refs:
   - docs/ARCHITECTURE.md
   - docs/ROADMAP.md
   - docs/QUALITY.md
-  - docs/stories/ST-DEV-001.md
-  - .ai/work-orders/ST-DEV-001.md
-  - docs/development/ST-DEV-001_INDEPENDENT_CHECK.md
+  - docs/stories/ST-CF-002.md
+  - .ai/work-orders/ST-CF-002.md
+  - docs/development/ST-CF-002_INDEPENDENT_CHECK.md
+
+blocked_units:
+  - unit: ST-DEV-001
+    state: CONTROLLED_STOP
+    stage: A
+    candidate_commit: 74cb833a1fcbc2e452fd7d0dde578b22ca9fdaf4
+    blocker: Cloudflare device-enrollment permissions do not exist; manual enrollment requires a warp Access application and exact-identity allow policy.
+    external_mutation_performed: false
+    resume_condition: ST-CF-002 accepted, then rerun ST-DEV-001 Stage A from fresh provider state.
 
 last_terminal:
   outcome: ACCEPT
@@ -43,6 +53,6 @@ last_terminal:
   note: ST-POL-002 integrated to main and formally closed. PO-approved STANDARD / RESTRICTED / temporary overlay semantics are versioned; composition, expiry/restore, conflict resolution, baseline non-regression and Essential Services invariants passed. No provider mutation occurred, zero device subjects/bindings were created and all compiled Cloudflare plans remain APPLY_BLOCKED.
 
 next_action:
-  kind: implementation
-  unit: ST-DEV-001
-  note: Implementation explicitly authorized by Product Owner GO. Development Agent must reconstruct from Git, verify PROJECT_SCOPE_OK and exact lineage from Authorized Base 8c2758026623209a655ace744fef977b3e018fc5. Stage A read-only discovery is mandatory before any external mutation. Only the target device's supported manual Cloudflare enrollment/registration is authorized. If safe enrollment requires shared enrollment-permission, login-method, service-token, profile-selector, SETOK-FAMILY-MANAGED, Default-profile or Gateway mutation, STOP before mutation. Successful completion must retain SAFE_SELECTOR_NOT_YET_PROVEN.
+  kind: readiness
+  unit: ST-CF-002
+  note: Preflight PASS and Independent Check PASS WITH CONDITIONS. Product Input Gate CLOSED with versioned alias family-enrollment-01; real mailbox remains operational input outside Git. Authorized Base frozen at 0e32888cb8d78c488cbe4a231e7767a38ed9853b. feature/st-cf-002 created from that exact base and verified one governance-only Work Order commit ahead, zero behind. Await explicit implementation authorization. Only one warp Access app and one exact-mailbox allow policy are in scope; Gateway, profiles, IdP/login methods, service tokens, posture rules and devices must remain unchanged.
