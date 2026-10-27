@@ -6,10 +6,12 @@
 - **Repository:** SETOKCR/setok-family
 - **Story / Work Unit:** ST-CF-003
 - **Purpose:** prove safe selector and scoped Cloudflare enforcement boundary for `android-01`
-- **Execution state:** PREFLIGHT / READ-ONLY DISCOVERY
+- **Execution state:** READY / READ-ONLY DISCOVERY
 - **Implementation Authorization:** NO
 - **Provider Mutation Authorization:** NO
 - **Risk:** RED for eventual implementation
+- **Authorized Base:** `ce81766d2b4c7b95b0a9a116d164cda7ffa0584e`
+- **Implementation Branch:** `feature/st-cf-003`
 
 ## Governance basis
 
@@ -81,7 +83,7 @@ Any provider mutation requirement is a HARD STOP.
 
 - `PROJECT_SCOPE_OK`;
 - exact repository `SETOKCR/setok-family`;
-- execute on the dedicated ST-CF-003 branch from the frozen Authorized Base;
+- execute on `feature/st-cf-003` descended from Authorized Base `ce81766d2b4c7b95b0a9a116d164cda7ffa0584e`;
 - clean working tree before execution.
 
 ### B. Accepted-state reconciliation
@@ -201,11 +203,3 @@ No actual enrollment email, OTP, token, public IP, serial number, registration p
 Discovery does NOT authorize apply.
 
 After the Development Agent returns evidence, the Technical Director must review it and decide whether ST-CF-003 can become implementation-ready, remains blocked, or requires architecture change.
-
-## Authorized Base
-
-TO_BE_FROZEN_AFTER_THIS_PREFLIGHT_COMMIT
-
-## Implementation Branch
-
-TO_BE_CREATED_FROM_AUTHORIZED_BASE
