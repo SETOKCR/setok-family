@@ -1,5 +1,5 @@
 schema_version: 1
-written_at_utc: 2026-10-27T22:00:00Z
+written_at_utc: 2026-10-27T22:20:00Z
 
 framework:
   repository: SETOKCR/setok-aide
@@ -10,24 +10,29 @@ scope:
   kind: project
   repository: SETOKCR/setok-family
   default_branch: main
-  observed_head: b3b21bf34182a24bd0df1ebec22e6d5042efab08
+  observed_head: b3b76b86d6b2881e3dc974900f63412d3fae6a3e
 
 activity:
   lifecycle: active
-  active_unit: null
-  phase: between-units
-  risk: null
+  active_unit: ST-CF-003
+  phase: read-only-discovery
+  risk: RED
   implementation_authorized: false
-  authorized_base: null
-  implementation_branch: null
+  provider_mutation_authorized: false
+  read_only_discovery_authorized: true
+  authorized_base: ce81766d2b4c7b95b0a9a116d164cda7ffa0584e
+  implementation_branch: feature/st-cf-003
+  branch_governance_commit: f503231d2f0a712df283ea506e20479eb6bbf764
   candidate_commit: null
 
 open_gates:
-  - define Story / Work Order for scoped Cloudflare enforcement and safe-selector validation on android-01
-  - classify risk and run Independent Check
-  - verify available Cloudflare selectors, first-match behavior, entitlement and blast radius before any Gateway mutation
-  - freeze new Authorized Base and implementation branch
-  - explicit Technical Director implementation authorization before any Gateway policy apply
+  - execute fresh read-only Cloudflare discovery and accepted-state reconciliation
+  - prove or reject exact enrollment identity as a durable safe selector without versioning PII
+  - verify direct device-id selector support/absence across DNS, Network and HTTP
+  - verify mobile posture alternatives and MDM dependency
+  - verify first-match/precedence semantics and ST-POL-001/002 capability/entitlement
+  - Technical Director review of discovery terminal state
+  - explicit Technical Director implementation authorization before any Gateway mutation
 
 canonical_refs:
   - .ai/AIDE_PROJECT.yaml
@@ -36,10 +41,11 @@ canonical_refs:
   - docs/ARCHITECTURE.md
   - docs/ROADMAP.md
   - docs/QUALITY.md
-  - docs/stories/ST-DEV-001.md
-  - .ai/work-orders/ST-DEV-001.md
-  - docs/development/ST-DEV-001_INDEPENDENT_CHECK.md
+  - docs/stories/ST-CF-003.md
+  - .ai/work-orders/ST-CF-003.md
+  - docs/development/ST-CF-003_INDEPENDENT_CHECK.md
   - docs/evidence/ST-DEV-001/README.md
+  - infra/bindings/registry.desired.json
 
 prior_attempts:
   - unit: ST-DEV-001
@@ -82,6 +88,6 @@ deferred_units:
   - iPad Enhanced / MDM enrollment
 
 next_action:
-  kind: discovery-preflight
-  unit: scoped Cloudflare enforcement / safe-selector validation for android-01
-  note: Reconstruct current main and current provider state. Define the next Story and Work Order around proving a selector that isolates android-01 / Familia Ulate Leon inside the shared SETOK Cloudflare organization. Discovery must determine available provider selectors, first-match behavior, entitlement for previously APPLY_BLOCKED categories, blast radius and rollback. No Gateway mutation is authorized until Independent Check, Authorized Base and a new explicit implementation authorization are complete.
+  kind: read-only-discovery
+  unit: ST-CF-003
+  note: Development Agent must execute only GET/read-only discovery on feature/st-cf-003 from Authorized Base ce81766d2b4c7b95b0a9a116d164cda7ffa0584e. Reconcile accepted android-01 state, resolve the operational identity locally without versioning it, prove identity/device cardinality, verify selector support across DNS/Network/HTTP, mobile posture alternatives, precedence and ST-POL-001/002 entitlement. Return exactly one of SAFE_SELECTOR_PROVEN / APPLY_NOT_AUTHORIZED, SAFE_SELECTOR_NOT_PROVEN / APPLY_BLOCKED, or ARCHITECTURE_CHANGE_REQUIRED / APPLY_BLOCKED. No Gateway mutation is authorized.
