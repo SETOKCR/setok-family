@@ -1,5 +1,5 @@
 schema_version: 1
-written_at_utc: 2026-10-27T05:02:00Z
+written_at_utc: 2026-10-27T06:10:00Z
 
 framework:
   repository: SETOKCR/setok-aide
@@ -10,19 +10,22 @@ scope:
   kind: project
   repository: SETOKCR/setok-family
   default_branch: main
-  observed_head: a978a6dd00c935a703cfa3ae1b412b724404b7b3
+  observed_head: d62700795deb1cda45e88b39ea73f0a63bf5bf18
 
 activity:
   lifecycle: active
-  active_unit: ST-CF-002
-  phase: implementation
+  active_unit: ST-DEV-001
+  phase: resume-preflight
   risk: RED
-  implementation_authorized: true
-  authorized_base: 0e32888cb8d78c488cbe4a231e7767a38ed9853b
-  implementation_branch: feature/st-cf-002
+  implementation_authorized: false
+  authorized_base: null
+  implementation_branch: feature/st-dev-001
   candidate_commit: null
 
-open_gates: []
+open_gates:
+  - refresh ST-DEV-001 Authorized Base/branch continuity against current main
+  - fresh Stage A read-only discovery
+  - explicit Technical Director implementation authorization before new mutation
 
 canonical_refs:
   - .ai/AIDE_PROJECT.yaml
@@ -31,27 +34,21 @@ canonical_refs:
   - docs/ARCHITECTURE.md
   - docs/ROADMAP.md
   - docs/QUALITY.md
-  - docs/stories/ST-CF-002.md
-  - .ai/work-orders/ST-CF-002.md
-  - docs/development/ST-CF-002_INDEPENDENT_CHECK.md
-
-blocked_units:
-  - unit: ST-DEV-001
-    state: CONTROLLED_STOP
-    stage: A
-    candidate_commit: 74cb833a1fcbc2e452fd7d0dde578b22ca9fdaf4
-    blocker: Cloudflare device-enrollment permissions do not exist; manual enrollment requires a warp Access application and exact-identity allow policy.
-    external_mutation_performed: false
-    resume_condition: ST-CF-002 accepted, then rerun ST-DEV-001 Stage A from fresh provider state.
+  - docs/stories/ST-DEV-001.md
+  - .ai/work-orders/ST-DEV-001.md
+  - docs/development/ST-DEV-001_INDEPENDENT_CHECK.md
+  - docs/evidence/ST-CF-002/README.md
 
 last_terminal:
   outcome: ACCEPT
-  unit: ST-POL-002
-  candidate_commit: 8e0121e2b45e39a759f2774a4427d72de5b9d155
-  integration_commit: a3d7aff30ff4a1f8729d5ee59d9ea2f8b572f85b
-  note: ST-POL-002 integrated to main and formally closed. PO-approved STANDARD / RESTRICTED / temporary overlay semantics are versioned; composition, expiry/restore, conflict resolution, baseline non-regression and Essential Services invariants passed. No provider mutation occurred, zero device subjects/bindings were created and all compiled Cloudflare plans remain APPLY_BLOCKED.
+  unit: ST-CF-002
+  candidate_commit: 678aaff9722af68238dec3ea5c57eeb84c1e7735
+  integration_commit: 14f38ceb2eb043e62740de6bbe2987014f7824b3
+  note: ST-CF-002 established one managed Cloudflare warp enrollment application and one exact-identity allow policy using the existing One-time PIN IdP. Reconciliation was deterministic and idempotent. Blast-radius evidence proved no Gateway/profile/IdP/service-token/posture/device/registration mutation. Temporary ST-CF-002 write credential was revoked after acceptance. Safe selector remains NOT_YET_PROVEN.
+
+blocked_units: []
 
 next_action:
-  kind: implementation
-  unit: ST-CF-002
-  note: Implementation explicitly authorized by Product Owner GO. Development Agent must reconstruct from Git, verify PROJECT_SCOPE_OK and exact lineage from Authorized Base 0e32888cb8d78c488cbe4a231e7767a38ed9853b. Before mutation, rerun pre-discovery and verify no pre-existing/unmanaged warp app. The only authorized provider mutation is one Access application type warp named SETOK-FAMILY-DEVICE-ENROLLMENT plus one exact-mailbox allow policy for operational alias family-enrollment-01 using the existing One-time PIN IdP. Real mailbox remains outside Git/evidence. Gateway, profiles, IdP/login methods, service tokens, posture rules and devices must remain unchanged. Stop on any Work Order Stop Condition.
+  kind: resume-preflight
+  unit: ST-DEV-001
+  note: Previous ST-DEV-001 execution stopped safely at Stage A with no external mutation because device-enrollment permissions were absent. ST-CF-002 has removed that blocker. Reconstruct ST-DEV-001 from Git, refresh base/branch continuity against current main, and rerun Stage A read-only against the managed warp app/policy before any device subject or handset enrollment mutation. Successful terminal state must remain DEVICE_ENROLLED / DEVICE_BOUND / SAFE_SELECTOR_NOT_YET_PROVEN.
