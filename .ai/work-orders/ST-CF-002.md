@@ -5,192 +5,108 @@
 - **Project:** SETOK Family
 - **Repository:** SETOKCR/setok-family
 - **Story / Work Unit:** ST-CF-002
-- **Authorized Base:** `PENDING`
-- **Implementation Branch:** `PENDING`
-- **Execution state:** PREFLIGHT_COMPLETE
-- **Implementation Authorization:** NO
+- **Authorized Base:** `0e32888cb8d78c488cbe4a231e7767a38ed9853b`
+- **Implementation Branch:** `feature/st-cf-002`
+- **Execution state:** CLOSED
+- **Implementation Authorization:** YES — consumed
 - **Persistence:** PERSISTED
-
-## AIDE execution context
-
-- Framework: SETOK-AIDE v1.2.3
-- Role: Development Agent
-- Project binding: REQUIRED
-- Story: `docs/stories/ST-CF-002.md`
-- Architecture: `docs/ARCHITECTURE.md`
-- Quality: `docs/QUALITY.md`
-- Independent Check: `docs/development/ST-CF-002_INDEPENDENT_CHECK.md`
 
 ## Goal
 
-Create the minimum Cloudflare Access device-enrollment authorization required for SETOK Family: one managed Access application of type `warp` and one exact-mailbox allow policy, using the existing One-time PIN IdP, without mutating Gateway, device profiles, login methods, service tokens, posture rules or devices.
+Establish the minimum Cloudflare device-enrollment authorization for SETOK Family in the shared SETOK Cloudflare account without changing Gateway, device profiles, IdPs, service tokens, posture rules or devices.
 
 ## Risk
 
-**RED.**
+RED.
 
-This Work Order changes security-sensitive enrollment authorization in the shared SETOK Cloudflare account. Blast radius is constrained by exact-mailbox scope and strict pre/post fingerprints.
+## Governance result
 
-## Independent Check
+- Preflight: PASS
+- Independent Check: PASS WITH CONDITIONS
+- Product Input Gate: CLOSED
+- Project Scope: PROJECT_SCOPE_OK
+- Technical Director terminal decision: **ACCEPT**
 
-**PASS WITH CONDITIONS** — `docs/development/ST-CF-002_INDEPENDENT_CHECK.md`.
+## Accepted implementation
 
-All Independent Check conditions are mandatory.
+- Candidate: `678aaff9722af68238dec3ea5c57eeb84c1e7735`
+- Integration commit: `14f38ceb2eb043e62740de6bbe2987014f7824b3`
+- Evidence: `docs/evidence/ST-CF-002/`
 
-## Product Input Gate
+## Provider state established
 
-**CLOSED.**
+Exactly one Cloudflare Access application of type `warp` exists for SETOK Family enrollment. Cloudflare provider behavior forces its display name to `Warp Login App`; ownership is therefore bound by provider IDs, not by provider display name.
 
-The Product Owner selected an existing SETOK IT administration mailbox capable of receiving OTP. Its real value MUST stay outside Git/versioned evidence.
+Exactly one attached Access policy exists:
 
-Versioned alias:
+- decision: `allow`;
+- include cardinality: 1;
+- include kind: exact email identity;
+- versioned identity alias: `family-enrollment-01`;
+- existing One-time PIN IdP only;
+- no require/exclude clauses;
+- no domain/everyone/group/service-token expansion.
 
-`family-enrollment-01`
+Managed provider IDs:
 
-## Intended provider state
+- Access app: `51a1308a-c003-465d-8bf6-b34ee6abf659`
+- Access policy: `c991f7f4-7745-4f7f-afc6-3b868cdfca7e`
 
-Create exactly one Cloudflare Access application:
+The real mailbox remains operational input outside ST-CF-002 versioned state.
 
-- type: `warp`;
-- name: `SETOK-FAMILY-DEVICE-ENROLLMENT`;
-- managed by SETOK Family inside the existing shared Cloudflare integration boundary.
+## Registry ownership
 
-Create exactly one Access policy attached to it:
+ST-CF-002 added one provider-neutral `enrollment_authorization` resource and one `managed_resource` binding. Cloudflare IDs remain external identifiers. Provider-binding schema evolution was backward compatible and ST-PB-001 validation remained PASS.
 
-- decision/action: `allow`;
-- include: exact real mailbox supplied operationally for alias `family-enrollment-01`;
-- login: existing One-time PIN only;
-- no domain-wide include;
-- no `everyone`;
-- no group expansion;
-- no service token;
-- no second identity.
+## Blast-radius proof
 
-## Authorized implementation shape after explicit GO
+Pre/post evidence proved all 16 unrelated surfaces unchanged, including:
 
-### Stage A — pre-mutation discovery
-
-Before mutation:
-
-1. verify `PROJECT_SCOPE_OK` and exact Authorized Base lineage;
-2. verify Access apps/policies current state;
-3. verify One-time PIN remains the existing IdP;
-4. verify service-token state;
-5. fingerprint Gateway rules/lists/config;
-6. fingerprint Default and `SETOK-FAMILY-MANAGED` profiles;
-7. fingerprint posture rules;
-8. inventory device/registration counts;
-9. verify the real enrollment mailbox operational input is available locally without placing it in Git/evidence;
-10. verify the write credential is narrowly scoped and stored outside Git.
-
-Hard STOP if an unmanaged/pre-existing `warp` application appears or any current state materially differs such that ownership is ambiguous.
-
-### Stage B — provider mutation
-
-Create exactly:
-
-1. one Access application `SETOK-FAMILY-DEVICE-ENROLLMENT` of type `warp`;
-2. one allow policy whose only include is the exact operational mailbox for `family-enrollment-01`.
-
-No other provider mutation is authorized.
-
-### Stage C — ownership/reconciliation
-
-- observe and capture created app/policy provider IDs;
-- minimally extend provider-binding resource ownership if required;
-- provider IDs remain external identifiers;
-- no real mailbox value in registry/evidence;
-- reconcile desired vs observed state at least twice with identical semantic result.
-
-### Stage D — blast-radius proof
-
-Prove unchanged:
-
-- Gateway DNS/HTTP/Network policies/rules/lists/config;
-- Default device profile;
-- `SETOK-FAMILY-MANAGED` profile/config/match;
+- Gateway rules/lists/config;
+- device settings;
+- Default profile;
+- `SETOK-FAMILY-MANAGED` and match expression;
+- all device profiles;
+- Access organization;
 - IdPs/login methods;
+- Access groups;
 - service tokens;
 - posture rules;
 - physical devices and registrations;
-- unrelated Access resources.
+- unrelated Access apps/policies.
 
-## Provider credential boundary
+Expected provider delta only:
 
-A separate narrowly scoped Cloudflare API token may be created outside this repository with only the permissions required for Access Apps/Policies write and validation reads.
+- +1 Access app type `warp`;
+- +1 exact-identity allow policy;
+- 0 other provider changes.
 
-Requirements:
+Reconciliation ran twice with `MATCH` and deterministic result. Idempotent re-run produced no additional objects.
 
-- secret outside Git;
-- local secure-storage pattern only;
-- do not version token value;
-- revoke after mutation/evidence collection where feasible;
-- do not broaden existing ST-CF-001 token permissions silently.
+## Credential closure
 
-If obtaining the required credential requires an unrelated persistent account-security mutation or broader privilege than reasonably necessary, STOP and escalate.
+The temporary ST-CF-002 Account API token was revoked by the Product Owner after acceptance. Its DPAPI local copy was removed. The persistent ST-CF-001 credential was not broadened or changed.
 
-## Lifecycle / rollback
+## Privacy note
 
-Successful normal state leaves the enrollment app/policy active because it is required for subsequent Android and iPad enrollment/re-enrollment.
+ST-CF-002 introduced no real mailbox or token value into its registry, scripts or evidence. A pre-existing account-name string from ST-CF-001 may contain the same mailbox; this is inherited and not an ST-CF-002 regression. Future evidence should avoid propagating account-owner PII where unnecessary.
 
-Rollback:
+## Rollback
 
-1. delete the created policy by observed ID;
-2. delete the created `warp` app by observed ID;
-3. verify Access app/policy state returns to the pre-operation fingerprint/count;
-4. verify all unrelated shared surfaces remain unchanged.
+Rollback remains documented, not executed:
 
-Rollback is not automatic cleanup after success.
+1. delete the exact managed Access policy by observed ID;
+2. delete the exact managed `warp` app by observed ID;
+3. re-snapshot and verify pre-state restoration;
+4. retire the SETOK managed-resource binding/resource.
 
-## Strictly forbidden
+A newly issued narrowly scoped Access Apps/Policies write token would be required for rollback.
 
-- Gateway policy/list/config changes;
-- Default profile changes;
-- `SETOK-FAMILY-MANAGED` changes;
-- device-profile selector changes;
-- IdP/login-method changes;
-- service-token creation/change;
-- posture-rule changes;
-- physical device enrollment;
-- device subject/device binding creation;
-- Android/iPad MDM changes;
-- safe-selector claims;
-- real mailbox value committed to Git/evidence;
-- domain/everyone/group enrollment allow rules.
+## Terminal state
 
-## Required validation
+`DEVICE_ENROLLMENT_PERMISSION_READY / NO_DEVICE_ENROLLED / SAFE_SELECTOR_NOT_YET_PROVEN`
 
-- `PROJECT_SCOPE_OK`;
-- exact Authorized Base lineage;
-- Product Input Gate CLOSED;
-- exactly one new `warp` app;
-- exactly one exact-mailbox allow policy;
-- One-time PIN unchanged;
-- Gateway unchanged;
-- profiles unchanged;
-- service-token state unchanged;
-- posture rules unchanged;
-- device/registration counts unchanged;
-- deterministic reconciliation PASS;
-- no PII/secrets in Git/evidence;
-- rollback documented;
-- safe selector remains NOT PROVEN.
-
-## Stop conditions
-
-- repository mismatch;
-- Authorized Base/branch mismatch;
-- unmanaged/pre-existing `warp` app appears;
-- more than one enrollment identity is needed;
-- domain/everyone/group policy is required;
-- IdP/login-method mutation required;
-- service token required;
-- Gateway/profile/posture/device mutation required;
-- actual mailbox would need to be versioned;
-- write credential requires unjustified broad privilege;
-- provider API cannot prove created state;
-- unrelated Access resources would be modified;
-- unexpected Auto-RED surface.
+No Android/iPad enrollment, device subject, device binding, MDM or Gateway enforcement was performed by this Work Order.
 
 ## Quality gates
 
@@ -198,19 +114,16 @@ Rollback is not automatic cleanup after success.
 - [x] Risk classified RED.
 - [x] Independent Check PASS WITH CONDITIONS.
 - [x] Product Input Gate CLOSED.
-- [ ] Authorized Base frozen.
-- [ ] Implementation Branch created from exact Authorized Base.
-- [ ] Branch lineage verified.
-- [ ] Explicit Technical Director implementation authorization.
-- [ ] Required implementation gates PASS or controlled STOP.
-- [ ] Technical Director terminal review complete.
+- [x] Authorized Base frozen.
+- [x] Implementation Branch verified.
+- [x] Explicit implementation authorization.
+- [x] Required implementation gates PASS.
+- [x] Technical Director terminal review ACCEPT.
+- [x] Accepted candidate integrated to main.
+- [x] Temporary write credential revoked.
 
 ## Closure evidence
 
-- Preflight: PASS
-- Independent Check: PASS WITH CONDITIONS
-- Product Input Gate: CLOSED
-- Enrollment identity alias: `family-enrollment-01`
-- Real mailbox: operational input only, outside Git
-- Authorized Base: PENDING
-- Implementation Authorization: NO
+- Candidate: `678aaff9722af68238dec3ea5c57eeb84c1e7735`
+- Integration: `14f38ceb2eb043e62740de6bbe2987014f7824b3`
+- Outcome: ACCEPT
