@@ -8,13 +8,17 @@ This roadmap orders work; implementation authority is carried by the active Stor
 
 Current AIDE execution state:
 
-- active unit: `NONE`
+- active unit: `ST-DEV-001 — Establish first Android device enrollment and provider binding`
+- Story: `docs/stories/ST-DEV-001.md`
+- Work Order: `.ai/work-orders/ST-DEV-001.md`
+- preflight: `PASS`
+- Independent Check: `PASS WITH CONDITIONS`
+- risk: `RED`
+- Product Input Gate: `NOT REQUIRED`
+- Authorized Base: `PENDING`
+- implementation branch: `PENDING`
 - implementation authorized: `NO`
-- open gates: `NONE`
-- last completed unit: `ST-POL-002 — Establish Standard / Restricted / temporary overlay policy contract`
-- Technical Director decision: `ACCEPT`
-- accepted candidate: `8e0121e2b45e39a759f2774a4427d72de5b9d155`
-- integration commit: `a3d7aff30ff4a1f8729d5ee59d9ea2f8b572f85b`
+- open gates: freeze Authorized Base, create/verify implementation branch, explicit Technical Director implementation authorization
 
 ## Phase 1 objective
 
@@ -28,7 +32,7 @@ Deliver and validate a functioning parental-control platform without depending o
 4. **Initial provider-binding model — COMPLETE: ST-PB-001 ACCEPT.**
 5. **Baseline policy contract and compilation plan — COMPLETE: ST-POL-001 ACCEPT.**
 6. **Standard / Restricted / temporary overlay policy contract — COMPLETE: ST-POL-002 ACCEPT.**
-7. **Android enrollment and device binding — NEXT.**
+7. **Android enrollment and device binding — ACTIVE: ST-DEV-001.**
 8. iPad Standard enrollment and device binding.
 9. Scoped Cloudflare enforcement apply and validation for enrolled Familia Ulate León devices. Apply baseline + approved mode/overlay compilation only after selector isolation, rollback, entitlement and blast-radius gates pass.
 10. iPad Enhanced / MDM enrollment.
@@ -121,11 +125,33 @@ Deferred enforcement findings carried forward:
 - Gateway first-match ordering and the refined SafeSearch/YouTube scoping must be validated on an enrolled test device before enforcement is accepted;
 - safe family/device selector isolation remains mandatory because the Cloudflare account is shared.
 
+## Active unit boundary — ST-DEV-001
+
+ST-DEV-001 establishes the first real Android device identity and Cloudflare device-registration binding.
+
+Target architecture:
+
+- first-family Xiaomi Redmi Note 14 Pro;
+- Google Family Link remains authority for screen time/apps;
+- Cloudflare One Client remains network-enforcement provider;
+- no ManageEngine/Android MDM;
+- exactly one new SETOK device subject and, after successful enrollment, exactly one ACTIVE Cloudflare `device_enrollment` binding.
+
+Manual enrollment must use a dedicated operational integration identity whose real value/credentials remain outside Git. That enrollment identity is not a SETOK family member, Child login or internal device identity.
+
+Because the Cloudflare organization is shared, the only intended external mutation in this Story is the target device's supported manual enrollment/registration. Any need to change shared enrollment permissions, login methods, service tokens, device-profile selectors, `SETOK-FAMILY-MANAGED`, Default profile or Gateway policies is a hard STOP pending separate authorization.
+
+Successful completion does **not** prove a safe Gateway selector. The required terminal state remains conceptually:
+
+`DEVICE_ENROLLED / DEVICE_BOUND / SAFE_SELECTOR_NOT_YET_PROVEN`
+
+Current Cloudflare documentation also indicates that administrator-supplied `unique_client_id` on Android is a managed-deployment capability and cannot be manually assigned; ST-DEV-001 therefore does not introduce MDM solely to create such a selector.
+
 ## Sequencing clarification
 
 Policy **design/compilation** and provider **enforcement apply** are separate gates.
 
-Android and iPad Standard enrollment now create the real device identities/bindings needed to prove safe tenant/device scope. Only after those units may scoped Cloudflare enforcement be considered for provider mutation.
+Android and iPad Standard enrollment create the real device identities/bindings needed to evaluate safe tenant/device scope. Only after those units may scoped Cloudflare enforcement be considered for provider mutation.
 
 ## Phase 1 exit condition
 
@@ -137,7 +163,7 @@ Phase 2 is the SETOK Family application / mini app and consumer experience. It r
 
 ## Next governance action
 
-Select and preflight **Android enrollment and device binding**. This next unit will be the first to establish a real SETOK device subject and provider device binding; no enrollment or provider mutation is authorized until its Story, risk, Work Order, Product Input (if needed) and implementation gate are completed.
+Freeze the ST-DEV-001 Authorized Base, create `feature/st-dev-001` from that exact commit, verify branch lineage, and require explicit Technical Director implementation authorization. No physical enrollment/provider mutation is authorized before that GO.
 
 ## Authority
 
