@@ -11,7 +11,9 @@ Establish the first real Android device subject for the first productive SETOK F
 ## Target architecture
 
 - Platform: Android.
-- Physical target: first-family Xiaomi Redmi Note 14 Pro.
+- Physical target: first-family `Redmi Note 13 Pro+ 5G (23090RA98G)`.
+  - Corrected on 2026-10-27 after provider observation. ST-DEV-001 r2 Stage D observed this model on the enrolled handset. The Product Owner then explicitly confirmed that this handset is the intended first-family Android device and that the earlier "Xiaomi Redmi Note 14 Pro" target was a documentation error.
+  - The architectural intent is unchanged: Android, Google Family Link, Cloudflare One, and no Android MDM.
 - Native parental authority: Google Family Link.
 - Network enforcement provider: Cloudflare One Client / Cloudflare Zero Trust.
 - ManageEngine MDM: explicitly NOT used on Android.
