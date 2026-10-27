@@ -1,5 +1,5 @@
 schema_version: 1
-written_at_utc: 2026-10-27T04:55:00Z
+written_at_utc: 2026-10-27T05:02:00Z
 
 framework:
   repository: SETOKCR/setok-aide
@@ -15,15 +15,14 @@ scope:
 activity:
   lifecycle: active
   active_unit: ST-CF-002
-  phase: readiness
+  phase: implementation
   risk: RED
-  implementation_authorized: false
+  implementation_authorized: true
   authorized_base: 0e32888cb8d78c488cbe4a231e7767a38ed9853b
   implementation_branch: feature/st-cf-002
   candidate_commit: null
 
-open_gates:
-  - explicit Technical Director implementation authorization
+open_gates: []
 
 canonical_refs:
   - .ai/AIDE_PROJECT.yaml
@@ -53,6 +52,6 @@ last_terminal:
   note: ST-POL-002 integrated to main and formally closed. PO-approved STANDARD / RESTRICTED / temporary overlay semantics are versioned; composition, expiry/restore, conflict resolution, baseline non-regression and Essential Services invariants passed. No provider mutation occurred, zero device subjects/bindings were created and all compiled Cloudflare plans remain APPLY_BLOCKED.
 
 next_action:
-  kind: readiness
+  kind: implementation
   unit: ST-CF-002
-  note: Preflight PASS and Independent Check PASS WITH CONDITIONS. Product Input Gate CLOSED with versioned alias family-enrollment-01; real mailbox remains operational input outside Git. Authorized Base frozen at 0e32888cb8d78c488cbe4a231e7767a38ed9853b. feature/st-cf-002 created from that exact base and verified one governance-only Work Order commit ahead, zero behind. Await explicit implementation authorization. Only one warp Access app and one exact-mailbox allow policy are in scope; Gateway, profiles, IdP/login methods, service tokens, posture rules and devices must remain unchanged.
+  note: Implementation explicitly authorized by Product Owner GO. Development Agent must reconstruct from Git, verify PROJECT_SCOPE_OK and exact lineage from Authorized Base 0e32888cb8d78c488cbe4a231e7767a38ed9853b. Before mutation, rerun pre-discovery and verify no pre-existing/unmanaged warp app. The only authorized provider mutation is one Access application type warp named SETOK-FAMILY-DEVICE-ENROLLMENT plus one exact-mailbox allow policy for operational alias family-enrollment-01 using the existing One-time PIN IdP. Real mailbox remains outside Git/evidence. Gateway, profiles, IdP/login methods, service tokens, posture rules and devices must remain unchanged. Stop on any Work Order Stop Condition.
