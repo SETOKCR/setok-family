@@ -1,5 +1,5 @@
 schema_version: 1
-written_at_utc: 2026-10-27T02:52:00Z
+written_at_utc: 2026-10-27T04:20:00Z
 
 framework:
   repository: SETOKCR/setok-aide
@@ -10,19 +10,20 @@ scope:
   kind: project
   repository: SETOKCR/setok-family
   default_branch: main
-  observed_head: 093e0b34e5d801aefbb91c7d8b4cdb1cddc245d0
+  observed_head: 3388c350a451630d1c5bebf26bd82156da5dc059
 
 activity:
   lifecycle: active
-  active_unit: null
-  phase: selection
-  risk: null
+  active_unit: ST-DEV-001
+  phase: readiness
+  risk: RED
   implementation_authorized: false
-  authorized_base: null
-  implementation_branch: null
+  authorized_base: 8c2758026623209a655ace744fef977b3e018fc5
+  implementation_branch: feature/st-dev-001
   candidate_commit: null
 
-open_gates: []
+open_gates:
+  - explicit Technical Director implementation authorization
 
 canonical_refs:
   - .ai/AIDE_PROJECT.yaml
@@ -31,10 +32,9 @@ canonical_refs:
   - docs/ARCHITECTURE.md
   - docs/ROADMAP.md
   - docs/QUALITY.md
-  - docs/stories/ST-POL-002.md
-  - .ai/work-orders/ST-POL-002.md
-  - docs/development/ST-POL-002_INDEPENDENT_CHECK.md
-  - docs/evidence/ST-POL-002/README.md
+  - docs/stories/ST-DEV-001.md
+  - .ai/work-orders/ST-DEV-001.md
+  - docs/development/ST-DEV-001_INDEPENDENT_CHECK.md
 
 last_terminal:
   outcome: ACCEPT
@@ -44,6 +44,6 @@ last_terminal:
   note: ST-POL-002 integrated to main and formally closed. PO-approved STANDARD / RESTRICTED / temporary overlay semantics are versioned; composition, expiry/restore, conflict resolution, baseline non-regression and Essential Services invariants passed. No provider mutation occurred, zero device subjects/bindings were created and all compiled Cloudflare plans remain APPLY_BLOCKED.
 
 next_action:
-  kind: selection
-  unit: null
-  note: ROADMAP selects Android enrollment and device binding next. Preflight must define the real Android device subject, Cloudflare enrollment/binding mechanism, safe selector implications, rollback/offboarding, Family Link boundary and any Product Input required. No device enrollment or provider mutation is authorized yet.
+  kind: readiness
+  unit: ST-DEV-001
+  note: Preflight PASS and Independent Check PASS WITH CONDITIONS. Product Input Gate NOT REQUIRED. Authorized Base frozen at 8c2758026623209a655ace744fef977b3e018fc5. feature/st-dev-001 created from that exact base and verified one governance-only Work Order commit ahead, zero behind. Await explicit implementation authorization. Before any external mutation the agent must run Stage A read-only discovery; if safe manual Android enrollment requires shared Cloudflare enrollment/auth/profile/Gateway mutation, STOP before mutation. Successful completion must retain SAFE_SELECTOR_NOT_YET_PROVEN.
