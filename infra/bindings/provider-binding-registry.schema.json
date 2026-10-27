@@ -81,7 +81,7 @@
         "resource_id": { "$ref": "#/$defs/resourceId" },
         "tenant_id": { "$ref": "#/$defs/tenantId" },
         "integration_id": { "$ref": "#/$defs/integrationId" },
-        "resource_type": { "enum": ["device_profile", "gateway_policy", "identity_application"], "description": "Provider configuration objects. A device_profile is NOT a device." },
+        "resource_type": { "enum": ["device_profile", "gateway_policy", "identity_application", "enrollment_authorization"], "description": "Provider configuration objects. A device_profile is NOT a device. enrollment_authorization = provider object that decides which operational identity may enroll devices (ST-CF-002)." },
         "management": { "const": "managed_by_setok_family" },
         "alias": { "$ref": "#/$defs/alias" },
         "status": { "$ref": "#/$defs/recordStatus" }

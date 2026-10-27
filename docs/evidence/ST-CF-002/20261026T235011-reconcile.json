@@ -1,0 +1,86 @@
+{
+  "runs": [
+    {
+      "run": 1,
+      "observed": {
+        "warpAppCount": 1,
+        "appId": "51a1308a-c003-465d-8bf6-b34ee6abf659",
+        "appName": "Warp Login App",
+        "appType": "warp",
+        "appAllowedIdps": [
+          "004a08b3-136e-419a-815f-1531e75ac870"
+        ],
+        "otpIdpId": "004a08b3-136e-419a-815f-1531e75ac870",
+        "policyCountByName": 1,
+        "policyId": "c991f7f4-7745-4f7f-afc6-3b868cdfca7e",
+        "policyDecision": "allow",
+        "includeCount": 1,
+        "includeKinds": [
+          "email"
+        ],
+        "includeMatchesOperationalIdentity": true,
+        "requireCount": 0,
+        "excludeCount": 0,
+        "attachedPolicyIds": [
+          "c991f7f4-7745-4f7f-afc6-3b868cdfca7e"
+        ]
+      },
+      "checks": {
+        "exactlyOneWarpApp": true,
+        "appNameProviderFixed": true,
+        "appIsRegistryBound": true,
+        "appTypeIsWarp": true,
+        "appUsesOnlyOneTimePin": true,
+        "exactlyOneManagedPolicy": true,
+        "policyDecisionAllow": true,
+        "includeCardinalityOne": true,
+        "includeIsExactEmail": true,
+        "includeIsOperationalIdentity": true,
+        "noRequireOrExclude": true,
+        "policyAttachedOnlyToApp": true
+      }
+    },
+    {
+      "run": 2,
+      "observed": {
+        "warpAppCount": 1,
+        "appId": "51a1308a-c003-465d-8bf6-b34ee6abf659",
+        "appName": "Warp Login App",
+        "appType": "warp",
+        "appAllowedIdps": [
+          "004a08b3-136e-419a-815f-1531e75ac870"
+        ],
+        "otpIdpId": "004a08b3-136e-419a-815f-1531e75ac870",
+        "policyCountByName": 1,
+        "policyId": "c991f7f4-7745-4f7f-afc6-3b868cdfca7e",
+        "policyDecision": "allow",
+        "includeCount": 1,
+        "includeKinds": [
+          "email"
+        ],
+        "includeMatchesOperationalIdentity": true,
+        "requireCount": 0,
+        "excludeCount": 0,
+        "attachedPolicyIds": [
+          "c991f7f4-7745-4f7f-afc6-3b868cdfca7e"
+        ]
+      },
+      "checks": {
+        "exactlyOneWarpApp": true,
+        "appNameProviderFixed": true,
+        "appIsRegistryBound": true,
+        "appTypeIsWarp": true,
+        "appUsesOnlyOneTimePin": true,
+        "exactlyOneManagedPolicy": true,
+        "policyDecisionAllow": true,
+        "includeCardinalityOne": true,
+        "includeIsExactEmail": true,
+        "includeIsOperationalIdentity": true,
+        "noRequireOrExclude": true,
+        "policyAttachedOnlyToApp": true
+      }
+    }
+  ],
+  "deterministic": true,
+  "verdict": "MATCH"
+}

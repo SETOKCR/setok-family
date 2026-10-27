@@ -39,6 +39,15 @@
       "management": "managed_by_setok_family",
       "alias": "family-managed-device-profile",
       "status": "ACTIVE"
+    },
+    {
+      "resource_id": "res_01M5XYFZDG31JSDHKYV16HXR8W",
+      "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+      "integration_id": "int_01M5VBRV516Z3FXT98V4G6KT5N",
+      "resource_type": "enrollment_authorization",
+      "management": "managed_by_setok_family",
+      "alias": "family-device-enrollment",
+      "status": "ACTIVE"
     }
   ],
   "bindings": [
@@ -89,6 +98,18 @@
       "status": "ACTIVE",
       "valid_from": "2026-10-26",
       "source": "ST-CF-001"
+    },
+    {
+      "binding_id": "bnd_01M5XYFZEPN4P2843AKX7MJANT",
+      "tenant_id": "tnt_01M5VBRV28NGNS5PX6Y1W2XJV8",
+      "target": { "kind": "resource", "id": "res_01M5XYFZDG31JSDHKYV16HXR8W" },
+      "provider": "cloudflare-zero-trust",
+      "binding_type": "managed_resource",
+      "integration_id": "int_01M5VBRV516Z3FXT98V4G6KT5N",
+      "external": { "access_app_id": "51a1308a-c003-465d-8bf6-b34ee6abf659", "access_app_type": "warp", "access_policy_id": "c991f7f4-7745-4f7f-afc6-3b868cdfca7e", "enrollment_identity_alias": "family-enrollment-01" },
+      "status": "ACTIVE",
+      "valid_from": "2026-10-27",
+      "source": "ST-CF-002"
     }
   ]
 }
