@@ -7,7 +7,7 @@
 - **Story / Work Unit:** ST-POL-002
 - **Authorized Base:** `a7d9844f00e24acb5bd4d4a2553dd88efa892859`
 - **Implementation Branch:** `feature/st-pol-002`
-- **Execution state:** AUTHORIZED
+- **Execution state:** CLOSED — ACCEPT
 - **Implementation Authorization:** YES
 - **Persistence:** PERSISTED
 
@@ -29,13 +29,11 @@ Define and implement the provider-neutral contract for persistent `STANDARD` / `
 
 **YELLOW — 6/10.**
 
-No provider mutation is planned, but this unit freezes consumer-visible parental-control semantics and policy-composition rules that later enforcement will execute.
+No provider mutation was planned or performed. This unit freezes consumer-visible parental-control semantics and policy-composition rules that later enforcement will execute.
 
 ## Independent Check
 
-**PASS WITH CONDITIONS** — `docs/development/ST-POL-002_INDEPENDENT_CHECK.md`.
-
-All mandatory Independent Check conditions are part of this Work Order.
+**PASS WITH CONDITIONS** — all mandatory conditions satisfied by the accepted candidate.
 
 ## Product Input Gate
 
@@ -70,65 +68,13 @@ Approved normalized domain categories:
 
 ## Provider boundary
 
-Cloudflare remains non-mutative in this Story.
+Cloudflare remained non-mutative in this Story.
 
-Forbidden:
+No Gateway rule/profile mutation occurred and no policy was claimed `APPLIED`.
 
-- create/update/delete/reorder Gateway rules;
-- mutate `SETOK-FAMILY-MANAGED`;
-- alter Default profile;
-- claim policy `APPLIED`;
-- assume tenant/device selector.
-
-Allowed terminal policy state:
+Accepted terminal policy state:
 
 `DESIRED / COMPILED / APPLY_BLOCKED`
-
-## Expected implementation deliverables
-
-- provider-neutral mode/overlay schema;
-- approved tenant-scoped desired mode configuration;
-- deterministic composition engine/script for Story validation;
-- Effective Policy Decision representation with reason/expiry metadata;
-- Cloudflare compilation-plan extension isolated from domain intent;
-- negative and precedence tests;
-- expiry/restore tests;
-- Essential Services interaction tests;
-- no-mutation proof;
-- evidence under `docs/evidence/ST-POL-002/`.
-
-## Required validation after implementation
-
-- `PROJECT_SCOPE_OK`;
-- exact Authorized Base lineage;
-- Product Input semantics exactly represented;
-- schema PASS;
-- baseline non-regression PASS;
-- persistent mode composition PASS;
-- overlay composition PASS;
-- expiration/restore PASS;
-- conflict ordering deterministic PASS;
-- Essential Services interaction PASS;
-- fail-closed negative tests PASS;
-- provider-neutrality PASS;
-- deterministic compilation PASS;
-- zero Cloudflare mutation;
-- zero device subjects/bindings;
-- no PII/secrets;
-- no policy claimed APPLIED.
-
-## Stop conditions
-
-- repository scope mismatch;
-- Authorized Base/branch lineage mismatch;
-- Product Input semantics differ from approved Story;
-- mode/overlay weakens Security / Threat Baseline or Mandatory Safety Restrictions;
-- Essential Services bypasses threat baseline;
-- unbounded temporary overlay;
-- provider mutation required or attempted;
-- device scope invented;
-- provider-specific IDs become domain intent;
-- unexpected Auto-RED surface.
 
 ## Quality gates
 
@@ -140,15 +86,44 @@ Allowed terminal policy state:
 - [x] Implementation Branch created from exact Authorized Base.
 - [x] Branch lineage verified by construction.
 - [x] Implementation explicitly authorized by Product Owner / Technical Director GO.
-- [ ] Required implementation gates PASS.
-- [ ] Technical Director terminal review complete.
+- [x] Product semantics PASS.
+- [x] Persistent modes 2/2 PASS.
+- [x] Temporary overlays 4/4 PASS.
+- [x] Baseline non-regression PASS.
+- [x] Composition PASS and deterministic.
+- [x] Expiration / restore PASS.
+- [x] Conflict resolution PASS.
+- [x] Essential Services interaction PASS.
+- [x] Fail-closed tests PASS.
+- [x] Provider mutation NO.
+- [x] Device subjects created 0.
+- [x] Device bindings created 0.
+- [x] Policy claimed APPLIED NO.
+- [x] Privacy/secret scan PASS.
+- [x] Technical Director terminal review ACCEPT.
 
 ## Closure evidence
 
 - Preflight architecture review: PASS
-- Independent Check: PASS WITH CONDITIONS
+- Independent Check: PASS WITH CONDITIONS — satisfied
 - Product Input Gate: CLOSED — explicit PO approval
 - Authorized Base: `a7d9844f00e24acb5bd4d4a2553dd88efa892859`
 - Implementation Branch: `feature/st-pol-002`
-- Branch lineage: VERIFIED by construction from exact Authorized Base
-- Implementation Authorization: YES
+- Implementation Authorization commit: `c2b749b0e6efe26c4914265c836b0723bf604449`
+- Accepted Candidate: `8e0121e2b45e39a759f2774a4427d72de5b9d155`
+- Integration Commit: `a3d7aff30ff4a1f8729d5ee59d9ea2f8b572f85b`
+- Technical Director Decision: `ACCEPT`
+- Evidence: `docs/evidence/ST-POL-002/`
+- Provider Mutation: `NO`
+- Device Subjects / Bindings: `0 / 0`
+- Policy APPLIED: `NO`
+
+## Deferred apply gates
+
+The compiled Cloudflare plan remains blocked until later work proves:
+
+- enrolled Familia Ulate León device bindings;
+- a safe selector isolated from unrelated SETOK traffic;
+- explicit provider-mutation authorization plus rollback/blast-radius controls;
+- actual-plan entitlement for required premium-class categories;
+- real-device verification of Gateway ordering semantics.
