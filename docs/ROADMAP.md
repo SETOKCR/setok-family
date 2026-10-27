@@ -7,14 +7,21 @@ Current focus: **Phase 1 — Infrastructure, Enforcement and Identity**.
 Current AIDE execution state:
 
 - active unit: `ST-DEV-001 — Establish first Android device enrollment and provider binding`
-- phase: `resume-preflight`
-- ST-CF-002: `COMPLETE — ACCEPT`
-- ST-CF-002 accepted candidate: `678aaff9722af68238dec3ea5c57eeb84c1e7735`
-- ST-CF-002 integration commit: `14f38ceb2eb043e62740de6bbe2987014f7824b3`
-- temporary ST-CF-002 write credential: revoked
-- ST-DEV-001 prior execution: `CONTROLLED STOP at Stage A`, no external mutation
-- ST-DEV-001 blocker: resolved by ST-CF-002
+- execution attempt: `r2`
+- phase: `readiness`
+- risk: `RED`
+- preflight: `PASS`
+- Independent Check: `PASS WITH CONDITIONS`
+- Product Input Gate: `NOT REQUIRED`
+- prior r1 execution: `CONTROLLED STOP at Stage A`, no external mutation
+- prior r1 branch: `feature/st-dev-001` retained as historical evidence
+- dependency ST-CF-002: `COMPLETE — ACCEPT`
+- Authorized Base r2: `f09d114d29ae7fffc1d8516cd287c83188d4ae00`
+- implementation branch r2: `feature/st-dev-001-r2`
+- branch lineage: `VERIFIED — one governance-only Work Order commit ahead, zero behind`
+- implementation authorized: `NO`
 - safe selector: `NOT_YET_PROVEN`
+- open gate: explicit Technical Director implementation authorization for r2
 
 ## Phase 1 objective
 
@@ -28,7 +35,7 @@ Deliver and validate a functioning parental-control platform without depending o
 4. **Initial provider-binding model — COMPLETE: ST-PB-001 ACCEPT.**
 5. **Baseline policy contract and compilation plan — COMPLETE: ST-POL-001 ACCEPT.**
 6. **Standard / Restricted / temporary overlay policy contract — COMPLETE: ST-POL-002 ACCEPT.**
-7. **Android enrollment and device binding — ACTIVE: ST-DEV-001, resume from fresh Stage A.**
+7. **Android enrollment and device binding — ACTIVE/READY: ST-DEV-001 r2.**
 7a. **Cloudflare device enrollment permissions — COMPLETE: ST-CF-002 ACCEPT.**
 8. iPad Standard enrollment and device binding.
 9. Scoped Cloudflare enforcement apply and validation for enrolled Familia Ulate León devices.
@@ -59,23 +66,28 @@ ST-CF-002 established the minimum durable Cloudflare device-enrollment authoriza
 
 Cloudflare forces the provider display name `Warp Login App`; SETOK ownership is therefore bound by the managed provider IDs recorded in the registry.
 
-The provider-binding registry now includes one provider-neutral `enrollment_authorization` resource and one `managed_resource` binding. Reconciliation was deterministic and idempotent. Blast-radius evidence proved only the expected Access app/policy delta.
-
+Accepted candidate: `678aaff9722af68238dec3ea5c57eeb84c1e7735`.
+Integration commit: `14f38ceb2eb043e62740de6bbe2987014f7824b3`.
 Evidence: `docs/evidence/ST-CF-002/`.
 
-## ST-DEV-001 resume condition
+The temporary ST-CF-002 write token was revoked after acceptance.
 
-The previous ST-DEV-001 attempt stopped correctly before any mutation because device-enrollment permissions did not exist. That dependency is now resolved.
+## ST-DEV-001 r2 boundary
 
-ST-DEV-001 must restart with a **fresh Stage A** and prove current state before any new mutation:
+The r1 branch is intentionally not rebased or reused. It remains historical evidence of the controlled stop at Stage A (`74cb833a1fcbc2e452fd7d0dde578b22ca9fdaf4`).
 
-- managed `warp` enrollment app/policy exist and reconcile;
-- One-time PIN remains the intended IdP;
+ST-DEV-001 r2 begins from the post-ST-CF-002 main state. Before any provider or handset mutation, the Development Agent must run a **fresh Stage A** and prove:
+
+- the managed `warp` enrollment app/policy still exist and reconcile to the registry-bound IDs;
+- the policy remains one exact-identity `allow` policy with One-time PIN only;
 - Gateway, Default and `SETOK-FAMILY-MANAGED` remain unchanged;
-- zero physical devices/registrations exist before handset enrollment;
-- no additional shared-account mutation is required.
+- no unexpected physical devices/registrations exist;
+- no additional shared-account mutation is required;
+- registry still has no device subject/binding for the target.
 
-Only after Stage A passes may it create exactly one Android device subject and proceed to manual enrollment.
+Only after Stage A passes may r2 create exactly one provider-neutral Android device subject and proceed toward manual Cloudflare One enrollment.
+
+The only intended provider mutation is the target Android's own supported enrollment/registration. Gateway, profile, enrollment-authorization, IdP, service-token, posture and unrelated-device changes remain forbidden.
 
 Successful terminal state remains:
 
@@ -95,7 +107,7 @@ SETOK Family application / mini app remains deferred until Phase 1 platform vali
 
 ## Next governance action
 
-Refresh ST-DEV-001 Authorized Base/branch continuity against the now-integrated ST-CF-002 state, rerun Stage A read-only discovery, then require explicit implementation authorization before any new mutation.
+Await explicit Technical Director implementation authorization for ST-DEV-001 r2. The next GO authorizes fresh Stage A read-only discovery and, only if it passes, the approved device-identity/enrollment flow.
 
 ## Authority
 
