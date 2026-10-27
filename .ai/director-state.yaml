@@ -1,5 +1,5 @@
 schema_version: 1
-written_at_utc: 2026-10-26T16:50:00Z
+written_at_utc: 2026-10-27T02:52:00Z
 
 framework:
   repository: SETOKCR/setok-aide
@@ -10,16 +10,16 @@ scope:
   kind: project
   repository: SETOKCR/setok-family
   default_branch: main
-  observed_head: ad4e3d861b5f05c21a52bdd1dfb14dc889676515
+  observed_head: 093e0b34e5d801aefbb91c7d8b4cdb1cddc245d0
 
 activity:
   lifecycle: active
-  active_unit: ST-POL-002
-  phase: implementation
-  risk: YELLOW-6
-  implementation_authorized: true
-  authorized_base: a7d9844f00e24acb5bd4d4a2553dd88efa892859
-  implementation_branch: feature/st-pol-002
+  active_unit: null
+  phase: selection
+  risk: null
+  implementation_authorized: false
+  authorized_base: null
+  implementation_branch: null
   candidate_commit: null
 
 open_gates: []
@@ -34,15 +34,16 @@ canonical_refs:
   - docs/stories/ST-POL-002.md
   - .ai/work-orders/ST-POL-002.md
   - docs/development/ST-POL-002_INDEPENDENT_CHECK.md
+  - docs/evidence/ST-POL-002/README.md
 
 last_terminal:
   outcome: ACCEPT
-  unit: ST-POL-001
-  candidate_commit: fb3ef4f429c797e1f658d65e2dc80ea305df64d6
-  integration_commit: 019dc396cd4f6f0fc3f77b5caa9073d7385c41f7
-  note: ST-POL-001 integrated to main and formally closed. Seven mandatory baseline controls are defined in provider-neutral desired state and deterministically compiled against read-only Cloudflare capability discovery. No Gateway/provider mutation occurred and nothing is APPLIED. Future apply remains blocked until device enrollment yields a safe selector, provider mutation is separately authorized with rollback/blast-radius controls, and premium-class Gambling entitlement is verified.
+  unit: ST-POL-002
+  candidate_commit: 8e0121e2b45e39a759f2774a4427d72de5b9d155
+  integration_commit: a3d7aff30ff4a1f8729d5ee59d9ea2f8b572f85b
+  note: ST-POL-002 integrated to main and formally closed. PO-approved STANDARD / RESTRICTED / temporary overlay semantics are versioned; composition, expiry/restore, conflict resolution, baseline non-regression and Essential Services invariants passed. No provider mutation occurred, zero device subjects/bindings were created and all compiled Cloudflare plans remain APPLY_BLOCKED.
 
 next_action:
-  kind: implementation
-  unit: ST-POL-002
-  note: Implementation explicitly authorized. Development Agent must reconstruct from Git, verify PROJECT_SCOPE_OK and exact lineage from Authorized Base a7d9844f00e24acb5bd4d4a2553dd88efa892859, then implement the approved provider-neutral STANDARD / RESTRICTED / temporary overlay contract. Cloudflare/provider mutation remains forbidden; zero device subjects/bindings may be created; no policy may be claimed APPLIED. Stop on any Work Order Stop Condition and return an exact candidate commit with evidence.
+  kind: selection
+  unit: null
+  note: ROADMAP selects Android enrollment and device binding next. Preflight must define the real Android device subject, Cloudflare enrollment/binding mechanism, safe selector implications, rollback/offboarding, Family Link boundary and any Product Input required. No device enrollment or provider mutation is authorized yet.
