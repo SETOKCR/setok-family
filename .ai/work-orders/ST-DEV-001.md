@@ -5,9 +5,9 @@
 - **Project:** SETOK Family
 - **Repository:** SETOKCR/setok-family
 - **Story / Work Unit:** ST-DEV-001
-- **Authorized Base:** `PENDING`
-- **Implementation Branch:** `PENDING`
-- **Execution state:** PREFLIGHT_COMPLETE
+- **Authorized Base:** `8c2758026623209a655ace744fef977b3e018fc5`
+- **Implementation Branch:** `feature/st-dev-001`
+- **Execution state:** READY
 - **Implementation Authorization:** NO
 - **Persistence:** PERSISTED
 
@@ -213,9 +213,9 @@ The later scoped-enforcement Story owns proof that a Cloudflare selector isolate
 - [x] Risk classified RED.
 - [x] Independent Check PASS WITH CONDITIONS.
 - [x] Product Input Gate NOT REQUIRED.
-- [ ] Authorized Base frozen.
-- [ ] Implementation Branch created from exact Authorized Base.
-- [ ] Branch lineage verified.
+- [x] Authorized Base frozen at `8c2758026623209a655ace744fef977b3e018fc5`.
+- [x] Implementation Branch created from exact Authorized Base.
+- [x] Branch lineage verified by construction.
 - [ ] Explicit Technical Director implementation authorization.
 - [ ] Required implementation gates PASS or controlled STOP.
 - [ ] Technical Director terminal review complete.
@@ -225,5 +225,7 @@ The later scoped-enforcement Story owns proof that a Cloudflare selector isolate
 - Preflight: PASS
 - Independent Check: PASS WITH CONDITIONS
 - Product Input Gate: NOT REQUIRED
-- Authorized Base: PENDING
+- Authorized Base: `8c2758026623209a655ace744fef977b3e018fc5`
+- Implementation Branch: `feature/st-dev-001`
+- Branch lineage: VERIFIED by construction from exact Authorized Base
 - Implementation Authorization: NO
