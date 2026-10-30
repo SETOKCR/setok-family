@@ -6,12 +6,12 @@
 - **Repository:** SETOKCR/setok-family
 - **Story / Work Unit:** ST-CF-004
 - **Purpose:** establish dedicated per-device Cloudflare enrollment identity and fail-closed enrollment lifecycle for `android-01`
-- **Execution state:** PREFLIGHT / PRODUCT INPUT GATE OPEN
+- **Execution state:** READY / PRODUCT INPUT GATE OPEN
 - **Implementation Authorization:** NO
 - **Provider Mutation Authorization:** NO
 - **Risk:** RED
-- **Authorized Base:** TO_BE_FROZEN
-- **Implementation Branch:** TO_BE_CREATED
+- **Authorized Base:** `5ed8d403a99540e45e872ed255c27abc6203577d`
+- **Implementation Branch:** `feature/st-cf-004`
 
 ## Governance basis
 
