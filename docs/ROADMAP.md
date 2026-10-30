@@ -6,21 +6,18 @@ Current focus: **Phase 1 — Infrastructure, Enforcement and Identity**.
 
 Current AIDE execution state:
 
-- active unit: `ST-CF-003 — Prove safe selector and scoped Cloudflare enforcement for android-01`
-- phase: `read-only discovery / preflight`
-- risk: `RED` for eventual implementation
+- active unit: `ST-CF-004 — Establish dedicated per-device Cloudflare enrollment identity and fail-closed lifecycle`
+- phase: `preflight / Product Input Gate`
+- risk: `RED`
 - Story: `DEFINED`
-- Independent Check: `PASS WITH CONDITIONS — READ-ONLY PREFLIGHT ONLY`
-- Product Input Gate: `NOT REQUIRED`
-- Authorized Base: `ce81766d2b4c7b95b0a9a116d164cda7ffa0584e`
-- branch: `feature/st-cf-003`
-- read-only discovery authorized: `YES`
+- Independent Check: `PASS WITH CONDITIONS — GOVERNANCE/PREFLIGHT ONLY`
+- Product Input Gate: `OPEN — dedicated android-01 enrollment mailbox required`
 - implementation authorization: `NO`
 - provider mutation authorization: `NO`
-- safe selector: `NOT_YET_PROVEN`
+- safe selector: `NOT PROVEN — retest required after ST-CF-004`
 - iPad Standard enrollment: `DEFERRED — later Phase 1`
 
-Last completed unit: `ST-DEV-001 — Establish first Android device enrollment and provider binding` — `ACCEPT`.
+Last completed unit: `ST-CF-003 — Prove safe selector and scoped Cloudflare enforcement for android-01` — `ACCEPT / SAFE_SELECTOR_NOT_PROVEN / APPLY_BLOCKED`.
 
 ## Phase 1 objective
 
@@ -36,8 +33,10 @@ Deliver and validate a functioning parental-control platform without depending o
 6. **Standard / Restricted / temporary overlay policy contract — COMPLETE: ST-POL-002 ACCEPT.**
 7. **Android enrollment and device binding — COMPLETE: ST-DEV-001 ACCEPT.**
 7a. **Cloudflare device enrollment permissions — COMPLETE: ST-CF-002 ACCEPT.**
-8. **Scoped Cloudflare enforcement / safe-selector validation for `android-01` — ACTIVE: ST-CF-003 READ-ONLY DISCOVERY.**
-9. **Android anti-bypass and real-device behavior validation.**
+8. **Scoped Cloudflare enforcement / safe-selector validation for `android-01` — COMPLETE DISCOVERY: ST-CF-003 `SAFE_SELECTOR_NOT_PROVEN / APPLY_BLOCKED`.**
+8a. **Dedicated per-device enrollment identity and fail-closed lifecycle — ACTIVE: ST-CF-004 PREFLIGHT / PRODUCT INPUT GATE.**
+8b. **Re-test safe selector and staged canary DNS enforcement — BLOCKED pending ST-CF-004.**
+9. **Android anti-bypass and real-device behavior validation — BLOCKED pending safe scoped enforcement.**
 10. **PowerShell automation / operational reconciliation**, refined from enforcement findings.
 11. **iPad Standard enrollment and device binding — DEFERRED until Android enforcement architecture is proven.**
 12. **iPad Enhanced / MDM enrollment — DEFERRED; evaluate only after Standard/iOS capability gaps are known.**
@@ -117,33 +116,62 @@ Successful terminal state:
 
 `DEVICE_ENROLLED / DEVICE_BOUND / SAFE_SELECTOR_NOT_YET_PROVEN`
 
-## ST-CF-003 discovery boundary
+## ST-CF-003 closure
 
-ST-CF-003 exists because the accepted provider binding does not automatically imply a usable Gateway policy selector.
+ST-CF-003 executed read-only discovery against the accepted Android state and returned:
 
-Current documented provider facts to validate live:
+`SAFE_SELECTOR_NOT_PROVEN / APPLY_BLOCKED`
 
-- direct physical-device / registration IDs are not currently documented as Gateway DNS/Network/HTTP selectors;
-- exact authenticated user email is available as an identity selector, but is identity-scoped rather than intrinsically physical-device-scoped;
-- mobile serial-number posture is not supported;
-- mobile Device UUID / `unique_client_id` requires managed deployment and cannot be manually assigned;
-- Device IP is not available on Android/iOS.
+Accepted discovery candidate:
 
-Therefore ST-CF-003 must test whether the dedicated enrollment identity can provide a durable fail-closed first-family scope without exposing PII in desired state. If not, enforcement remains blocked or an architecture change must be considered.
+`2b63433e3af5fc6aa6c581bbb7bd290bb579cc26`
 
-Read-only discovery must also establish current Gateway first-match/precedence semantics and entitlement/category capability for ST-POL-001/002.
+Integration commit:
 
-No Gateway mutation is authorized during discovery.
+`1921b2c057b820a23fe5cd3287dcd30ce15652bb`
 
-Expected discovery terminal state is exactly one of:
+Evidence: `docs/evidence/ST-CF-003/`.
 
-- `SAFE_SELECTOR_PROVEN / APPLY_NOT_AUTHORIZED`
-- `SAFE_SELECTOR_NOT_PROVEN / APPLY_BLOCKED`
-- `ARCHITECTURE_CHANGE_REQUIRED / APPLY_BLOCKED`
+Key findings:
+
+- accepted `android-01` state remained `MATCH`;
+- direct physical-device / registration IDs are not supported Gateway DNS/Network/HTTP selectors;
+- exact `User Email` is supported but the current identity is shared/administrative and is not fail-closed;
+- current identity cardinality was 1 device / 1 registration, but the active enrollment policy could immediately allow a second registration using the same identity;
+- Android serial-number posture is unsupported;
+- Android Device IP is unavailable as a unique device selector;
+- Device UUID / `unique_client_id` requires managed deployment/MDM and is not accepted for the current Android architecture;
+- 15/15 shared Cloudflare surfaces remained unchanged;
+- no Gateway mutation occurred;
+- ST-POL-001 and ST-POL-002 remain `APPLY_BLOCKED`.
+
+## ST-CF-004 active boundary
+
+ST-CF-004 remediates the selector lifecycle problem without introducing Android MDM.
+
+Desired model:
+
+`android-01` -> dedicated operational enrollment identity -> one intended Cloudflare registration -> replacement SETOK binding -> enrollment authorization closed again.
+
+The actual mailbox/address remains outside Git and evidence. Versioned alias:
+
+`android-01-enrollment`
+
+Plus-addressing is not accepted as the isolation mechanism.
+
+Product Input Gate requires one real dedicated mailbox/address that can receive Cloudflare One-time PIN messages, is not the account owner/admin identity and is not reused for another device.
+
+ST-CF-004 does not apply Gateway policy. Its successful terminal state is:
+
+`DEDICATED_IDENTITY_ENROLLED / DEVICE_REBOUND / ENROLLMENT_CLOSED / SAFE_SELECTOR_RETEST_REQUIRED`
+
+A later unit must re-prove safe selector behavior and execute a narrowly scoped canary before any ST-POL-001/002 apply.
 
 ## Deferred enforcement findings
 
-No existing ST-POL-001 or ST-POL-002 plan may be marked `APPLIED` until ST-CF-003 proves safe isolation and a later explicit implementation GO authorizes a staged provider mutation.
+No existing ST-POL-001 or ST-POL-002 plan may be marked `APPLIED` until safe isolation is independently re-proven after ST-CF-004 and a later explicit implementation GO authorizes a staged provider mutation.
+
+Premium-category entitlement remains unverified for controls including gambling, social media, gaming and streaming categories.
 
 ## Phase 1 exit condition
 
@@ -155,7 +183,7 @@ SETOK Family application / mini app remains deferred until Phase 1 platform vali
 
 ## Next governance action
 
-Execute the authorized **read-only ST-CF-003 discovery** on `feature/st-cf-003` from Authorized Base `ce81766d2b4c7b95b0a9a116d164cda7ffa0584e`, produce sanitized evidence, and return the selector decision to the Technical Director. Provider mutation remains forbidden.
+Close the ST-CF-004 Product Input Gate by making available one dedicated `android-01` enrollment mailbox outside Git. Then perform a fresh read-only preflight and request explicit Technical Director implementation authorization before any Cloudflare or handset mutation.
 
 ## Authority
 
