@@ -6,7 +6,7 @@
 - **Repository:** SETOKCR/setok-family
 - **Story / Work Unit:** ST-CF-004
 - **Purpose:** establish dedicated per-device Cloudflare enrollment identity and fail-closed enrollment lifecycle for `android-01`
-- **Execution state:** READY / PRODUCT INPUT GATE OPEN
+- **Execution state:** READY / STAGE A READ-ONLY PREFLIGHT
 - **Implementation Authorization:** NO
 - **Provider Mutation Authorization:** NO
 - **Risk:** RED
@@ -24,15 +24,14 @@
 
 ## Product Input Gate
 
-`OPEN — PRODUCT_INPUT_REQUIRED`
+`CLOSED — PASS`
 
-Required operational input:
+Operational input verified by Product Owner on 2026-10-30:
 
-- one real mailbox/address dedicated exclusively to `android-01`;
-- capable of receiving Cloudflare One-time PIN messages;
-- not the Cloudflare account owner/admin address;
-- not reused by iPad or any other device;
-- not implemented using plus-addressing as the isolation mechanism.
+- one dedicated mail-enabled Microsoft 365 distribution identity exists exclusively for `android-01`;
+- it successfully received a message from an external sender and delivered it to the authorized guardian destination;
+- it is not implemented using plus-addressing;
+- it is not intended for iPad or any other device.
 
 Versioned alias only:
 
@@ -40,7 +39,7 @@ Versioned alias only:
 
 The actual email and OTP values MUST remain outside Git and sanitized evidence.
 
-Closing this Product Input Gate does not by itself authorize implementation. A separate Technical Director implementation GO is still required.
+Closing this Product Input Gate authorizes **Stage A read-only preflight only**. It does not authorize implementation or provider mutation.
 
 ## Target accepted state before mutation
 
