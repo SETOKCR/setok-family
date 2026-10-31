@@ -90,7 +90,8 @@ function Get-Authorization {
 switch ($Step) {
     'Plan' {
         if (-not (Test-Path $writeToken)) { Write-Error 'STOP: ST-CF-004 write token not stored (run Set-StCf004Token.ps1)'; exit 1 }
-        $vw = Invoke-RestMethod -Method Get -Uri "$api/accounts/$acct/tokens/verify" -Authentication Bearer -Token (Import-Clixml $writeToken)
+        # The token may be user-owned or account-owned; each is verified at its own endpoint.
+        $vw = try { Invoke-RestMethod -Method Get -Uri "$api/user/tokens/verify" -Authentication Bearer -Token (Import-Clixml $writeToken) } catch { Invoke-RestMethod -Method Get -Uri "$api/accounts/$acct/tokens/verify" -Authentication Bearer -Token (Import-Clixml $writeToken) }
         $pre = Get-Snapshot
         $auth = Get-Authorization
         $pol = Read-Get $policyPath

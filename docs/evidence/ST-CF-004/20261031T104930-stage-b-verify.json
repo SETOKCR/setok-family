@@ -1,0 +1,222 @@
+{
+  "observedAt": "2026-10-31T16:49:30.7029810Z",
+  "checks": {
+    "01 warpEnrollmentAppIdUnchanged": true,
+    "02 exactlyOneEnrollmentPolicyAttached": true,
+    "03 policyDecisionAllow": true,
+    "04 includeCardinalityOne": true,
+    "05 includeIsExactEmail": true,
+    "06 dedicatedIdentityPermitted": true,
+    "07 previousSharedIdentityNotPermitted": true,
+    "08 oneTimePinOnlyAllowedIdp": true,
+    "09 noRequireExcludeExpansion": true,
+    "09b policyOtherFieldsUnchanged": true,
+    "09c appOtherFieldsUnchanged": true,
+    "10 androidDeviceAndRegistrationUnchanged": true,
+    "11 noNewDeviceOrRegistration": true,
+    "12 setokBindingUnchanged": true,
+    "13 gatewayUnchanged": true,
+    "14 defaultAndManagedProfilesUnchanged": true,
+    "15 allDeviceProfilesUnchanged": true,
+    "16 accessOrganizationUnchanged": true,
+    "17 identityProvidersUnchanged": true,
+    "18 unrelatedAccessAppsUnchanged": true,
+    "19 accessGroupsUnchanged": true,
+    "20 serviceTokensUnchanged": true,
+    "21 postureRulesUnchanged": true,
+    "deviceSettingsUnchanged": true,
+    "noFamilyGatewayEnforcement": true
+  },
+  "authorizationPost": {
+    "warpAppCount": 1,
+    "warpAppId": "51a1308a-c003-465d-8bf6-b34ee6abf659",
+    "attachedPolicyIds": [
+      "c991f7f4-7745-4f7f-afc6-3b868cdfca7e"
+    ],
+    "allowedIdps": [
+      "004a08b3-136e-419a-815f-1531e75ac870"
+    ],
+    "oneTimePinIdpId": "004a08b3-136e-419a-815f-1531e75ac870",
+    "policyId": "c991f7f4-7745-4f7f-afc6-3b868cdfca7e",
+    "policyDecision": "allow",
+    "includeCount": 1,
+    "includeKinds": [
+      "email"
+    ],
+    "dedicatedPermitted": true,
+    "sharedPermitted": false,
+    "requireCount": 0,
+    "excludeCount": 0,
+    "policyOtherFieldsSha256": "a335336a61b13da0ca6fc6496ee226a8797b88bac960bf3ee78b96ca2a91db8d",
+    "appOtherFieldsSha256": "85ac20c78533d9f530b576a39b68f243f1af9dff3d977dc5f57f03508978de55"
+  },
+  "surfaces": [
+    {
+      "surface": "gatewayRules",
+      "unchanged": true,
+      "expectedToChange": false
+    },
+    {
+      "surface": "gatewayLists",
+      "unchanged": true,
+      "expectedToChange": false
+    },
+    {
+      "surface": "gatewayConfig",
+      "unchanged": true,
+      "expectedToChange": false
+    },
+    {
+      "surface": "deviceSettings",
+      "unchanged": true,
+      "expectedToChange": false
+    },
+    {
+      "surface": "defaultProfile",
+      "unchanged": true,
+      "expectedToChange": false
+    },
+    {
+      "surface": "managedProfile",
+      "unchanged": true,
+      "expectedToChange": false
+    },
+    {
+      "surface": "allDeviceProfiles",
+      "unchanged": true,
+      "expectedToChange": false
+    },
+    {
+      "surface": "accessOrganization",
+      "unchanged": true,
+      "expectedToChange": false
+    },
+    {
+      "surface": "identityProviders",
+      "unchanged": true,
+      "expectedToChange": false
+    },
+    {
+      "surface": "accessApps",
+      "unchanged": false,
+      "expectedToChange": false
+    },
+    {
+      "surface": "enrollmentApp",
+      "unchanged": false,
+      "expectedToChange": true
+    },
+    {
+      "surface": "accessPolicies",
+      "unchanged": false,
+      "expectedToChange": true
+    },
+    {
+      "surface": "accessGroups",
+      "unchanged": true,
+      "expectedToChange": false
+    },
+    {
+      "surface": "serviceTokens",
+      "unchanged": true,
+      "expectedToChange": false
+    },
+    {
+      "surface": "postureRules",
+      "unchanged": true,
+      "expectedToChange": false
+    }
+  ],
+  "postSurfaces": {
+    "gatewayRules": {
+      "count": 2,
+      "sha256": "27ae6b134127f11e1c79fdbea7a21a57d5982ee68e79b202a8e96047da14cd2c"
+    },
+    "gatewayLists": {
+      "count": 0,
+      "sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+    },
+    "gatewayConfig": {
+      "sha256": "07d2ef3063b4fb6c1a98aa424909e7f4e9a8401e508c09c6cf8815d6639f32e2"
+    },
+    "deviceSettings": {
+      "sha256": "973bee7c66a821df489face27b52fd759704876400f814551f24661ba3efe2c7"
+    },
+    "defaultProfile": {
+      "policy_id": "019cbbfb-ca30-7b50-b7f8-050ec43917d9",
+      "sha256": "e4d1a4a1a6c91becb5fc5f049629f87e94ddf0f475319b006b4309924530c984"
+    },
+    "managedProfile": {
+      "policy_id": "994b430f-fdf6-4ad9-aa6a-b7564f7133ca",
+      "found": 1,
+      "match": "os.name in {\"android\" \"ios\"}",
+      "precedence": 100,
+      "service_mode": "warp",
+      "tunnel_protocol": "masque",
+      "switch_locked": true,
+      "allowed_to_leave": false,
+      "sha256": "d97adc999d40e15edb68684a1b3205b8b54b3ba21ac55d090cc7c99c7b455434"
+    },
+    "allDeviceProfiles": {
+      "count": 2,
+      "sha256": "4191a25d06df87c2a32d458b295eb98a5bd7efd3111272fdef4625bc50803bd0"
+    },
+    "accessOrganization": {
+      "auth_domain": "setok.cloudflareaccess.com",
+      "sha256": "2fab5e9ac109d0dff656b3768d27b9a14635a815338e45602d04cafd00923573"
+    },
+    "identityProviders": {
+      "count": 1,
+      "sha256": "540524cf75076e74f85570e941fa21fac87f7758ec1d727c89efcb5134b66d2d"
+    },
+    "accessApps": {
+      "count": 1,
+      "sha256": "733b287cfadc8774dd06cec5ae38f8b2d32dd429c6c8cc15a912f54cc90beb81"
+    },
+    "enrollmentApp": {
+      "id": "51a1308a-c003-465d-8bf6-b34ee6abf659",
+      "sha256": "733b287cfadc8774dd06cec5ae38f8b2d32dd429c6c8cc15a912f54cc90beb81"
+    },
+    "accessPolicies": {
+      "count": 1,
+      "sha256": "bf1c8f69cc53d551b06964995c25324fc538ed8bdf4fd6940d60fdb540c3aaa0"
+    },
+    "accessGroups": {
+      "count": 0,
+      "sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+    },
+    "serviceTokens": {
+      "count": 0,
+      "sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+    },
+    "postureRules": {
+      "count": 2,
+      "sha256": "edc02af297a5672f753baa1a391975b5aeb0047654afa7e7345f8e4f1c47a9bf"
+    }
+  },
+  "device": {
+    "physicalDeviceCount": 1,
+    "registrationCount": 1,
+    "physicalDeviceId": "01a17f4d-0062-19de-b716-1df58125a3d4",
+    "device_type": "android",
+    "model": "23090RA98G",
+    "model_name": "Redmi Note 13 Pro+ 5G",
+    "os_version": "16.0.0",
+    "client_version": "2.5.8",
+    "active_registrations": 1,
+    "registrationsForDevice": 1,
+    "registrationId": "01a17f4d-0062-19de-b716-1df58125a3d4",
+    "registration_type": "warp",
+    "tunnel_type": "masque",
+    "registrationDeviceId": "01a17f4d-0062-19de-b716-1df58125a3d4",
+    "profile": {
+      "policy_id": "994b430f-fdf6-4ad9-aa6a-b7564f7133ca",
+      "name": "SETOK-FAMILY-MANAGED",
+      "default": false,
+      "deleted": false
+    },
+    "revoked": false
+  },
+  "decision": "PASS",
+  "failed": []
+}
