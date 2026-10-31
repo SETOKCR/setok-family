@@ -1,0 +1,28 @@
+{
+  "observedAt": "2026-10-31T16:49:15.3951645Z",
+  "action": "UPDATE enrollment policy include (single PUT)",
+  "policyId": "c991f7f4-7745-4f7f-afc6-3b868cdfca7e",
+  "authorizationPost": {
+    "warpAppCount": 1,
+    "warpAppId": "51a1308a-c003-465d-8bf6-b34ee6abf659",
+    "attachedPolicyIds": [
+      "c991f7f4-7745-4f7f-afc6-3b868cdfca7e"
+    ],
+    "allowedIdps": [
+      "004a08b3-136e-419a-815f-1531e75ac870"
+    ],
+    "oneTimePinIdpId": "004a08b3-136e-419a-815f-1531e75ac870",
+    "policyId": "c991f7f4-7745-4f7f-afc6-3b868cdfca7e",
+    "policyDecision": "allow",
+    "includeCount": 1,
+    "includeKinds": [
+      "email"
+    ],
+    "dedicatedPermitted": true,
+    "sharedPermitted": false,
+    "requireCount": 0,
+    "excludeCount": 0,
+    "policyOtherFieldsSha256": "a335336a61b13da0ca6fc6496ee226a8797b88bac960bf3ee78b96ca2a91db8d",
+    "appOtherFieldsSha256": "85ac20c78533d9f530b576a39b68f243f1af9dff3d977dc5f57f03508978de55"
+  }
+}

@@ -6,12 +6,12 @@
 - **Repository:** SETOKCR/setok-family
 - **Story / Work Unit:** ST-CF-004
 - **Purpose:** establish dedicated per-device Cloudflare enrollment identity and fail-closed enrollment lifecycle for `android-01`
-- **Execution state:** PREFLIGHT / PRODUCT INPUT GATE OPEN
-- **Implementation Authorization:** NO
-- **Provider Mutation Authorization:** NO
+- **Execution state:** AUTHORIZED / STAGE B ENROLLMENT AUTHORIZATION TRANSITION
+- **Implementation Authorization:** YES — STAGE B ONLY
+- **Provider Mutation Authorization:** YES — STAGE B ONLY
 - **Risk:** RED
-- **Authorized Base:** TO_BE_FROZEN
-- **Implementation Branch:** TO_BE_CREATED
+- **Authorized Base:** `5ed8d403a99540e45e872ed255c27abc6203577d`
+- **Implementation Branch:** `feature/st-cf-004`
 
 ## Governance basis
 
@@ -21,18 +21,19 @@
 - ST-CF-003 terminal result: `SAFE_SELECTOR_NOT_PROVEN / APPLY_BLOCKED`
 - ST-POL-001: `DESIRED / COMPILED / APPLY_BLOCKED`
 - ST-POL-002: `DESIRED / COMPILED / APPLY_BLOCKED`
+- ST-CF-004 Stage A candidate: `9db889c1dca45af21ab757423e5c03d11fc3689f`
+- ST-CF-004 Stage A decision: `ACCEPTED — PASS`
 
 ## Product Input Gate
 
-`OPEN — PRODUCT_INPUT_REQUIRED`
+`CLOSED — PASS`
 
-Required operational input:
+Operational input verified by Product Owner on 2026-10-30:
 
-- one real mailbox/address dedicated exclusively to `android-01`;
-- capable of receiving Cloudflare One-time PIN messages;
-- not the Cloudflare account owner/admin address;
-- not reused by iPad or any other device;
-- not implemented using plus-addressing as the isolation mechanism.
+- one dedicated mail-enabled Microsoft 365 distribution identity exists exclusively for `android-01`;
+- it successfully received a message from an external sender and delivered it to the authorized guardian destination;
+- it is not implemented using plus-addressing;
+- it is not intended for iPad or any other device.
 
 Versioned alias only:
 
@@ -40,9 +41,50 @@ Versioned alias only:
 
 The actual email and OTP values MUST remain outside Git and sanitized evidence.
 
-Closing this Product Input Gate does not by itself authorize implementation. A separate Technical Director implementation GO is still required.
+## Stage A acceptance
 
-## Target accepted state before mutation
+Stage A read-only preflight is accepted on candidate:
+
+`9db889c1dca45af21ab757423e5c03d11fc3689f`
+
+Accepted findings:
+
+- `PROJECT_SCOPE_OK`;
+- current `android-01` accepted state = `MATCH`;
+- dedicated identity existing devices = `0`;
+- dedicated identity existing registrations = `0`;
+- dedicated identity is not Cloudflare account owner/admin;
+- dedicated identity differs from the shared enrollment identity;
+- dedicated identity is not plus-address based;
+- shared-surface drift = `NONE` across 15/15 observed surfaces;
+- Gateway family enforcement present = `NO`;
+- provider mutation during Stage A = `NO`.
+
+## Stage B authorization boundary
+
+The Product Owner `go` authorizes **Stage B only**.
+
+Authorized provider mutation is limited to the existing WARP enrollment authorization required to:
+
+1. permit exact identity alias `android-01-enrollment` to enroll using the existing One-time PIN identity provider;
+2. remove the previous shared/admin enrollment identity as an alternative enrollment path;
+3. verify the resulting effective enrollment authorization;
+4. capture sanitized before/after evidence and blast-radius proof.
+
+This authorization does **NOT** authorize:
+
+- handset re-enrollment;
+- OTP enrollment interaction;
+- Cloudflare device creation/revocation/deletion;
+- SETOK provider-binding creation/replacement/retirement;
+- Gateway rule/list/config mutation;
+- device-profile mutation;
+- MDM;
+- Stage C, D, E or F execution.
+
+Stage B must STOP after verification, whether PASS or STOP.
+
+## Target accepted state before Stage B mutation
 
 SETOK subject:
 
@@ -67,20 +109,11 @@ Expected:
 
 Any unexplained drift = STOP.
 
-## Future authorized mutation boundary
-
-When separately authorized, implementation may mutate only what is strictly required for:
-
-1. temporary exact-identity WARP enrollment authorization for `android-01-enrollment`;
-2. controlled re-enrollment of the same intended Redmi handset;
-3. SETOK provider-binding replacement;
-4. closure/disablement of the dedicated enrollment authorization after successful enrollment.
-
-No Gateway rule/list create/update/delete/reorder is in scope.
-
 ## Required execution stages
 
 ### Stage A — Read-only preflight
+
+**Status: ACCEPTED — PASS**
 
 - `PROJECT_SCOPE_OK`;
 - exact repository/branch/Authorized Base lineage;
@@ -91,19 +124,26 @@ No Gateway rule/list create/update/delete/reorder is in scope.
 - prove it is not account-owner/admin identity;
 - capture before-fingerprints of all shared surfaces.
 
-Failure = STOP, no mutation.
-
 ### Stage B — Enrollment authorization transition
 
-Only after explicit implementation authorization:
+**Status: AUTHORIZED — EXECUTION ALLOWED**
 
-- change the existing WARP enrollment authorization so the dedicated identity can enroll;
-- ensure the previous shared/admin enrollment identity is not left as an alternative path unless separately required and explicitly authorized;
-- verify the effective authorization matches desired state before touching the handset.
+- re-run scope/lineage and clean-tree guard before mutation;
+- re-validate Stage A safety predicates immediately before mutation;
+- change only the existing WARP enrollment authorization so the dedicated identity can enroll;
+- ensure the previous shared/admin enrollment identity is not left as an alternative path;
+- preserve the existing WARP Access application and One-time PIN IdP;
+- verify effective authorization after mutation;
+- verify no unexpected policy/app/IdP changes;
+- verify Gateway, profiles, device/registration state, and unrelated shared surfaces remain unchanged;
+- write sanitized evidence;
+- STOP after Stage B verification.
 
-Unexpected policy/app/IdP changes = STOP.
+Unexpected policy/app/IdP changes = STOP. If safe rollback is required before any handset enrollment has occurred, restore the exact pre-Stage-B enrollment authorization and verify restoration.
 
 ### Stage C — Controlled handset re-enrollment
+
+**Status: NOT AUTHORIZED**
 
 - re-enroll the same intended Redmi handset using the dedicated identity;
 - OTP is handled interactively and never versioned;
@@ -115,6 +155,8 @@ Do not retire old SETOK binding yet.
 
 ### Stage D — Replacement binding
 
+**Status: NOT AUTHORIZED**
+
 - create a replacement ACTIVE `device_enrollment` binding for `android-01` pointing only to the proven new provider registration/device identifiers;
 - reconcile twice deterministically;
 - verify exactly one authoritative ACTIVE replacement binding is intended for final state.
@@ -123,6 +165,8 @@ Only after PASS may the old binding be retired.
 
 ### Stage E — Close enrollment fail-closed
 
+**Status: NOT AUTHORIZED**
+
 - remove/disable the dedicated identity's ability to create another WARP registration;
 - prove provider authorization no longer permits a second enrollment with that identity;
 - retain a governed reopen procedure for future re-enrollment.
@@ -130,6 +174,8 @@ Only after PASS may the old binding be retired.
 If closure cannot be proven, STOP / APPLY_BLOCKED.
 
 ### Stage F — Final reconciliation / blast radius
+
+**Status: NOT AUTHORIZED**
 
 Prove:
 
@@ -163,15 +209,17 @@ No silent rollback. Any provider/device offboarding or re-enrollment requires ex
 ## Stop conditions
 
 - repository/project/lineage mismatch;
-- Product Input Gate not closed;
 - identity is shared, plus-address based, owner/admin, or already used by another device;
 - unexpected Cloudflare drift;
-- old binding must be destroyed before replacement proof;
+- current `android-01` accepted state no longer matches;
+- Stage B would require mutation outside the existing WARP enrollment authorization;
+- previous shared/admin identity cannot be removed from the effective enrollment path;
+- WARP app or One-time PIN IdP would need replacement or unrelated modification;
 - Gateway mutation becomes necessary;
 - MDM/managed deployment becomes necessary;
-- enrollment authorization cannot be closed after success;
 - unrelated shared surface changes;
-- PII/secret would need to be committed.
+- PII/secret would need to be committed;
+- any Stage C+ action becomes necessary.
 
 ## Evidence
 
@@ -181,7 +229,11 @@ Store sanitized evidence under:
 
 Never version actual mailbox, OTP, public IP, serial, keys, tokens or unnecessary PII.
 
-## Expected terminal state
+## Expected Stage B terminal state
+
+`DEDICATED_ENROLLMENT_AUTHORIZATION_ACTIVE / SHARED_ENROLLMENT_PATH_REMOVED / HANDSET_UNCHANGED / STAGE_C_NOT_AUTHORIZED`
+
+The overall ST-CF-004 expected terminal state remains:
 
 `DEDICATED_IDENTITY_ENROLLED / DEVICE_REBOUND / ENROLLMENT_CLOSED / SAFE_SELECTOR_RETEST_REQUIRED`
 
